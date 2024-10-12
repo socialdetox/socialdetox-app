@@ -1,7 +1,7 @@
 {
     "name": "SocialDetox.ai",
     "short_name": "SocialDetox.ai",
-    "description": "AI agents for social media detox (v.0.0.4)",
+    "description": "AI agents for social media detox (v.0.0.5)",
     "id": "/",
     "start_url": "/",
     "display": "minimal-ui",
