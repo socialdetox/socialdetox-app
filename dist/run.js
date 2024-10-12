@@ -1,4 +1,4 @@
-/**
+/*!
  * @architect Mark Jivko <mark@socialdetox.ai>
  * @copyright © 2024 SocialDetox.ai https://socialdetox.ai
  * 
@@ -14,24 +14,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-var lg = Object.defineProperty;
+var cg = Object.defineProperty;
 var Va = e => {
     throw TypeError(e);
 };
-var ug = (e, t, r) => (t in e ? lg(e, t, { enumerable: !0, configurable: !0, writable: !0, value: r }) : (e[t] = r));
+var fg = (e, t, r) => (t in e ? cg(e, t, { enumerable: !0, configurable: !0, writable: !0, value: r }) : (e[t] = r));
 var g = (e, t) => () => (t || e((t = { exports: {} }).exports, t), t.exports);
-var I = (e, t, r) => ug(e, typeof t != "symbol" ? t + "" : t, r),
+var I = (e, t, r) => fg(e, typeof t != "symbol" ? t + "" : t, r),
     Ya = (e, t, r) => t.has(e) || Va("Cannot " + r);
 var b = (e, t, r) => (Ya(e, t, "read from private field"), r ? r.call(e) : t.get(e)),
     me = (e, t, r) =>
         t.has(e) ? Va("Cannot add the same private member more than once") : t instanceof WeakSet ? t.add(e) : t.set(e, r),
-    xe = (e, t, r, n) => (Ya(e, t, "write to private field"), n ? n.call(e, r) : t.set(e, r), r);
-var eo = g(Mt => {
+    Te = (e, t, r, n) => (Ya(e, t, "write to private field"), n ? n.call(e, r) : t.set(e, r), r);
+var wn = g(Mt => {
     "use strict";
     Object.defineProperty(Mt, "__esModule", { value: !0 });
     Mt.CancellationError = Mt.CancellationToken = void 0;
-    var cg = require("events"),
-        Zi = class extends cg.EventEmitter {
+    var dg = require("events"),
+        eo = class extends dg.EventEmitter {
             get cancelled() {
                 return this._cancelled || (this._parent != null && this._parent.cancelled);
             }
@@ -102,7 +102,7 @@ var eo = g(Mt => {
                 }
             }
         };
-    Mt.CancellationToken = Zi;
+    Mt.CancellationToken = eo;
     var Ar = class extends Error {
         constructor() {
             super("cancelled");
@@ -110,21 +110,21 @@ var eo = g(Mt => {
     };
     Mt.CancellationError = Ar;
 });
-var Xa = g((Nb, za) => {
+var Xa = g((Pb, za) => {
     var Bt = 1e3,
         Ht = Bt * 60,
         jt = Ht * 60,
         Et = jt * 24,
-        fg = Et * 7,
-        dg = Et * 365.25;
+        hg = Et * 7,
+        pg = Et * 365.25;
     za.exports = function (e, t) {
         t = t || {};
         var r = typeof e;
-        if (r === "string" && e.length > 0) return hg(e);
-        if (r === "number" && isFinite(e)) return t.long ? mg(e) : pg(e);
+        if (r === "string" && e.length > 0) return mg(e);
+        if (r === "number" && isFinite(e)) return t.long ? wg(e) : gg(e);
         throw new Error("val is not a non-empty string or a valid number. val=" + JSON.stringify(e));
     };
-    function hg(e) {
+    function mg(e) {
         if (((e = String(e)), !(e.length > 100))) {
             var t =
                 /^(-?(?:\d+)?\.?\d+) *(milliseconds?|msecs?|ms|seconds?|secs?|s|minutes?|mins?|m|hours?|hrs?|h|days?|d|weeks?|w|years?|yrs?|y)?$/i.exec(
@@ -139,11 +139,11 @@ var Xa = g((Nb, za) => {
                     case "yrs":
                     case "yr":
                     case "y":
-                        return r * dg;
+                        return r * pg;
                     case "weeks":
                     case "week":
                     case "w":
-                        return r * fg;
+                        return r * hg;
                     case "days":
                     case "day":
                     case "d":
@@ -178,7 +178,7 @@ var Xa = g((Nb, za) => {
             }
         }
     }
-    function pg(e) {
+    function gg(e) {
         var t = Math.abs(e);
         return t >= Et
             ? Math.round(e / Et) + "d"
@@ -190,25 +190,25 @@ var Xa = g((Nb, za) => {
             ? Math.round(e / Bt) + "s"
             : e + "ms";
     }
-    function mg(e) {
+    function wg(e) {
         var t = Math.abs(e);
         return t >= Et
-            ? wn(e, t, Et, "day")
+            ? En(e, t, Et, "day")
             : t >= jt
-            ? wn(e, t, jt, "hour")
+            ? En(e, t, jt, "hour")
             : t >= Ht
-            ? wn(e, t, Ht, "minute")
+            ? En(e, t, Ht, "minute")
             : t >= Bt
-            ? wn(e, t, Bt, "second")
+            ? En(e, t, Bt, "second")
             : e + " ms";
     }
-    function wn(e, t, r, n) {
+    function En(e, t, r, n) {
         var i = t >= r * 1.5;
         return Math.round(e / r) + " " + n + (i ? "s" : "");
     }
 });
-var to = g((Rb, Ka) => {
-    function gg(e) {
+var to = g((Fb, Ka) => {
+    function Eg(e) {
         (r.debug = r),
             (r.default = r),
             (r.coerce = l),
@@ -224,13 +224,13 @@ var to = g((Rb, Ka) => {
             (r.skips = []),
             (r.formatters = {});
         function t(c) {
-            let d = 0;
-            for (let m = 0; m < c.length; m++) (d = (d << 5) - d + c.charCodeAt(m)), (d |= 0);
-            return r.colors[Math.abs(d) % r.colors.length];
+            let f = 0;
+            for (let m = 0; m < c.length; m++) (f = (f << 5) - f + c.charCodeAt(m)), (f |= 0);
+            return r.colors[Math.abs(f) % r.colors.length];
         }
         r.selectColor = t;
         function r(c) {
-            let d,
+            let f,
                 m = null,
                 p,
                 y;
@@ -238,11 +238,11 @@ var to = g((Rb, Ka) => {
                 if (!_.enabled) return;
                 let x = _,
                     A = Number(new Date()),
-                    N = A - (d || A);
+                    N = A - (f || A);
                 (x.diff = N),
-                    (x.prev = d),
+                    (x.prev = f),
                     (x.curr = A),
-                    (d = A),
+                    (f = A),
                     (v[0] = r.coerce(v[0])),
                     typeof v[0] != "string" && v.unshift("%O");
                 let L = 0;
@@ -277,29 +277,29 @@ var to = g((Rb, Ka) => {
                 _
             );
         }
-        function n(c, d) {
-            let m = r(this.namespace + (typeof d > "u" ? ":" : d) + c);
+        function n(c, f) {
+            let m = r(this.namespace + (typeof f > "u" ? ":" : f) + c);
             return (m.log = this.log), m;
         }
         function i(c) {
             r.save(c), (r.namespaces = c), (r.names = []), (r.skips = []);
-            let d,
+            let f,
                 m = (typeof c == "string" ? c : "").split(/[\s,]+/),
                 p = m.length;
-            for (d = 0; d < p; d++)
-                m[d] &&
-                    ((c = m[d].replace(/\*/g, ".*?")),
+            for (f = 0; f < p; f++)
+                m[f] &&
+                    ((c = m[f].replace(/\*/g, ".*?")),
                     c[0] === "-" ? r.skips.push(new RegExp("^" + c.slice(1) + "$")) : r.names.push(new RegExp("^" + c + "$")));
         }
         function o() {
-            let c = [...r.names.map(a), ...r.skips.map(a).map(d => "-" + d)].join(",");
+            let c = [...r.names.map(a), ...r.skips.map(a).map(f => "-" + f)].join(",");
             return r.enable(""), c;
         }
         function s(c) {
             if (c[c.length - 1] === "*") return !0;
-            let d, m;
-            for (d = 0, m = r.skips.length; d < m; d++) if (r.skips[d].test(c)) return !1;
-            for (d = 0, m = r.names.length; d < m; d++) if (r.names[d].test(c)) return !0;
+            let f, m;
+            for (f = 0, m = r.skips.length; f < m; f++) if (r.skips[f].test(c)) return !1;
+            for (f = 0, m = r.names.length; f < m; f++) if (r.names[f].test(c)) return !0;
             return !1;
         }
         function a(c) {
@@ -318,15 +318,15 @@ var to = g((Rb, Ka) => {
         }
         return r.enable(r.load()), r;
     }
-    Ka.exports = gg;
+    Ka.exports = Eg;
 });
-var Ja = g((Ne, En) => {
-    Ne.formatArgs = Eg;
-    Ne.save = yg;
-    Ne.load = _g;
-    Ne.useColors = wg;
-    Ne.storage = vg();
-    Ne.destroy = (() => {
+var Ja = g((Re, yn) => {
+    Re.formatArgs = _g;
+    Re.save = vg;
+    Re.load = Sg;
+    Re.useColors = yg;
+    Re.storage = Ag();
+    Re.destroy = (() => {
         let e = !1;
         return () => {
             e ||
@@ -336,7 +336,7 @@ var Ja = g((Ne, En) => {
                 ));
         };
     })();
-    Ne.colors = [
+    Re.colors = [
         "#0000CC",
         "#0000FF",
         "#0033CC",
@@ -414,7 +414,7 @@ var Ja = g((Ne, En) => {
         "#FFCC00",
         "#FFCC33"
     ];
-    function wg() {
+    function yg() {
         if (typeof window < "u" && window.process && (window.process.type === "renderer" || window.process.__nwjs)) return !0;
         if (typeof navigator < "u" && navigator.userAgent && navigator.userAgent.toLowerCase().match(/(edge|trident)\/(\d+)/))
             return !1;
@@ -434,7 +434,7 @@ var Ja = g((Ne, En) => {
             (typeof navigator < "u" && navigator.userAgent && navigator.userAgent.toLowerCase().match(/applewebkit\/(\d+)/))
         );
     }
-    function Eg(e) {
+    function _g(e) {
         if (
             ((e[0] =
                 (this.useColors ? "%c" : "") +
@@ -443,7 +443,7 @@ var Ja = g((Ne, En) => {
                 e[0] +
                 (this.useColors ? "%c " : " ") +
                 "+" +
-                En.exports.humanize(this.diff)),
+                yn.exports.humanize(this.diff)),
             !this.useColors)
         )
             return;
@@ -456,27 +456,27 @@ var Ja = g((Ne, En) => {
         }),
             e.splice(n, 0, t);
     }
-    Ne.log = console.debug || console.log || (() => {});
-    function yg(e) {
+    Re.log = console.debug || console.log || (() => {});
+    function vg(e) {
         try {
-            e ? Ne.storage.setItem("debug", e) : Ne.storage.removeItem("debug");
+            e ? Re.storage.setItem("debug", e) : Re.storage.removeItem("debug");
         } catch {}
     }
-    function _g() {
+    function Sg() {
         let e;
         try {
-            e = Ne.storage.getItem("debug");
+            e = Re.storage.getItem("debug");
         } catch {}
         return !e && typeof process < "u" && "env" in process && (e = process.env.DEBUG), e;
     }
-    function vg() {
+    function Ag() {
         try {
             return localStorage;
         } catch {}
     }
-    En.exports = to()(Ne);
-    var { formatters: Sg } = En.exports;
-    Sg.j = function (e) {
+    yn.exports = to()(Re);
+    var { formatters: xg } = yn.exports;
+    xg.j = function (e) {
         try {
             return JSON.stringify(e);
         } catch (t) {
@@ -484,7 +484,7 @@ var Ja = g((Ne, En) => {
         }
     };
 });
-var Za = g((Db, Qa) => {
+var Za = g((qb, Qa) => {
     "use strict";
     Qa.exports = (e, t) => {
         t = t || process.argv;
@@ -494,9 +494,9 @@ var Za = g((Db, Qa) => {
         return n !== -1 && (i === -1 ? !0 : n < i);
     };
 });
-var tl = g((Pb, el) => {
+var tl = g((Lb, el) => {
     "use strict";
-    var Ag = require("os"),
+    var Tg = require("os"),
         Le = Za(),
         ue = process.env,
         Wt;
@@ -504,17 +504,17 @@ var tl = g((Pb, el) => {
         ? (Wt = !1)
         : (Le("color") || Le("colors") || Le("color=true") || Le("color=always")) && (Wt = !0);
     "FORCE_COLOR" in ue && (Wt = ue.FORCE_COLOR.length === 0 || parseInt(ue.FORCE_COLOR, 10) !== 0);
-    function xg(e) {
+    function Cg(e) {
         return e === 0 ? !1 : { level: e, hasBasic: !0, has256: e >= 2, has16m: e >= 3 };
     }
-    function Tg(e) {
+    function bg(e) {
         if (Wt === !1) return 0;
         if (Le("color=16m") || Le("color=full") || Le("color=truecolor")) return 3;
         if (Le("color=256")) return 2;
         if (e && !e.isTTY && Wt !== !0) return 0;
         let t = Wt ? 1 : 0;
         if (process.platform === "win32") {
-            let r = Ag.release().split(".");
+            let r = Tg.release().split(".");
             return Number(process.versions.node.split(".")[0]) >= 8 && Number(r[0]) >= 10 && Number(r[2]) >= 10586
                 ? Number(r[2]) >= 14931
                     ? 3
@@ -541,21 +541,21 @@ var tl = g((Pb, el) => {
             : (ue.TERM === "dumb", t);
     }
     function ro(e) {
-        let t = Tg(e);
-        return xg(t);
+        let t = bg(e);
+        return Cg(t);
     }
     el.exports = { supportsColor: ro, stdout: ro(process.stdout), stderr: ro(process.stderr) };
 });
-var nl = g((ne, _n) => {
-    var Cg = require("tty"),
-        yn = require("util");
-    ne.init = Pg;
-    ne.log = Ng;
-    ne.formatArgs = Og;
-    ne.save = Rg;
-    ne.load = Dg;
-    ne.useColors = bg;
-    ne.destroy = yn.deprecate(() => {},
+var nl = g((ne, vn) => {
+    var Og = require("tty"),
+        _n = require("util");
+    ne.init = qg;
+    ne.log = Dg;
+    ne.formatArgs = Ng;
+    ne.save = Pg;
+    ne.load = Fg;
+    ne.useColors = Ig;
+    ne.destroy = _n.deprecate(() => {},
     "Instance method `debug.destroy()` is deprecated and no longer does anything. It will be removed in the next major version of `debug`.");
     ne.colors = [6, 2, 3, 4, 5, 1];
     try {
@@ -589,10 +589,10 @@ var nl = g((ne, _n) => {
                 e
             );
         }, {});
-    function bg() {
-        return "colors" in ne.inspectOpts ? !!ne.inspectOpts.colors : Cg.isatty(process.stderr.fd);
+    function Ig() {
+        return "colors" in ne.inspectOpts ? !!ne.inspectOpts.colors : Og.isatty(process.stderr.fd);
     }
-    function Og(e) {
+    function Ng(e) {
         let { namespace: t, useColors: r } = this;
         if (r) {
             let n = this.color,
@@ -609,36 +609,36 @@ var nl = g((ne, _n) => {
                         `
 ` + o
                     )),
-                e.push(i + "m+" + _n.exports.humanize(this.diff) + "\x1B[0m");
-        } else e[0] = Ig() + t + " " + e[0];
+                e.push(i + "m+" + vn.exports.humanize(this.diff) + "\x1B[0m");
+        } else e[0] = Rg() + t + " " + e[0];
     }
-    function Ig() {
+    function Rg() {
         return ne.inspectOpts.hideDate ? "" : new Date().toISOString() + " ";
     }
-    function Ng(...e) {
+    function Dg(...e) {
         return process.stderr.write(
-            yn.formatWithOptions(ne.inspectOpts, ...e) +
+            _n.formatWithOptions(ne.inspectOpts, ...e) +
                 `
 `
         );
     }
-    function Rg(e) {
+    function Pg(e) {
         e ? (process.env.DEBUG = e) : delete process.env.DEBUG;
     }
-    function Dg() {
+    function Fg() {
         return process.env.DEBUG;
     }
-    function Pg(e) {
+    function qg(e) {
         e.inspectOpts = {};
         let t = Object.keys(ne.inspectOpts);
         for (let r = 0; r < t.length; r++) e.inspectOpts[t[r]] = ne.inspectOpts[t[r]];
     }
-    _n.exports = to()(ne);
-    var { formatters: rl } = _n.exports;
+    vn.exports = to()(ne);
+    var { formatters: rl } = vn.exports;
     rl.o = function (e) {
         return (
             (this.inspectOpts.colors = this.useColors),
-            yn
+            _n
                 .inspect(e, this.inspectOpts)
                 .split(
                     `
@@ -649,10 +649,10 @@ var nl = g((ne, _n) => {
         );
     };
     rl.O = function (e) {
-        return (this.inspectOpts.colors = this.useColors), yn.inspect(e, this.inspectOpts);
+        return (this.inspectOpts.colors = this.useColors), _n.inspect(e, this.inspectOpts);
     };
 });
-var il = g((Fb, no) => {
+var il = g((Ub, no) => {
     typeof process > "u" || process.type === "renderer" || process.browser === !0 || process.__nwjs
         ? (no.exports = Ja())
         : (no.exports = nl());
@@ -660,18 +660,18 @@ var il = g((Fb, no) => {
 var xr = g(io => {
     "use strict";
     Object.defineProperty(io, "__esModule", { value: !0 });
-    io.newError = Fg;
-    function Fg(e, t) {
+    io.newError = Lg;
+    function Lg(e, t) {
         let r = new Error(e);
         return (r.code = t), r;
     }
 });
-var so = g(vn => {
+var so = g(Sn => {
     "use strict";
-    Object.defineProperty(vn, "__esModule", { value: !0 });
-    vn.ProgressCallbackTransform = void 0;
-    var qg = require("stream"),
-        oo = class extends qg.Transform {
+    Object.defineProperty(Sn, "__esModule", { value: !0 });
+    Sn.ProgressCallbackTransform = void 0;
+    var Ug = require("stream"),
+        oo = class extends Ug.Transform {
             constructor(t, r, n) {
                 super(),
                     (this.total = t),
@@ -718,28 +718,28 @@ var so = g(vn => {
                     t(null);
             }
         };
-    vn.ProgressCallbackTransform = oo;
+    Sn.ProgressCallbackTransform = oo;
 });
 var ll = g(ge => {
     "use strict";
     Object.defineProperty(ge, "__esModule", { value: !0 });
     ge.DigestTransform = ge.HttpExecutor = ge.HttpError = void 0;
     ge.createHttpError = ao;
-    ge.parseJson = jg;
+    ge.parseJson = Gg;
     ge.configureRequestOptionsFromUrl = al;
     ge.configureRequestUrl = uo;
     ge.safeGetHeader = Gt;
-    ge.configureRequestOptions = Sn;
-    ge.safeStringifyJson = An;
-    var Lg = require("crypto"),
-        Ug = il(),
-        $g = require("fs"),
-        kg = require("stream"),
+    ge.configureRequestOptions = An;
+    ge.safeStringifyJson = xn;
+    var $g = require("crypto"),
+        kg = il(),
+        Mg = require("fs"),
+        Bg = require("stream"),
         sl = require("url"),
-        Mg = eo(),
+        Hg = wn(),
         ol = xr(),
-        Bg = so(),
-        Tr = (0, Ug.default)("electron-builder");
+        jg = so(),
+        Tr = (0, kg.default)("electron-builder");
     function ao(e, t = null) {
         return new Cr(
             e.statusCode || -1,
@@ -750,11 +750,11 @@ var ll = g(ge => {
 ` + JSON.stringify(t, null, "  ")) +
                 `
 Headers: ` +
-                An(e.headers),
+                xn(e.headers),
             t
         );
     }
-    var Hg = new Map([
+    var Wg = new Map([
             [429, "Too many requests"],
             [400, "Bad request"],
             [403, "Forbidden"],
@@ -770,7 +770,7 @@ Headers: ` +
             [505, "HTTP version not supported"]
         ]),
         Cr = class extends Error {
-            constructor(t, r = `HTTP error: ${Hg.get(t) || t}`, n = null) {
+            constructor(t, r = `HTTP error: ${Wg.get(t) || t}`, n = null) {
                 super(r),
                     (this.statusCode = t),
                     (this.description = n),
@@ -782,15 +782,15 @@ Headers: ` +
             }
         };
     ge.HttpError = Cr;
-    function jg(e) {
+    function Gg(e) {
         return e.then(t => (t == null || t.length === 0 ? null : JSON.parse(t)));
     }
     var lo = class e {
         constructor() {
             this.maxRedirects = 10;
         }
-        request(t, r = new Mg.CancellationToken(), n) {
-            Sn(t);
+        request(t, r = new Hg.CancellationToken(), n) {
+            An(t);
             let i = n == null ? void 0 : JSON.stringify(n),
                 o = i ? Buffer.from(i) : void 0;
             if (o != null) {
@@ -802,7 +802,7 @@ Headers: ` +
         }
         doApiRequest(t, r, n, i = 0) {
             return (
-                Tr.enabled && Tr(`Request: ${An(t)}`),
+                Tr.enabled && Tr(`Request: ${xn(t)}`),
                 r.createPromise((o, s, a) => {
                     let l = this.createRequest(t, h => {
                         try {
@@ -831,7 +831,7 @@ Headers: ` +
         handleResponse(t, r, n, i, o, s, a) {
             var l;
             if (
-                (Tr.enabled && Tr(`Response: ${t.statusCode} ${t.statusMessage}, request options: ${An(r)}`),
+                (Tr.enabled && Tr(`Response: ${t.statusCode} ${t.statusMessage}, request options: ${xn(r)}`),
                 t.statusCode === 404)
             ) {
                 o(
@@ -852,13 +852,13 @@ Please double check that your authentication token is correct. Due to security r
             }
             let h = (l = t.statusCode) !== null && l !== void 0 ? l : 0,
                 c = h >= 300 && h < 400,
-                d = Gt(t, "location");
-            if (c && d != null) {
+                f = Gt(t, "location");
+            if (c && f != null) {
                 if (s > this.maxRedirects) {
                     o(this.createMaxRedirectError());
                     return;
                 }
-                this.doApiRequest(e.prepareRedirectUrlOptions(d, r), n, a, s).then(i).catch(o);
+                this.doApiRequest(e.prepareRedirectUrlOptions(f, r), n, a, s).then(i).catch(o);
                 return;
             }
             t.setEncoding("utf8");
@@ -895,7 +895,7 @@ Please double check that your authentication token is correct. Due to security r
                 let s = [],
                     a = { headers: r.headers || void 0, redirect: "manual" };
                 uo(t, a),
-                    Sn(a),
+                    An(a),
                     this.doDownload(
                         a,
                         {
@@ -907,12 +907,12 @@ Please double check that your authentication token is correct. Due to security r
                             },
                             responseHandler: (l, h) => {
                                 let c = 0;
-                                l.on("data", d => {
-                                    if (((c += d.length), c > 524288e3)) {
+                                l.on("data", f => {
+                                    if (((c += f.length), c > 524288e3)) {
                                         h(new Error("Maximum allowed size is 500 MB"));
                                         return;
                                     }
-                                    s.push(d);
+                                    s.push(f);
                                 }),
                                     l.on("end", () => {
                                         h(null);
@@ -943,7 +943,7 @@ Please double check that your authentication token is correct. Due to security r
                         : r.callback(this.createMaxRedirectError());
                     return;
                 }
-                r.responseHandler == null ? Gg(r, o) : r.responseHandler(o, r.callback);
+                r.responseHandler == null ? Yg(r, o) : r.responseHandler(o, r.callback);
             });
             this.addErrorAndTimeoutHandlers(i, r.callback, t.timeout),
                 this.addRedirectHandlers(i, t, r.callback, n, o => {
@@ -982,7 +982,7 @@ Please double check that your authentication token is correct. Due to security r
     };
     ge.HttpExecutor = lo;
     function al(e, t) {
-        let r = Sn(t);
+        let r = An(t);
         return uo(new sl.URL(e), r), r;
     }
     function uo(e, t) {
@@ -991,7 +991,7 @@ Please double check that your authentication token is correct. Due to security r
             e.port ? (t.port = e.port) : t.port && delete t.port,
             (t.path = e.pathname + e.search);
     }
-    var br = class extends kg.Transform {
+    var br = class extends Bg.Transform {
         get actual() {
             return this._actual;
         }
@@ -1002,7 +1002,7 @@ Please double check that your authentication token is correct. Due to security r
                 (this.encoding = n),
                 (this._actual = null),
                 (this.isValidateOnEnd = !0),
-                (this.digester = (0, Lg.createHash)(r));
+                (this.digester = (0, $g.createHash)(r));
         }
         _transform(t, r, n) {
             this.digester.update(t), n(null, t);
@@ -1028,7 +1028,7 @@ Please double check that your authentication token is correct. Due to security r
         }
     };
     ge.DigestTransform = br;
-    function Wg(e, t, r) {
+    function Vg(e, t, r) {
         return e != null && t != null && e !== t
             ? (r(new Error(`checksum mismatch: expected ${t} but got ${e} (X-Checksum-Sha2 header)`)), !1)
             : !0;
@@ -1037,13 +1037,13 @@ Please double check that your authentication token is correct. Due to security r
         let r = e.headers[t];
         return r == null ? null : Array.isArray(r) ? (r.length === 0 ? null : r[r.length - 1]) : r;
     }
-    function Gg(e, t) {
-        if (!Wg(Gt(t, "X-Checksum-Sha2"), e.options.sha2, e.callback)) return;
+    function Yg(e, t) {
+        if (!Vg(Gt(t, "X-Checksum-Sha2"), e.options.sha2, e.callback)) return;
         let r = [];
         if (e.options.onProgress != null) {
             let s = Gt(t, "content-length");
             s != null &&
-                r.push(new Bg.ProgressCallbackTransform(parseInt(s, 10), e.options.cancellationToken, e.options.onProgress));
+                r.push(new jg.ProgressCallbackTransform(parseInt(s, 10), e.options.cancellationToken, e.options.onProgress));
         }
         let n = e.options.sha512;
         n != null
@@ -1055,7 +1055,7 @@ Please double check that your authentication token is correct. Due to security r
                   )
               )
             : e.options.sha2 != null && r.push(new br(e.options.sha2, "sha256", "hex"));
-        let i = (0, $g.createWriteStream)(e.destination);
+        let i = (0, Mg.createWriteStream)(e.destination);
         r.push(i);
         let o = t;
         for (let s of r)
@@ -1067,7 +1067,7 @@ Please double check that your authentication token is correct. Due to security r
             i.close(e.callback);
         });
     }
-    function Sn(e, t, r) {
+    function An(e, t, r) {
         r != null && (e.method = r), (e.headers = { ...e.headers });
         let n = e.headers;
         return (
@@ -1078,7 +1078,7 @@ Please double check that your authentication token is correct. Due to security r
             e
         );
     }
-    function An(e, t) {
+    function xn(e, t) {
         return JSON.stringify(
             e,
             (r, n) =>
@@ -1096,21 +1096,21 @@ Please double check that your authentication token is correct. Due to security r
         );
     }
 });
-var cl = g(xn => {
+var cl = g(Tn => {
     "use strict";
-    Object.defineProperty(xn, "__esModule", { value: !0 });
-    xn.githubUrl = Vg;
-    xn.getS3LikeProviderBaseUrl = Yg;
-    function Vg(e, t = "github.com") {
+    Object.defineProperty(Tn, "__esModule", { value: !0 });
+    Tn.githubUrl = zg;
+    Tn.getS3LikeProviderBaseUrl = Xg;
+    function zg(e, t = "github.com") {
         return `${e.protocol || "https"}://${e.host || t}`;
     }
-    function Yg(e) {
+    function Xg(e) {
         let t = e.provider;
-        if (t === "s3") return zg(e);
-        if (t === "spaces") return Xg(e);
+        if (t === "s3") return Kg(e);
+        if (t === "spaces") return Jg(e);
         throw new Error(`Not supported provider: ${t}`);
     }
-    function zg(e) {
+    function Kg(e) {
         let t;
         if (e.accelerate == !0) t = `https://${e.bucket}.s3-accelerate.amazonaws.com`;
         else if (e.endpoint != null) t = `${e.endpoint}/${e.bucket}`;
@@ -1128,7 +1128,7 @@ var cl = g(xn => {
     function ul(e, t) {
         return t != null && t.length > 0 && (t.startsWith("/") || (e += "/"), (e += t)), e;
     }
-    function Xg(e) {
+    function Jg(e) {
         if (e.name == null) throw new Error("name is missing");
         if (e.region == null) throw new Error("region is missing");
         return ul(`https://${e.name}.${e.region}.digitaloceanspaces.com`, e.path);
@@ -1137,8 +1137,8 @@ var cl = g(xn => {
 var fl = g(co => {
     "use strict";
     Object.defineProperty(co, "__esModule", { value: !0 });
-    co.parseDn = Kg;
-    function Kg(e) {
+    co.parseDn = Qg;
+    function Qg(e) {
         let t = !1,
             r = null,
             n = "",
@@ -1205,14 +1205,14 @@ var gl = g(Vt => {
     Vt.nil = Vt.UUID = void 0;
     var pl = require("crypto"),
         ml = xr(),
-        Jg = "options.name must be either a string or a Buffer",
+        Zg = "options.name must be either a string or a Buffer",
         dl = (0, pl.randomBytes)(16);
     dl[0] = dl[0] | 1;
-    var Tn = {},
+    var Cn = {},
         $ = [];
     for (let e = 0; e < 256; e++) {
         let t = (e + 256).toString(16).substr(1);
-        (Tn[t] = e), ($[e] = t);
+        (Cn[t] = e), ($[e] = t);
     }
     var yt = class e {
         constructor(t) {
@@ -1222,10 +1222,10 @@ var gl = g(Vt => {
             (this.version = r.version), r.format === "ascii" ? (this.ascii = t) : (this.binary = t);
         }
         static v5(t, r) {
-            return Qg(t, "sha1", 80, r);
+            return e0(t, "sha1", 80, r);
         }
         toString() {
-            return this.ascii == null && (this.ascii = Zg(this.binary)), this.ascii;
+            return this.ascii == null && (this.ascii = t0(this.binary)), this.ascii;
         }
         inspect() {
             return `UUID v${this.version} ${this.toString()}`;
@@ -1238,8 +1238,8 @@ var gl = g(Vt => {
                         ? t === "00000000-0000-0000-0000-000000000000"
                             ? { version: void 0, variant: "nil", format: "ascii" }
                             : {
-                                  version: (Tn[t[14] + t[15]] & 240) >> 4,
-                                  variant: hl((Tn[t[19] + t[20]] & 224) >> 5),
+                                  version: (Cn[t[14] + t[15]] & 240) >> 4,
+                                  variant: hl((Cn[t[19] + t[20]] & 224) >> 5),
                                   format: "ascii"
                               }
                         : !1
@@ -1257,7 +1257,7 @@ var gl = g(Vt => {
         static parse(t) {
             let r = Buffer.allocUnsafe(16),
                 n = 0;
-            for (let i = 0; i < 16; i++) (r[i] = Tn[t[n++] + t[n++]]), (i === 3 || i === 5 || i === 7 || i === 9) && (n += 1);
+            for (let i = 0; i < 16; i++) (r[i] = Cn[t[n++] + t[n++]]), (i === 3 || i === 5 || i === 7 || i === 9) && (n += 1);
             return r;
         }
     };
@@ -1282,9 +1282,9 @@ var gl = g(Vt => {
     (function (e) {
         (e[(e.ASCII = 0)] = "ASCII"), (e[(e.BINARY = 1)] = "BINARY"), (e[(e.OBJECT = 2)] = "OBJECT");
     })(Or || (Or = {}));
-    function Qg(e, t, r, n, i = Or.ASCII) {
+    function e0(e, t, r, n, i = Or.ASCII) {
         let o = (0, pl.createHash)(t);
-        if (typeof e != "string" && !Buffer.isBuffer(e)) throw (0, ml.newError)(Jg, "ERR_INVALID_UUID_NAME");
+        if (typeof e != "string" && !Buffer.isBuffer(e)) throw (0, ml.newError)(Zg, "ERR_INVALID_UUID_NAME");
         o.update(n), o.update(e);
         let a = o.digest(),
             l;
@@ -1321,7 +1321,7 @@ var gl = g(Vt => {
         }
         return l;
     }
-    function Zg(e) {
+    function t0(e) {
         return (
             $[e[0]] +
             $[e[1]] +
@@ -1347,10 +1347,10 @@ var gl = g(Vt => {
     }
     Vt.nil = new yt("00000000-0000-0000-0000-000000000000");
 });
-var wl = g(Cn => {
+var wl = g(bn => {
     (function (e) {
-        (e.parser = function (f, u) {
-            return new r(f, u);
+        (e.parser = function (d, u) {
+            return new r(d, u);
         }),
             (e.SAXParser = r),
             (e.SAXStream = h),
@@ -1390,8 +1390,8 @@ var wl = g(Cn => {
             "opennamespace",
             "closenamespace"
         ];
-        function r(f, u) {
-            if (!(this instanceof r)) return new r(f, u);
+        function r(d, u) {
+            if (!(this instanceof r)) return new r(d, u);
             var S = this;
             i(S),
                 (S.q = S.c = ""),
@@ -1402,66 +1402,66 @@ var wl = g(Cn => {
                 (S.tags = []),
                 (S.closed = S.closedRoot = S.sawRoot = !1),
                 (S.tag = S.error = null),
-                (S.strict = !!f),
-                (S.noscript = !!(f || S.opt.noscript)),
+                (S.strict = !!d),
+                (S.noscript = !!(d || S.opt.noscript)),
                 (S.state = E.BEGIN),
                 (S.strictEntities = S.opt.strictEntities),
                 (S.ENTITIES = S.strictEntities ? Object.create(e.XML_ENTITIES) : Object.create(e.ENTITIES)),
                 (S.attribList = []),
                 S.opt.xmlns && (S.ns = Object.create(y)),
-                S.opt.unquotedAttributeValues === void 0 && (S.opt.unquotedAttributeValues = !f),
+                S.opt.unquotedAttributeValues === void 0 && (S.opt.unquotedAttributeValues = !d),
                 (S.trackPosition = S.opt.position !== !1),
                 S.trackPosition && (S.position = S.line = S.column = 0),
                 U(S, "onready");
         }
         Object.create ||
-            (Object.create = function (f) {
+            (Object.create = function (d) {
                 function u() {}
-                u.prototype = f;
+                u.prototype = d;
                 var S = new u();
                 return S;
             }),
             Object.keys ||
-                (Object.keys = function (f) {
+                (Object.keys = function (d) {
                     var u = [];
-                    for (var S in f) f.hasOwnProperty(S) && u.push(S);
+                    for (var S in d) d.hasOwnProperty(S) && u.push(S);
                     return u;
                 });
-        function n(f) {
+        function n(d) {
             for (var u = Math.max(e.MAX_BUFFER_LENGTH, 10), S = 0, w = 0, B = t.length; w < B; w++) {
-                var te = f[t[w]].length;
+                var te = d[t[w]].length;
                 if (te > u)
                     switch (t[w]) {
                         case "textNode":
-                            K(f);
+                            K(d);
                             break;
                         case "cdata":
-                            R(f, "oncdata", f.cdata), (f.cdata = "");
+                            R(d, "oncdata", d.cdata), (d.cdata = "");
                             break;
                         case "script":
-                            R(f, "onscript", f.script), (f.script = "");
+                            R(d, "onscript", d.script), (d.script = "");
                             break;
                         default:
-                            X(f, "Max buffer length exceeded: " + t[w]);
+                            X(d, "Max buffer length exceeded: " + t[w]);
                     }
                 S = Math.max(S, te);
             }
             var re = e.MAX_BUFFER_LENGTH - S;
-            f.bufferCheckPosition = re + f.position;
+            d.bufferCheckPosition = re + d.position;
         }
-        function i(f) {
-            for (var u = 0, S = t.length; u < S; u++) f[t[u]] = "";
+        function i(d) {
+            for (var u = 0, S = t.length; u < S; u++) d[t[u]] = "";
         }
-        function o(f) {
-            K(f),
-                f.cdata !== "" && (R(f, "oncdata", f.cdata), (f.cdata = "")),
-                f.script !== "" && (R(f, "onscript", f.script), (f.script = ""));
+        function o(d) {
+            K(d),
+                d.cdata !== "" && (R(d, "oncdata", d.cdata), (d.cdata = "")),
+                d.script !== "" && (R(d, "onscript", d.script), (d.script = ""));
         }
         r.prototype = {
             end: function () {
                 G(this);
             },
-            write: sg,
+            write: lg,
             resume: function () {
                 return (this.error = null), this;
             },
@@ -1479,15 +1479,15 @@ var wl = g(Cn => {
             s = function () {};
         }
         s || (s = function () {});
-        var a = e.EVENTS.filter(function (f) {
-            return f !== "error" && f !== "end";
+        var a = e.EVENTS.filter(function (d) {
+            return d !== "error" && d !== "end";
         });
-        function l(f, u) {
-            return new h(f, u);
+        function l(d, u) {
+            return new h(d, u);
         }
-        function h(f, u) {
-            if (!(this instanceof h)) return new h(f, u);
-            s.apply(this), (this._parser = new r(f, u)), (this.writable = !0), (this.readable = !0);
+        function h(d, u) {
+            if (!(this instanceof h)) return new h(d, u);
+            s.apply(this), (this._parser = new r(d, u)), (this.writable = !0), (this.readable = !0);
             var S = this;
             (this._parser.onend = function () {
                 S.emit("end");
@@ -1511,33 +1511,33 @@ var wl = g(Cn => {
                 });
         }
         (h.prototype = Object.create(s.prototype, { constructor: { value: h } })),
-            (h.prototype.write = function (f) {
-                if (typeof Buffer == "function" && typeof Buffer.isBuffer == "function" && Buffer.isBuffer(f)) {
+            (h.prototype.write = function (d) {
+                if (typeof Buffer == "function" && typeof Buffer.isBuffer == "function" && Buffer.isBuffer(d)) {
                     if (!this._decoder) {
                         var u = require("string_decoder").StringDecoder;
                         this._decoder = new u("utf8");
                     }
-                    f = this._decoder.write(f);
+                    d = this._decoder.write(d);
                 }
-                return this._parser.write(f.toString()), this.emit("data", f), !0;
+                return this._parser.write(d.toString()), this.emit("data", d), !0;
             }),
-            (h.prototype.end = function (f) {
-                return f && f.length && this.write(f), this._parser.end(), !0;
+            (h.prototype.end = function (d) {
+                return d && d.length && this.write(d), this._parser.end(), !0;
             }),
-            (h.prototype.on = function (f, u) {
+            (h.prototype.on = function (d, u) {
                 var S = this;
                 return (
-                    !S._parser["on" + f] &&
-                        a.indexOf(f) !== -1 &&
-                        (S._parser["on" + f] = function () {
+                    !S._parser["on" + d] &&
+                        a.indexOf(d) !== -1 &&
+                        (S._parser["on" + d] = function () {
                             var w = arguments.length === 1 ? [arguments[0]] : Array.apply(null, arguments);
-                            w.splice(0, 0, f), S.emit.apply(S, w);
+                            w.splice(0, 0, d), S.emit.apply(S, w);
                         }),
-                    s.prototype.on.call(S, f, u)
+                    s.prototype.on.call(S, d, u)
                 );
             });
         var c = "[CDATA[",
-            d = "DOCTYPE",
+            f = "DOCTYPE",
             m = "http://www.w3.org/XML/1998/namespace",
             p = "http://www.w3.org/2000/xmlns/",
             y = { xml: m, xmlns: p },
@@ -1549,27 +1549,27 @@ var wl = g(Cn => {
                 /[#:_A-Za-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u02FF\u0370-\u037D\u037F-\u1FFF\u200C-\u200D\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD]/,
             A =
                 /[#:_A-Za-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u02FF\u0370-\u037D\u037F-\u1FFF\u200C-\u200D\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD\u00B7\u0300-\u036F\u203F-\u2040.\d-]/;
-        function N(f) {
+        function N(d) {
             return (
-                f === " " ||
-                f ===
+                d === " " ||
+                d ===
                     `
 ` ||
-                f === "\r" ||
-                f === "	"
+                d === "\r" ||
+                d === "	"
             );
         }
-        function L(f) {
-            return f === '"' || f === "'";
+        function L(d) {
+            return d === '"' || d === "'";
         }
-        function De(f) {
-            return f === ">" || N(f);
+        function De(d) {
+            return d === ">" || N(d);
         }
-        function V(f, u) {
-            return f.test(u);
+        function V(d, u) {
+            return d.test(u);
         }
-        function se(f, u) {
-            return !V(f, u);
+        function se(d, u) {
+            return !V(d, u);
         }
         var E = 0;
         (e.STATE = {
@@ -1866,208 +1866,208 @@ var wl = g(Cn => {
                 hearts: 9829,
                 diams: 9830
             }),
-            Object.keys(e.ENTITIES).forEach(function (f) {
-                var u = e.ENTITIES[f],
+            Object.keys(e.ENTITIES).forEach(function (d) {
+                var u = e.ENTITIES[d],
                     S = typeof u == "number" ? String.fromCharCode(u) : u;
-                e.ENTITIES[f] = S;
+                e.ENTITIES[d] = S;
             });
         for (var D in e.STATE) e.STATE[e.STATE[D]] = D;
         E = e.STATE;
-        function U(f, u, S) {
-            f[u] && f[u](S);
+        function U(d, u, S) {
+            d[u] && d[u](S);
         }
-        function R(f, u, S) {
-            f.textNode && K(f), U(f, u, S);
+        function R(d, u, S) {
+            d.textNode && K(d), U(d, u, S);
         }
-        function K(f) {
-            (f.textNode = Z(f.opt, f.textNode)), f.textNode && U(f, "ontext", f.textNode), (f.textNode = "");
+        function K(d) {
+            (d.textNode = Z(d.opt, d.textNode)), d.textNode && U(d, "ontext", d.textNode), (d.textNode = "");
         }
-        function Z(f, u) {
-            return f.trim && (u = u.trim()), f.normalize && (u = u.replace(/\s+/g, " ")), u;
+        function Z(d, u) {
+            return d.trim && (u = u.trim()), d.normalize && (u = u.replace(/\s+/g, " ")), u;
         }
-        function X(f, u) {
+        function X(d, u) {
             return (
-                K(f),
-                f.trackPosition &&
+                K(d),
+                d.trackPosition &&
                     (u +=
                         `
 Line: ` +
-                        f.line +
+                        d.line +
                         `
 Column: ` +
-                        f.column +
+                        d.column +
                         `
 Char: ` +
-                        f.c),
+                        d.c),
                 (u = new Error(u)),
-                (f.error = u),
-                U(f, "onerror", u),
-                f
+                (d.error = u),
+                U(d, "onerror", u),
+                d
             );
         }
-        function G(f) {
+        function G(d) {
             return (
-                f.sawRoot && !f.closedRoot && P(f, "Unclosed root tag"),
-                f.state !== E.BEGIN && f.state !== E.BEGIN_WHITESPACE && f.state !== E.TEXT && X(f, "Unexpected end"),
-                K(f),
-                (f.c = ""),
-                (f.closed = !0),
-                U(f, "onend"),
-                r.call(f, f.strict, f.opt),
-                f
+                d.sawRoot && !d.closedRoot && F(d, "Unclosed root tag"),
+                d.state !== E.BEGIN && d.state !== E.BEGIN_WHITESPACE && d.state !== E.TEXT && X(d, "Unexpected end"),
+                K(d),
+                (d.c = ""),
+                (d.closed = !0),
+                U(d, "onend"),
+                r.call(d, d.strict, d.opt),
+                d
             );
         }
-        function P(f, u) {
-            if (typeof f != "object" || !(f instanceof r)) throw new Error("bad call to strictFail");
-            f.strict && X(f, u);
+        function F(d, u) {
+            if (typeof d != "object" || !(d instanceof r)) throw new Error("bad call to strictFail");
+            d.strict && X(d, u);
         }
-        function H(f) {
-            f.strict || (f.tagName = f.tagName[f.looseCase]());
-            var u = f.tags[f.tags.length - 1] || f,
-                S = (f.tag = { name: f.tagName, attributes: {} });
-            f.opt.xmlns && (S.ns = u.ns), (f.attribList.length = 0), R(f, "onopentagstart", S);
+        function H(d) {
+            d.strict || (d.tagName = d.tagName[d.looseCase]());
+            var u = d.tags[d.tags.length - 1] || d,
+                S = (d.tag = { name: d.tagName, attributes: {} });
+            d.opt.xmlns && (S.ns = u.ns), (d.attribList.length = 0), R(d, "onopentagstart", S);
         }
-        function Q(f, u) {
-            var S = f.indexOf(":"),
-                w = S < 0 ? ["", f] : f.split(":"),
+        function Q(d, u) {
+            var S = d.indexOf(":"),
+                w = S < 0 ? ["", d] : d.split(":"),
                 B = w[0],
                 te = w[1];
-            return u && f === "xmlns" && ((B = "xmlns"), (te = "")), { prefix: B, local: te };
+            return u && d === "xmlns" && ((B = "xmlns"), (te = "")), { prefix: B, local: te };
         }
-        function j(f) {
+        function j(d) {
             if (
-                (f.strict || (f.attribName = f.attribName[f.looseCase]()),
-                f.attribList.indexOf(f.attribName) !== -1 || f.tag.attributes.hasOwnProperty(f.attribName))
+                (d.strict || (d.attribName = d.attribName[d.looseCase]()),
+                d.attribList.indexOf(d.attribName) !== -1 || d.tag.attributes.hasOwnProperty(d.attribName))
             ) {
-                f.attribName = f.attribValue = "";
+                d.attribName = d.attribValue = "";
                 return;
             }
-            if (f.opt.xmlns) {
-                var u = Q(f.attribName, !0),
+            if (d.opt.xmlns) {
+                var u = Q(d.attribName, !0),
                     S = u.prefix,
                     w = u.local;
                 if (S === "xmlns")
-                    if (w === "xml" && f.attribValue !== m)
-                        P(
-                            f,
+                    if (w === "xml" && d.attribValue !== m)
+                        F(
+                            d,
                             "xml: prefix must be bound to " +
                                 m +
                                 `
 Actual: ` +
-                                f.attribValue
+                                d.attribValue
                         );
-                    else if (w === "xmlns" && f.attribValue !== p)
-                        P(
-                            f,
+                    else if (w === "xmlns" && d.attribValue !== p)
+                        F(
+                            d,
                             "xmlns: prefix must be bound to " +
                                 p +
                                 `
 Actual: ` +
-                                f.attribValue
+                                d.attribValue
                         );
                     else {
-                        var B = f.tag,
-                            te = f.tags[f.tags.length - 1] || f;
-                        B.ns === te.ns && (B.ns = Object.create(te.ns)), (B.ns[w] = f.attribValue);
+                        var B = d.tag,
+                            te = d.tags[d.tags.length - 1] || d;
+                        B.ns === te.ns && (B.ns = Object.create(te.ns)), (B.ns[w] = d.attribValue);
                     }
-                f.attribList.push([f.attribName, f.attribValue]);
+                d.attribList.push([d.attribName, d.attribValue]);
             } else
-                (f.tag.attributes[f.attribName] = f.attribValue),
-                    R(f, "onattribute", { name: f.attribName, value: f.attribValue });
-            f.attribName = f.attribValue = "";
+                (d.tag.attributes[d.attribName] = d.attribValue),
+                    R(d, "onattribute", { name: d.attribName, value: d.attribValue });
+            d.attribName = d.attribValue = "";
         }
-        function Qe(f, u) {
-            if (f.opt.xmlns) {
-                var S = f.tag,
-                    w = Q(f.tagName);
+        function Qe(d, u) {
+            if (d.opt.xmlns) {
+                var S = d.tag,
+                    w = Q(d.tagName);
                 (S.prefix = w.prefix),
                     (S.local = w.local),
                     (S.uri = S.ns[w.prefix] || ""),
-                    S.prefix && !S.uri && (P(f, "Unbound namespace prefix: " + JSON.stringify(f.tagName)), (S.uri = w.prefix));
-                var B = f.tags[f.tags.length - 1] || f;
+                    S.prefix && !S.uri && (F(d, "Unbound namespace prefix: " + JSON.stringify(d.tagName)), (S.uri = w.prefix));
+                var B = d.tags[d.tags.length - 1] || d;
                 S.ns &&
                     B.ns !== S.ns &&
                     Object.keys(S.ns).forEach(function (Ga) {
-                        R(f, "onopennamespace", { prefix: Ga, uri: S.ns[Ga] });
+                        R(d, "onopennamespace", { prefix: Ga, uri: S.ns[Ga] });
                     });
-                for (var te = 0, re = f.attribList.length; te < re; te++) {
-                    var Se = f.attribList[te],
-                        Ae = Se[0],
-                        kt = Se[1],
-                        ae = Q(Ae, !0),
+                for (var te = 0, re = d.attribList.length; te < re; te++) {
+                    var Ae = d.attribList[te],
+                        xe = Ae[0],
+                        kt = Ae[1],
+                        ae = Q(xe, !0),
                         Ge = ae.prefix,
-                        ag = ae.local,
+                        ug = ae.local,
                         Wa = Ge === "" ? "" : S.ns[Ge] || "",
-                        Qi = { name: Ae, value: kt, prefix: Ge, local: ag, uri: Wa };
-                    Ge && Ge !== "xmlns" && !Wa && (P(f, "Unbound namespace prefix: " + JSON.stringify(Ge)), (Qi.uri = Ge)),
-                        (f.tag.attributes[Ae] = Qi),
-                        R(f, "onattribute", Qi);
+                        Zi = { name: xe, value: kt, prefix: Ge, local: ug, uri: Wa };
+                    Ge && Ge !== "xmlns" && !Wa && (F(d, "Unbound namespace prefix: " + JSON.stringify(Ge)), (Zi.uri = Ge)),
+                        (d.tag.attributes[xe] = Zi),
+                        R(d, "onattribute", Zi);
                 }
-                f.attribList.length = 0;
+                d.attribList.length = 0;
             }
-            (f.tag.isSelfClosing = !!u),
-                (f.sawRoot = !0),
-                f.tags.push(f.tag),
-                R(f, "onopentag", f.tag),
+            (d.tag.isSelfClosing = !!u),
+                (d.sawRoot = !0),
+                d.tags.push(d.tag),
+                R(d, "onopentag", d.tag),
                 u ||
-                    (!f.noscript && f.tagName.toLowerCase() === "script" ? (f.state = E.SCRIPT) : (f.state = E.TEXT),
-                    (f.tag = null),
-                    (f.tagName = "")),
-                (f.attribName = f.attribValue = ""),
-                (f.attribList.length = 0);
+                    (!d.noscript && d.tagName.toLowerCase() === "script" ? (d.state = E.SCRIPT) : (d.state = E.TEXT),
+                    (d.tag = null),
+                    (d.tagName = "")),
+                (d.attribName = d.attribValue = ""),
+                (d.attribList.length = 0);
         }
-        function Ji(f) {
-            if (!f.tagName) {
-                P(f, "Weird empty close tag."), (f.textNode += "</>"), (f.state = E.TEXT);
+        function Qi(d) {
+            if (!d.tagName) {
+                F(d, "Weird empty close tag."), (d.textNode += "</>"), (d.state = E.TEXT);
                 return;
             }
-            if (f.script) {
-                if (f.tagName !== "script") {
-                    (f.script += "</" + f.tagName + ">"), (f.tagName = ""), (f.state = E.SCRIPT);
+            if (d.script) {
+                if (d.tagName !== "script") {
+                    (d.script += "</" + d.tagName + ">"), (d.tagName = ""), (d.state = E.SCRIPT);
                     return;
                 }
-                R(f, "onscript", f.script), (f.script = "");
+                R(d, "onscript", d.script), (d.script = "");
             }
-            var u = f.tags.length,
-                S = f.tagName;
-            f.strict || (S = S[f.looseCase]());
+            var u = d.tags.length,
+                S = d.tagName;
+            d.strict || (S = S[d.looseCase]());
             for (var w = S; u--; ) {
-                var B = f.tags[u];
-                if (B.name !== w) P(f, "Unexpected close tag");
+                var B = d.tags[u];
+                if (B.name !== w) F(d, "Unexpected close tag");
                 else break;
             }
             if (u < 0) {
-                P(f, "Unmatched closing tag: " + f.tagName), (f.textNode += "</" + f.tagName + ">"), (f.state = E.TEXT);
+                F(d, "Unmatched closing tag: " + d.tagName), (d.textNode += "</" + d.tagName + ">"), (d.state = E.TEXT);
                 return;
             }
-            f.tagName = S;
-            for (var te = f.tags.length; te-- > u; ) {
-                var re = (f.tag = f.tags.pop());
-                (f.tagName = f.tag.name), R(f, "onclosetag", f.tagName);
-                var Se = {};
-                for (var Ae in re.ns) Se[Ae] = re.ns[Ae];
-                var kt = f.tags[f.tags.length - 1] || f;
-                f.opt.xmlns &&
+            d.tagName = S;
+            for (var te = d.tags.length; te-- > u; ) {
+                var re = (d.tag = d.tags.pop());
+                (d.tagName = d.tag.name), R(d, "onclosetag", d.tagName);
+                var Ae = {};
+                for (var xe in re.ns) Ae[xe] = re.ns[xe];
+                var kt = d.tags[d.tags.length - 1] || d;
+                d.opt.xmlns &&
                     re.ns !== kt.ns &&
                     Object.keys(re.ns).forEach(function (ae) {
                         var Ge = re.ns[ae];
-                        R(f, "onclosenamespace", { prefix: ae, uri: Ge });
+                        R(d, "onclosenamespace", { prefix: ae, uri: Ge });
                     });
             }
-            u === 0 && (f.closedRoot = !0),
-                (f.tagName = f.attribValue = f.attribName = ""),
-                (f.attribList.length = 0),
-                (f.state = E.TEXT);
+            u === 0 && (d.closedRoot = !0),
+                (d.tagName = d.attribValue = d.attribName = ""),
+                (d.attribList.length = 0),
+                (d.state = E.TEXT);
         }
-        function og(f) {
-            var u = f.entity,
+        function ag(d) {
+            var u = d.entity,
                 S = u.toLowerCase(),
                 w,
                 B = "";
-            return f.ENTITIES[u]
-                ? f.ENTITIES[u]
-                : f.ENTITIES[S]
-                ? f.ENTITIES[S]
+            return d.ENTITIES[u]
+                ? d.ENTITIES[u]
+                : d.ENTITIES[S]
+                ? d.ENTITIES[S]
                 : ((u = S),
                   u.charAt(0) === "#" &&
                       (u.charAt(1) === "x"
@@ -2075,25 +2075,25 @@ Actual: ` +
                           : ((u = u.slice(1)), (w = parseInt(u, 10)), (B = w.toString(10)))),
                   (u = u.replace(/^0+/, "")),
                   isNaN(w) || B.toLowerCase() !== u
-                      ? (P(f, "Invalid character entity"), "&" + f.entity + ";")
+                      ? (F(d, "Invalid character entity"), "&" + d.entity + ";")
                       : String.fromCodePoint(w));
         }
-        function Ha(f, u) {
+        function Ha(d, u) {
             u === "<"
-                ? ((f.state = E.OPEN_WAKA), (f.startTagPosition = f.position))
-                : N(u) || (P(f, "Non-whitespace before first tag."), (f.textNode = u), (f.state = E.TEXT));
+                ? ((d.state = E.OPEN_WAKA), (d.startTagPosition = d.position))
+                : N(u) || (F(d, "Non-whitespace before first tag."), (d.textNode = u), (d.state = E.TEXT));
         }
-        function ja(f, u) {
+        function ja(d, u) {
             var S = "";
-            return u < f.length && (S = f.charAt(u)), S;
+            return u < d.length && (S = d.charAt(u)), S;
         }
-        function sg(f) {
+        function lg(d) {
             var u = this;
             if (this.error) throw this.error;
             if (u.closed) return X(u, "Cannot write after close. Assign an onready handler.");
-            if (f === null) return G(u);
-            typeof f == "object" && (f = f.toString());
-            for (var S = 0, w = ""; (w = ja(f, S++)), (u.c = w), !!w; )
+            if (d === null) return G(u);
+            typeof d == "object" && (d = d.toString());
+            for (var S = 0, w = ""; (w = ja(d, S++)), (u.c = w), !!w; )
                 switch (
                     (u.trackPosition &&
                         (u.position++,
@@ -2114,7 +2114,7 @@ Actual: ` +
                     case E.TEXT:
                         if (u.sawRoot && !u.closedRoot) {
                             for (var B = S - 1; w && w !== "<" && w !== "&"; )
-                                (w = ja(f, S++)),
+                                (w = ja(d, S++)),
                                     w &&
                                         u.trackPosition &&
                                         (u.position++,
@@ -2123,11 +2123,11 @@ Actual: ` +
 `
                                             ? (u.line++, (u.column = 0))
                                             : u.column++);
-                            u.textNode += f.substring(B, S - 1);
+                            u.textNode += d.substring(B, S - 1);
                         }
                         w === "<" && !(u.sawRoot && u.closedRoot && !u.strict)
                             ? ((u.state = E.OPEN_WAKA), (u.startTagPosition = u.position))
-                            : (!N(w) && (!u.sawRoot || u.closedRoot) && P(u, "Text data outside of root node."),
+                            : (!N(w) && (!u.sawRoot || u.closedRoot) && F(u, "Text data outside of root node."),
                               w === "&" ? (u.state = E.TEXT_ENTITY) : (u.textNode += w));
                         continue;
                     case E.SCRIPT:
@@ -2143,7 +2143,7 @@ Actual: ` +
                             else if (w === "/") (u.state = E.CLOSE_TAG), (u.tagName = "");
                             else if (w === "?") (u.state = E.PROC_INST), (u.procInstName = u.procInstBody = "");
                             else {
-                                if ((P(u, "Unencoded <"), u.startTagPosition + 1 < u.position)) {
+                                if ((F(u, "Unencoded <"), u.startTagPosition + 1 < u.position)) {
                                     var te = u.position - u.startTagPosition;
                                     w = new Array(te).join(" ") + w;
                                 }
@@ -2159,9 +2159,9 @@ Actual: ` +
                             ? ((u.state = E.DOCTYPE_DTD), (u.doctype += "<!" + u.sgmlDecl + w), (u.sgmlDecl = ""))
                             : (u.sgmlDecl + w).toUpperCase() === c
                             ? (R(u, "onopencdata"), (u.state = E.CDATA), (u.sgmlDecl = ""), (u.cdata = ""))
-                            : (u.sgmlDecl + w).toUpperCase() === d
+                            : (u.sgmlDecl + w).toUpperCase() === f
                             ? ((u.state = E.DOCTYPE),
-                              (u.doctype || u.sawRoot) && P(u, "Inappropriately located doctype declaration"),
+                              (u.doctype || u.sawRoot) && F(u, "Inappropriately located doctype declaration"),
                               (u.doctype = ""),
                               (u.sgmlDecl = ""))
                             : w === ">"
@@ -2205,7 +2205,7 @@ Actual: ` +
                         continue;
                     case E.COMMENT_ENDED:
                         w !== ">"
-                            ? (P(u, "Malformed comment"), (u.comment += "--" + w), (u.state = E.COMMENT))
+                            ? (F(u, "Malformed comment"), (u.comment += "--" + w), (u.state = E.COMMENT))
                             : u.doctype && u.doctype !== !0
                             ? (u.state = E.DOCTYPE_DTD)
                             : (u.state = E.TEXT);
@@ -2245,12 +2245,12 @@ Actual: ` +
                                   ? Qe(u)
                                   : w === "/"
                                   ? (u.state = E.OPEN_TAG_SLASH)
-                                  : (N(w) || P(u, "Invalid character in tag name"), (u.state = E.ATTRIB)));
+                                  : (N(w) || F(u, "Invalid character in tag name"), (u.state = E.ATTRIB)));
                         continue;
                     case E.OPEN_TAG_SLASH:
                         w === ">"
-                            ? (Qe(u, !0), Ji(u))
-                            : (P(u, "Forward-slash in opening tag not followed by >"), (u.state = E.ATTRIB));
+                            ? (Qe(u, !0), Qi(u))
+                            : (F(u, "Forward-slash in opening tag not followed by >"), (u.state = E.ATTRIB));
                         continue;
                     case E.ATTRIB:
                         if (N(w)) continue;
@@ -2260,24 +2260,24 @@ Actual: ` +
                             ? (u.state = E.OPEN_TAG_SLASH)
                             : V(_, w)
                             ? ((u.attribName = w), (u.attribValue = ""), (u.state = E.ATTRIB_NAME))
-                            : P(u, "Invalid attribute name");
+                            : F(u, "Invalid attribute name");
                         continue;
                     case E.ATTRIB_NAME:
                         w === "="
                             ? (u.state = E.ATTRIB_VALUE)
                             : w === ">"
-                            ? (P(u, "Attribute without value"), (u.attribValue = u.attribName), j(u), Qe(u))
+                            ? (F(u, "Attribute without value"), (u.attribValue = u.attribName), j(u), Qe(u))
                             : N(w)
                             ? (u.state = E.ATTRIB_NAME_SAW_WHITE)
                             : V(v, w)
                             ? (u.attribName += w)
-                            : P(u, "Invalid attribute name");
+                            : F(u, "Invalid attribute name");
                         continue;
                     case E.ATTRIB_NAME_SAW_WHITE:
                         if (w === "=") u.state = E.ATTRIB_VALUE;
                         else {
                             if (N(w)) continue;
-                            P(u, "Attribute without value"),
+                            F(u, "Attribute without value"),
                                 (u.tag.attributes[u.attribName] = ""),
                                 (u.attribValue = ""),
                                 R(u, "onattribute", { name: u.attribName, value: "" }),
@@ -2286,7 +2286,7 @@ Actual: ` +
                                     ? Qe(u)
                                     : V(_, w)
                                     ? ((u.attribName = w), (u.state = E.ATTRIB_NAME))
-                                    : (P(u, "Invalid attribute name"), (u.state = E.ATTRIB));
+                                    : (F(u, "Invalid attribute name"), (u.state = E.ATTRIB));
                         }
                         continue;
                     case E.ATTRIB_VALUE:
@@ -2312,11 +2312,11 @@ Actual: ` +
                             : w === "/"
                             ? (u.state = E.OPEN_TAG_SLASH)
                             : V(_, w)
-                            ? (P(u, "No whitespace between attributes"),
+                            ? (F(u, "No whitespace between attributes"),
                               (u.attribName = w),
                               (u.attribValue = ""),
                               (u.state = E.ATTRIB_NAME))
-                            : P(u, "Invalid attribute name");
+                            : F(u, "Invalid attribute name");
                         continue;
                     case E.ATTRIB_VALUE_UNQUOTED:
                         if (!De(w)) {
@@ -2328,50 +2328,50 @@ Actual: ` +
                     case E.CLOSE_TAG:
                         if (u.tagName)
                             w === ">"
-                                ? Ji(u)
+                                ? Qi(u)
                                 : V(v, w)
                                 ? (u.tagName += w)
                                 : u.script
                                 ? ((u.script += "</" + u.tagName), (u.tagName = ""), (u.state = E.SCRIPT))
-                                : (N(w) || P(u, "Invalid tagname in closing tag"), (u.state = E.CLOSE_TAG_SAW_WHITE));
+                                : (N(w) || F(u, "Invalid tagname in closing tag"), (u.state = E.CLOSE_TAG_SAW_WHITE));
                         else {
                             if (N(w)) continue;
                             se(_, w)
                                 ? u.script
                                     ? ((u.script += "</" + w), (u.state = E.SCRIPT))
-                                    : P(u, "Invalid tagname in closing tag.")
+                                    : F(u, "Invalid tagname in closing tag.")
                                 : (u.tagName = w);
                         }
                         continue;
                     case E.CLOSE_TAG_SAW_WHITE:
                         if (N(w)) continue;
-                        w === ">" ? Ji(u) : P(u, "Invalid characters in closing tag");
+                        w === ">" ? Qi(u) : F(u, "Invalid characters in closing tag");
                         continue;
                     case E.TEXT_ENTITY:
                     case E.ATTRIB_VALUE_ENTITY_Q:
                     case E.ATTRIB_VALUE_ENTITY_U:
-                        var re, Se;
+                        var re, Ae;
                         switch (u.state) {
                             case E.TEXT_ENTITY:
-                                (re = E.TEXT), (Se = "textNode");
+                                (re = E.TEXT), (Ae = "textNode");
                                 break;
                             case E.ATTRIB_VALUE_ENTITY_Q:
-                                (re = E.ATTRIB_VALUE_QUOTED), (Se = "attribValue");
+                                (re = E.ATTRIB_VALUE_QUOTED), (Ae = "attribValue");
                                 break;
                             case E.ATTRIB_VALUE_ENTITY_U:
-                                (re = E.ATTRIB_VALUE_UNQUOTED), (Se = "attribValue");
+                                (re = E.ATTRIB_VALUE_UNQUOTED), (Ae = "attribValue");
                                 break;
                         }
                         if (w === ";") {
-                            var Ae = og(u);
-                            u.opt.unparsedEntities && !Object.values(e.XML_ENTITIES).includes(Ae)
-                                ? ((u.entity = ""), (u.state = re), u.write(Ae))
-                                : ((u[Se] += Ae), (u.entity = ""), (u.state = re));
+                            var xe = ag(u);
+                            u.opt.unparsedEntities && !Object.values(e.XML_ENTITIES).includes(xe)
+                                ? ((u.entity = ""), (u.state = re), u.write(xe))
+                                : ((u[Ae] += xe), (u.entity = ""), (u.state = re));
                         } else
                             V(u.entity.length ? A : x, w)
                                 ? (u.entity += w)
-                                : (P(u, "Invalid character in entity name"),
-                                  (u[Se] += "&" + u.entity + w),
+                                : (F(u, "Invalid character in entity name"),
+                                  (u[Ae] += "&" + u.entity + w),
                                   (u.entity = ""),
                                   (u.state = re));
                         continue;
@@ -2382,24 +2382,24 @@ Actual: ` +
         }
         /*! http://mths.be/fromcodepoint v0.1.0 by @mathias */ String.fromCodePoint ||
             (function () {
-                var f = String.fromCharCode,
+                var d = String.fromCharCode,
                     u = Math.floor,
                     S = function () {
                         var w = 16384,
                             B = [],
                             te,
                             re,
-                            Se = -1,
-                            Ae = arguments.length;
-                        if (!Ae) return "";
-                        for (var kt = ""; ++Se < Ae; ) {
-                            var ae = Number(arguments[Se]);
+                            Ae = -1,
+                            xe = arguments.length;
+                        if (!xe) return "";
+                        for (var kt = ""; ++Ae < xe; ) {
+                            var ae = Number(arguments[Ae]);
                             if (!isFinite(ae) || ae < 0 || ae > 1114111 || u(ae) !== ae)
                                 throw RangeError("Invalid code point: " + ae);
                             ae <= 65535
                                 ? B.push(ae)
                                 : ((ae -= 65536), (te = (ae >> 10) + 55296), (re = (ae % 1024) + 56320), B.push(te, re)),
-                                (Se + 1 === Ae || B.length > w) && ((kt += f.apply(null, B)), (B.length = 0));
+                                (Ae + 1 === xe || B.length > w) && ((kt += d.apply(null, B)), (B.length = 0));
                         }
                         return kt;
                     };
@@ -2407,16 +2407,16 @@ Actual: ` +
                     ? Object.defineProperty(String, "fromCodePoint", { value: S, configurable: !0, writable: !0 })
                     : (String.fromCodePoint = S);
             })();
-    })(typeof Cn > "u" ? (Cn.sax = {}) : Cn);
+    })(typeof bn > "u" ? (bn.sax = {}) : bn);
 });
 var yl = g(Ir => {
     "use strict";
     Object.defineProperty(Ir, "__esModule", { value: !0 });
     Ir.XElement = void 0;
-    Ir.parseXml = n0;
-    var e0 = wl(),
-        bn = xr(),
-        On = class {
+    Ir.parseXml = o0;
+    var r0 = wl(),
+        On = xr(),
+        In = class {
             constructor(t) {
                 if (
                     ((this.name = t),
@@ -2426,12 +2426,12 @@ var yl = g(Ir => {
                     (this.elements = null),
                     !t)
                 )
-                    throw (0, bn.newError)("Element name cannot be empty", "ERR_XML_ELEMENT_NAME_EMPTY");
-                if (!r0(t)) throw (0, bn.newError)(`Invalid element name: ${t}`, "ERR_XML_ELEMENT_INVALID_NAME");
+                    throw (0, On.newError)("Element name cannot be empty", "ERR_XML_ELEMENT_NAME_EMPTY");
+                if (!i0(t)) throw (0, On.newError)(`Invalid element name: ${t}`, "ERR_XML_ELEMENT_INVALID_NAME");
             }
             attribute(t) {
                 let r = this.attributes === null ? null : this.attributes[t];
-                if (r == null) throw (0, bn.newError)(`No attribute "${t}"`, "ERR_XML_MISSED_ATTRIBUTE");
+                if (r == null) throw (0, On.newError)(`No attribute "${t}"`, "ERR_XML_MISSED_ATTRIBUTE");
                 return r;
             }
             removeAttribute(t) {
@@ -2439,7 +2439,7 @@ var yl = g(Ir => {
             }
             element(t, r = !1, n = null) {
                 let i = this.elementOrNull(t, r);
-                if (i === null) throw (0, bn.newError)(n || `No element "${t}"`, "ERR_XML_MISSED_ELEMENT");
+                if (i === null) throw (0, On.newError)(n || `No element "${t}"`, "ERR_XML_MISSED_ELEMENT");
                 return i;
             }
             elementOrNull(t, r = !1) {
@@ -2455,22 +2455,22 @@ var yl = g(Ir => {
                 return n === null ? "" : n.value;
             }
         };
-    Ir.XElement = On;
-    var t0 = new RegExp(/^[A-Za-z_][:A-Za-z0-9_-]*$/i);
-    function r0(e) {
-        return t0.test(e);
+    Ir.XElement = In;
+    var n0 = new RegExp(/^[A-Za-z_][:A-Za-z0-9_-]*$/i);
+    function i0(e) {
+        return n0.test(e);
     }
     function El(e, t, r) {
         let n = e.name;
         return n === t || (r === !0 && n.length === t.length && n.toLowerCase() === t.toLowerCase());
     }
-    function n0(e) {
+    function o0(e) {
         let t = null,
-            r = e0.parser(!0, {}),
+            r = r0.parser(!0, {}),
             n = [];
         return (
             (r.onopentag = i => {
-                let o = new On(i.name);
+                let o = new In(i.name);
                 if (((o.attributes = i.attributes), t === null)) t = o;
                 else {
                     let s = n[n.length - 1];
@@ -2496,10 +2496,10 @@ var yl = g(Ir => {
         );
     }
 });
-var vl = g(In => {
+var vl = g(Nn => {
     "use strict";
-    Object.defineProperty(In, "__esModule", { value: !0 });
-    In.MemoLazy = void 0;
+    Object.defineProperty(Nn, "__esModule", { value: !0 });
+    Nn.MemoLazy = void 0;
     var fo = class {
         constructor(t, r) {
             (this.selector = t), (this.creator = r), (this.selected = void 0), (this._value = void 0);
@@ -2518,7 +2518,7 @@ var vl = g(In => {
             this._value = t;
         }
     };
-    In.MemoLazy = fo;
+    Nn.MemoLazy = fo;
     function _l(e, t) {
         if (typeof e == "object" && e !== null && typeof t == "object" && t !== null) {
             let i = Object.keys(e),
@@ -2528,178 +2528,203 @@ var vl = g(In => {
         return e === t;
     }
 });
-var ie = g(F => {
+var Al = g(ho => {
     "use strict";
-    Object.defineProperty(F, "__esModule", { value: !0 });
-    F.CURRENT_APP_PACKAGE_FILE_NAME =
-        F.CURRENT_APP_INSTALLER_FILE_NAME =
-        F.MemoLazy =
-        F.newError =
-        F.XElement =
-        F.parseXml =
-        F.ProgressCallbackTransform =
-        F.UUID =
-        F.parseDn =
-        F.githubUrl =
-        F.getS3LikeProviderBaseUrl =
-        F.configureRequestUrl =
-        F.parseJson =
-        F.safeStringifyJson =
-        F.configureRequestOptionsFromUrl =
-        F.configureRequestOptions =
-        F.safeGetHeader =
-        F.DigestTransform =
-        F.HttpExecutor =
-        F.createHttpError =
-        F.HttpError =
-        F.CancellationError =
-        F.CancellationToken =
+    Object.defineProperty(ho, "__esModule", { value: !0 });
+    ho.retry = Sl;
+    var s0 = wn();
+    async function Sl(e, t, r, n = 0, i = 0, o) {
+        var s;
+        let a = new s0.CancellationToken();
+        try {
+            return await e();
+        } catch (l) {
+            if ((!((s = o?.(l)) !== null && s !== void 0) || s) && t > 0 && !a.cancelled)
+                return await new Promise(h => setTimeout(h, r + n * i)), await Sl(e, t - 1, r, n, i + 1, o);
+            throw l;
+        }
+    }
+});
+var ie = g(P => {
+    "use strict";
+    Object.defineProperty(P, "__esModule", { value: !0 });
+    P.CURRENT_APP_PACKAGE_FILE_NAME =
+        P.CURRENT_APP_INSTALLER_FILE_NAME =
+        P.retry =
+        P.MemoLazy =
+        P.newError =
+        P.XElement =
+        P.parseXml =
+        P.ProgressCallbackTransform =
+        P.UUID =
+        P.parseDn =
+        P.githubUrl =
+        P.getS3LikeProviderBaseUrl =
+        P.configureRequestUrl =
+        P.parseJson =
+        P.safeStringifyJson =
+        P.configureRequestOptionsFromUrl =
+        P.configureRequestOptions =
+        P.safeGetHeader =
+        P.DigestTransform =
+        P.HttpExecutor =
+        P.createHttpError =
+        P.HttpError =
+        P.CancellationError =
+        P.CancellationToken =
             void 0;
-    F.asArray = u0;
-    var Sl = eo();
-    Object.defineProperty(F, "CancellationToken", {
+    P.asArray = h0;
+    var xl = wn();
+    Object.defineProperty(P, "CancellationToken", {
         enumerable: !0,
         get: function () {
-            return Sl.CancellationToken;
+            return xl.CancellationToken;
         }
     });
-    Object.defineProperty(F, "CancellationError", {
+    Object.defineProperty(P, "CancellationError", {
         enumerable: !0,
         get: function () {
-            return Sl.CancellationError;
+            return xl.CancellationError;
         }
     });
     var ke = ll();
-    Object.defineProperty(F, "HttpError", {
+    Object.defineProperty(P, "HttpError", {
         enumerable: !0,
         get: function () {
             return ke.HttpError;
         }
     });
-    Object.defineProperty(F, "createHttpError", {
+    Object.defineProperty(P, "createHttpError", {
         enumerable: !0,
         get: function () {
             return ke.createHttpError;
         }
     });
-    Object.defineProperty(F, "HttpExecutor", {
+    Object.defineProperty(P, "HttpExecutor", {
         enumerable: !0,
         get: function () {
             return ke.HttpExecutor;
         }
     });
-    Object.defineProperty(F, "DigestTransform", {
+    Object.defineProperty(P, "DigestTransform", {
         enumerable: !0,
         get: function () {
             return ke.DigestTransform;
         }
     });
-    Object.defineProperty(F, "safeGetHeader", {
+    Object.defineProperty(P, "safeGetHeader", {
         enumerable: !0,
         get: function () {
             return ke.safeGetHeader;
         }
     });
-    Object.defineProperty(F, "configureRequestOptions", {
+    Object.defineProperty(P, "configureRequestOptions", {
         enumerable: !0,
         get: function () {
             return ke.configureRequestOptions;
         }
     });
-    Object.defineProperty(F, "configureRequestOptionsFromUrl", {
+    Object.defineProperty(P, "configureRequestOptionsFromUrl", {
         enumerable: !0,
         get: function () {
             return ke.configureRequestOptionsFromUrl;
         }
     });
-    Object.defineProperty(F, "safeStringifyJson", {
+    Object.defineProperty(P, "safeStringifyJson", {
         enumerable: !0,
         get: function () {
             return ke.safeStringifyJson;
         }
     });
-    Object.defineProperty(F, "parseJson", {
+    Object.defineProperty(P, "parseJson", {
         enumerable: !0,
         get: function () {
             return ke.parseJson;
         }
     });
-    Object.defineProperty(F, "configureRequestUrl", {
+    Object.defineProperty(P, "configureRequestUrl", {
         enumerable: !0,
         get: function () {
             return ke.configureRequestUrl;
         }
     });
-    var Al = cl();
-    Object.defineProperty(F, "getS3LikeProviderBaseUrl", {
+    var Tl = cl();
+    Object.defineProperty(P, "getS3LikeProviderBaseUrl", {
         enumerable: !0,
         get: function () {
-            return Al.getS3LikeProviderBaseUrl;
+            return Tl.getS3LikeProviderBaseUrl;
         }
     });
-    Object.defineProperty(F, "githubUrl", {
+    Object.defineProperty(P, "githubUrl", {
         enumerable: !0,
         get: function () {
-            return Al.githubUrl;
+            return Tl.githubUrl;
         }
     });
-    var i0 = fl();
-    Object.defineProperty(F, "parseDn", {
+    var a0 = fl();
+    Object.defineProperty(P, "parseDn", {
         enumerable: !0,
         get: function () {
-            return i0.parseDn;
+            return a0.parseDn;
         }
     });
-    var o0 = gl();
-    Object.defineProperty(F, "UUID", {
+    var l0 = gl();
+    Object.defineProperty(P, "UUID", {
         enumerable: !0,
         get: function () {
-            return o0.UUID;
+            return l0.UUID;
         }
     });
-    var s0 = so();
-    Object.defineProperty(F, "ProgressCallbackTransform", {
+    var u0 = so();
+    Object.defineProperty(P, "ProgressCallbackTransform", {
         enumerable: !0,
         get: function () {
-            return s0.ProgressCallbackTransform;
+            return u0.ProgressCallbackTransform;
         }
     });
-    var xl = yl();
-    Object.defineProperty(F, "parseXml", {
+    var Cl = yl();
+    Object.defineProperty(P, "parseXml", {
         enumerable: !0,
         get: function () {
-            return xl.parseXml;
+            return Cl.parseXml;
         }
     });
-    Object.defineProperty(F, "XElement", {
+    Object.defineProperty(P, "XElement", {
         enumerable: !0,
         get: function () {
-            return xl.XElement;
+            return Cl.XElement;
         }
     });
-    var a0 = xr();
-    Object.defineProperty(F, "newError", {
+    var c0 = xr();
+    Object.defineProperty(P, "newError", {
         enumerable: !0,
         get: function () {
-            return a0.newError;
+            return c0.newError;
         }
     });
-    var l0 = vl();
-    Object.defineProperty(F, "MemoLazy", {
+    var f0 = vl();
+    Object.defineProperty(P, "MemoLazy", {
         enumerable: !0,
         get: function () {
-            return l0.MemoLazy;
+            return f0.MemoLazy;
         }
     });
-    F.CURRENT_APP_INSTALLER_FILE_NAME = "installer.exe";
-    F.CURRENT_APP_PACKAGE_FILE_NAME = "package.7z";
-    function u0(e) {
+    var d0 = Al();
+    Object.defineProperty(P, "retry", {
+        enumerable: !0,
+        get: function () {
+            return d0.retry;
+        }
+    });
+    P.CURRENT_APP_INSTALLER_FILE_NAME = "installer.exe";
+    P.CURRENT_APP_PACKAGE_FILE_NAME = "package.7z";
+    function h0(e) {
         return e == null ? [] : Array.isArray(e) ? e : [e];
     }
 });
-var Re = g(ho => {
+var Ce = g(po => {
     "use strict";
-    ho.fromCallback = function (e) {
+    po.fromCallback = function (e) {
         return Object.defineProperty(
             function (...t) {
                 if (typeof t[t.length - 1] == "function") e.apply(this, t);
@@ -2712,7 +2737,7 @@ var Re = g(ho => {
             { value: e.name }
         );
     };
-    ho.fromPromise = function (e) {
+    po.fromPromise = function (e) {
         return Object.defineProperty(
             function (...t) {
                 let r = t[t.length - 1];
@@ -2724,26 +2749,26 @@ var Re = g(ho => {
         );
     };
 });
-var Cl = g((Vb, Tl) => {
+var Ol = g((Kb, bl) => {
     var Ze = require("constants"),
-        c0 = process.cwd,
-        Nn = null,
-        f0 = process.env.GRACEFUL_FS_PLATFORM || process.platform;
+        p0 = process.cwd,
+        Rn = null,
+        m0 = process.env.GRACEFUL_FS_PLATFORM || process.platform;
     process.cwd = function () {
-        return Nn || (Nn = c0.call(process)), Nn;
+        return Rn || (Rn = p0.call(process)), Rn;
     };
     try {
         process.cwd();
     } catch {}
     typeof process.chdir == "function" &&
-        ((po = process.chdir),
+        ((mo = process.chdir),
         (process.chdir = function (e) {
-            (Nn = null), po.call(process, e);
+            (Rn = null), mo.call(process, e);
         }),
-        Object.setPrototypeOf && Object.setPrototypeOf(process.chdir, po));
-    var po;
-    Tl.exports = d0;
-    function d0(e) {
+        Object.setPrototypeOf && Object.setPrototypeOf(process.chdir, mo));
+    var mo;
+    bl.exports = g0;
+    function g0(e) {
         Ze.hasOwnProperty("O_SYMLINK") && process.version.match(/^v0\.6\.[0-2]|^v0\.5\./) && t(e),
             e.lutimes || r(e),
             (e.chown = o(e.chown)),
@@ -2766,22 +2791,22 @@ var Cl = g((Vb, Tl) => {
             (e.lstatSync = l(e.lstatSync)),
             e.chmod &&
                 !e.lchmod &&
-                ((e.lchmod = function (c, d, m) {
+                ((e.lchmod = function (c, f, m) {
                     m && process.nextTick(m);
                 }),
                 (e.lchmodSync = function () {})),
             e.chown &&
                 !e.lchown &&
-                ((e.lchown = function (c, d, m, p) {
+                ((e.lchown = function (c, f, m, p) {
                     p && process.nextTick(p);
                 }),
                 (e.lchownSync = function () {})),
-            f0 === "win32" &&
+            m0 === "win32" &&
                 (e.rename =
                     typeof e.rename != "function"
                         ? e.rename
                         : (function (c) {
-                              function d(m, p, y) {
+                              function f(m, p, y) {
                                   var _ = Date.now(),
                                       v = 0;
                                   c(m, p, function x(A) {
@@ -2801,13 +2826,13 @@ var Cl = g((Vb, Tl) => {
                                       y && y(A);
                                   });
                               }
-                              return Object.setPrototypeOf && Object.setPrototypeOf(d, c), d;
+                              return Object.setPrototypeOf && Object.setPrototypeOf(f, c), f;
                           })(e.rename)),
             (e.read =
                 typeof e.read != "function"
                     ? e.read
                     : (function (c) {
-                          function d(m, p, y, _, v, x) {
+                          function f(m, p, y, _, v, x) {
                               var A;
                               if (x && typeof x == "function") {
                                   var N = 0;
@@ -2818,16 +2843,16 @@ var Cl = g((Vb, Tl) => {
                               }
                               return c.call(e, m, p, y, _, v, A);
                           }
-                          return Object.setPrototypeOf && Object.setPrototypeOf(d, c), d;
+                          return Object.setPrototypeOf && Object.setPrototypeOf(f, c), f;
                       })(e.read)),
             (e.readSync =
                 typeof e.readSync != "function"
                     ? e.readSync
                     : (function (c) {
-                          return function (d, m, p, y, _) {
+                          return function (f, m, p, y, _) {
                               for (var v = 0; ; )
                                   try {
-                                      return c.call(e, d, m, p, y, _);
+                                      return c.call(e, f, m, p, y, _);
                                   } catch (x) {
                                       if (x.code === "EAGAIN" && v < 10) {
                                           v++;
@@ -2838,8 +2863,8 @@ var Cl = g((Vb, Tl) => {
                           };
                       })(e.readSync));
         function t(c) {
-            (c.lchmod = function (d, m, p) {
-                c.open(d, Ze.O_WRONLY | Ze.O_SYMLINK, m, function (y, _) {
+            (c.lchmod = function (f, m, p) {
+                c.open(f, Ze.O_WRONLY | Ze.O_SYMLINK, m, function (y, _) {
                     if (y) {
                         p && p(y);
                         return;
@@ -2851,8 +2876,8 @@ var Cl = g((Vb, Tl) => {
                     });
                 });
             }),
-                (c.lchmodSync = function (d, m) {
-                    var p = c.openSync(d, Ze.O_WRONLY | Ze.O_SYMLINK, m),
+                (c.lchmodSync = function (f, m) {
+                    var p = c.openSync(f, Ze.O_WRONLY | Ze.O_SYMLINK, m),
                         y = !0,
                         _;
                     try {
@@ -2869,8 +2894,8 @@ var Cl = g((Vb, Tl) => {
         }
         function r(c) {
             Ze.hasOwnProperty("O_SYMLINK") && c.futimes
-                ? ((c.lutimes = function (d, m, p, y) {
-                      c.open(d, Ze.O_SYMLINK, function (_, v) {
+                ? ((c.lutimes = function (f, m, p, y) {
+                      c.open(f, Ze.O_SYMLINK, function (_, v) {
                           if (_) {
                               y && y(_);
                               return;
@@ -2882,8 +2907,8 @@ var Cl = g((Vb, Tl) => {
                           });
                       });
                   }),
-                  (c.lutimesSync = function (d, m, p) {
-                      var y = c.openSync(d, Ze.O_SYMLINK),
+                  (c.lutimesSync = function (f, m, p) {
+                      var y = c.openSync(f, Ze.O_SYMLINK),
                           _,
                           v = !0;
                       try {
@@ -2898,7 +2923,7 @@ var Cl = g((Vb, Tl) => {
                       return _;
                   }))
                 : c.futimes &&
-                  ((c.lutimes = function (d, m, p, y) {
+                  ((c.lutimes = function (f, m, p, y) {
                       y && process.nextTick(y);
                   }),
                   (c.lutimesSync = function () {}));
@@ -2906,8 +2931,8 @@ var Cl = g((Vb, Tl) => {
         function n(c) {
             return (
                 c &&
-                function (d, m, p) {
-                    return c.call(e, d, m, function (y) {
+                function (f, m, p) {
+                    return c.call(e, f, m, function (y) {
                         h(y) && (y = null), p && p.apply(this, arguments);
                     });
                 }
@@ -2916,9 +2941,9 @@ var Cl = g((Vb, Tl) => {
         function i(c) {
             return (
                 c &&
-                function (d, m) {
+                function (f, m) {
                     try {
-                        return c.call(e, d, m);
+                        return c.call(e, f, m);
                     } catch (p) {
                         if (!h(p)) throw p;
                     }
@@ -2928,8 +2953,8 @@ var Cl = g((Vb, Tl) => {
         function o(c) {
             return (
                 c &&
-                function (d, m, p, y) {
-                    return c.call(e, d, m, p, function (_) {
+                function (f, m, p, y) {
+                    return c.call(e, f, m, p, function (_) {
                         h(_) && (_ = null), y && y.apply(this, arguments);
                     });
                 }
@@ -2938,9 +2963,9 @@ var Cl = g((Vb, Tl) => {
         function s(c) {
             return (
                 c &&
-                function (d, m, p) {
+                function (f, m, p) {
                     try {
-                        return c.call(e, d, m, p);
+                        return c.call(e, f, m, p);
                     } catch (y) {
                         if (!h(y)) throw y;
                     }
@@ -2950,40 +2975,40 @@ var Cl = g((Vb, Tl) => {
         function a(c) {
             return (
                 c &&
-                function (d, m, p) {
+                function (f, m, p) {
                     typeof m == "function" && ((p = m), (m = null));
                     function y(_, v) {
                         v && (v.uid < 0 && (v.uid += 4294967296), v.gid < 0 && (v.gid += 4294967296)),
                             p && p.apply(this, arguments);
                     }
-                    return m ? c.call(e, d, m, y) : c.call(e, d, y);
+                    return m ? c.call(e, f, m, y) : c.call(e, f, y);
                 }
             );
         }
         function l(c) {
             return (
                 c &&
-                function (d, m) {
-                    var p = m ? c.call(e, d, m) : c.call(e, d);
+                function (f, m) {
+                    var p = m ? c.call(e, f, m) : c.call(e, f);
                     return p && (p.uid < 0 && (p.uid += 4294967296), p.gid < 0 && (p.gid += 4294967296)), p;
                 }
             );
         }
         function h(c) {
             if (!c || c.code === "ENOSYS") return !0;
-            var d = !process.getuid || process.getuid() !== 0;
-            return !!(d && (c.code === "EINVAL" || c.code === "EPERM"));
+            var f = !process.getuid || process.getuid() !== 0;
+            return !!(f && (c.code === "EINVAL" || c.code === "EPERM"));
         }
     }
 });
-var Il = g((Yb, Ol) => {
-    var bl = require("stream").Stream;
-    Ol.exports = h0;
-    function h0(e) {
+var Rl = g((Jb, Nl) => {
+    var Il = require("stream").Stream;
+    Nl.exports = w0;
+    function w0(e) {
         return { ReadStream: t, WriteStream: r };
         function t(n, i) {
             if (!(this instanceof t)) return new t(n, i);
-            bl.call(this);
+            Il.call(this);
             var o = this;
             (this.path = n),
                 (this.fd = null),
@@ -3010,17 +3035,17 @@ var Il = g((Yb, Ol) => {
                 });
                 return;
             }
-            e.open(this.path, this.flags, this.mode, function (c, d) {
+            e.open(this.path, this.flags, this.mode, function (c, f) {
                 if (c) {
                     o.emit("error", c), (o.readable = !1);
                     return;
                 }
-                (o.fd = d), o.emit("open", d), o._read();
+                (o.fd = f), o.emit("open", f), o._read();
             });
         }
         function r(n, i) {
             if (!(this instanceof r)) return new r(n, i);
-            bl.call(this),
+            Il.call(this),
                 (this.path = n),
                 (this.fd = null),
                 (this.writable = !0),
@@ -3047,17 +3072,17 @@ var Il = g((Yb, Ol) => {
         }
     }
 });
-var Rl = g((zb, Nl) => {
+var Pl = g((Qb, Dl) => {
     "use strict";
-    Nl.exports = m0;
-    var p0 =
+    Dl.exports = y0;
+    var E0 =
         Object.getPrototypeOf ||
         function (e) {
             return e.__proto__;
         };
-    function m0(e) {
+    function y0(e) {
         if (e === null || typeof e != "object") return e;
-        if (e instanceof Object) var t = { __proto__: p0(e) };
+        if (e instanceof Object) var t = { __proto__: E0(e) };
         else var t = Object.create(null);
         return (
             Object.getOwnPropertyNames(e).forEach(function (r) {
@@ -3067,31 +3092,31 @@ var Rl = g((zb, Nl) => {
         );
     }
 });
-var we = g((Xb, wo) => {
+var we = g((Zb, Eo) => {
     var J = require("fs"),
-        g0 = Cl(),
-        w0 = Il(),
-        E0 = Rl(),
-        Rn = require("util"),
+        _0 = Ol(),
+        v0 = Rl(),
+        S0 = Pl(),
+        Dn = require("util"),
         le,
-        Pn;
+        Fn;
     typeof Symbol == "function" && typeof Symbol.for == "function"
-        ? ((le = Symbol.for("graceful-fs.queue")), (Pn = Symbol.for("graceful-fs.previous")))
-        : ((le = "___graceful-fs.queue"), (Pn = "___graceful-fs.previous"));
-    function y0() {}
-    function Fl(e, t) {
+        ? ((le = Symbol.for("graceful-fs.queue")), (Fn = Symbol.for("graceful-fs.previous")))
+        : ((le = "___graceful-fs.queue"), (Fn = "___graceful-fs.previous"));
+    function A0() {}
+    function Ll(e, t) {
         Object.defineProperty(e, le, {
             get: function () {
                 return t;
             }
         });
     }
-    var _t = y0;
-    Rn.debuglog
-        ? (_t = Rn.debuglog("gfs4"))
+    var _t = A0;
+    Dn.debuglog
+        ? (_t = Dn.debuglog("gfs4"))
         : /\bgfs4\b/i.test(process.env.NODE_DEBUG || "") &&
           (_t = function () {
-              var e = Rn.format.apply(Rn, arguments);
+              var e = Dn.format.apply(Dn, arguments);
               (e =
                   "GFS4: " +
                   e.split(/\n/).join(`
@@ -3099,40 +3124,40 @@ GFS4: `)),
                   console.error(e);
           });
     J[le] ||
-        ((Dl = global[le] || []),
-        Fl(J, Dl),
+        ((Fl = global[le] || []),
+        Ll(J, Fl),
         (J.close = (function (e) {
             function t(r, n) {
                 return e.call(J, r, function (i) {
-                    i || Pl(), typeof n == "function" && n.apply(this, arguments);
+                    i || ql(), typeof n == "function" && n.apply(this, arguments);
                 });
             }
-            return Object.defineProperty(t, Pn, { value: e }), t;
+            return Object.defineProperty(t, Fn, { value: e }), t;
         })(J.close)),
         (J.closeSync = (function (e) {
             function t(r) {
-                e.apply(J, arguments), Pl();
+                e.apply(J, arguments), ql();
             }
-            return Object.defineProperty(t, Pn, { value: e }), t;
+            return Object.defineProperty(t, Fn, { value: e }), t;
         })(J.closeSync)),
         /\bgfs4\b/i.test(process.env.NODE_DEBUG || "") &&
             process.on("exit", function () {
                 _t(J[le]), require("assert").equal(J[le].length, 0);
             }));
-    var Dl;
-    global[le] || Fl(global, J[le]);
-    wo.exports = mo(E0(J));
-    process.env.TEST_GRACEFUL_FS_GLOBAL_PATCH && !J.__patched && ((wo.exports = mo(J)), (J.__patched = !0));
-    function mo(e) {
-        g0(e), (e.gracefulify = mo), (e.createReadStream = De), (e.createWriteStream = V);
+    var Fl;
+    global[le] || Ll(global, J[le]);
+    Eo.exports = go(S0(J));
+    process.env.TEST_GRACEFUL_FS_GLOBAL_PATCH && !J.__patched && ((Eo.exports = go(J)), (J.__patched = !0));
+    function go(e) {
+        _0(e), (e.gracefulify = go), (e.createReadStream = De), (e.createWriteStream = V);
         var t = e.readFile;
         e.readFile = r;
         function r(D, U, R) {
             return typeof U == "function" && ((R = U), (U = null)), K(D, U, R);
-            function K(Z, X, G, P) {
+            function K(Z, X, G, F) {
                 return t(Z, X, function (H) {
                     H && (H.code === "EMFILE" || H.code === "ENFILE")
-                        ? Yt([K, [Z, X, G], H, P || Date.now(), Date.now()])
+                        ? Yt([K, [Z, X, G], H, F || Date.now(), Date.now()])
                         : typeof G == "function" && G.apply(this, arguments);
                 });
             }
@@ -3141,10 +3166,10 @@ GFS4: `)),
         e.writeFile = i;
         function i(D, U, R, K) {
             return typeof R == "function" && ((K = R), (R = null)), Z(D, U, R, K);
-            function Z(X, G, P, H, Q) {
-                return n(X, G, P, function (j) {
+            function Z(X, G, F, H, Q) {
+                return n(X, G, F, function (j) {
                     j && (j.code === "EMFILE" || j.code === "ENFILE")
-                        ? Yt([Z, [X, G, P, H], j, Q || Date.now(), Date.now()])
+                        ? Yt([Z, [X, G, F, H], j, Q || Date.now(), Date.now()])
                         : typeof H == "function" && H.apply(this, arguments);
                 });
             }
@@ -3153,10 +3178,10 @@ GFS4: `)),
         o && (e.appendFile = s);
         function s(D, U, R, K) {
             return typeof R == "function" && ((K = R), (R = null)), Z(D, U, R, K);
-            function Z(X, G, P, H, Q) {
-                return o(X, G, P, function (j) {
+            function Z(X, G, F, H, Q) {
+                return o(X, G, F, function (j) {
                     j && (j.code === "EMFILE" || j.code === "ENFILE")
-                        ? Yt([Z, [X, G, P, H], j, Q || Date.now(), Date.now()])
+                        ? Yt([Z, [X, G, F, H], j, Q || Date.now(), Date.now()])
                         : typeof H == "function" && H.apply(this, arguments);
                 });
             }
@@ -3165,37 +3190,37 @@ GFS4: `)),
         a && (e.copyFile = l);
         function l(D, U, R, K) {
             return typeof R == "function" && ((K = R), (R = 0)), Z(D, U, R, K);
-            function Z(X, G, P, H, Q) {
-                return a(X, G, P, function (j) {
+            function Z(X, G, F, H, Q) {
+                return a(X, G, F, function (j) {
                     j && (j.code === "EMFILE" || j.code === "ENFILE")
-                        ? Yt([Z, [X, G, P, H], j, Q || Date.now(), Date.now()])
+                        ? Yt([Z, [X, G, F, H], j, Q || Date.now(), Date.now()])
                         : typeof H == "function" && H.apply(this, arguments);
                 });
             }
         }
         var h = e.readdir;
-        e.readdir = d;
+        e.readdir = f;
         var c = /^v[0-5]\./;
-        function d(D, U, R) {
+        function f(D, U, R) {
             typeof U == "function" && ((R = U), (U = null));
             var K = c.test(process.version)
-                ? function (G, P, H, Q) {
-                      return h(G, Z(G, P, H, Q));
+                ? function (G, F, H, Q) {
+                      return h(G, Z(G, F, H, Q));
                   }
-                : function (G, P, H, Q) {
-                      return h(G, P, Z(G, P, H, Q));
+                : function (G, F, H, Q) {
+                      return h(G, F, Z(G, F, H, Q));
                   };
             return K(D, U, R);
-            function Z(X, G, P, H) {
+            function Z(X, G, F, H) {
                 return function (Q, j) {
                     Q && (Q.code === "EMFILE" || Q.code === "ENFILE")
-                        ? Yt([K, [X, G, P], Q, H || Date.now(), Date.now()])
-                        : (j && j.sort && j.sort(), typeof P == "function" && P.call(this, Q, j));
+                        ? Yt([K, [X, G, F], Q, H || Date.now(), Date.now()])
+                        : (j && j.sort && j.sort(), typeof F == "function" && F.call(this, Q, j));
                 };
             }
         }
         if (process.version.substr(0, 4) === "v0.8") {
-            var m = w0(e);
+            var m = v0(e);
             (x = m.ReadStream), (N = m.WriteStream);
         }
         var p = e.ReadStream;
@@ -3272,10 +3297,10 @@ GFS4: `)),
         e.open = E;
         function E(D, U, R, K) {
             return typeof R == "function" && ((K = R), (R = null)), Z(D, U, R, K);
-            function Z(X, G, P, H, Q) {
-                return se(X, G, P, function (j, Qe) {
+            function Z(X, G, F, H, Q) {
+                return se(X, G, F, function (j, Qe) {
                     j && (j.code === "EMFILE" || j.code === "ENFILE")
-                        ? Yt([Z, [X, G, P, H], j, Q || Date.now(), Date.now()])
+                        ? Yt([Z, [X, G, F, H], j, Q || Date.now(), Date.now()])
                         : typeof H == "function" && H.apply(this, arguments);
                 });
             }
@@ -3283,15 +3308,15 @@ GFS4: `)),
         return e;
     }
     function Yt(e) {
-        _t("ENQUEUE", e[0].name, e[1]), J[le].push(e), go();
+        _t("ENQUEUE", e[0].name, e[1]), J[le].push(e), wo();
     }
-    var Dn;
-    function Pl() {
+    var Pn;
+    function ql() {
         for (var e = Date.now(), t = 0; t < J[le].length; ++t) J[le][t].length > 2 && ((J[le][t][3] = e), (J[le][t][4] = e));
-        go();
+        wo();
     }
-    function go() {
-        if ((clearTimeout(Dn), (Dn = void 0), J[le].length !== 0)) {
+    function wo() {
+        if ((clearTimeout(Pn), (Pn = void 0), J[le].length !== 0)) {
             var e = J[le].shift(),
                 t = e[0],
                 r = e[1],
@@ -3309,15 +3334,15 @@ GFS4: `)),
                     h = Math.min(l * 1.2, 100);
                 a >= h ? (_t("RETRY", t.name, r), t.apply(null, r.concat([i]))) : J[le].push(e);
             }
-            Dn === void 0 && (Dn = setTimeout(go, 0));
+            Pn === void 0 && (Pn = setTimeout(wo, 0));
         }
     }
 });
 var vt = g(et => {
     "use strict";
-    var ql = Re().fromCallback,
-        Te = we(),
-        _0 = [
+    var Ul = Ce().fromCallback,
+        be = we(),
+        x0 = [
             "access",
             "appendFile",
             "chmod",
@@ -3352,19 +3377,19 @@ var vt = g(et => {
             "unlink",
             "utimes",
             "writeFile"
-        ].filter(e => typeof Te[e] == "function");
-    Object.assign(et, Te);
-    _0.forEach(e => {
-        et[e] = ql(Te[e]);
+        ].filter(e => typeof be[e] == "function");
+    Object.assign(et, be);
+    x0.forEach(e => {
+        et[e] = Ul(be[e]);
     });
     et.exists = function (e, t) {
-        return typeof t == "function" ? Te.exists(e, t) : new Promise(r => Te.exists(e, r));
+        return typeof t == "function" ? be.exists(e, t) : new Promise(r => be.exists(e, r));
     };
     et.read = function (e, t, r, n, i, o) {
         return typeof o == "function"
-            ? Te.read(e, t, r, n, i, o)
+            ? be.read(e, t, r, n, i, o)
             : new Promise((s, a) => {
-                  Te.read(e, t, r, n, i, (l, h, c) => {
+                  be.read(e, t, r, n, i, (l, h, c) => {
                       if (l) return a(l);
                       s({ bytesRead: h, buffer: c });
                   });
@@ -3372,77 +3397,76 @@ var vt = g(et => {
     };
     et.write = function (e, t, ...r) {
         return typeof r[r.length - 1] == "function"
-            ? Te.write(e, t, ...r)
+            ? be.write(e, t, ...r)
             : new Promise((n, i) => {
-                  Te.write(e, t, ...r, (o, s, a) => {
+                  be.write(e, t, ...r, (o, s, a) => {
                       if (o) return i(o);
                       n({ bytesWritten: s, buffer: a });
                   });
               });
     };
-    typeof Te.writev == "function" &&
+    typeof be.writev == "function" &&
         (et.writev = function (e, t, ...r) {
             return typeof r[r.length - 1] == "function"
-                ? Te.writev(e, t, ...r)
+                ? be.writev(e, t, ...r)
                 : new Promise((n, i) => {
-                      Te.writev(e, t, ...r, (o, s, a) => {
+                      be.writev(e, t, ...r, (o, s, a) => {
                           if (o) return i(o);
                           n({ bytesWritten: s, buffers: a });
                       });
                   });
         });
-    typeof Te.realpath.native == "function"
-        ? (et.realpath.native = ql(Te.realpath.native))
+    typeof be.realpath.native == "function"
+        ? (et.realpath.native = Ul(be.realpath.native))
         : process.emitWarning(
               "fs.realpath.native is not a function. Is fs being monkey-patched?",
               "Warning",
               "fs-extra-WARN0003"
           );
 });
-var Ul = g((Jb, Ll) => {
+var kl = g((tO, $l) => {
     "use strict";
-    var v0 = require("path");
-    Ll.exports.checkPath = function (t) {
-        if (process.platform === "win32" && /[<>:"|?*]/.test(t.replace(v0.parse(t).root, ""))) {
+    var T0 = require("path");
+    $l.exports.checkPath = function (t) {
+        if (process.platform === "win32" && /[<>:"|?*]/.test(t.replace(T0.parse(t).root, ""))) {
             let n = new Error(`Path contains invalid characters: ${t}`);
             throw ((n.code = "EINVAL"), n);
         }
     };
 });
-var Bl = g((Qb, Eo) => {
+var jl = g((rO, yo) => {
     "use strict";
-    var $l = vt(),
-        { checkPath: kl } = Ul(),
-        Ml = e => {
+    var Ml = vt(),
+        { checkPath: Bl } = kl(),
+        Hl = e => {
             let t = { mode: 511 };
             return typeof e == "number" ? e : { ...t, ...e }.mode;
         };
-    Eo.exports.makeDir = async (e, t) => (kl(e), $l.mkdir(e, { mode: Ml(t), recursive: !0 }));
-    Eo.exports.makeDirSync = (e, t) => (kl(e), $l.mkdirSync(e, { mode: Ml(t), recursive: !0 }));
+    yo.exports.makeDir = async (e, t) => (Bl(e), Ml.mkdir(e, { mode: Hl(t), recursive: !0 }));
+    yo.exports.makeDirSync = (e, t) => (Bl(e), Ml.mkdirSync(e, { mode: Hl(t), recursive: !0 }));
 });
-var Ue = g((Zb, Hl) => {
+var Ue = g((nO, Wl) => {
     "use strict";
-    var S0 = Re().fromPromise,
-        { makeDir: A0, makeDirSync: yo } = Bl(),
-        _o = S0(A0);
-    Hl.exports = { mkdirs: _o, mkdirsSync: yo, mkdirp: _o, mkdirpSync: yo, ensureDir: _o, ensureDirSync: yo };
+    var C0 = Ce().fromPromise,
+        { makeDir: b0, makeDirSync: _o } = jl(),
+        vo = C0(b0);
+    Wl.exports = { mkdirs: vo, mkdirsSync: _o, mkdirp: vo, mkdirpSync: _o, ensureDir: vo, ensureDirSync: _o };
 });
-var tt = g((eO, Wl) => {
+var tt = g((iO, Vl) => {
     "use strict";
-    var x0 = Re().fromPromise,
-        jl = vt();
-    function T0(e) {
-        return jl
-            .access(e)
+    var O0 = Ce().fromPromise,
+        Gl = vt();
+    function I0(e) {
+        return Gl.access(e)
             .then(() => !0)
             .catch(() => !1);
     }
-    Wl.exports = { pathExists: x0(T0), pathExistsSync: jl.existsSync };
+    Vl.exports = { pathExists: O0(I0), pathExistsSync: Gl.existsSync };
 });
-var vo = g((tO, Gl) => {
+var So = g((oO, Yl) => {
     "use strict";
     var zt = we();
-    function C0(e, t, r, n) {
+    function N0(e, t, r, n) {
         zt.open(e, "r+", (i, o) => {
             if (i) return n(i);
             zt.futimes(o, t, r, s => {
@@ -3452,18 +3476,18 @@ var vo = g((tO, Gl) => {
             });
         });
     }
-    function b0(e, t, r) {
+    function R0(e, t, r) {
         let n = zt.openSync(e, "r+");
         return zt.futimesSync(n, t, r), zt.closeSync(n);
     }
-    Gl.exports = { utimesMillis: C0, utimesMillisSync: b0 };
+    Yl.exports = { utimesMillis: N0, utimesMillisSync: R0 };
 });
-var St = g((rO, zl) => {
+var St = g((sO, Kl) => {
     "use strict";
     var Xt = vt(),
         oe = require("path"),
-        O0 = require("util");
-    function I0(e, t, r) {
+        D0 = require("util");
+    function P0(e, t, r) {
         let n = r.dereference ? i => Xt.stat(i, { bigint: !0 }) : i => Xt.lstat(i, { bigint: !0 });
         return Promise.all([
             n(e),
@@ -3473,7 +3497,7 @@ var St = g((rO, zl) => {
             })
         ]).then(([i, o]) => ({ srcStat: i, destStat: o }));
     }
-    function N0(e, t, r) {
+    function F0(e, t, r) {
         let n,
             i = r.dereference ? s => Xt.statSync(s, { bigint: !0 }) : s => Xt.lstatSync(s, { bigint: !0 }),
             o = i(e);
@@ -3485,8 +3509,8 @@ var St = g((rO, zl) => {
         }
         return { srcStat: o, destStat: n };
     }
-    function R0(e, t, r, n, i) {
-        O0.callbackify(I0)(e, t, n, (o, s) => {
+    function q0(e, t, r, n, i) {
+        D0.callbackify(P0)(e, t, n, (o, s) => {
             if (o) return i(o);
             let { srcStat: a, destStat: l } = s;
             if (l) {
@@ -3502,11 +3526,11 @@ var St = g((rO, zl) => {
                 if (!a.isDirectory() && l.isDirectory())
                     return i(new Error(`Cannot overwrite directory '${t}' with non-directory '${e}'.`));
             }
-            return a.isDirectory() && So(e, t) ? i(new Error(Fn(e, t, r))) : i(null, { srcStat: a, destStat: l });
+            return a.isDirectory() && Ao(e, t) ? i(new Error(qn(e, t, r))) : i(null, { srcStat: a, destStat: l });
         });
     }
-    function D0(e, t, r, n) {
-        let { srcStat: i, destStat: o } = N0(e, t, n);
+    function L0(e, t, r, n) {
+        let { srcStat: i, destStat: o } = F0(e, t, n);
         if (o) {
             if (Nr(i, o)) {
                 let s = oe.basename(e),
@@ -3520,18 +3544,18 @@ var St = g((rO, zl) => {
             if (!i.isDirectory() && o.isDirectory())
                 throw new Error(`Cannot overwrite directory '${t}' with non-directory '${e}'.`);
         }
-        if (i.isDirectory() && So(e, t)) throw new Error(Fn(e, t, r));
+        if (i.isDirectory() && Ao(e, t)) throw new Error(qn(e, t, r));
         return { srcStat: i, destStat: o };
     }
-    function Vl(e, t, r, n, i) {
+    function zl(e, t, r, n, i) {
         let o = oe.resolve(oe.dirname(e)),
             s = oe.resolve(oe.dirname(r));
         if (s === o || s === oe.parse(s).root) return i();
         Xt.stat(s, { bigint: !0 }, (a, l) =>
-            a ? (a.code === "ENOENT" ? i() : i(a)) : Nr(t, l) ? i(new Error(Fn(e, r, n))) : Vl(e, t, s, n, i)
+            a ? (a.code === "ENOENT" ? i() : i(a)) : Nr(t, l) ? i(new Error(qn(e, r, n))) : zl(e, t, s, n, i)
         );
     }
-    function Yl(e, t, r, n) {
+    function Xl(e, t, r, n) {
         let i = oe.resolve(oe.dirname(e)),
             o = oe.resolve(oe.dirname(r));
         if (o === i || o === oe.parse(o).root) return;
@@ -3542,13 +3566,13 @@ var St = g((rO, zl) => {
             if (a.code === "ENOENT") return;
             throw a;
         }
-        if (Nr(t, s)) throw new Error(Fn(e, r, n));
-        return Yl(e, t, o, n);
+        if (Nr(t, s)) throw new Error(qn(e, r, n));
+        return Xl(e, t, o, n);
     }
     function Nr(e, t) {
         return t.ino && t.dev && t.ino === e.ino && t.dev === e.dev;
     }
-    function So(e, t) {
+    function Ao(e, t) {
         let r = oe
                 .resolve(e)
                 .split(oe.sep)
@@ -3559,27 +3583,27 @@ var St = g((rO, zl) => {
                 .filter(i => i);
         return r.reduce((i, o, s) => i && n[s] === o, !0);
     }
-    function Fn(e, t, r) {
+    function qn(e, t, r) {
         return `Cannot ${r} '${e}' to a subdirectory of itself, '${t}'.`;
     }
-    zl.exports = {
-        checkPaths: R0,
-        checkPathsSync: D0,
-        checkParentPaths: Vl,
-        checkParentPathsSync: Yl,
-        isSrcSubdir: So,
+    Kl.exports = {
+        checkPaths: q0,
+        checkPathsSync: L0,
+        checkParentPaths: zl,
+        checkParentPathsSync: Xl,
+        isSrcSubdir: Ao,
         areIdentical: Nr
     };
 });
-var ru = g((nO, tu) => {
+var iu = g((aO, nu) => {
     "use strict";
-    var Ce = we(),
+    var Oe = we(),
         Rr = require("path"),
-        P0 = Ue().mkdirs,
-        F0 = tt().pathExists,
-        q0 = vo().utimesMillis,
+        U0 = Ue().mkdirs,
+        $0 = tt().pathExists,
+        k0 = So().utimesMillis,
         Dr = St();
-    function L0(e, t, r, n) {
+    function M0(e, t, r, n) {
         typeof r == "function" && !n ? ((n = r), (r = {})) : typeof r == "function" && (r = { filter: r }),
             (n = n || function () {}),
             (r = r || {}),
@@ -3597,36 +3621,36 @@ var ru = g((nO, tu) => {
             Dr.checkPaths(e, t, "copy", r, (i, o) => {
                 if (i) return n(i);
                 let { srcStat: s, destStat: a } = o;
-                Dr.checkParentPaths(e, s, t, "copy", l => (l ? n(l) : r.filter ? Jl(Xl, a, e, t, r, n) : Xl(a, e, t, r, n)));
+                Dr.checkParentPaths(e, s, t, "copy", l => (l ? n(l) : r.filter ? Zl(Jl, a, e, t, r, n) : Jl(a, e, t, r, n)));
             });
     }
-    function Xl(e, t, r, n, i) {
+    function Jl(e, t, r, n, i) {
         let o = Rr.dirname(r);
-        F0(o, (s, a) => {
+        $0(o, (s, a) => {
             if (s) return i(s);
-            if (a) return qn(e, t, r, n, i);
-            P0(o, l => (l ? i(l) : qn(e, t, r, n, i)));
+            if (a) return Ln(e, t, r, n, i);
+            U0(o, l => (l ? i(l) : Ln(e, t, r, n, i)));
         });
     }
-    function Jl(e, t, r, n, i, o) {
+    function Zl(e, t, r, n, i, o) {
         Promise.resolve(i.filter(r, n)).then(
             s => (s ? e(t, r, n, i, o) : o()),
             s => o(s)
         );
     }
-    function U0(e, t, r, n, i) {
-        return n.filter ? Jl(qn, e, t, r, n, i) : qn(e, t, r, n, i);
+    function B0(e, t, r, n, i) {
+        return n.filter ? Zl(Ln, e, t, r, n, i) : Ln(e, t, r, n, i);
     }
-    function qn(e, t, r, n, i) {
-        (n.dereference ? Ce.stat : Ce.lstat)(t, (s, a) =>
+    function Ln(e, t, r, n, i) {
+        (n.dereference ? Oe.stat : Oe.lstat)(t, (s, a) =>
             s
                 ? i(s)
                 : a.isDirectory()
-                ? W0(a, e, t, r, n, i)
+                ? z0(a, e, t, r, n, i)
                 : a.isFile() || a.isCharacterDevice() || a.isBlockDevice()
-                ? $0(a, e, t, r, n, i)
+                ? H0(a, e, t, r, n, i)
                 : a.isSymbolicLink()
-                ? Y0(e, t, r, n, i)
+                ? J0(e, t, r, n, i)
                 : a.isSocket()
                 ? i(new Error(`Cannot copy a socket file: ${t}`))
                 : a.isFIFO()
@@ -3634,91 +3658,91 @@ var ru = g((nO, tu) => {
                 : i(new Error(`Unknown file: ${t}`))
         );
     }
-    function $0(e, t, r, n, i, o) {
-        return t ? k0(e, r, n, i, o) : Ql(e, r, n, i, o);
+    function H0(e, t, r, n, i, o) {
+        return t ? j0(e, r, n, i, o) : eu(e, r, n, i, o);
     }
-    function k0(e, t, r, n, i) {
-        if (n.overwrite) Ce.unlink(r, o => (o ? i(o) : Ql(e, t, r, n, i)));
+    function j0(e, t, r, n, i) {
+        if (n.overwrite) Oe.unlink(r, o => (o ? i(o) : eu(e, t, r, n, i)));
         else return n.errorOnExist ? i(new Error(`'${r}' already exists`)) : i();
     }
-    function Ql(e, t, r, n, i) {
-        Ce.copyFile(t, r, o => (o ? i(o) : n.preserveTimestamps ? M0(e.mode, t, r, i) : Ln(r, e.mode, i)));
+    function eu(e, t, r, n, i) {
+        Oe.copyFile(t, r, o => (o ? i(o) : n.preserveTimestamps ? W0(e.mode, t, r, i) : Un(r, e.mode, i)));
     }
-    function M0(e, t, r, n) {
-        return B0(e) ? H0(r, e, i => (i ? n(i) : Kl(e, t, r, n))) : Kl(e, t, r, n);
+    function W0(e, t, r, n) {
+        return G0(e) ? V0(r, e, i => (i ? n(i) : Ql(e, t, r, n))) : Ql(e, t, r, n);
     }
-    function B0(e) {
+    function G0(e) {
         return (e & 128) === 0;
     }
-    function H0(e, t, r) {
-        return Ln(e, t | 128, r);
+    function V0(e, t, r) {
+        return Un(e, t | 128, r);
     }
-    function Kl(e, t, r, n) {
-        j0(t, r, i => (i ? n(i) : Ln(r, e, n)));
+    function Ql(e, t, r, n) {
+        Y0(t, r, i => (i ? n(i) : Un(r, e, n)));
     }
-    function Ln(e, t, r) {
-        return Ce.chmod(e, t, r);
+    function Un(e, t, r) {
+        return Oe.chmod(e, t, r);
     }
-    function j0(e, t, r) {
-        Ce.stat(e, (n, i) => (n ? r(n) : q0(t, i.atime, i.mtime, r)));
+    function Y0(e, t, r) {
+        Oe.stat(e, (n, i) => (n ? r(n) : k0(t, i.atime, i.mtime, r)));
     }
-    function W0(e, t, r, n, i, o) {
-        return t ? Zl(r, n, i, o) : G0(e.mode, r, n, i, o);
+    function z0(e, t, r, n, i, o) {
+        return t ? tu(r, n, i, o) : X0(e.mode, r, n, i, o);
     }
-    function G0(e, t, r, n, i) {
-        Ce.mkdir(r, o => {
+    function X0(e, t, r, n, i) {
+        Oe.mkdir(r, o => {
             if (o) return i(o);
-            Zl(t, r, n, s => (s ? i(s) : Ln(r, e, i)));
+            tu(t, r, n, s => (s ? i(s) : Un(r, e, i)));
         });
     }
-    function Zl(e, t, r, n) {
-        Ce.readdir(e, (i, o) => (i ? n(i) : eu(o, e, t, r, n)));
+    function tu(e, t, r, n) {
+        Oe.readdir(e, (i, o) => (i ? n(i) : ru(o, e, t, r, n)));
     }
-    function eu(e, t, r, n, i) {
+    function ru(e, t, r, n, i) {
         let o = e.pop();
-        return o ? V0(e, o, t, r, n, i) : i();
+        return o ? K0(e, o, t, r, n, i) : i();
     }
-    function V0(e, t, r, n, i, o) {
+    function K0(e, t, r, n, i, o) {
         let s = Rr.join(r, t),
             a = Rr.join(n, t);
         Dr.checkPaths(s, a, "copy", i, (l, h) => {
             if (l) return o(l);
             let { destStat: c } = h;
-            U0(c, s, a, i, d => (d ? o(d) : eu(e, r, n, i, o)));
+            B0(c, s, a, i, f => (f ? o(f) : ru(e, r, n, i, o)));
         });
     }
-    function Y0(e, t, r, n, i) {
-        Ce.readlink(t, (o, s) => {
+    function J0(e, t, r, n, i) {
+        Oe.readlink(t, (o, s) => {
             if (o) return i(o);
             if ((n.dereference && (s = Rr.resolve(process.cwd(), s)), e))
-                Ce.readlink(r, (a, l) =>
+                Oe.readlink(r, (a, l) =>
                     a
                         ? a.code === "EINVAL" || a.code === "UNKNOWN"
-                            ? Ce.symlink(s, r, i)
+                            ? Oe.symlink(s, r, i)
                             : i(a)
                         : (n.dereference && (l = Rr.resolve(process.cwd(), l)),
                           Dr.isSrcSubdir(s, l)
                               ? i(new Error(`Cannot copy '${s}' to a subdirectory of itself, '${l}'.`))
                               : e.isDirectory() && Dr.isSrcSubdir(l, s)
                               ? i(new Error(`Cannot overwrite '${l}' with '${s}'.`))
-                              : z0(s, r, i))
+                              : Q0(s, r, i))
                 );
-            else return Ce.symlink(s, r, i);
+            else return Oe.symlink(s, r, i);
         });
     }
-    function z0(e, t, r) {
-        Ce.unlink(t, n => (n ? r(n) : Ce.symlink(e, t, r)));
+    function Q0(e, t, r) {
+        Oe.unlink(t, n => (n ? r(n) : Oe.symlink(e, t, r)));
     }
-    tu.exports = L0;
+    nu.exports = M0;
 });
-var au = g((iO, su) => {
+var uu = g((lO, lu) => {
     "use strict";
     var ce = we(),
         Pr = require("path"),
-        X0 = Ue().mkdirsSync,
-        K0 = vo().utimesMillisSync,
+        Z0 = Ue().mkdirsSync,
+        ew = So().utimesMillisSync,
         Fr = St();
-    function J0(e, t, r) {
+    function tw(e, t, r) {
         typeof r == "function" && (r = { filter: r }),
             (r = r || {}),
             (r.clobber = "clobber" in r ? !!r.clobber : !0),
@@ -3733,69 +3757,69 @@ var au = g((iO, su) => {
                     "fs-extra-WARN0002"
                 );
         let { srcStat: n, destStat: i } = Fr.checkPathsSync(e, t, "copy", r);
-        return Fr.checkParentPathsSync(e, n, t, "copy"), Q0(i, e, t, r);
+        return Fr.checkParentPathsSync(e, n, t, "copy"), rw(i, e, t, r);
     }
-    function Q0(e, t, r, n) {
+    function rw(e, t, r, n) {
         if (n.filter && !n.filter(t, r)) return;
         let i = Pr.dirname(r);
-        return ce.existsSync(i) || X0(i), nu(e, t, r, n);
+        return ce.existsSync(i) || Z0(i), ou(e, t, r, n);
     }
-    function Z0(e, t, r, n) {
-        if (!(n.filter && !n.filter(t, r))) return nu(e, t, r, n);
+    function nw(e, t, r, n) {
+        if (!(n.filter && !n.filter(t, r))) return ou(e, t, r, n);
     }
-    function nu(e, t, r, n) {
+    function ou(e, t, r, n) {
         let o = (n.dereference ? ce.statSync : ce.lstatSync)(t);
-        if (o.isDirectory()) return sw(o, e, t, r, n);
-        if (o.isFile() || o.isCharacterDevice() || o.isBlockDevice()) return ew(o, e, t, r, n);
-        if (o.isSymbolicLink()) return uw(e, t, r, n);
+        if (o.isDirectory()) return cw(o, e, t, r, n);
+        if (o.isFile() || o.isCharacterDevice() || o.isBlockDevice()) return iw(o, e, t, r, n);
+        if (o.isSymbolicLink()) return hw(e, t, r, n);
         throw o.isSocket()
             ? new Error(`Cannot copy a socket file: ${t}`)
             : o.isFIFO()
             ? new Error(`Cannot copy a FIFO pipe: ${t}`)
             : new Error(`Unknown file: ${t}`);
     }
-    function ew(e, t, r, n, i) {
-        return t ? tw(e, r, n, i) : iu(e, r, n, i);
+    function iw(e, t, r, n, i) {
+        return t ? ow(e, r, n, i) : su(e, r, n, i);
     }
-    function tw(e, t, r, n) {
-        if (n.overwrite) return ce.unlinkSync(r), iu(e, t, r, n);
+    function ow(e, t, r, n) {
+        if (n.overwrite) return ce.unlinkSync(r), su(e, t, r, n);
         if (n.errorOnExist) throw new Error(`'${r}' already exists`);
     }
-    function iu(e, t, r, n) {
-        return ce.copyFileSync(t, r), n.preserveTimestamps && rw(e.mode, t, r), Ao(r, e.mode);
+    function su(e, t, r, n) {
+        return ce.copyFileSync(t, r), n.preserveTimestamps && sw(e.mode, t, r), xo(r, e.mode);
     }
-    function rw(e, t, r) {
-        return nw(e) && iw(r, e), ow(t, r);
+    function sw(e, t, r) {
+        return aw(e) && lw(r, e), uw(t, r);
     }
-    function nw(e) {
+    function aw(e) {
         return (e & 128) === 0;
     }
-    function iw(e, t) {
-        return Ao(e, t | 128);
+    function lw(e, t) {
+        return xo(e, t | 128);
     }
-    function Ao(e, t) {
+    function xo(e, t) {
         return ce.chmodSync(e, t);
     }
-    function ow(e, t) {
+    function uw(e, t) {
         let r = ce.statSync(e);
-        return K0(t, r.atime, r.mtime);
+        return ew(t, r.atime, r.mtime);
     }
-    function sw(e, t, r, n, i) {
-        return t ? ou(r, n, i) : aw(e.mode, r, n, i);
+    function cw(e, t, r, n, i) {
+        return t ? au(r, n, i) : fw(e.mode, r, n, i);
     }
-    function aw(e, t, r, n) {
-        return ce.mkdirSync(r), ou(t, r, n), Ao(r, e);
+    function fw(e, t, r, n) {
+        return ce.mkdirSync(r), au(t, r, n), xo(r, e);
     }
-    function ou(e, t, r) {
-        ce.readdirSync(e).forEach(n => lw(n, e, t, r));
+    function au(e, t, r) {
+        ce.readdirSync(e).forEach(n => dw(n, e, t, r));
     }
-    function lw(e, t, r, n) {
+    function dw(e, t, r, n) {
         let i = Pr.join(t, e),
             o = Pr.join(r, e),
             { destStat: s } = Fr.checkPathsSync(i, o, "copy", n);
-        return Z0(s, i, o, n);
+        return nw(s, i, o, n);
     }
-    function uw(e, t, r, n) {
+    function hw(e, t, r, n) {
         let i = ce.readlinkSync(t);
         if ((n.dereference && (i = Pr.resolve(process.cwd(), i)), e)) {
             let o;
@@ -3808,32 +3832,32 @@ var au = g((iO, su) => {
             if ((n.dereference && (o = Pr.resolve(process.cwd(), o)), Fr.isSrcSubdir(i, o)))
                 throw new Error(`Cannot copy '${i}' to a subdirectory of itself, '${o}'.`);
             if (ce.statSync(r).isDirectory() && Fr.isSrcSubdir(o, i)) throw new Error(`Cannot overwrite '${o}' with '${i}'.`);
-            return cw(i, r);
+            return pw(i, r);
         } else return ce.symlinkSync(i, r);
     }
-    function cw(e, t) {
+    function pw(e, t) {
         return ce.unlinkSync(t), ce.symlinkSync(e, t);
     }
-    su.exports = J0;
+    lu.exports = tw;
 });
-var Un = g((oO, lu) => {
+var $n = g((uO, cu) => {
     "use strict";
-    var fw = Re().fromCallback;
-    lu.exports = { copy: fw(ru()), copySync: au() };
+    var mw = Ce().fromCallback;
+    cu.exports = { copy: mw(iu()), copySync: uu() };
 });
-var wu = g((sO, gu) => {
+var yu = g((cO, Eu) => {
     "use strict";
-    var uu = we(),
-        hu = require("path"),
+    var fu = we(),
+        mu = require("path"),
         W = require("assert"),
         qr = process.platform === "win32";
-    function pu(e) {
+    function gu(e) {
         ["unlink", "chmod", "stat", "lstat", "rmdir", "readdir"].forEach(r => {
-            (e[r] = e[r] || uu[r]), (r = r + "Sync"), (e[r] = e[r] || uu[r]);
+            (e[r] = e[r] || fu[r]), (r = r + "Sync"), (e[r] = e[r] || fu[r]);
         }),
             (e.maxBusyTries = e.maxBusyTries || 3);
     }
-    function xo(e, t, r) {
+    function To(e, t, r) {
         let n = 0;
         typeof t == "function" && ((r = t), (t = {})),
             W(e, "rimraf: missing path"),
@@ -3841,38 +3865,38 @@ var wu = g((sO, gu) => {
             W.strictEqual(typeof r, "function", "rimraf: callback function required"),
             W(t, "rimraf: invalid options argument provided"),
             W.strictEqual(typeof t, "object", "rimraf: options should be object"),
-            pu(t),
-            cu(e, t, function i(o) {
+            gu(t),
+            du(e, t, function i(o) {
                 if (o) {
                     if ((o.code === "EBUSY" || o.code === "ENOTEMPTY" || o.code === "EPERM") && n < t.maxBusyTries) {
                         n++;
                         let s = n * 100;
-                        return setTimeout(() => cu(e, t, i), s);
+                        return setTimeout(() => du(e, t, i), s);
                     }
                     o.code === "ENOENT" && (o = null);
                 }
                 r(o);
             });
     }
-    function cu(e, t, r) {
+    function du(e, t, r) {
         W(e),
             W(t),
             W(typeof r == "function"),
             t.lstat(e, (n, i) => {
                 if (n && n.code === "ENOENT") return r(null);
-                if (n && n.code === "EPERM" && qr) return fu(e, t, n, r);
-                if (i && i.isDirectory()) return $n(e, t, n, r);
+                if (n && n.code === "EPERM" && qr) return hu(e, t, n, r);
+                if (i && i.isDirectory()) return kn(e, t, n, r);
                 t.unlink(e, o => {
                     if (o) {
                         if (o.code === "ENOENT") return r(null);
-                        if (o.code === "EPERM") return qr ? fu(e, t, o, r) : $n(e, t, o, r);
-                        if (o.code === "EISDIR") return $n(e, t, o, r);
+                        if (o.code === "EPERM") return qr ? hu(e, t, o, r) : kn(e, t, o, r);
+                        if (o.code === "EISDIR") return kn(e, t, o, r);
                     }
                     return r(o);
                 });
             });
     }
-    function fu(e, t, r, n) {
+    function hu(e, t, r, n) {
         W(e),
             W(t),
             W(typeof n == "function"),
@@ -3880,11 +3904,11 @@ var wu = g((sO, gu) => {
                 i
                     ? n(i.code === "ENOENT" ? null : r)
                     : t.stat(e, (o, s) => {
-                          o ? n(o.code === "ENOENT" ? null : r) : s.isDirectory() ? $n(e, t, r, n) : t.unlink(e, n);
+                          o ? n(o.code === "ENOENT" ? null : r) : s.isDirectory() ? kn(e, t, r, n) : t.unlink(e, n);
                       });
             });
     }
-    function du(e, t, r) {
+    function pu(e, t, r) {
         let n;
         W(e), W(t);
         try {
@@ -3899,21 +3923,21 @@ var wu = g((sO, gu) => {
             if (i.code === "ENOENT") return;
             throw r;
         }
-        n.isDirectory() ? kn(e, t, r) : t.unlinkSync(e);
+        n.isDirectory() ? Mn(e, t, r) : t.unlinkSync(e);
     }
-    function $n(e, t, r, n) {
+    function kn(e, t, r, n) {
         W(e),
             W(t),
             W(typeof n == "function"),
             t.rmdir(e, i => {
                 i && (i.code === "ENOTEMPTY" || i.code === "EEXIST" || i.code === "EPERM")
-                    ? dw(e, t, n)
+                    ? gw(e, t, n)
                     : i && i.code === "ENOTDIR"
                     ? n(r)
                     : n(i);
             });
     }
-    function dw(e, t, r) {
+    function gw(e, t, r) {
         W(e),
             W(t),
             W(typeof r == "function"),
@@ -3923,7 +3947,7 @@ var wu = g((sO, gu) => {
                     s;
                 if (o === 0) return t.rmdir(e, r);
                 i.forEach(a => {
-                    xo(hu.join(e, a), t, l => {
+                    To(mu.join(e, a), t, l => {
                         if (!s) {
                             if (l) return r((s = l));
                             --o === 0 && t.rmdir(e, r);
@@ -3932,10 +3956,10 @@ var wu = g((sO, gu) => {
                 });
             });
     }
-    function mu(e, t) {
+    function wu(e, t) {
         let r;
         (t = t || {}),
-            pu(t),
+            gu(t),
             W(e, "rimraf: missing path"),
             W.strictEqual(typeof e, "string", "rimraf: path should be a string"),
             W(t, "rimraf: missing options"),
@@ -3944,29 +3968,29 @@ var wu = g((sO, gu) => {
             r = t.lstatSync(e);
         } catch (n) {
             if (n.code === "ENOENT") return;
-            n.code === "EPERM" && qr && du(e, t, n);
+            n.code === "EPERM" && qr && pu(e, t, n);
         }
         try {
-            r && r.isDirectory() ? kn(e, t, null) : t.unlinkSync(e);
+            r && r.isDirectory() ? Mn(e, t, null) : t.unlinkSync(e);
         } catch (n) {
             if (n.code === "ENOENT") return;
-            if (n.code === "EPERM") return qr ? du(e, t, n) : kn(e, t, n);
+            if (n.code === "EPERM") return qr ? pu(e, t, n) : Mn(e, t, n);
             if (n.code !== "EISDIR") throw n;
-            kn(e, t, n);
+            Mn(e, t, n);
         }
     }
-    function kn(e, t, r) {
+    function Mn(e, t, r) {
         W(e), W(t);
         try {
             t.rmdirSync(e);
         } catch (n) {
             if (n.code === "ENOTDIR") throw r;
-            if (n.code === "ENOTEMPTY" || n.code === "EEXIST" || n.code === "EPERM") hw(e, t);
+            if (n.code === "ENOTEMPTY" || n.code === "EEXIST" || n.code === "EPERM") ww(e, t);
             else if (n.code !== "ENOENT") throw n;
         }
     }
-    function hw(e, t) {
-        if ((W(e), W(t), t.readdirSync(e).forEach(r => mu(hu.join(e, r), t)), qr)) {
+    function ww(e, t) {
+        if ((W(e), W(t), t.readdirSync(e).forEach(r => wu(mu.join(e, r), t)), qr)) {
             let r = Date.now();
             do
                 try {
@@ -3975,60 +3999,60 @@ var wu = g((sO, gu) => {
             while (Date.now() - r < 500);
         } else return t.rmdirSync(e, t);
     }
-    gu.exports = xo;
-    xo.sync = mu;
+    Eu.exports = To;
+    To.sync = wu;
 });
-var Lr = g((aO, yu) => {
+var Lr = g((fO, vu) => {
     "use strict";
-    var Mn = we(),
-        pw = Re().fromCallback,
-        Eu = wu();
-    function mw(e, t) {
-        if (Mn.rm) return Mn.rm(e, { recursive: !0, force: !0 }, t);
-        Eu(e, t);
+    var Bn = we(),
+        Ew = Ce().fromCallback,
+        _u = yu();
+    function yw(e, t) {
+        if (Bn.rm) return Bn.rm(e, { recursive: !0, force: !0 }, t);
+        _u(e, t);
     }
-    function gw(e) {
-        if (Mn.rmSync) return Mn.rmSync(e, { recursive: !0, force: !0 });
-        Eu.sync(e);
+    function _w(e) {
+        if (Bn.rmSync) return Bn.rmSync(e, { recursive: !0, force: !0 });
+        _u.sync(e);
     }
-    yu.exports = { remove: pw(mw), removeSync: gw };
+    vu.exports = { remove: Ew(yw), removeSync: _w };
 });
-var bu = g((lO, Cu) => {
+var Iu = g((dO, Ou) => {
     "use strict";
-    var ww = Re().fromPromise,
-        Su = vt(),
-        Au = require("path"),
-        xu = Ue(),
-        Tu = Lr(),
-        _u = ww(async function (t) {
+    var vw = Ce().fromPromise,
+        xu = vt(),
+        Tu = require("path"),
+        Cu = Ue(),
+        bu = Lr(),
+        Su = vw(async function (t) {
             let r;
             try {
-                r = await Su.readdir(t);
+                r = await xu.readdir(t);
             } catch {
-                return xu.mkdirs(t);
+                return Cu.mkdirs(t);
             }
-            return Promise.all(r.map(n => Tu.remove(Au.join(t, n))));
+            return Promise.all(r.map(n => bu.remove(Tu.join(t, n))));
         });
-    function vu(e) {
+    function Au(e) {
         let t;
         try {
-            t = Su.readdirSync(e);
+            t = xu.readdirSync(e);
         } catch {
-            return xu.mkdirsSync(e);
+            return Cu.mkdirsSync(e);
         }
         t.forEach(r => {
-            (r = Au.join(e, r)), Tu.removeSync(r);
+            (r = Tu.join(e, r)), bu.removeSync(r);
         });
     }
-    Cu.exports = { emptyDirSync: vu, emptydirSync: vu, emptyDir: _u, emptydir: _u };
+    Ou.exports = { emptyDirSync: Au, emptydirSync: Au, emptyDir: Su, emptydir: Su };
 });
-var Ru = g((uO, Nu) => {
+var Pu = g((hO, Du) => {
     "use strict";
-    var Ew = Re().fromCallback,
-        Ou = require("path"),
+    var Sw = Ce().fromCallback,
+        Nu = require("path"),
         rt = we(),
-        Iu = Ue();
-    function yw(e, t) {
+        Ru = Ue();
+    function Aw(e, t) {
         function r() {
             rt.writeFile(e, "", n => {
                 if (n) return t(n);
@@ -4037,11 +4061,11 @@ var Ru = g((uO, Nu) => {
         }
         rt.stat(e, (n, i) => {
             if (!n && i.isFile()) return t();
-            let o = Ou.dirname(e);
+            let o = Nu.dirname(e);
             rt.stat(o, (s, a) => {
                 if (s)
                     return s.code === "ENOENT"
-                        ? Iu.mkdirs(o, l => {
+                        ? Ru.mkdirs(o, l => {
                               if (l) return t(l);
                               r();
                           })
@@ -4054,32 +4078,32 @@ var Ru = g((uO, Nu) => {
             });
         });
     }
-    function _w(e) {
+    function xw(e) {
         let t;
         try {
             t = rt.statSync(e);
         } catch {}
         if (t && t.isFile()) return;
-        let r = Ou.dirname(e);
+        let r = Nu.dirname(e);
         try {
             rt.statSync(r).isDirectory() || rt.readdirSync(r);
         } catch (n) {
-            if (n && n.code === "ENOENT") Iu.mkdirsSync(r);
+            if (n && n.code === "ENOENT") Ru.mkdirsSync(r);
             else throw n;
         }
         rt.writeFileSync(e, "");
     }
-    Nu.exports = { createFile: Ew(yw), createFileSync: _w };
+    Du.exports = { createFile: Sw(Aw), createFileSync: xw };
 });
-var Lu = g((cO, qu) => {
+var $u = g((pO, Uu) => {
     "use strict";
-    var vw = Re().fromCallback,
-        Du = require("path"),
+    var Tw = Ce().fromCallback,
+        Fu = require("path"),
         nt = we(),
-        Pu = Ue(),
-        Sw = tt().pathExists,
-        { areIdentical: Fu } = St();
-    function Aw(e, t, r) {
+        qu = Ue(),
+        Cw = tt().pathExists,
+        { areIdentical: Lu } = St();
+    function bw(e, t, r) {
         function n(i, o) {
             nt.link(i, o, s => {
                 if (s) return r(s);
@@ -4089,41 +4113,41 @@ var Lu = g((cO, qu) => {
         nt.lstat(t, (i, o) => {
             nt.lstat(e, (s, a) => {
                 if (s) return (s.message = s.message.replace("lstat", "ensureLink")), r(s);
-                if (o && Fu(a, o)) return r(null);
-                let l = Du.dirname(t);
-                Sw(l, (h, c) => {
+                if (o && Lu(a, o)) return r(null);
+                let l = Fu.dirname(t);
+                Cw(l, (h, c) => {
                     if (h) return r(h);
                     if (c) return n(e, t);
-                    Pu.mkdirs(l, d => {
-                        if (d) return r(d);
+                    qu.mkdirs(l, f => {
+                        if (f) return r(f);
                         n(e, t);
                     });
                 });
             });
         });
     }
-    function xw(e, t) {
+    function Ow(e, t) {
         let r;
         try {
             r = nt.lstatSync(t);
         } catch {}
         try {
             let o = nt.lstatSync(e);
-            if (r && Fu(o, r)) return;
+            if (r && Lu(o, r)) return;
         } catch (o) {
             throw ((o.message = o.message.replace("lstat", "ensureLink")), o);
         }
-        let n = Du.dirname(t);
-        return nt.existsSync(n) || Pu.mkdirsSync(n), nt.linkSync(e, t);
+        let n = Fu.dirname(t);
+        return nt.existsSync(n) || qu.mkdirsSync(n), nt.linkSync(e, t);
     }
-    qu.exports = { createLink: vw(Aw), createLinkSync: xw };
+    Uu.exports = { createLink: Tw(bw), createLinkSync: Ow };
 });
-var $u = g((fO, Uu) => {
+var Mu = g((mO, ku) => {
     "use strict";
     var it = require("path"),
         Ur = we(),
-        Tw = tt().pathExists;
-    function Cw(e, t, r) {
+        Iw = tt().pathExists;
+    function Nw(e, t, r) {
         if (it.isAbsolute(e))
             return Ur.lstat(e, n =>
                 n ? ((n.message = n.message.replace("lstat", "ensureSymlink")), r(n)) : r(null, { toCwd: e, toDst: e })
@@ -4131,7 +4155,7 @@ var $u = g((fO, Uu) => {
         {
             let n = it.dirname(t),
                 i = it.join(n, e);
-            return Tw(i, (o, s) =>
+            return Iw(i, (o, s) =>
                 o
                     ? r(o)
                     : s
@@ -4144,7 +4168,7 @@ var $u = g((fO, Uu) => {
             );
         }
     }
-    function bw(e, t) {
+    function Rw(e, t) {
         let r;
         if (it.isAbsolute(e)) {
             if (((r = Ur.existsSync(e)), !r)) throw new Error("absolute srcpath does not exist");
@@ -4157,77 +4181,77 @@ var $u = g((fO, Uu) => {
             return { toCwd: e, toDst: it.relative(n, e) };
         }
     }
-    Uu.exports = { symlinkPaths: Cw, symlinkPathsSync: bw };
+    ku.exports = { symlinkPaths: Nw, symlinkPathsSync: Rw };
 });
-var Bu = g((dO, Mu) => {
+var ju = g((gO, Hu) => {
     "use strict";
-    var ku = we();
-    function Ow(e, t, r) {
+    var Bu = we();
+    function Dw(e, t, r) {
         if (((r = typeof t == "function" ? t : r), (t = typeof t == "function" ? !1 : t), t)) return r(null, t);
-        ku.lstat(e, (n, i) => {
+        Bu.lstat(e, (n, i) => {
             if (n) return r(null, "file");
             (t = i && i.isDirectory() ? "dir" : "file"), r(null, t);
         });
     }
-    function Iw(e, t) {
+    function Pw(e, t) {
         let r;
         if (t) return t;
         try {
-            r = ku.lstatSync(e);
+            r = Bu.lstatSync(e);
         } catch {
             return "file";
         }
         return r && r.isDirectory() ? "dir" : "file";
     }
-    Mu.exports = { symlinkType: Ow, symlinkTypeSync: Iw };
+    Hu.exports = { symlinkType: Dw, symlinkTypeSync: Pw };
 });
-var Xu = g((hO, zu) => {
+var Ju = g((wO, Ku) => {
     "use strict";
-    var Nw = Re().fromCallback,
-        ju = require("path"),
+    var Fw = Ce().fromCallback,
+        Gu = require("path"),
         $e = vt(),
-        Wu = Ue(),
-        Rw = Wu.mkdirs,
-        Dw = Wu.mkdirsSync,
-        Gu = $u(),
-        Pw = Gu.symlinkPaths,
-        Fw = Gu.symlinkPathsSync,
-        Vu = Bu(),
-        qw = Vu.symlinkType,
-        Lw = Vu.symlinkTypeSync,
-        Uw = tt().pathExists,
-        { areIdentical: Yu } = St();
-    function $w(e, t, r, n) {
+        Vu = Ue(),
+        qw = Vu.mkdirs,
+        Lw = Vu.mkdirsSync,
+        Yu = Mu(),
+        Uw = Yu.symlinkPaths,
+        $w = Yu.symlinkPathsSync,
+        zu = ju(),
+        kw = zu.symlinkType,
+        Mw = zu.symlinkTypeSync,
+        Bw = tt().pathExists,
+        { areIdentical: Xu } = St();
+    function Hw(e, t, r, n) {
         (n = typeof r == "function" ? r : n),
             (r = typeof r == "function" ? !1 : r),
             $e.lstat(t, (i, o) => {
                 !i && o.isSymbolicLink()
                     ? Promise.all([$e.stat(e), $e.stat(t)]).then(([s, a]) => {
-                          if (Yu(s, a)) return n(null);
-                          Hu(e, t, r, n);
+                          if (Xu(s, a)) return n(null);
+                          Wu(e, t, r, n);
                       })
-                    : Hu(e, t, r, n);
+                    : Wu(e, t, r, n);
             });
     }
-    function Hu(e, t, r, n) {
-        Pw(e, t, (i, o) => {
+    function Wu(e, t, r, n) {
+        Uw(e, t, (i, o) => {
             if (i) return n(i);
             (e = o.toDst),
-                qw(o.toCwd, r, (s, a) => {
+                kw(o.toCwd, r, (s, a) => {
                     if (s) return n(s);
-                    let l = ju.dirname(t);
-                    Uw(l, (h, c) => {
+                    let l = Gu.dirname(t);
+                    Bw(l, (h, c) => {
                         if (h) return n(h);
                         if (c) return $e.symlink(e, t, a, n);
-                        Rw(l, d => {
-                            if (d) return n(d);
+                        qw(l, f => {
+                            if (f) return n(f);
                             $e.symlink(e, t, a, n);
                         });
                     });
                 });
         });
     }
-    function kw(e, t, r) {
+    function jw(e, t, r) {
         let n;
         try {
             n = $e.lstatSync(t);
@@ -4235,69 +4259,37 @@ var Xu = g((hO, zu) => {
         if (n && n.isSymbolicLink()) {
             let a = $e.statSync(e),
                 l = $e.statSync(t);
-            if (Yu(a, l)) return;
+            if (Xu(a, l)) return;
         }
-        let i = Fw(e, t);
-        (e = i.toDst), (r = Lw(i.toCwd, r));
-        let o = ju.dirname(t);
-        return $e.existsSync(o) || Dw(o), $e.symlinkSync(e, t, r);
+        let i = $w(e, t);
+        (e = i.toDst), (r = Mw(i.toCwd, r));
+        let o = Gu.dirname(t);
+        return $e.existsSync(o) || Lw(o), $e.symlinkSync(e, t, r);
     }
-    zu.exports = { createSymlink: Nw($w), createSymlinkSync: kw };
+    Ku.exports = { createSymlink: Fw(Hw), createSymlinkSync: jw };
 });
-var nc = g((pO, rc) => {
+var oc = g((EO, ic) => {
     "use strict";
-    var { createFile: Ku, createFileSync: Ju } = Ru(),
-        { createLink: Qu, createLinkSync: Zu } = Lu(),
-        { createSymlink: ec, createSymlinkSync: tc } = Xu();
-    rc.exports = {
-        createFile: Ku,
-        createFileSync: Ju,
-        ensureFile: Ku,
-        ensureFileSync: Ju,
-        createLink: Qu,
-        createLinkSync: Zu,
-        ensureLink: Qu,
-        ensureLinkSync: Zu,
-        createSymlink: ec,
-        createSymlinkSync: tc,
-        ensureSymlink: ec,
-        ensureSymlinkSync: tc
+    var { createFile: Qu, createFileSync: Zu } = Pu(),
+        { createLink: ec, createLinkSync: tc } = $u(),
+        { createSymlink: rc, createSymlinkSync: nc } = Ju();
+    ic.exports = {
+        createFile: Qu,
+        createFileSync: Zu,
+        ensureFile: Qu,
+        ensureFileSync: Zu,
+        createLink: ec,
+        createLinkSync: tc,
+        ensureLink: ec,
+        ensureLinkSync: tc,
+        createSymlink: rc,
+        createSymlinkSync: nc,
+        ensureSymlink: rc,
+        ensureSymlinkSync: nc
     };
 });
-var ic = g(To => {
-    "use strict";
-    To.fromCallback = function (e) {
-        return Object.defineProperty(
-            function () {
-                if (typeof arguments[arguments.length - 1] == "function") e.apply(this, arguments);
-                else
-                    return new Promise((t, r) => {
-                        (arguments[arguments.length] = (n, i) => {
-                            if (n) return r(n);
-                            t(i);
-                        }),
-                            arguments.length++,
-                            e.apply(this, arguments);
-                    });
-            },
-            "name",
-            { value: e.name }
-        );
-    };
-    To.fromPromise = function (e) {
-        return Object.defineProperty(
-            function () {
-                let t = arguments[arguments.length - 1];
-                if (typeof t != "function") return e.apply(this, arguments);
-                e.apply(this, arguments).then(r => t(null, r), t);
-            },
-            "name",
-            { value: e.name }
-        );
-    };
-});
-var Bn = g((gO, oc) => {
-    function Mw(
+var Hn = g((yO, sc) => {
+    function Ww(
         e,
         {
             EOL: t = `
@@ -4310,26 +4302,26 @@ var Bn = g((gO, oc) => {
         let o = r ? t : "";
         return JSON.stringify(e, n, i).replace(/\n/g, t) + o;
     }
-    function Bw(e) {
+    function Gw(e) {
         return Buffer.isBuffer(e) && (e = e.toString("utf8")), e.replace(/^\uFEFF/, "");
     }
-    oc.exports = { stringify: Mw, stripBom: Bw };
+    sc.exports = { stringify: Ww, stripBom: Gw };
 });
-var uc = g((wO, lc) => {
+var cc = g((_O, uc) => {
     var Kt;
     try {
         Kt = we();
     } catch {
         Kt = require("fs");
     }
-    var Hn = ic(),
-        { stringify: sc, stripBom: ac } = Bn();
-    async function Hw(e, t = {}) {
+    var jn = Ce(),
+        { stringify: ac, stripBom: lc } = Hn();
+    async function Vw(e, t = {}) {
         typeof t == "string" && (t = { encoding: t });
         let r = t.fs || Kt,
             n = "throws" in t ? t.throws : !0,
-            i = await Hn.fromCallback(r.readFile)(e, t);
-        i = ac(i);
+            i = await jn.fromCallback(r.readFile)(e, t);
+        i = lc(i);
         let o;
         try {
             o = JSON.parse(i, t ? t.reviver : null);
@@ -4339,223 +4331,223 @@ var uc = g((wO, lc) => {
         }
         return o;
     }
-    var jw = Hn.fromPromise(Hw);
-    function Ww(e, t = {}) {
+    var Yw = jn.fromPromise(Vw);
+    function zw(e, t = {}) {
         typeof t == "string" && (t = { encoding: t });
         let r = t.fs || Kt,
             n = "throws" in t ? t.throws : !0;
         try {
             let i = r.readFileSync(e, t);
-            return (i = ac(i)), JSON.parse(i, t.reviver);
+            return (i = lc(i)), JSON.parse(i, t.reviver);
         } catch (i) {
             if (n) throw ((i.message = `${e}: ${i.message}`), i);
             return null;
         }
     }
-    async function Gw(e, t, r = {}) {
+    async function Xw(e, t, r = {}) {
         let n = r.fs || Kt,
-            i = sc(t, r);
-        await Hn.fromCallback(n.writeFile)(e, i, r);
+            i = ac(t, r);
+        await jn.fromCallback(n.writeFile)(e, i, r);
     }
-    var Vw = Hn.fromPromise(Gw);
-    function Yw(e, t, r = {}) {
+    var Kw = jn.fromPromise(Xw);
+    function Jw(e, t, r = {}) {
         let n = r.fs || Kt,
-            i = sc(t, r);
+            i = ac(t, r);
         return n.writeFileSync(e, i, r);
     }
-    var zw = { readFile: jw, readFileSync: Ww, writeFile: Vw, writeFileSync: Yw };
-    lc.exports = zw;
+    var Qw = { readFile: Yw, readFileSync: zw, writeFile: Kw, writeFileSync: Jw };
+    uc.exports = Qw;
 });
-var fc = g((EO, cc) => {
+var dc = g((vO, fc) => {
     "use strict";
-    var jn = uc();
-    cc.exports = {
-        readJson: jn.readFile,
-        readJsonSync: jn.readFileSync,
-        writeJson: jn.writeFile,
-        writeJsonSync: jn.writeFileSync
+    var Wn = cc();
+    fc.exports = {
+        readJson: Wn.readFile,
+        readJsonSync: Wn.readFileSync,
+        writeJson: Wn.writeFile,
+        writeJsonSync: Wn.writeFileSync
     };
 });
-var Wn = g((yO, pc) => {
+var Gn = g((SO, mc) => {
     "use strict";
-    var Xw = Re().fromCallback,
+    var Zw = Ce().fromCallback,
         $r = we(),
-        dc = require("path"),
-        hc = Ue(),
-        Kw = tt().pathExists;
-    function Jw(e, t, r, n) {
+        hc = require("path"),
+        pc = Ue(),
+        eE = tt().pathExists;
+    function tE(e, t, r, n) {
         typeof r == "function" && ((n = r), (r = "utf8"));
-        let i = dc.dirname(e);
-        Kw(i, (o, s) => {
+        let i = hc.dirname(e);
+        eE(i, (o, s) => {
             if (o) return n(o);
             if (s) return $r.writeFile(e, t, r, n);
-            hc.mkdirs(i, a => {
+            pc.mkdirs(i, a => {
                 if (a) return n(a);
                 $r.writeFile(e, t, r, n);
             });
         });
     }
-    function Qw(e, ...t) {
-        let r = dc.dirname(e);
+    function rE(e, ...t) {
+        let r = hc.dirname(e);
         if ($r.existsSync(r)) return $r.writeFileSync(e, ...t);
-        hc.mkdirsSync(r), $r.writeFileSync(e, ...t);
+        pc.mkdirsSync(r), $r.writeFileSync(e, ...t);
     }
-    pc.exports = { outputFile: Xw(Jw), outputFileSync: Qw };
+    mc.exports = { outputFile: Zw(tE), outputFileSync: rE };
 });
-var gc = g((_O, mc) => {
+var wc = g((AO, gc) => {
     "use strict";
-    var { stringify: Zw } = Bn(),
-        { outputFile: eE } = Wn();
-    async function tE(e, t, r = {}) {
-        let n = Zw(t, r);
-        await eE(e, n, r);
+    var { stringify: nE } = Hn(),
+        { outputFile: iE } = Gn();
+    async function oE(e, t, r = {}) {
+        let n = nE(t, r);
+        await iE(e, n, r);
     }
-    mc.exports = tE;
+    gc.exports = oE;
 });
-var Ec = g((vO, wc) => {
+var yc = g((xO, Ec) => {
     "use strict";
-    var { stringify: rE } = Bn(),
-        { outputFileSync: nE } = Wn();
-    function iE(e, t, r) {
-        let n = rE(t, r);
-        nE(e, n, r);
+    var { stringify: sE } = Hn(),
+        { outputFileSync: aE } = Gn();
+    function lE(e, t, r) {
+        let n = sE(t, r);
+        aE(e, n, r);
     }
-    wc.exports = iE;
+    Ec.exports = lE;
 });
-var _c = g((SO, yc) => {
+var vc = g((TO, _c) => {
     "use strict";
-    var oE = Re().fromPromise,
-        Ee = fc();
-    Ee.outputJson = oE(gc());
-    Ee.outputJsonSync = Ec();
+    var uE = Ce().fromPromise,
+        Ee = dc();
+    Ee.outputJson = uE(wc());
+    Ee.outputJsonSync = yc();
     Ee.outputJSON = Ee.outputJson;
     Ee.outputJSONSync = Ee.outputJsonSync;
     Ee.writeJSON = Ee.writeJson;
     Ee.writeJSONSync = Ee.writeJsonSync;
     Ee.readJSON = Ee.readJson;
     Ee.readJSONSync = Ee.readJsonSync;
-    yc.exports = Ee;
+    _c.exports = Ee;
 });
-var Tc = g((AO, xc) => {
+var Cc = g((CO, Tc) => {
     "use strict";
-    var sE = we(),
+    var cE = we(),
         bo = require("path"),
-        aE = Un().copy,
-        Ac = Lr().remove,
-        lE = Ue().mkdirp,
-        uE = tt().pathExists,
-        vc = St();
-    function cE(e, t, r, n) {
+        fE = $n().copy,
+        xc = Lr().remove,
+        dE = Ue().mkdirp,
+        hE = tt().pathExists,
+        Sc = St();
+    function pE(e, t, r, n) {
         typeof r == "function" && ((n = r), (r = {})), (r = r || {});
         let i = r.overwrite || r.clobber || !1;
-        vc.checkPaths(e, t, "move", r, (o, s) => {
+        Sc.checkPaths(e, t, "move", r, (o, s) => {
             if (o) return n(o);
             let { srcStat: a, isChangingCase: l = !1 } = s;
-            vc.checkParentPaths(e, a, t, "move", h => {
+            Sc.checkParentPaths(e, a, t, "move", h => {
                 if (h) return n(h);
-                if (fE(t)) return Sc(e, t, i, l, n);
-                lE(bo.dirname(t), c => (c ? n(c) : Sc(e, t, i, l, n)));
+                if (mE(t)) return Ac(e, t, i, l, n);
+                dE(bo.dirname(t), c => (c ? n(c) : Ac(e, t, i, l, n)));
             });
         });
     }
-    function fE(e) {
+    function mE(e) {
         let t = bo.dirname(e);
         return bo.parse(t).root === t;
     }
-    function Sc(e, t, r, n, i) {
+    function Ac(e, t, r, n, i) {
         if (n) return Co(e, t, r, i);
-        if (r) return Ac(t, o => (o ? i(o) : Co(e, t, r, i)));
-        uE(t, (o, s) => (o ? i(o) : s ? i(new Error("dest already exists.")) : Co(e, t, r, i)));
+        if (r) return xc(t, o => (o ? i(o) : Co(e, t, r, i)));
+        hE(t, (o, s) => (o ? i(o) : s ? i(new Error("dest already exists.")) : Co(e, t, r, i)));
     }
     function Co(e, t, r, n) {
-        sE.rename(e, t, i => (i ? (i.code !== "EXDEV" ? n(i) : dE(e, t, r, n)) : n()));
+        cE.rename(e, t, i => (i ? (i.code !== "EXDEV" ? n(i) : gE(e, t, r, n)) : n()));
     }
-    function dE(e, t, r, n) {
-        aE(e, t, { overwrite: r, errorOnExist: !0 }, o => (o ? n(o) : Ac(e, n)));
+    function gE(e, t, r, n) {
+        fE(e, t, { overwrite: r, errorOnExist: !0 }, o => (o ? n(o) : xc(e, n)));
     }
-    xc.exports = cE;
+    Tc.exports = pE;
 });
-var Nc = g((xO, Ic) => {
+var Rc = g((bO, Nc) => {
     "use strict";
-    var bc = we(),
+    var Oc = we(),
         Io = require("path"),
-        hE = Un().copySync,
-        Oc = Lr().removeSync,
-        pE = Ue().mkdirpSync,
-        Cc = St();
-    function mE(e, t, r) {
+        wE = $n().copySync,
+        Ic = Lr().removeSync,
+        EE = Ue().mkdirpSync,
+        bc = St();
+    function yE(e, t, r) {
         r = r || {};
         let n = r.overwrite || r.clobber || !1,
-            { srcStat: i, isChangingCase: o = !1 } = Cc.checkPathsSync(e, t, "move", r);
-        return Cc.checkParentPathsSync(e, i, t, "move"), gE(t) || pE(Io.dirname(t)), wE(e, t, n, o);
+            { srcStat: i, isChangingCase: o = !1 } = bc.checkPathsSync(e, t, "move", r);
+        return bc.checkParentPathsSync(e, i, t, "move"), _E(t) || EE(Io.dirname(t)), vE(e, t, n, o);
     }
-    function gE(e) {
+    function _E(e) {
         let t = Io.dirname(e);
         return Io.parse(t).root === t;
     }
-    function wE(e, t, r, n) {
+    function vE(e, t, r, n) {
         if (n) return Oo(e, t, r);
-        if (r) return Oc(t), Oo(e, t, r);
-        if (bc.existsSync(t)) throw new Error("dest already exists.");
+        if (r) return Ic(t), Oo(e, t, r);
+        if (Oc.existsSync(t)) throw new Error("dest already exists.");
         return Oo(e, t, r);
     }
     function Oo(e, t, r) {
         try {
-            bc.renameSync(e, t);
+            Oc.renameSync(e, t);
         } catch (n) {
             if (n.code !== "EXDEV") throw n;
-            return EE(e, t, r);
+            return SE(e, t, r);
         }
     }
-    function EE(e, t, r) {
-        return hE(e, t, { overwrite: r, errorOnExist: !0 }), Oc(e);
+    function SE(e, t, r) {
+        return wE(e, t, { overwrite: r, errorOnExist: !0 }), Ic(e);
     }
-    Ic.exports = mE;
+    Nc.exports = yE;
 });
-var Dc = g((TO, Rc) => {
+var Pc = g((OO, Dc) => {
     "use strict";
-    var yE = Re().fromCallback;
-    Rc.exports = { move: yE(Tc()), moveSync: Nc() };
+    var AE = Ce().fromCallback;
+    Dc.exports = { move: AE(Cc()), moveSync: Rc() };
 });
-var Ve = g((CO, Pc) => {
+var Ve = g((IO, Fc) => {
     "use strict";
-    Pc.exports = { ...vt(), ...Un(), ...bu(), ...nc(), ..._c(), ...Ue(), ...Dc(), ...Wn(), ...tt(), ...Lr() };
+    Fc.exports = { ...vt(), ...$n(), ...Iu(), ...oc(), ...vc(), ...Ue(), ...Pc(), ...Gn(), ...tt(), ...Lr() };
 });
-var Jt = g((bO, At) => {
+var Jt = g((NO, At) => {
     "use strict";
-    function Fc(e) {
+    function qc(e) {
         return typeof e > "u" || e === null;
     }
-    function _E(e) {
+    function xE(e) {
         return typeof e == "object" && e !== null;
     }
-    function vE(e) {
-        return Array.isArray(e) ? e : Fc(e) ? [] : [e];
+    function TE(e) {
+        return Array.isArray(e) ? e : qc(e) ? [] : [e];
     }
-    function SE(e, t) {
+    function CE(e, t) {
         var r, n, i, o;
         if (t) for (o = Object.keys(t), r = 0, n = o.length; r < n; r += 1) (i = o[r]), (e[i] = t[i]);
         return e;
     }
-    function AE(e, t) {
+    function bE(e, t) {
         var r = "",
             n;
         for (n = 0; n < t; n += 1) r += e;
         return r;
     }
-    function xE(e) {
+    function OE(e) {
         return e === 0 && Number.NEGATIVE_INFINITY === 1 / e;
     }
-    At.exports.isNothing = Fc;
-    At.exports.isObject = _E;
-    At.exports.toArray = vE;
-    At.exports.repeat = AE;
-    At.exports.isNegativeZero = xE;
-    At.exports.extend = SE;
+    At.exports.isNothing = qc;
+    At.exports.isObject = xE;
+    At.exports.toArray = TE;
+    At.exports.repeat = bE;
+    At.exports.isNegativeZero = OE;
+    At.exports.extend = CE;
 });
-var Qt = g((OO, Lc) => {
+var Qt = g((RO, Uc) => {
     "use strict";
-    function qc(e, t) {
+    function Lc(e, t) {
         var r = "",
             n = e.reason || "(unknown reason)";
         return e.mark
@@ -4575,17 +4567,17 @@ var Qt = g((OO, Lc) => {
             (this.name = "YAMLException"),
             (this.reason = e),
             (this.mark = t),
-            (this.message = qc(this, !1)),
+            (this.message = Lc(this, !1)),
             Error.captureStackTrace ? Error.captureStackTrace(this, this.constructor) : (this.stack = new Error().stack || "");
     }
     kr.prototype = Object.create(Error.prototype);
     kr.prototype.constructor = kr;
     kr.prototype.toString = function (t) {
-        return this.name + ": " + qc(this, t);
+        return this.name + ": " + Lc(this, t);
     };
-    Lc.exports = kr;
+    Uc.exports = kr;
 });
-var $c = g((IO, Uc) => {
+var kc = g((DO, $c) => {
     "use strict";
     var Mr = Jt();
     function No(e, t, r, n, i) {
@@ -4601,7 +4593,7 @@ var $c = g((IO, Uc) => {
     function Ro(e, t) {
         return Mr.repeat(" ", t - e.length) + e;
     }
-    function TE(e, t) {
+    function IE(e, t) {
         if (((t = Object.create(t || null)), !e.buffer)) return null;
         t.maxLength || (t.maxLength = 79),
             typeof t.indent != "number" && (t.indent = 1),
@@ -4614,9 +4606,9 @@ var $c = g((IO, Uc) => {
             l,
             h,
             c = Math.min(e.line + t.linesAfter, i.length).toString().length,
-            d = t.maxLength - (t.indent + c + 3);
+            f = t.maxLength - (t.indent + c + 3);
         for (l = 1; l <= t.linesBefore && !(s - l < 0); l++)
-            (h = No(e.buffer, n[s - l], i[s - l], e.position - (n[s] - n[s - l]), d)),
+            (h = No(e.buffer, n[s - l], i[s - l], e.position - (n[s] - n[s - l]), f)),
                 (a =
                     Mr.repeat(" ", t.indent) +
                     Ro((e.line - l + 1).toString(), c) +
@@ -4626,7 +4618,7 @@ var $c = g((IO, Uc) => {
 ` +
                     a);
         for (
-            h = No(e.buffer, n[s], i[s], e.position, d),
+            h = No(e.buffer, n[s], i[s], e.position, f),
                 a +=
                     Mr.repeat(" ", t.indent) +
                     Ro((e.line + 1).toString(), c) +
@@ -4642,7 +4634,7 @@ var $c = g((IO, Uc) => {
             l <= t.linesAfter && !(s + l >= i.length);
             l++
         )
-            (h = No(e.buffer, n[s + l], i[s + l], e.position - (n[s] - n[s + l]), d)),
+            (h = No(e.buffer, n[s + l], i[s + l], e.position - (n[s] - n[s + l]), f)),
                 (a +=
                     Mr.repeat(" ", t.indent) +
                     Ro((e.line + l + 1).toString(), c) +
@@ -4652,12 +4644,12 @@ var $c = g((IO, Uc) => {
 `);
         return a.replace(/\n$/, "");
     }
-    Uc.exports = TE;
+    $c.exports = IE;
 });
-var fe = g((NO, Mc) => {
+var fe = g((PO, Bc) => {
     "use strict";
-    var kc = Qt(),
-        CE = [
+    var Mc = Qt(),
+        NE = [
             "kind",
             "multi",
             "resolve",
@@ -4669,8 +4661,8 @@ var fe = g((NO, Mc) => {
             "defaultStyle",
             "styleAliases"
         ],
-        bE = ["scalar", "sequence", "mapping"];
-    function OE(e) {
+        RE = ["scalar", "sequence", "mapping"];
+    function DE(e) {
         var t = {};
         return (
             e !== null &&
@@ -4682,12 +4674,12 @@ var fe = g((NO, Mc) => {
             t
         );
     }
-    function IE(e, t) {
+    function PE(e, t) {
         if (
             ((t = t || {}),
             Object.keys(t).forEach(function (r) {
-                if (CE.indexOf(r) === -1)
-                    throw new kc('Unknown option "' + r + '" is met in definition of "' + e + '" YAML type.');
+                if (NE.indexOf(r) === -1)
+                    throw new Mc('Unknown option "' + r + '" is met in definition of "' + e + '" YAML type.');
             }),
             (this.options = t),
             (this.tag = e),
@@ -4708,18 +4700,18 @@ var fe = g((NO, Mc) => {
             (this.representName = t.representName || null),
             (this.defaultStyle = t.defaultStyle || null),
             (this.multi = t.multi || !1),
-            (this.styleAliases = OE(t.styleAliases || null)),
-            bE.indexOf(this.kind) === -1)
+            (this.styleAliases = DE(t.styleAliases || null)),
+            RE.indexOf(this.kind) === -1)
         )
-            throw new kc('Unknown kind "' + this.kind + '" is specified for "' + e + '" YAML type.');
+            throw new Mc('Unknown kind "' + this.kind + '" is specified for "' + e + '" YAML type.');
     }
-    Mc.exports = IE;
+    Bc.exports = PE;
 });
-var Fo = g((RO, Hc) => {
+var Fo = g((FO, jc) => {
     "use strict";
     var Br = Qt(),
         Do = fe();
-    function Bc(e, t) {
+    function Hc(e, t) {
         var r = [];
         return (
             e[t].forEach(function (n) {
@@ -4732,7 +4724,7 @@ var Fo = g((RO, Hc) => {
             r
         );
     }
-    function NE() {
+    function FE() {
         var e = {
                 scalar: {},
                 sequence: {},
@@ -4782,68 +4774,68 @@ var Fo = g((RO, Hc) => {
         return (
             (i.implicit = (this.implicit || []).concat(r)),
             (i.explicit = (this.explicit || []).concat(n)),
-            (i.compiledImplicit = Bc(i, "implicit")),
-            (i.compiledExplicit = Bc(i, "explicit")),
-            (i.compiledTypeMap = NE(i.compiledImplicit, i.compiledExplicit)),
+            (i.compiledImplicit = Hc(i, "implicit")),
+            (i.compiledExplicit = Hc(i, "explicit")),
+            (i.compiledTypeMap = FE(i.compiledImplicit, i.compiledExplicit)),
             i
         );
     };
-    Hc.exports = Po;
+    jc.exports = Po;
 });
-var qo = g((DO, jc) => {
+var qo = g((qO, Wc) => {
     "use strict";
-    var RE = fe();
-    jc.exports = new RE("tag:yaml.org,2002:str", {
+    var qE = fe();
+    Wc.exports = new qE("tag:yaml.org,2002:str", {
         kind: "scalar",
         construct: function (e) {
             return e !== null ? e : "";
         }
     });
 });
-var Lo = g((PO, Wc) => {
+var Lo = g((LO, Gc) => {
     "use strict";
-    var DE = fe();
-    Wc.exports = new DE("tag:yaml.org,2002:seq", {
+    var LE = fe();
+    Gc.exports = new LE("tag:yaml.org,2002:seq", {
         kind: "sequence",
         construct: function (e) {
             return e !== null ? e : [];
         }
     });
 });
-var Uo = g((FO, Gc) => {
+var Uo = g((UO, Vc) => {
     "use strict";
-    var PE = fe();
-    Gc.exports = new PE("tag:yaml.org,2002:map", {
+    var UE = fe();
+    Vc.exports = new UE("tag:yaml.org,2002:map", {
         kind: "mapping",
         construct: function (e) {
             return e !== null ? e : {};
         }
     });
 });
-var $o = g((qO, Vc) => {
+var $o = g(($O, Yc) => {
     "use strict";
-    var FE = Fo();
-    Vc.exports = new FE({ explicit: [qo(), Lo(), Uo()] });
+    var $E = Fo();
+    Yc.exports = new $E({ explicit: [qo(), Lo(), Uo()] });
 });
-var ko = g((LO, Yc) => {
+var ko = g((kO, zc) => {
     "use strict";
-    var qE = fe();
-    function LE(e) {
+    var kE = fe();
+    function ME(e) {
         if (e === null) return !0;
         var t = e.length;
         return (t === 1 && e === "~") || (t === 4 && (e === "null" || e === "Null" || e === "NULL"));
     }
-    function UE() {
+    function BE() {
         return null;
     }
-    function $E(e) {
+    function HE(e) {
         return e === null;
     }
-    Yc.exports = new qE("tag:yaml.org,2002:null", {
+    zc.exports = new kE("tag:yaml.org,2002:null", {
         kind: "scalar",
-        resolve: LE,
-        construct: UE,
-        predicate: $E,
+        resolve: ME,
+        construct: BE,
+        predicate: HE,
         represent: {
             canonical: function () {
                 return "~";
@@ -4864,10 +4856,10 @@ var ko = g((LO, Yc) => {
         defaultStyle: "lowercase"
     });
 });
-var Mo = g((UO, zc) => {
+var Mo = g((MO, Xc) => {
     "use strict";
-    var kE = fe();
-    function ME(e) {
+    var jE = fe();
+    function WE(e) {
         if (e === null) return !1;
         var t = e.length;
         return (
@@ -4875,17 +4867,17 @@ var Mo = g((UO, zc) => {
             (t === 5 && (e === "false" || e === "False" || e === "FALSE"))
         );
     }
-    function BE(e) {
+    function GE(e) {
         return e === "true" || e === "True" || e === "TRUE";
     }
-    function HE(e) {
+    function VE(e) {
         return Object.prototype.toString.call(e) === "[object Boolean]";
     }
-    zc.exports = new kE("tag:yaml.org,2002:bool", {
+    Xc.exports = new jE("tag:yaml.org,2002:bool", {
         kind: "scalar",
-        resolve: ME,
-        construct: BE,
-        predicate: HE,
+        resolve: WE,
+        construct: GE,
+        predicate: VE,
         represent: {
             lowercase: function (e) {
                 return e ? "true" : "false";
@@ -4900,20 +4892,20 @@ var Mo = g((UO, zc) => {
         defaultStyle: "lowercase"
     });
 });
-var Bo = g(($O, Xc) => {
+var Bo = g((BO, Kc) => {
     "use strict";
-    var jE = Jt(),
-        WE = fe();
-    function GE(e) {
+    var YE = Jt(),
+        zE = fe();
+    function XE(e) {
         return (48 <= e && e <= 57) || (65 <= e && e <= 70) || (97 <= e && e <= 102);
     }
-    function VE(e) {
+    function KE(e) {
         return 48 <= e && e <= 55;
     }
-    function YE(e) {
+    function JE(e) {
         return 48 <= e && e <= 57;
     }
-    function zE(e) {
+    function QE(e) {
         if (e === null) return !1;
         var t = e.length,
             r = 0,
@@ -4933,7 +4925,7 @@ var Bo = g(($O, Xc) => {
             if (i === "x") {
                 for (r++; r < t; r++)
                     if (((i = e[r]), i !== "_")) {
-                        if (!GE(e.charCodeAt(r))) return !1;
+                        if (!XE(e.charCodeAt(r))) return !1;
                         n = !0;
                     }
                 return n && i !== "_";
@@ -4941,7 +4933,7 @@ var Bo = g(($O, Xc) => {
             if (i === "o") {
                 for (r++; r < t; r++)
                     if (((i = e[r]), i !== "_")) {
-                        if (!VE(e.charCodeAt(r))) return !1;
+                        if (!KE(e.charCodeAt(r))) return !1;
                         n = !0;
                     }
                 return n && i !== "_";
@@ -4950,12 +4942,12 @@ var Bo = g(($O, Xc) => {
         if (i === "_") return !1;
         for (; r < t; r++)
             if (((i = e[r]), i !== "_")) {
-                if (!YE(e.charCodeAt(r))) return !1;
+                if (!JE(e.charCodeAt(r))) return !1;
                 n = !0;
             }
         return !(!n || i === "_");
     }
-    function XE(e) {
+    function ZE(e) {
         var t = e,
             r = 1,
             n;
@@ -4973,14 +4965,14 @@ var Bo = g(($O, Xc) => {
         }
         return r * parseInt(t, 10);
     }
-    function KE(e) {
-        return Object.prototype.toString.call(e) === "[object Number]" && e % 1 === 0 && !jE.isNegativeZero(e);
+    function ey(e) {
+        return Object.prototype.toString.call(e) === "[object Number]" && e % 1 === 0 && !YE.isNegativeZero(e);
     }
-    Xc.exports = new WE("tag:yaml.org,2002:int", {
+    Kc.exports = new zE("tag:yaml.org,2002:int", {
         kind: "scalar",
-        resolve: zE,
-        construct: XE,
-        predicate: KE,
+        resolve: QE,
+        construct: ZE,
+        predicate: ey,
         represent: {
             binary: function (e) {
                 return e >= 0 ? "0b" + e.toString(2) : "-0b" + e.toString(2).slice(1);
@@ -4999,17 +4991,17 @@ var Bo = g(($O, Xc) => {
         styleAliases: { binary: [2, "bin"], octal: [8, "oct"], decimal: [10, "dec"], hexadecimal: [16, "hex"] }
     });
 });
-var Ho = g((kO, Jc) => {
+var Ho = g((HO, Qc) => {
     "use strict";
-    var Kc = Jt(),
-        JE = fe(),
-        QE = new RegExp(
+    var Jc = Jt(),
+        ty = fe(),
+        ry = new RegExp(
             "^(?:[-+]?(?:[0-9][0-9_]*)(?:\\.[0-9_]*)?(?:[eE][-+]?[0-9]+)?|\\.[0-9_]+(?:[eE][-+]?[0-9]+)?|[-+]?\\.(?:inf|Inf|INF)|\\.(?:nan|NaN|NAN))$"
         );
-    function ZE(e) {
-        return !(e === null || !QE.test(e) || e[e.length - 1] === "_");
+    function ny(e) {
+        return !(e === null || !ry.test(e) || e[e.length - 1] === "_");
     }
-    function ey(e) {
+    function iy(e) {
         var t, r;
         return (
             (t = e.replace(/_/g, "").toLowerCase()),
@@ -5024,8 +5016,8 @@ var Ho = g((kO, Jc) => {
                 : r * parseFloat(t, 10)
         );
     }
-    var ty = /^[-+]?[0-9]+e/;
-    function ry(e, t) {
+    var oy = /^[-+]?[0-9]+e/;
+    function sy(e, t) {
         var r;
         if (isNaN(e))
             switch (t) {
@@ -5054,40 +5046,40 @@ var Ho = g((kO, Jc) => {
                 case "camelcase":
                     return "-.Inf";
             }
-        else if (Kc.isNegativeZero(e)) return "-0.0";
-        return (r = e.toString(10)), ty.test(r) ? r.replace("e", ".e") : r;
+        else if (Jc.isNegativeZero(e)) return "-0.0";
+        return (r = e.toString(10)), oy.test(r) ? r.replace("e", ".e") : r;
     }
-    function ny(e) {
-        return Object.prototype.toString.call(e) === "[object Number]" && (e % 1 !== 0 || Kc.isNegativeZero(e));
+    function ay(e) {
+        return Object.prototype.toString.call(e) === "[object Number]" && (e % 1 !== 0 || Jc.isNegativeZero(e));
     }
-    Jc.exports = new JE("tag:yaml.org,2002:float", {
+    Qc.exports = new ty("tag:yaml.org,2002:float", {
         kind: "scalar",
-        resolve: ZE,
-        construct: ey,
-        predicate: ny,
-        represent: ry,
+        resolve: ny,
+        construct: iy,
+        predicate: ay,
+        represent: sy,
         defaultStyle: "lowercase"
     });
 });
-var jo = g((MO, Qc) => {
+var jo = g((jO, Zc) => {
     "use strict";
-    Qc.exports = $o().extend({ implicit: [ko(), Mo(), Bo(), Ho()] });
+    Zc.exports = $o().extend({ implicit: [ko(), Mo(), Bo(), Ho()] });
 });
-var Wo = g((BO, Zc) => {
+var Wo = g((WO, ef) => {
     "use strict";
-    Zc.exports = jo();
+    ef.exports = jo();
 });
-var Go = g((HO, rf) => {
+var Go = g((GO, nf) => {
     "use strict";
-    var iy = fe(),
-        ef = new RegExp("^([0-9][0-9][0-9][0-9])-([0-9][0-9])-([0-9][0-9])$"),
-        tf = new RegExp(
+    var ly = fe(),
+        tf = new RegExp("^([0-9][0-9][0-9][0-9])-([0-9][0-9])-([0-9][0-9])$"),
+        rf = new RegExp(
             "^([0-9][0-9][0-9][0-9])-([0-9][0-9]?)-([0-9][0-9]?)(?:[Tt]|[ \\t]+)([0-9][0-9]?):([0-9][0-9]):([0-9][0-9])(?:\\.([0-9]*))?(?:[ \\t]*(Z|([-+])([0-9][0-9]?)(?::([0-9][0-9]))?))?$"
         );
-    function oy(e) {
-        return e === null ? !1 : ef.exec(e) !== null || tf.exec(e) !== null;
+    function uy(e) {
+        return e === null ? !1 : tf.exec(e) !== null || rf.exec(e) !== null;
     }
-    function sy(e) {
+    function cy(e) {
         var t,
             r,
             n,
@@ -5098,46 +5090,46 @@ var Go = g((HO, rf) => {
             l = 0,
             h = null,
             c,
-            d,
+            f,
             m;
-        if (((t = ef.exec(e)), t === null && (t = tf.exec(e)), t === null)) throw new Error("Date resolve error");
+        if (((t = tf.exec(e)), t === null && (t = rf.exec(e)), t === null)) throw new Error("Date resolve error");
         if (((r = +t[1]), (n = +t[2] - 1), (i = +t[3]), !t[4])) return new Date(Date.UTC(r, n, i));
         if (((o = +t[4]), (s = +t[5]), (a = +t[6]), t[7])) {
             for (l = t[7].slice(0, 3); l.length < 3; ) l += "0";
             l = +l;
         }
         return (
-            t[9] && ((c = +t[10]), (d = +(t[11] || 0)), (h = (c * 60 + d) * 6e4), t[9] === "-" && (h = -h)),
+            t[9] && ((c = +t[10]), (f = +(t[11] || 0)), (h = (c * 60 + f) * 6e4), t[9] === "-" && (h = -h)),
             (m = new Date(Date.UTC(r, n, i, o, s, a, l))),
             h && m.setTime(m.getTime() - h),
             m
         );
     }
-    function ay(e) {
+    function fy(e) {
         return e.toISOString();
     }
-    rf.exports = new iy("tag:yaml.org,2002:timestamp", {
+    nf.exports = new ly("tag:yaml.org,2002:timestamp", {
         kind: "scalar",
-        resolve: oy,
-        construct: sy,
+        resolve: uy,
+        construct: cy,
         instanceOf: Date,
-        represent: ay
+        represent: fy
     });
 });
-var Vo = g((jO, nf) => {
+var Vo = g((VO, of) => {
     "use strict";
-    var ly = fe();
-    function uy(e) {
+    var dy = fe();
+    function hy(e) {
         return e === "<<" || e === null;
     }
-    nf.exports = new ly("tag:yaml.org,2002:merge", { kind: "scalar", resolve: uy });
+    of.exports = new dy("tag:yaml.org,2002:merge", { kind: "scalar", resolve: hy });
 });
-var zo = g((WO, of) => {
+var zo = g((YO, sf) => {
     "use strict";
-    var cy = fe(),
+    var py = fe(),
         Yo = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=
 \r`;
-    function fy(e) {
+    function my(e) {
         if (e === null) return !1;
         var t,
             r,
@@ -5151,7 +5143,7 @@ var zo = g((WO, of) => {
             }
         return n % 8 === 0;
     }
-    function dy(e) {
+    function gy(e) {
         var t,
             r,
             n = e.replace(/[\r\n=]/g, ""),
@@ -5172,7 +5164,7 @@ var zo = g((WO, of) => {
             new Uint8Array(a)
         );
     }
-    function hy(e) {
+    function wy(e) {
         var t = "",
             r = 0,
             n,
@@ -5192,17 +5184,17 @@ var zo = g((WO, of) => {
             t
         );
     }
-    function py(e) {
+    function Ey(e) {
         return Object.prototype.toString.call(e) === "[object Uint8Array]";
     }
-    of.exports = new cy("tag:yaml.org,2002:binary", { kind: "scalar", resolve: fy, construct: dy, predicate: py, represent: hy });
+    sf.exports = new py("tag:yaml.org,2002:binary", { kind: "scalar", resolve: my, construct: gy, predicate: Ey, represent: wy });
 });
-var Xo = g((GO, sf) => {
+var Xo = g((zO, af) => {
     "use strict";
-    var my = fe(),
-        gy = Object.prototype.hasOwnProperty,
-        wy = Object.prototype.toString;
-    function Ey(e) {
+    var yy = fe(),
+        _y = Object.prototype.hasOwnProperty,
+        vy = Object.prototype.toString;
+    function Sy(e) {
         if (e === null) return !0;
         var t = [],
             r,
@@ -5212,9 +5204,9 @@ var Xo = g((GO, sf) => {
             s,
             a = e;
         for (r = 0, n = a.length; r < n; r += 1) {
-            if (((i = a[r]), (s = !1), wy.call(i) !== "[object Object]")) return !1;
+            if (((i = a[r]), (s = !1), vy.call(i) !== "[object Object]")) return !1;
             for (o in i)
-                if (gy.call(i, o))
+                if (_y.call(i, o))
                     if (!s) s = !0;
                     else return !1;
             if (!s) return !1;
@@ -5223,16 +5215,16 @@ var Xo = g((GO, sf) => {
         }
         return !0;
     }
-    function yy(e) {
+    function Ay(e) {
         return e !== null ? e : [];
     }
-    sf.exports = new my("tag:yaml.org,2002:omap", { kind: "sequence", resolve: Ey, construct: yy });
+    af.exports = new yy("tag:yaml.org,2002:omap", { kind: "sequence", resolve: Sy, construct: Ay });
 });
-var Ko = g((VO, af) => {
+var Ko = g((XO, lf) => {
     "use strict";
-    var _y = fe(),
-        vy = Object.prototype.toString;
-    function Sy(e) {
+    var xy = fe(),
+        Ty = Object.prototype.toString;
+    function Cy(e) {
         if (e === null) return !0;
         var t,
             r,
@@ -5241,12 +5233,12 @@ var Ko = g((VO, af) => {
             o,
             s = e;
         for (o = new Array(s.length), t = 0, r = s.length; t < r; t += 1) {
-            if (((n = s[t]), vy.call(n) !== "[object Object]" || ((i = Object.keys(n)), i.length !== 1))) return !1;
+            if (((n = s[t]), Ty.call(n) !== "[object Object]" || ((i = Object.keys(n)), i.length !== 1))) return !1;
             o[t] = [i[0], n[i[0]]];
         }
         return !0;
     }
-    function Ay(e) {
+    function by(e) {
         if (e === null) return [];
         var t,
             r,
@@ -5258,49 +5250,49 @@ var Ko = g((VO, af) => {
             (n = s[t]), (i = Object.keys(n)), (o[t] = [i[0], n[i[0]]]);
         return o;
     }
-    af.exports = new _y("tag:yaml.org,2002:pairs", { kind: "sequence", resolve: Sy, construct: Ay });
+    lf.exports = new xy("tag:yaml.org,2002:pairs", { kind: "sequence", resolve: Cy, construct: by });
 });
-var Jo = g((YO, lf) => {
+var Jo = g((KO, uf) => {
     "use strict";
-    var xy = fe(),
-        Ty = Object.prototype.hasOwnProperty;
-    function Cy(e) {
+    var Oy = fe(),
+        Iy = Object.prototype.hasOwnProperty;
+    function Ny(e) {
         if (e === null) return !0;
         var t,
             r = e;
-        for (t in r) if (Ty.call(r, t) && r[t] !== null) return !1;
+        for (t in r) if (Iy.call(r, t) && r[t] !== null) return !1;
         return !0;
     }
-    function by(e) {
+    function Ry(e) {
         return e !== null ? e : {};
     }
-    lf.exports = new xy("tag:yaml.org,2002:set", { kind: "mapping", resolve: Cy, construct: by });
+    uf.exports = new Oy("tag:yaml.org,2002:set", { kind: "mapping", resolve: Ny, construct: Ry });
 });
-var Gn = g((zO, uf) => {
+var Vn = g((JO, cf) => {
     "use strict";
-    uf.exports = Wo().extend({ implicit: [Go(), Vo()], explicit: [zo(), Xo(), Ko(), Jo()] });
+    cf.exports = Wo().extend({ implicit: [Go(), Vo()], explicit: [zo(), Xo(), Ko(), Jo()] });
 });
-var Tf = g((XO, ts) => {
+var Cf = g((QO, ts) => {
     "use strict";
     var Tt = Jt(),
-        gf = Qt(),
-        Oy = $c(),
-        Iy = Gn(),
+        wf = Qt(),
+        Dy = kc(),
+        Py = Vn(),
         st = Object.prototype.hasOwnProperty,
-        Vn = 1,
-        wf = 2,
-        Ef = 3,
-        Yn = 4,
+        Yn = 1,
+        Ef = 2,
+        yf = 3,
+        zn = 4,
         Qo = 1,
-        Ny = 2,
-        cf = 3,
-        Ry =
+        Fy = 2,
+        ff = 3,
+        qy =
             /[\x00-\x08\x0B\x0C\x0E-\x1F\x7F-\x84\x86-\x9F\uFFFE\uFFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF]/,
-        Dy = /[\x85\u2028\u2029]/,
-        Py = /[,\[\]\{\}]/,
-        yf = /^(?:!|!!|![a-z\-]+!)$/i,
-        _f = /^(?:!|[^,\[\]\{\}])(?:%[0-9a-f]{2}|[0-9a-z\-#;\/\?:@&=\+\$,_\.!~\*'\(\)\[\]])*$/i;
-    function ff(e) {
+        Ly = /[\x85\u2028\u2029]/,
+        Uy = /[,\[\]\{\}]/,
+        _f = /^(?:!|!!|![a-z\-]+!)$/i,
+        vf = /^(?:!|[^,\[\]\{\}])(?:%[0-9a-f]{2}|[0-9a-z\-#;\/\?:@&=\+\$,_\.!~\*'\(\)\[\]])*$/i;
+    function df(e) {
         return Object.prototype.toString.call(e);
     }
     function Me(e) {
@@ -5309,23 +5301,23 @@ var Tf = g((XO, ts) => {
     function Ct(e) {
         return e === 9 || e === 32;
     }
-    function be(e) {
+    function Ie(e) {
         return e === 9 || e === 32 || e === 10 || e === 13;
     }
     function Zt(e) {
         return e === 44 || e === 91 || e === 93 || e === 123 || e === 125;
     }
-    function Fy(e) {
+    function $y(e) {
         var t;
         return 48 <= e && e <= 57 ? e - 48 : ((t = e | 32), 97 <= t && t <= 102 ? t - 97 + 10 : -1);
     }
-    function qy(e) {
+    function ky(e) {
         return e === 120 ? 2 : e === 117 ? 4 : e === 85 ? 8 : 0;
     }
-    function Ly(e) {
+    function My(e) {
         return 48 <= e && e <= 57 ? e - 48 : -1;
     }
-    function df(e) {
+    function hf(e) {
         return e === 48
             ? "\0"
             : e === 97
@@ -5363,19 +5355,19 @@ var Tf = g((XO, ts) => {
             ? "\u2029"
             : "";
     }
-    function Uy(e) {
+    function By(e) {
         return e <= 65535
             ? String.fromCharCode(e)
             : String.fromCharCode(((e - 65536) >> 10) + 55296, ((e - 65536) & 1023) + 56320);
     }
-    var vf = new Array(256),
-        Sf = new Array(256);
-    for (xt = 0; xt < 256; xt++) (vf[xt] = df(xt) ? 1 : 0), (Sf[xt] = df(xt));
+    var Sf = new Array(256),
+        Af = new Array(256);
+    for (xt = 0; xt < 256; xt++) (Sf[xt] = hf(xt) ? 1 : 0), (Af[xt] = hf(xt));
     var xt;
-    function $y(e, t) {
+    function Hy(e, t) {
         (this.input = e),
             (this.filename = t.filename || null),
-            (this.schema = t.schema || Iy),
+            (this.schema = t.schema || Py),
             (this.onWarning = t.onWarning || null),
             (this.legacy = t.legacy || !1),
             (this.json = t.json || !1),
@@ -5390,7 +5382,7 @@ var Tf = g((XO, ts) => {
             (this.firstTabInLine = -1),
             (this.documents = []);
     }
-    function Af(e, t) {
+    function xf(e, t) {
         var r = {
             name: e.filename,
             buffer: e.input.slice(0, -1),
@@ -5398,15 +5390,15 @@ var Tf = g((XO, ts) => {
             line: e.line,
             column: e.position - e.lineStart
         };
-        return (r.snippet = Oy(r)), new gf(t, r);
+        return (r.snippet = Dy(r)), new wf(t, r);
     }
     function O(e, t) {
-        throw Af(e, t);
+        throw xf(e, t);
     }
-    function zn(e, t) {
-        e.onWarning && e.onWarning.call(null, Af(e, t));
+    function Xn(e, t) {
+        e.onWarning && e.onWarning.call(null, xf(e, t));
     }
-    var hf = {
+    var pf = {
         YAML: function (t, r, n) {
             var i, o, s;
             t.version !== null && O(t, "duplication of %YAML directive"),
@@ -5418,16 +5410,16 @@ var Tf = g((XO, ts) => {
                 o !== 1 && O(t, "unacceptable YAML version of the document"),
                 (t.version = n[0]),
                 (t.checkLineBreaks = s < 2),
-                s !== 1 && s !== 2 && zn(t, "unsupported YAML version of the document");
+                s !== 1 && s !== 2 && Xn(t, "unsupported YAML version of the document");
         },
         TAG: function (t, r, n) {
             var i, o;
             n.length !== 2 && O(t, "TAG directive accepts exactly two arguments"),
                 (i = n[0]),
                 (o = n[1]),
-                yf.test(i) || O(t, "ill-formed tag handle (first argument) of the TAG directive"),
+                _f.test(i) || O(t, "ill-formed tag handle (first argument) of the TAG directive"),
                 st.call(t.tagMap, i) && O(t, 'there is a previously declared suffix for "' + i + '" tag handle'),
-                _f.test(o) || O(t, "ill-formed tag prefix (second argument) of the TAG directive");
+                vf.test(o) || O(t, "ill-formed tag prefix (second argument) of the TAG directive");
             try {
                 o = decodeURIComponent(o);
             } catch {
@@ -5442,11 +5434,11 @@ var Tf = g((XO, ts) => {
             if (((a = e.input.slice(t, r)), n))
                 for (i = 0, o = a.length; i < o; i += 1)
                     (s = a.charCodeAt(i)), s === 9 || (32 <= s && s <= 1114111) || O(e, "expected valid JSON character");
-            else Ry.test(a) && O(e, "the stream contains non-printable characters");
+            else qy.test(a) && O(e, "the stream contains non-printable characters");
             e.result += a;
         }
     }
-    function pf(e, t, r, n) {
+    function mf(e, t, r, n) {
         var i, o, s, a;
         for (
             Tt.isObject(r) || O(e, "cannot merge mappings; the provided source object is unacceptable"),
@@ -5463,15 +5455,15 @@ var Tf = g((XO, ts) => {
         if (Array.isArray(i))
             for (i = Array.prototype.slice.call(i), h = 0, c = i.length; h < c; h += 1)
                 Array.isArray(i[h]) && O(e, "nested arrays are not supported inside keys"),
-                    typeof i == "object" && ff(i[h]) === "[object Object]" && (i[h] = "[object Object]");
+                    typeof i == "object" && df(i[h]) === "[object Object]" && (i[h] = "[object Object]");
         if (
-            (typeof i == "object" && ff(i) === "[object Object]" && (i = "[object Object]"),
+            (typeof i == "object" && df(i) === "[object Object]" && (i = "[object Object]"),
             (i = String(i)),
             t === null && (t = {}),
             n === "tag:yaml.org,2002:merge")
         )
-            if (Array.isArray(o)) for (h = 0, c = o.length; h < c; h += 1) pf(e, t, o[h], r);
-            else pf(e, t, o, r);
+            if (Array.isArray(o)) for (h = 0, c = o.length; h < c; h += 1) mf(e, t, o[h], r);
+            else mf(e, t, o, r);
         else
             !e.json &&
                 !st.call(r, i) &&
@@ -5510,9 +5502,9 @@ var Tf = g((XO, ts) => {
                     e.lineIndent++, (i = e.input.charCodeAt(++e.position));
             else break;
         }
-        return r !== -1 && n !== 0 && e.lineIndent < r && zn(e, "deficient indentation"), n;
+        return r !== -1 && n !== 0 && e.lineIndent < r && Xn(e, "deficient indentation"), n;
     }
-    function Xn(e) {
+    function Kn(e) {
         var t = e.position,
             r;
         return (
@@ -5521,7 +5513,7 @@ var Tf = g((XO, ts) => {
                 (r === 45 || r === 46) &&
                 r === e.input.charCodeAt(t + 1) &&
                 r === e.input.charCodeAt(t + 2) &&
-                ((t += 3), (r = e.input.charCodeAt(t)), r === 0 || be(r))
+                ((t += 3), (r = e.input.charCodeAt(t)), r === 0 || Ie(r))
             )
         );
     }
@@ -5535,7 +5527,7 @@ var Tf = g((XO, ts) => {
                   t - 1
               ));
     }
-    function ky(e, t, r) {
+    function jy(e, t, r) {
         var n,
             i,
             o,
@@ -5544,12 +5536,12 @@ var Tf = g((XO, ts) => {
             l,
             h,
             c,
-            d = e.kind,
+            f = e.kind,
             m = e.result,
             p;
         if (
             ((p = e.input.charCodeAt(e.position)),
-            be(p) ||
+            Ie(p) ||
                 Zt(p) ||
                 p === 35 ||
                 p === 38 ||
@@ -5562,16 +5554,16 @@ var Tf = g((XO, ts) => {
                 p === 37 ||
                 p === 64 ||
                 p === 96 ||
-                ((p === 63 || p === 45) && ((i = e.input.charCodeAt(e.position + 1)), be(i) || (r && Zt(i)))))
+                ((p === 63 || p === 45) && ((i = e.input.charCodeAt(e.position + 1)), Ie(i) || (r && Zt(i)))))
         )
             return !1;
         for (e.kind = "scalar", e.result = "", o = s = e.position, a = !1; p !== 0; ) {
             if (p === 58) {
-                if (((i = e.input.charCodeAt(e.position + 1)), be(i) || (r && Zt(i)))) break;
+                if (((i = e.input.charCodeAt(e.position + 1)), Ie(i) || (r && Zt(i)))) break;
             } else if (p === 35) {
-                if (((n = e.input.charCodeAt(e.position - 1)), be(n))) break;
+                if (((n = e.input.charCodeAt(e.position - 1)), Ie(n))) break;
             } else {
-                if ((e.position === e.lineStart && Xn(e)) || (r && Zt(p))) break;
+                if ((e.position === e.lineStart && Kn(e)) || (r && Zt(p))) break;
                 if (Me(p))
                     if (((l = e.line), (h = e.lineStart), (c = e.lineIndent), ee(e, !1, -1), e.lineIndent >= t)) {
                         (a = !0), (p = e.input.charCodeAt(e.position));
@@ -5585,9 +5577,9 @@ var Tf = g((XO, ts) => {
                 Ct(p) || (s = e.position + 1),
                 (p = e.input.charCodeAt(++e.position));
         }
-        return ot(e, o, s, !1), e.result ? !0 : ((e.kind = d), (e.result = m), !1);
+        return ot(e, o, s, !1), e.result ? !0 : ((e.kind = f), (e.result = m), !1);
     }
-    function My(e, t) {
+    function Wy(e, t) {
         var r, n, i;
         if (((r = e.input.charCodeAt(e.position)), r !== 39)) return !1;
         for (e.kind = "scalar", e.result = "", e.position++, n = i = e.position; (r = e.input.charCodeAt(e.position)) !== 0; )
@@ -5598,36 +5590,36 @@ var Tf = g((XO, ts) => {
             else
                 Me(r)
                     ? (ot(e, n, i, !0), es(e, ee(e, !1, t)), (n = i = e.position))
-                    : e.position === e.lineStart && Xn(e)
+                    : e.position === e.lineStart && Kn(e)
                     ? O(e, "unexpected end of the document within a single quoted scalar")
                     : (e.position++, (i = e.position));
         O(e, "unexpected end of the stream within a single quoted scalar");
     }
-    function By(e, t) {
+    function Gy(e, t) {
         var r, n, i, o, s, a;
         if (((a = e.input.charCodeAt(e.position)), a !== 34)) return !1;
         for (e.kind = "scalar", e.result = "", e.position++, r = n = e.position; (a = e.input.charCodeAt(e.position)) !== 0; ) {
             if (a === 34) return ot(e, r, e.position, !0), e.position++, !0;
             if (a === 92) {
                 if ((ot(e, r, e.position, !0), (a = e.input.charCodeAt(++e.position)), Me(a))) ee(e, !1, t);
-                else if (a < 256 && vf[a]) (e.result += Sf[a]), e.position++;
-                else if ((s = qy(a)) > 0) {
+                else if (a < 256 && Sf[a]) (e.result += Af[a]), e.position++;
+                else if ((s = ky(a)) > 0) {
                     for (i = s, o = 0; i > 0; i--)
                         (a = e.input.charCodeAt(++e.position)),
-                            (s = Fy(a)) >= 0 ? (o = (o << 4) + s) : O(e, "expected hexadecimal character");
-                    (e.result += Uy(o)), e.position++;
+                            (s = $y(a)) >= 0 ? (o = (o << 4) + s) : O(e, "expected hexadecimal character");
+                    (e.result += By(o)), e.position++;
                 } else O(e, "unknown escape sequence");
                 r = n = e.position;
             } else
                 Me(a)
                     ? (ot(e, r, n, !0), es(e, ee(e, !1, t)), (r = n = e.position))
-                    : e.position === e.lineStart && Xn(e)
+                    : e.position === e.lineStart && Kn(e)
                     ? O(e, "unexpected end of the document within a double quoted scalar")
                     : (e.position++, (n = e.position));
         }
         O(e, "unexpected end of the stream within a double quoted scalar");
     }
-    function Hy(e, t) {
+    function Vy(e, t) {
         var r = !0,
             n,
             i,
@@ -5637,7 +5629,7 @@ var Tf = g((XO, ts) => {
             l = e.anchor,
             h,
             c,
-            d,
+            f,
             m,
             p,
             y = Object.create(null),
@@ -5655,27 +5647,27 @@ var Tf = g((XO, ts) => {
                 ? A === 44 && O(e, "expected the node content, but found ','")
                 : O(e, "missed comma between flow collection entries"),
                 (v = _ = x = null),
-                (d = m = !1),
-                A === 63 && ((h = e.input.charCodeAt(e.position + 1)), be(h) && ((d = m = !0), e.position++, ee(e, !0, t))),
+                (f = m = !1),
+                A === 63 && ((h = e.input.charCodeAt(e.position + 1)), Ie(h) && ((f = m = !0), e.position++, ee(e, !0, t))),
                 (n = e.line),
                 (i = e.lineStart),
                 (o = e.position),
-                tr(e, t, Vn, !1, !0),
+                tr(e, t, Yn, !1, !0),
                 (v = e.tag),
                 (_ = e.result),
                 ee(e, !0, t),
                 (A = e.input.charCodeAt(e.position)),
                 (m || e.line === n) &&
                     A === 58 &&
-                    ((d = !0), (A = e.input.charCodeAt(++e.position)), ee(e, !0, t), tr(e, t, Vn, !1, !0), (x = e.result)),
-                p ? er(e, a, y, v, _, x, n, i, o) : d ? a.push(er(e, null, y, v, _, x, n, i, o)) : a.push(_),
+                    ((f = !0), (A = e.input.charCodeAt(++e.position)), ee(e, !0, t), tr(e, t, Yn, !1, !0), (x = e.result)),
+                p ? er(e, a, y, v, _, x, n, i, o) : f ? a.push(er(e, null, y, v, _, x, n, i, o)) : a.push(_),
                 ee(e, !0, t),
                 (A = e.input.charCodeAt(e.position)),
                 A === 44 ? ((r = !0), (A = e.input.charCodeAt(++e.position))) : (r = !1);
         }
         O(e, "unexpected end of the stream within a flow collection");
     }
-    function jy(e, t) {
+    function Yy(e, t) {
         var r,
             n,
             i = Qo,
@@ -5685,36 +5677,36 @@ var Tf = g((XO, ts) => {
             l = 0,
             h = !1,
             c,
-            d;
-        if (((d = e.input.charCodeAt(e.position)), d === 124)) n = !1;
-        else if (d === 62) n = !0;
+            f;
+        if (((f = e.input.charCodeAt(e.position)), f === 124)) n = !1;
+        else if (f === 62) n = !0;
         else return !1;
-        for (e.kind = "scalar", e.result = ""; d !== 0; )
-            if (((d = e.input.charCodeAt(++e.position)), d === 43 || d === 45))
-                Qo === i ? (i = d === 43 ? cf : Ny) : O(e, "repeat of a chomping mode identifier");
-            else if ((c = Ly(d)) >= 0)
+        for (e.kind = "scalar", e.result = ""; f !== 0; )
+            if (((f = e.input.charCodeAt(++e.position)), f === 43 || f === 45))
+                Qo === i ? (i = f === 43 ? ff : Fy) : O(e, "repeat of a chomping mode identifier");
+            else if ((c = My(f)) >= 0)
                 c === 0
                     ? O(e, "bad explicit indentation width of a block scalar; it cannot be less than one")
                     : s
                     ? O(e, "repeat of an indentation width identifier")
                     : ((a = t + c - 1), (s = !0));
             else break;
-        if (Ct(d)) {
-            do d = e.input.charCodeAt(++e.position);
-            while (Ct(d));
-            if (d === 35)
-                do d = e.input.charCodeAt(++e.position);
-                while (!Me(d) && d !== 0);
+        if (Ct(f)) {
+            do f = e.input.charCodeAt(++e.position);
+            while (Ct(f));
+            if (f === 35)
+                do f = e.input.charCodeAt(++e.position);
+                while (!Me(f) && f !== 0);
         }
-        for (; d !== 0; ) {
-            for (Zo(e), e.lineIndent = 0, d = e.input.charCodeAt(e.position); (!s || e.lineIndent < a) && d === 32; )
-                e.lineIndent++, (d = e.input.charCodeAt(++e.position));
-            if ((!s && e.lineIndent > a && (a = e.lineIndent), Me(d))) {
+        for (; f !== 0; ) {
+            for (Zo(e), e.lineIndent = 0, f = e.input.charCodeAt(e.position); (!s || e.lineIndent < a) && f === 32; )
+                e.lineIndent++, (f = e.input.charCodeAt(++e.position));
+            if ((!s && e.lineIndent > a && (a = e.lineIndent), Me(f))) {
                 l++;
                 continue;
             }
             if (e.lineIndent < a) {
-                i === cf
+                i === ff
                     ? (e.result += Tt.repeat(
                           `
 `,
@@ -5728,7 +5720,7 @@ var Tf = g((XO, ts) => {
             }
             for (
                 n
-                    ? Ct(d)
+                    ? Ct(f)
                         ? ((h = !0),
                           (e.result += Tt.repeat(
                               `
@@ -5758,15 +5750,15 @@ var Tf = g((XO, ts) => {
                     s = !0,
                     l = 0,
                     r = e.position;
-                !Me(d) && d !== 0;
+                !Me(f) && f !== 0;
 
             )
-                d = e.input.charCodeAt(++e.position);
+                f = e.input.charCodeAt(++e.position);
             ot(e, r, e.position, !1);
         }
         return !0;
     }
-    function mf(e, t) {
+    function gf(e, t) {
         var r,
             n = e.tag,
             i = e.anchor,
@@ -5779,7 +5771,7 @@ var Tf = g((XO, ts) => {
             e.anchor !== null && (e.anchorMap[e.anchor] = o), l = e.input.charCodeAt(e.position);
             l !== 0 &&
             (e.firstTabInLine !== -1 && ((e.position = e.firstTabInLine), O(e, "tab characters must not be used in indentation")),
-            !(l !== 45 || ((s = e.input.charCodeAt(e.position + 1)), !be(s))));
+            !(l !== 45 || ((s = e.input.charCodeAt(e.position + 1)), !Ie(s))));
 
         ) {
             if (((a = !0), e.position++, ee(e, !0, -1) && e.lineIndent <= t)) {
@@ -5788,7 +5780,7 @@ var Tf = g((XO, ts) => {
             }
             if (
                 ((r = e.line),
-                tr(e, t, Ef, !1, !0),
+                tr(e, t, yf, !1, !0),
                 o.push(e.result),
                 ee(e, !0, -1),
                 (l = e.input.charCodeAt(e.position)),
@@ -5799,7 +5791,7 @@ var Tf = g((XO, ts) => {
         }
         return a ? ((e.tag = n), (e.anchor = i), (e.kind = "sequence"), (e.result = o), !0) : !1;
     }
-    function Wy(e, t, r) {
+    function zy(e, t, r) {
         var n,
             i,
             o,
@@ -5808,7 +5800,7 @@ var Tf = g((XO, ts) => {
             l,
             h = e.tag,
             c = e.anchor,
-            d = {},
+            f = {},
             m = Object.create(null),
             p = null,
             y = null,
@@ -5817,31 +5809,31 @@ var Tf = g((XO, ts) => {
             x = !1,
             A;
         if (e.firstTabInLine !== -1) return !1;
-        for (e.anchor !== null && (e.anchorMap[e.anchor] = d), A = e.input.charCodeAt(e.position); A !== 0; ) {
+        for (e.anchor !== null && (e.anchorMap[e.anchor] = f), A = e.input.charCodeAt(e.position); A !== 0; ) {
             if (
                 (!v &&
                     e.firstTabInLine !== -1 &&
                     ((e.position = e.firstTabInLine), O(e, "tab characters must not be used in indentation")),
                 (n = e.input.charCodeAt(e.position + 1)),
                 (o = e.line),
-                (A === 63 || A === 58) && be(n))
+                (A === 63 || A === 58) && Ie(n))
             )
                 A === 63
-                    ? (v && (er(e, d, m, p, y, null, s, a, l), (p = y = _ = null)), (x = !0), (v = !0), (i = !0))
+                    ? (v && (er(e, f, m, p, y, null, s, a, l), (p = y = _ = null)), (x = !0), (v = !0), (i = !0))
                     : v
                     ? ((v = !1), (i = !0))
                     : O(e, "incomplete explicit mapping pair; a key node is missed; or followed by a non-tabulated empty line"),
                     (e.position += 1),
                     (A = n);
             else {
-                if (((s = e.line), (a = e.lineStart), (l = e.position), !tr(e, r, wf, !1, !0))) break;
+                if (((s = e.line), (a = e.lineStart), (l = e.position), !tr(e, r, Ef, !1, !0))) break;
                 if (e.line === o) {
                     for (A = e.input.charCodeAt(e.position); Ct(A); ) A = e.input.charCodeAt(++e.position);
                     if (A === 58)
                         (A = e.input.charCodeAt(++e.position)),
-                            be(A) ||
+                            Ie(A) ||
                                 O(e, "a whitespace character is expected after the key-value separator within a block mapping"),
-                            v && (er(e, d, m, p, y, null, s, a, l), (p = y = _ = null)),
+                            v && (er(e, f, m, p, y, null, s, a, l), (p = y = _ = null)),
                             (x = !0),
                             (v = !1),
                             (i = !1),
@@ -5855,8 +5847,8 @@ var Tf = g((XO, ts) => {
             if (
                 ((e.line === o || e.lineIndent > t) &&
                     (v && ((s = e.line), (a = e.lineStart), (l = e.position)),
-                    tr(e, t, Yn, !0, i) && (v ? (y = e.result) : (_ = e.result)),
-                    v || (er(e, d, m, p, y, _, s, a, l), (p = y = _ = null)),
+                    tr(e, t, zn, !0, i) && (v ? (y = e.result) : (_ = e.result)),
+                    v || (er(e, f, m, p, y, _, s, a, l), (p = y = _ = null)),
                     ee(e, !0, -1),
                     (A = e.input.charCodeAt(e.position))),
                 (e.line === o || e.lineIndent > t) && A !== 0)
@@ -5864,9 +5856,9 @@ var Tf = g((XO, ts) => {
                 O(e, "bad indentation of a mapping entry");
             else if (e.lineIndent < t) break;
         }
-        return v && er(e, d, m, p, y, null, s, a, l), x && ((e.tag = h), (e.anchor = c), (e.kind = "mapping"), (e.result = d)), x;
+        return v && er(e, f, m, p, y, null, s, a, l), x && ((e.tag = h), (e.anchor = c), (e.kind = "mapping"), (e.result = f)), x;
     }
-    function Gy(e) {
+    function Xy(e) {
         var t,
             r = !1,
             n = !1,
@@ -5891,18 +5883,18 @@ var Tf = g((XO, ts) => {
                 ? ((o = e.input.slice(t, e.position)), (s = e.input.charCodeAt(++e.position)))
                 : O(e, "unexpected end of the stream within a verbatim tag");
         } else {
-            for (; s !== 0 && !be(s); )
+            for (; s !== 0 && !Ie(s); )
                 s === 33 &&
                     (n
                         ? O(e, "tag suffix cannot contain exclamation marks")
                         : ((i = e.input.slice(t - 1, e.position + 1)),
-                          yf.test(i) || O(e, "named tag handle cannot contain such characters"),
+                          _f.test(i) || O(e, "named tag handle cannot contain such characters"),
                           (n = !0),
                           (t = e.position + 1))),
                     (s = e.input.charCodeAt(++e.position));
-            (o = e.input.slice(t, e.position)), Py.test(o) && O(e, "tag suffix cannot contain flow indicator characters");
+            (o = e.input.slice(t, e.position)), Uy.test(o) && O(e, "tag suffix cannot contain flow indicator characters");
         }
-        o && !_f.test(o) && O(e, "tag name cannot contain such characters: " + o);
+        o && !vf.test(o) && O(e, "tag name cannot contain such characters: " + o);
         try {
             o = decodeURIComponent(o);
         } catch {
@@ -5921,12 +5913,12 @@ var Tf = g((XO, ts) => {
             !0
         );
     }
-    function Vy(e) {
+    function Ky(e) {
         var t, r;
         if (((r = e.input.charCodeAt(e.position)), r !== 38)) return !1;
         for (
             e.anchor !== null && O(e, "duplication of an anchor property"), r = e.input.charCodeAt(++e.position), t = e.position;
-            r !== 0 && !be(r) && !Zt(r);
+            r !== 0 && !Ie(r) && !Zt(r);
 
         )
             r = e.input.charCodeAt(++e.position);
@@ -5936,10 +5928,10 @@ var Tf = g((XO, ts) => {
             !0
         );
     }
-    function Yy(e) {
+    function Jy(e) {
         var t, r, n;
         if (((n = e.input.charCodeAt(e.position)), n !== 42)) return !1;
-        for (n = e.input.charCodeAt(++e.position), t = e.position; n !== 0 && !be(n) && !Zt(n); )
+        for (n = e.input.charCodeAt(++e.position), t = e.position; n !== 0 && !Ie(n) && !Zt(n); )
             n = e.input.charCodeAt(++e.position);
         return (
             e.position === t && O(e, "name of an alias node must contain at least one character"),
@@ -5957,7 +5949,7 @@ var Tf = g((XO, ts) => {
             l = 1,
             h = !1,
             c = !1,
-            d,
+            f,
             m,
             p,
             y,
@@ -5969,13 +5961,13 @@ var Tf = g((XO, ts) => {
             (e.anchor = null),
             (e.kind = null),
             (e.result = null),
-            (o = s = a = Yn === r || Ef === r),
+            (o = s = a = zn === r || yf === r),
             n &&
                 ee(e, !0, -1) &&
                 ((h = !0), e.lineIndent > t ? (l = 1) : e.lineIndent === t ? (l = 0) : e.lineIndent < t && (l = -1)),
             l === 1)
         )
-            for (; Gy(e) || Vy(e); )
+            for (; Xy(e) || Ky(e); )
                 ee(e, !0, -1)
                     ? ((h = !0),
                       (a = o),
@@ -5983,20 +5975,20 @@ var Tf = g((XO, ts) => {
                     : (a = !1);
         if (
             (a && (a = h || i),
-            (l === 1 || Yn === r) &&
-                (Vn === r || wf === r ? (_ = t) : (_ = t + 1),
+            (l === 1 || zn === r) &&
+                (Yn === r || Ef === r ? (_ = t) : (_ = t + 1),
                 (v = e.position - e.lineStart),
                 l === 1
-                    ? (a && (mf(e, v) || Wy(e, v, _))) || Hy(e, _)
+                    ? (a && (gf(e, v) || zy(e, v, _))) || Vy(e, _)
                         ? (c = !0)
-                        : ((s && jy(e, _)) || My(e, _) || By(e, _)
+                        : ((s && Yy(e, _)) || Wy(e, _) || Gy(e, _)
                               ? (c = !0)
-                              : Yy(e)
+                              : Jy(e)
                               ? ((c = !0),
                                 (e.tag !== null || e.anchor !== null) && O(e, "alias node should not have any properties"))
-                              : ky(e, _, Vn === r) && ((c = !0), e.tag === null && (e.tag = "?")),
+                              : jy(e, _, Yn === r) && ((c = !0), e.tag === null && (e.tag = "?")),
                           e.anchor !== null && (e.anchorMap[e.anchor] = e.result))
-                    : l === 0 && (c = a && mf(e, v))),
+                    : l === 0 && (c = a && gf(e, v))),
             e.tag === null)
         )
             e.anchor !== null && (e.anchorMap[e.anchor] = e.result);
@@ -6005,21 +5997,21 @@ var Tf = g((XO, ts) => {
                 e.result !== null &&
                     e.kind !== "scalar" &&
                     O(e, 'unacceptable node kind for !<?> tag; it should be "scalar", not "' + e.kind + '"'),
-                    d = 0,
+                    f = 0,
                     m = e.implicitTypes.length;
-                d < m;
-                d += 1
+                f < m;
+                f += 1
             )
-                if (((y = e.implicitTypes[d]), y.resolve(e.result))) {
+                if (((y = e.implicitTypes[f]), y.resolve(e.result))) {
                     (e.result = y.construct(e.result)), (e.tag = y.tag), e.anchor !== null && (e.anchorMap[e.anchor] = e.result);
                     break;
                 }
         } else if (e.tag !== "!") {
             if (st.call(e.typeMap[e.kind || "fallback"], e.tag)) y = e.typeMap[e.kind || "fallback"][e.tag];
             else
-                for (y = null, p = e.typeMap.multi[e.kind || "fallback"], d = 0, m = p.length; d < m; d += 1)
-                    if (e.tag.slice(0, p[d].tag.length) === p[d].tag) {
-                        y = p[d];
+                for (y = null, p = e.typeMap.multi[e.kind || "fallback"], f = 0, m = p.length; f < m; f += 1)
+                    if (e.tag.slice(0, p[f].tag.length) === p[f].tag) {
+                        y = p[f];
                         break;
                     }
             y || O(e, "unknown tag !<" + e.tag + ">"),
@@ -6032,7 +6024,7 @@ var Tf = g((XO, ts) => {
         }
         return e.listener !== null && e.listener("close", e), e.tag !== null || e.anchor !== null || c;
     }
-    function zy(e) {
+    function Qy(e) {
         var t = e.position,
             r,
             n,
@@ -6045,7 +6037,7 @@ var Tf = g((XO, ts) => {
             (ee(e, !0, -1), (s = e.input.charCodeAt(e.position)), !(e.lineIndent > 0 || s !== 37));
 
         ) {
-            for (o = !0, s = e.input.charCodeAt(++e.position), r = e.position; s !== 0 && !be(s); )
+            for (o = !0, s = e.input.charCodeAt(++e.position), r = e.position; s !== 0 && !Ie(s); )
                 s = e.input.charCodeAt(++e.position);
             for (
                 n = e.input.slice(r, e.position),
@@ -6061,10 +6053,10 @@ var Tf = g((XO, ts) => {
                     break;
                 }
                 if (Me(s)) break;
-                for (r = e.position; s !== 0 && !be(s); ) s = e.input.charCodeAt(++e.position);
+                for (r = e.position; s !== 0 && !Ie(s); ) s = e.input.charCodeAt(++e.position);
                 i.push(e.input.slice(r, e.position));
             }
-            s !== 0 && Zo(e), st.call(hf, n) ? hf[n](e, n, i) : zn(e, 'unknown document directive "' + n + '"');
+            s !== 0 && Zo(e), st.call(pf, n) ? pf[n](e, n, i) : Xn(e, 'unknown document directive "' + n + '"');
         }
         if (
             (ee(e, !0, -1),
@@ -6074,13 +6066,13 @@ var Tf = g((XO, ts) => {
             e.input.charCodeAt(e.position + 2) === 45
                 ? ((e.position += 3), ee(e, !0, -1))
                 : o && O(e, "directives end mark is expected"),
-            tr(e, e.lineIndent - 1, Yn, !1, !0),
+            tr(e, e.lineIndent - 1, zn, !1, !0),
             ee(e, !0, -1),
             e.checkLineBreaks &&
-                Dy.test(e.input.slice(t, e.position)) &&
-                zn(e, "non-ASCII line breaks are interpreted as content"),
+                Ly.test(e.input.slice(t, e.position)) &&
+                Xn(e, "non-ASCII line breaks are interpreted as content"),
             e.documents.push(e.result),
-            e.position === e.lineStart && Xn(e))
+            e.position === e.lineStart && Kn(e))
         ) {
             e.input.charCodeAt(e.position) === 46 && ((e.position += 3), ee(e, !0, -1));
             return;
@@ -6088,7 +6080,7 @@ var Tf = g((XO, ts) => {
         if (e.position < e.length - 1) O(e, "end of the stream or a document separator is expected");
         else return;
     }
-    function xf(e, t) {
+    function Tf(e, t) {
         (e = String(e)),
             (t = t || {}),
             e.length !== 0 &&
@@ -6097,7 +6089,7 @@ var Tf = g((XO, ts) => {
                     (e += `
 `),
                 e.charCodeAt(0) === 65279 && (e = e.slice(1)));
-        var r = new $y(e, t),
+        var r = new Hy(e, t),
             n = e.indexOf("\0");
         for (
             n !== -1 && ((r.position = n), O(r, "null byte is not allowed in input")), r.input += "\0";
@@ -6105,57 +6097,57 @@ var Tf = g((XO, ts) => {
 
         )
             (r.lineIndent += 1), (r.position += 1);
-        for (; r.position < r.length - 1; ) zy(r);
+        for (; r.position < r.length - 1; ) Qy(r);
         return r.documents;
     }
-    function Xy(e, t, r) {
+    function Zy(e, t, r) {
         t !== null && typeof t == "object" && typeof r > "u" && ((r = t), (t = null));
-        var n = xf(e, r);
+        var n = Tf(e, r);
         if (typeof t != "function") return n;
         for (var i = 0, o = n.length; i < o; i += 1) t(n[i]);
     }
-    function Ky(e, t) {
-        var r = xf(e, t);
+    function e_(e, t) {
+        var r = Tf(e, t);
         if (r.length !== 0) {
             if (r.length === 1) return r[0];
-            throw new gf("expected a single document in the stream, but found more");
+            throw new wf("expected a single document in the stream, but found more");
         }
     }
-    ts.exports.loadAll = Xy;
-    ts.exports.load = Ky;
+    ts.exports.loadAll = Zy;
+    ts.exports.load = e_;
 });
-var Vf = g((KO, Gf) => {
+var Yf = g((ZO, Vf) => {
     "use strict";
-    var Qn = Jt(),
+    var Zn = Jt(),
         Vr = Qt(),
-        Jy = Gn(),
-        Ff = Object.prototype.toString,
-        qf = Object.prototype.hasOwnProperty,
+        t_ = Vn(),
+        qf = Object.prototype.toString,
+        Lf = Object.prototype.hasOwnProperty,
         ss = 65279,
-        Qy = 9,
+        r_ = 9,
         jr = 10,
-        Zy = 13,
-        e_ = 32,
-        t_ = 33,
-        r_ = 34,
+        n_ = 13,
+        i_ = 32,
+        o_ = 33,
+        s_ = 34,
         rs = 35,
-        n_ = 37,
-        i_ = 38,
-        o_ = 39,
-        s_ = 42,
-        Lf = 44,
-        a_ = 45,
-        Kn = 58,
-        l_ = 61,
-        u_ = 62,
-        c_ = 63,
-        f_ = 64,
-        Uf = 91,
-        $f = 93,
-        d_ = 96,
-        kf = 123,
-        h_ = 124,
-        Mf = 125,
+        a_ = 37,
+        l_ = 38,
+        u_ = 39,
+        c_ = 42,
+        Uf = 44,
+        f_ = 45,
+        Jn = 58,
+        d_ = 61,
+        h_ = 62,
+        p_ = 63,
+        m_ = 64,
+        $f = 91,
+        kf = 93,
+        g_ = 96,
+        Mf = 123,
+        w_ = 124,
+        Bf = 125,
         de = {};
     de[0] = "\\0";
     de[7] = "\\a";
@@ -6172,9 +6164,9 @@ var Vf = g((KO, Gf) => {
     de[160] = "\\_";
     de[8232] = "\\L";
     de[8233] = "\\P";
-    var p_ = ["y", "Y", "yes", "Yes", "YES", "on", "On", "ON", "n", "N", "no", "No", "NO", "off", "Off", "OFF"],
-        m_ = /^[-+]?[0-9_]+(?::[0-9_]+)+(?:\.[0-9_]*)?$/;
-    function g_(e, t) {
+    var E_ = ["y", "Y", "yes", "Yes", "YES", "on", "On", "ON", "n", "N", "no", "No", "NO", "off", "Off", "OFF"],
+        y_ = /^[-+]?[0-9_]+(?::[0-9_]+)+(?:\.[0-9_]*)?$/;
+    function __(e, t) {
         var r, n, i, o, s, a, l;
         if (t === null) return {};
         for (r = {}, n = Object.keys(t), i = 0, o = n.length; i < o; i += 1)
@@ -6182,33 +6174,33 @@ var Vf = g((KO, Gf) => {
                 (a = String(t[s])),
                 s.slice(0, 2) === "!!" && (s = "tag:yaml.org,2002:" + s.slice(2)),
                 (l = e.compiledTypeMap.fallback[s]),
-                l && qf.call(l.styleAliases, a) && (a = l.styleAliases[a]),
+                l && Lf.call(l.styleAliases, a) && (a = l.styleAliases[a]),
                 (r[s] = a);
         return r;
     }
-    function w_(e) {
+    function v_(e) {
         var t, r, n;
         if (((t = e.toString(16).toUpperCase()), e <= 255)) (r = "x"), (n = 2);
         else if (e <= 65535) (r = "u"), (n = 4);
         else if (e <= 4294967295) (r = "U"), (n = 8);
         else throw new Vr("code point within a string may not be greater than 0xFFFFFFFF");
-        return "\\" + r + Qn.repeat("0", n - t.length) + t;
+        return "\\" + r + Zn.repeat("0", n - t.length) + t;
     }
-    var E_ = 1,
+    var S_ = 1,
         Wr = 2;
-    function y_(e) {
-        (this.schema = e.schema || Jy),
+    function A_(e) {
+        (this.schema = e.schema || t_),
             (this.indent = Math.max(1, e.indent || 2)),
             (this.noArrayIndent = e.noArrayIndent || !1),
             (this.skipInvalid = e.skipInvalid || !1),
-            (this.flowLevel = Qn.isNothing(e.flowLevel) ? -1 : e.flowLevel),
-            (this.styleMap = g_(this.schema, e.styles || null)),
+            (this.flowLevel = Zn.isNothing(e.flowLevel) ? -1 : e.flowLevel),
+            (this.styleMap = __(this.schema, e.styles || null)),
             (this.sortKeys = e.sortKeys || !1),
             (this.lineWidth = e.lineWidth || 80),
             (this.noRefs = e.noRefs || !1),
             (this.noCompatMode = e.noCompatMode || !1),
             (this.condenseFlow = e.condenseFlow || !1),
-            (this.quotingType = e.quotingType === '"' ? Wr : E_),
+            (this.quotingType = e.quotingType === '"' ? Wr : S_),
             (this.forceQuotes = e.forceQuotes || !1),
             (this.replacer = typeof e.replacer == "function" ? e.replacer : null),
             (this.implicitTypes = this.schema.compiledImplicit),
@@ -6218,8 +6210,8 @@ var Vf = g((KO, Gf) => {
             (this.duplicates = []),
             (this.usedDuplicates = null);
     }
-    function Cf(e, t) {
-        for (var r = Qn.repeat(" ", t), n = 0, i = -1, o = "", s, a = e.length; n < a; )
+    function bf(e, t) {
+        for (var r = Zn.repeat(" ", t), n = 0, i = -1, o = "", s, a = e.length; n < a; )
             (i = e.indexOf(
                 `
 `,
@@ -6237,16 +6229,16 @@ var Vf = g((KO, Gf) => {
     function ns(e, t) {
         return (
             `
-` + Qn.repeat(" ", e.indent * t)
+` + Zn.repeat(" ", e.indent * t)
         );
     }
-    function __(e, t) {
+    function x_(e, t) {
         var r, n, i;
         for (r = 0, n = e.implicitTypes.length; r < n; r += 1) if (((i = e.implicitTypes[r]), i.resolve(t))) return !0;
         return !1;
     }
-    function Jn(e) {
-        return e === e_ || e === Qy;
+    function Qn(e) {
+        return e === i_ || e === r_;
     }
     function Gr(e) {
         return (
@@ -6256,47 +6248,47 @@ var Vf = g((KO, Gf) => {
             (65536 <= e && e <= 1114111)
         );
     }
-    function bf(e) {
-        return Gr(e) && e !== ss && e !== Zy && e !== jr;
+    function Of(e) {
+        return Gr(e) && e !== ss && e !== n_ && e !== jr;
     }
-    function Of(e, t, r) {
-        var n = bf(e),
-            i = n && !Jn(e);
+    function If(e, t, r) {
+        var n = Of(e),
+            i = n && !Qn(e);
         return (
-            ((r ? n : n && e !== Lf && e !== Uf && e !== $f && e !== kf && e !== Mf) && e !== rs && !(t === Kn && !i)) ||
-            (bf(t) && !Jn(t) && e === rs) ||
-            (t === Kn && i)
+            ((r ? n : n && e !== Uf && e !== $f && e !== kf && e !== Mf && e !== Bf) && e !== rs && !(t === Jn && !i)) ||
+            (Of(t) && !Qn(t) && e === rs) ||
+            (t === Jn && i)
         );
     }
-    function v_(e) {
+    function T_(e) {
         return (
             Gr(e) &&
             e !== ss &&
-            !Jn(e) &&
-            e !== a_ &&
-            e !== c_ &&
-            e !== Kn &&
-            e !== Lf &&
+            !Qn(e) &&
+            e !== f_ &&
+            e !== p_ &&
+            e !== Jn &&
             e !== Uf &&
             e !== $f &&
             e !== kf &&
             e !== Mf &&
+            e !== Bf &&
             e !== rs &&
-            e !== i_ &&
-            e !== s_ &&
-            e !== t_ &&
-            e !== h_ &&
             e !== l_ &&
-            e !== u_ &&
+            e !== c_ &&
             e !== o_ &&
-            e !== r_ &&
-            e !== n_ &&
-            e !== f_ &&
-            e !== d_
+            e !== w_ &&
+            e !== d_ &&
+            e !== h_ &&
+            e !== u_ &&
+            e !== s_ &&
+            e !== a_ &&
+            e !== m_ &&
+            e !== g_
         );
     }
-    function S_(e) {
-        return !Jn(e) && e !== Kn;
+    function C_(e) {
+        return !Qn(e) && e !== Jn;
     }
     function Hr(e, t) {
         var r = e.charCodeAt(t),
@@ -6305,82 +6297,82 @@ var Vf = g((KO, Gf) => {
             ? (r - 55296) * 1024 + n - 56320 + 65536
             : r;
     }
-    function Bf(e) {
+    function Hf(e) {
         var t = /^\n* /;
         return t.test(e);
     }
-    var Hf = 1,
+    var jf = 1,
         is = 2,
-        jf = 3,
-        Wf = 4,
+        Wf = 3,
+        Gf = 4,
         rr = 5;
-    function A_(e, t, r, n, i, o, s, a) {
+    function b_(e, t, r, n, i, o, s, a) {
         var l,
             h = 0,
             c = null,
-            d = !1,
+            f = !1,
             m = !1,
             p = n !== -1,
             y = -1,
-            _ = v_(Hr(e, 0)) && S_(Hr(e, e.length - 1));
+            _ = T_(Hr(e, 0)) && C_(Hr(e, e.length - 1));
         if (t || s)
             for (l = 0; l < e.length; h >= 65536 ? (l += 2) : l++) {
                 if (((h = Hr(e, l)), !Gr(h))) return rr;
-                (_ = _ && Of(h, c, a)), (c = h);
+                (_ = _ && If(h, c, a)), (c = h);
             }
         else {
             for (l = 0; l < e.length; h >= 65536 ? (l += 2) : l++) {
-                if (((h = Hr(e, l)), h === jr)) (d = !0), p && ((m = m || (l - y - 1 > n && e[y + 1] !== " ")), (y = l));
+                if (((h = Hr(e, l)), h === jr)) (f = !0), p && ((m = m || (l - y - 1 > n && e[y + 1] !== " ")), (y = l));
                 else if (!Gr(h)) return rr;
-                (_ = _ && Of(h, c, a)), (c = h);
+                (_ = _ && If(h, c, a)), (c = h);
             }
             m = m || (p && l - y - 1 > n && e[y + 1] !== " ");
         }
-        return !d && !m
+        return !f && !m
             ? _ && !s && !i(e)
-                ? Hf
+                ? jf
                 : o === Wr
                 ? rr
                 : is
-            : r > 9 && Bf(e)
+            : r > 9 && Hf(e)
             ? rr
             : s
             ? o === Wr
                 ? rr
                 : is
             : m
-            ? Wf
-            : jf;
+            ? Gf
+            : Wf;
     }
-    function x_(e, t, r, n, i) {
+    function O_(e, t, r, n, i) {
         e.dump = (function () {
             if (t.length === 0) return e.quotingType === Wr ? '""' : "''";
-            if (!e.noCompatMode && (p_.indexOf(t) !== -1 || m_.test(t)))
+            if (!e.noCompatMode && (E_.indexOf(t) !== -1 || y_.test(t)))
                 return e.quotingType === Wr ? '"' + t + '"' : "'" + t + "'";
             var o = e.indent * Math.max(1, r),
                 s = e.lineWidth === -1 ? -1 : Math.max(Math.min(e.lineWidth, 40), e.lineWidth - o),
                 a = n || (e.flowLevel > -1 && r >= e.flowLevel);
             function l(h) {
-                return __(e, h);
+                return x_(e, h);
             }
-            switch (A_(t, a, e.indent, s, l, e.quotingType, e.forceQuotes && !n, i)) {
-                case Hf:
+            switch (b_(t, a, e.indent, s, l, e.quotingType, e.forceQuotes && !n, i)) {
+                case jf:
                     return t;
                 case is:
                     return "'" + t.replace(/'/g, "''") + "'";
-                case jf:
-                    return "|" + If(t, e.indent) + Nf(Cf(t, o));
                 case Wf:
-                    return ">" + If(t, e.indent) + Nf(Cf(T_(t, s), o));
+                    return "|" + Nf(t, e.indent) + Rf(bf(t, o));
+                case Gf:
+                    return ">" + Nf(t, e.indent) + Rf(bf(I_(t, s), o));
                 case rr:
-                    return '"' + C_(t, s) + '"';
+                    return '"' + N_(t, s) + '"';
                 default:
                     throw new Vr("impossible error: invalid scalar style");
             }
         })();
     }
-    function If(e, t) {
-        var r = Bf(e) ? String(t) : "",
+    function Nf(e, t) {
+        var r = Hf(e) ? String(t) : "",
             n =
                 e[e.length - 1] ===
                 `
@@ -6401,20 +6393,20 @@ var Vf = g((KO, Gf) => {
 `
         );
     }
-    function Nf(e) {
+    function Rf(e) {
         return e[e.length - 1] ===
             `
 `
             ? e.slice(0, -1)
             : e;
     }
-    function T_(e, t) {
+    function I_(e, t) {
         for (
             var r = /(\n+)([^\n]*)/g,
                 n = (function () {
                     var h = e.indexOf(`
 `);
-                    return (h = h !== -1 ? h : e.length), (r.lastIndex = h), Rf(e.slice(0, h), t);
+                    return (h = h !== -1 ? h : e.length), (r.lastIndex = h), Df(e.slice(0, h), t);
                 })(),
                 i =
                     e[0] ===
@@ -6434,12 +6426,12 @@ var Vf = g((KO, Gf) => {
                         ? `
 `
                         : "") +
-                    Rf(l, t)),
+                    Df(l, t)),
                 (i = o);
         }
         return n;
     }
-    function Rf(e, t) {
+    function Df(e, t) {
         if (e === "" || e[0] === " ") return e;
         for (var r = / [^ ]/g, n, i = 0, o, s = 0, a = 0, l = ""; (n = r.exec(e)); )
             (a = n.index),
@@ -6463,12 +6455,12 @@ var Vf = g((KO, Gf) => {
             l.slice(1)
         );
     }
-    function C_(e) {
+    function N_(e) {
         for (var t = "", r = 0, n, i = 0; i < e.length; r >= 65536 ? (i += 2) : i++)
-            (r = Hr(e, i)), (n = de[r]), !n && Gr(r) ? ((t += e[i]), r >= 65536 && (t += e[i + 1])) : (t += n || w_(r));
+            (r = Hr(e, i)), (n = de[r]), !n && Gr(r) ? ((t += e[i]), r >= 65536 && (t += e[i + 1])) : (t += n || v_(r));
         return t;
     }
-    function b_(e, t, r) {
+    function R_(e, t, r) {
         var n = "",
             i = e.tag,
             o,
@@ -6481,7 +6473,7 @@ var Vf = g((KO, Gf) => {
                     (n !== "" && (n += "," + (e.condenseFlow ? "" : " ")), (n += e.dump));
         (e.tag = i), (e.dump = "[" + n + "]");
     }
-    function Df(e, t, r, n) {
+    function Pf(e, t, r, n) {
         var i = "",
             o = e.tag,
             s,
@@ -6496,7 +6488,7 @@ var Vf = g((KO, Gf) => {
                     (i += e.dump));
         (e.tag = o), (e.dump = i || "[]");
     }
-    function O_(e, t, r) {
+    function D_(e, t, r) {
         var n = "",
             i = e.tag,
             o = Object.keys(r),
@@ -6518,7 +6510,7 @@ var Vf = g((KO, Gf) => {
                     Ye(e, t, h, !1, !1) && ((c += e.dump), (n += c)));
         (e.tag = i), (e.dump = "{" + n + "}");
     }
-    function I_(e, t, r, n) {
+    function P_(e, t, r, n) {
         var i = "",
             o = e.tag,
             s = Object.keys(r),
@@ -6526,7 +6518,7 @@ var Vf = g((KO, Gf) => {
             l,
             h,
             c,
-            d,
+            f,
             m;
         if (e.sortKeys === !0) s.sort();
         else if (typeof e.sortKeys == "function") s.sort(e.sortKeys);
@@ -6538,15 +6530,15 @@ var Vf = g((KO, Gf) => {
                 (c = r[h]),
                 e.replacer && (c = e.replacer.call(r, h, c)),
                 Ye(e, t + 1, h, !0, !0, !0) &&
-                    ((d = (e.tag !== null && e.tag !== "?") || (e.dump && e.dump.length > 1024)),
-                    d && (e.dump && jr === e.dump.charCodeAt(0) ? (m += "?") : (m += "? ")),
+                    ((f = (e.tag !== null && e.tag !== "?") || (e.dump && e.dump.length > 1024)),
+                    f && (e.dump && jr === e.dump.charCodeAt(0) ? (m += "?") : (m += "? ")),
                     (m += e.dump),
-                    d && (m += ns(e, t)),
-                    Ye(e, t + 1, c, !0, d) &&
+                    f && (m += ns(e, t)),
+                    Ye(e, t + 1, c, !0, f) &&
                         (e.dump && jr === e.dump.charCodeAt(0) ? (m += ":") : (m += ": "), (m += e.dump), (i += m)));
         (e.tag = o), (e.dump = i || "{}");
     }
-    function Pf(e, t, r) {
+    function Ff(e, t, r) {
         var n, i, o, s, a, l;
         for (i = r ? e.explicitTypes : e.implicitTypes, o = 0, s = i.length; o < s; o += 1)
             if (
@@ -6559,9 +6551,9 @@ var Vf = g((KO, Gf) => {
                     (r ? (a.multi && a.representName ? (e.tag = a.representName(t)) : (e.tag = a.tag)) : (e.tag = "?"),
                     a.represent)
                 ) {
-                    if (((l = e.styleMap[a.tag] || a.defaultStyle), Ff.call(a.represent) === "[object Function]"))
+                    if (((l = e.styleMap[a.tag] || a.defaultStyle), qf.call(a.represent) === "[object Function]"))
                         n = a.represent(t, l);
-                    else if (qf.call(a.represent, l)) n = a.represent[l](t, l);
+                    else if (Lf.call(a.represent, l)) n = a.represent[l](t, l);
                     else throw new Vr("!<" + a.tag + '> tag resolver accepts not "' + l + '" style');
                     e.dump = n;
                 }
@@ -6570,31 +6562,31 @@ var Vf = g((KO, Gf) => {
         return !1;
     }
     function Ye(e, t, r, n, i, o, s) {
-        (e.tag = null), (e.dump = r), Pf(e, r, !1) || Pf(e, r, !0);
-        var a = Ff.call(e.dump),
+        (e.tag = null), (e.dump = r), Ff(e, r, !1) || Ff(e, r, !0);
+        var a = qf.call(e.dump),
             l = n,
             h;
         n && (n = e.flowLevel < 0 || e.flowLevel > t);
         var c = a === "[object Object]" || a === "[object Array]",
-            d,
+            f,
             m;
         if (
-            (c && ((d = e.duplicates.indexOf(r)), (m = d !== -1)),
+            (c && ((f = e.duplicates.indexOf(r)), (m = f !== -1)),
             ((e.tag !== null && e.tag !== "?") || m || (e.indent !== 2 && t > 0)) && (i = !1),
-            m && e.usedDuplicates[d])
+            m && e.usedDuplicates[f])
         )
-            e.dump = "*ref_" + d;
+            e.dump = "*ref_" + f;
         else {
-            if ((c && m && !e.usedDuplicates[d] && (e.usedDuplicates[d] = !0), a === "[object Object]"))
+            if ((c && m && !e.usedDuplicates[f] && (e.usedDuplicates[f] = !0), a === "[object Object]"))
                 n && Object.keys(e.dump).length !== 0
-                    ? (I_(e, t, e.dump, i), m && (e.dump = "&ref_" + d + e.dump))
-                    : (O_(e, t, e.dump), m && (e.dump = "&ref_" + d + " " + e.dump));
+                    ? (P_(e, t, e.dump, i), m && (e.dump = "&ref_" + f + e.dump))
+                    : (D_(e, t, e.dump), m && (e.dump = "&ref_" + f + " " + e.dump));
             else if (a === "[object Array]")
                 n && e.dump.length !== 0
-                    ? (e.noArrayIndent && !s && t > 0 ? Df(e, t - 1, e.dump, i) : Df(e, t, e.dump, i),
-                      m && (e.dump = "&ref_" + d + e.dump))
-                    : (b_(e, t, e.dump), m && (e.dump = "&ref_" + d + " " + e.dump));
-            else if (a === "[object String]") e.tag !== "?" && x_(e, e.dump, t, o, l);
+                    ? (e.noArrayIndent && !s && t > 0 ? Pf(e, t - 1, e.dump, i) : Pf(e, t, e.dump, i),
+                      m && (e.dump = "&ref_" + f + e.dump))
+                    : (R_(e, t, e.dump), m && (e.dump = "&ref_" + f + " " + e.dump));
+            else if (a === "[object String]") e.tag !== "?" && O_(e, e.dump, t, o, l);
             else {
                 if (a === "[object Undefined]") return !1;
                 if (e.skipInvalid) return !1;
@@ -6612,7 +6604,7 @@ var Vf = g((KO, Gf) => {
         }
         return !0;
     }
-    function N_(e, t) {
+    function F_(e, t) {
         var r = [],
             n = [],
             i,
@@ -6627,10 +6619,10 @@ var Vf = g((KO, Gf) => {
             else if ((t.push(e), Array.isArray(e))) for (i = 0, o = e.length; i < o; i += 1) os(e[i], t, r);
             else for (n = Object.keys(e), i = 0, o = n.length; i < o; i += 1) os(e[n[i]], t, r);
     }
-    function R_(e, t) {
+    function q_(e, t) {
         t = t || {};
-        var r = new y_(t);
-        r.noRefs || N_(e, r);
+        var r = new A_(t);
+        r.noRefs || F_(e, r);
         var n = e;
         return (
             r.replacer && (n = r.replacer.call({ "": n }, "", n)),
@@ -6641,12 +6633,12 @@ var Vf = g((KO, Gf) => {
                 : ""
         );
     }
-    Gf.exports.dump = R_;
+    Vf.exports.dump = q_;
 });
-var Zn = g((JO, ye) => {
+var ei = g((eI, ye) => {
     "use strict";
-    var Yf = Tf(),
-        D_ = Vf();
+    var zf = Cf(),
+        L_ = Yf();
     function as(e, t) {
         return function () {
             throw new Error(
@@ -6659,10 +6651,10 @@ var Zn = g((JO, ye) => {
     ye.exports.FAILSAFE_SCHEMA = $o();
     ye.exports.JSON_SCHEMA = jo();
     ye.exports.CORE_SCHEMA = Wo();
-    ye.exports.DEFAULT_SCHEMA = Gn();
-    ye.exports.load = Yf.load;
-    ye.exports.loadAll = Yf.loadAll;
-    ye.exports.dump = D_.dump;
+    ye.exports.DEFAULT_SCHEMA = Vn();
+    ye.exports.load = zf.load;
+    ye.exports.loadAll = zf.loadAll;
+    ye.exports.dump = L_.dump;
     ye.exports.YAMLException = Qt();
     ye.exports.types = {
         binary: zo(),
@@ -6683,10 +6675,10 @@ var Zn = g((JO, ye) => {
     ye.exports.safeLoadAll = as("safeLoadAll", "loadAll");
     ye.exports.safeDump = as("safeDump", "dump");
 });
-var zf = g(ei => {
+var Xf = g(ti => {
     "use strict";
-    Object.defineProperty(ei, "__esModule", { value: !0 });
-    ei.Lazy = void 0;
+    Object.defineProperty(ti, "__esModule", { value: !0 });
+    ti.Lazy = void 0;
     var ls = class {
         constructor(t) {
             (this._value = null), (this.creator = t);
@@ -6703,59 +6695,59 @@ var zf = g(ei => {
             (this._value = t), (this.creator = null);
         }
     };
-    ei.Lazy = ls;
+    ti.Lazy = ls;
 });
-var Yr = g((ZO, Xf) => {
-    var P_ = "2.0.0",
-        F_ = Number.MAX_SAFE_INTEGER || 9007199254740991,
-        q_ = 16,
-        L_ = 250,
-        U_ = ["major", "premajor", "minor", "preminor", "patch", "prepatch", "prerelease"];
-    Xf.exports = {
+var Yr = g((rI, Kf) => {
+    var U_ = "2.0.0",
+        $_ = Number.MAX_SAFE_INTEGER || 9007199254740991,
+        k_ = 16,
+        M_ = 250,
+        B_ = ["major", "premajor", "minor", "preminor", "patch", "prepatch", "prerelease"];
+    Kf.exports = {
         MAX_LENGTH: 256,
-        MAX_SAFE_COMPONENT_LENGTH: q_,
-        MAX_SAFE_BUILD_LENGTH: L_,
-        MAX_SAFE_INTEGER: F_,
-        RELEASE_TYPES: U_,
-        SEMVER_SPEC_VERSION: P_,
+        MAX_SAFE_COMPONENT_LENGTH: k_,
+        MAX_SAFE_BUILD_LENGTH: M_,
+        MAX_SAFE_INTEGER: $_,
+        RELEASE_TYPES: B_,
+        SEMVER_SPEC_VERSION: U_,
         FLAG_INCLUDE_PRERELEASE: 1,
         FLAG_LOOSE: 2
     };
 });
-var zr = g((eI, Kf) => {
-    var $_ =
+var zr = g((nI, Jf) => {
+    var H_ =
         typeof process == "object" && process.env && process.env.NODE_DEBUG && /\bsemver\b/i.test(process.env.NODE_DEBUG)
             ? (...e) => console.error("SEMVER", ...e)
             : () => {};
-    Kf.exports = $_;
+    Jf.exports = H_;
 });
-var nr = g((ze, Jf) => {
-    var { MAX_SAFE_COMPONENT_LENGTH: us, MAX_SAFE_BUILD_LENGTH: k_, MAX_LENGTH: M_ } = Yr(),
-        B_ = zr();
-    ze = Jf.exports = {};
-    var H_ = (ze.re = []),
-        j_ = (ze.safeRe = []),
+var nr = g((ze, Qf) => {
+    var { MAX_SAFE_COMPONENT_LENGTH: us, MAX_SAFE_BUILD_LENGTH: j_, MAX_LENGTH: W_ } = Yr(),
+        G_ = zr();
+    ze = Qf.exports = {};
+    var V_ = (ze.re = []),
+        Y_ = (ze.safeRe = []),
         T = (ze.src = []),
         C = (ze.t = {}),
-        W_ = 0,
+        z_ = 0,
         cs = "[a-zA-Z0-9-]",
-        G_ = [
+        X_ = [
             ["\\s", 1],
-            ["\\d", M_],
-            [cs, k_]
+            ["\\d", W_],
+            [cs, j_]
         ],
-        V_ = e => {
-            for (let [t, r] of G_) e = e.split(`${t}*`).join(`${t}{0,${r}}`).split(`${t}+`).join(`${t}{1,${r}}`);
+        K_ = e => {
+            for (let [t, r] of X_) e = e.split(`${t}*`).join(`${t}{0,${r}}`).split(`${t}+`).join(`${t}{1,${r}}`);
             return e;
         },
         q = (e, t, r) => {
-            let n = V_(t),
-                i = W_++;
-            B_(e, i, t),
+            let n = K_(t),
+                i = z_++;
+            G_(e, i, t),
                 (C[e] = i),
                 (T[i] = t),
-                (H_[i] = new RegExp(t, r ? "g" : void 0)),
-                (j_[i] = new RegExp(n, r ? "g" : void 0));
+                (V_[i] = new RegExp(t, r ? "g" : void 0)),
+                (Y_[i] = new RegExp(n, r ? "g" : void 0));
         };
     q("NUMERICIDENTIFIER", "0|[1-9]\\d*");
     q("NUMERICIDENTIFIERLOOSE", "\\d+");
@@ -6817,57 +6809,57 @@ var nr = g((ze, Jf) => {
     q("GTE0", "^\\s*>=\\s*0\\.0\\.0\\s*$");
     q("GTE0PRE", "^\\s*>=\\s*0\\.0\\.0-0\\s*$");
 });
-var ti = g((tI, Qf) => {
-    var Y_ = Object.freeze({ loose: !0 }),
-        z_ = Object.freeze({}),
-        X_ = e => (e ? (typeof e != "object" ? Y_ : e) : z_);
-    Qf.exports = X_;
+var ri = g((iI, Zf) => {
+    var J_ = Object.freeze({ loose: !0 }),
+        Q_ = Object.freeze({}),
+        Z_ = e => (e ? (typeof e != "object" ? J_ : e) : Q_);
+    Zf.exports = Z_;
 });
-var fs = g((rI, td) => {
-    var Zf = /^[0-9]+$/,
-        ed = (e, t) => {
-            let r = Zf.test(e),
-                n = Zf.test(t);
+var fs = g((oI, rd) => {
+    var ed = /^[0-9]+$/,
+        td = (e, t) => {
+            let r = ed.test(e),
+                n = ed.test(t);
             return r && n && ((e = +e), (t = +t)), e === t ? 0 : r && !n ? -1 : n && !r ? 1 : e < t ? -1 : 1;
         },
-        K_ = (e, t) => ed(t, e);
-    td.exports = { compareIdentifiers: ed, rcompareIdentifiers: K_ };
+        ev = (e, t) => td(t, e);
+    rd.exports = { compareIdentifiers: td, rcompareIdentifiers: ev };
 });
-var he = g((nI, od) => {
-    var ri = zr(),
-        { MAX_LENGTH: rd, MAX_SAFE_INTEGER: ni } = Yr(),
-        { safeRe: nd, t: id } = nr(),
-        J_ = ti(),
+var he = g((sI, sd) => {
+    var ni = zr(),
+        { MAX_LENGTH: nd, MAX_SAFE_INTEGER: ii } = Yr(),
+        { safeRe: id, t: od } = nr(),
+        tv = ri(),
         { compareIdentifiers: ir } = fs(),
         ds = class e {
             constructor(t, r) {
-                if (((r = J_(r)), t instanceof e)) {
+                if (((r = tv(r)), t instanceof e)) {
                     if (t.loose === !!r.loose && t.includePrerelease === !!r.includePrerelease) return t;
                     t = t.version;
                 } else if (typeof t != "string")
                     throw new TypeError(`Invalid version. Must be a string. Got type "${typeof t}".`);
-                if (t.length > rd) throw new TypeError(`version is longer than ${rd} characters`);
-                ri("SemVer", t, r),
+                if (t.length > nd) throw new TypeError(`version is longer than ${nd} characters`);
+                ni("SemVer", t, r),
                     (this.options = r),
                     (this.loose = !!r.loose),
                     (this.includePrerelease = !!r.includePrerelease);
-                let n = t.trim().match(r.loose ? nd[id.LOOSE] : nd[id.FULL]);
+                let n = t.trim().match(r.loose ? id[od.LOOSE] : id[od.FULL]);
                 if (!n) throw new TypeError(`Invalid Version: ${t}`);
                 if (
                     ((this.raw = t),
                     (this.major = +n[1]),
                     (this.minor = +n[2]),
                     (this.patch = +n[3]),
-                    this.major > ni || this.major < 0)
+                    this.major > ii || this.major < 0)
                 )
                     throw new TypeError("Invalid major version");
-                if (this.minor > ni || this.minor < 0) throw new TypeError("Invalid minor version");
-                if (this.patch > ni || this.patch < 0) throw new TypeError("Invalid patch version");
+                if (this.minor > ii || this.minor < 0) throw new TypeError("Invalid minor version");
+                if (this.patch > ii || this.patch < 0) throw new TypeError("Invalid patch version");
                 n[4]
                     ? (this.prerelease = n[4].split(".").map(i => {
                           if (/^[0-9]+$/.test(i)) {
                               let o = +i;
-                              if (o >= 0 && o < ni) return o;
+                              if (o >= 0 && o < ii) return o;
                           }
                           return i;
                       }))
@@ -6886,7 +6878,7 @@ var he = g((nI, od) => {
                 return this.version;
             }
             compare(t) {
-                if ((ri("SemVer.compare", this.version, this.options, t), !(t instanceof e))) {
+                if ((ni("SemVer.compare", this.version, this.options, t), !(t instanceof e))) {
                     if (typeof t == "string" && t === this.version) return 0;
                     t = new e(t, this.options);
                 }
@@ -6906,7 +6898,7 @@ var he = g((nI, od) => {
                 do {
                     let n = this.prerelease[r],
                         i = t.prerelease[r];
-                    if ((ri("prerelease compare", r, n, i), n === void 0 && i === void 0)) return 0;
+                    if ((ni("prerelease compare", r, n, i), n === void 0 && i === void 0)) return 0;
                     if (i === void 0) return 1;
                     if (n === void 0) return -1;
                     if (n === i) continue;
@@ -6919,7 +6911,7 @@ var he = g((nI, od) => {
                 do {
                     let n = this.build[r],
                         i = t.build[r];
-                    if ((ri("build compare", r, n, i), n === void 0 && i === void 0)) return 0;
+                    if ((ni("build compare", r, n, i), n === void 0 && i === void 0)) return 0;
                     if (i === void 0) return 1;
                     if (n === void 0) return -1;
                     if (n === i) continue;
@@ -6982,54 +6974,54 @@ var he = g((nI, od) => {
                 return (this.raw = this.format()), this.build.length && (this.raw += `+${this.build.join(".")}`), this;
             }
         };
-    od.exports = ds;
+    sd.exports = ds;
 });
-var bt = g((iI, ad) => {
-    var sd = he(),
-        Q_ = (e, t, r = !1) => {
-            if (e instanceof sd) return e;
+var bt = g((aI, ld) => {
+    var ad = he(),
+        rv = (e, t, r = !1) => {
+            if (e instanceof ad) return e;
             try {
-                return new sd(e, t);
+                return new ad(e, t);
             } catch (n) {
                 if (!r) return null;
                 throw n;
             }
         };
-    ad.exports = Q_;
+    ld.exports = rv;
 });
-var ud = g((oI, ld) => {
-    var Z_ = bt(),
-        ev = (e, t) => {
-            let r = Z_(e, t);
+var cd = g((lI, ud) => {
+    var nv = bt(),
+        iv = (e, t) => {
+            let r = nv(e, t);
             return r ? r.version : null;
         };
-    ld.exports = ev;
+    ud.exports = iv;
 });
-var fd = g((sI, cd) => {
-    var tv = bt(),
-        rv = (e, t) => {
-            let r = tv(e.trim().replace(/^[=v]+/, ""), t);
+var dd = g((uI, fd) => {
+    var ov = bt(),
+        sv = (e, t) => {
+            let r = ov(e.trim().replace(/^[=v]+/, ""), t);
             return r ? r.version : null;
         };
-    cd.exports = rv;
+    fd.exports = sv;
 });
-var pd = g((aI, hd) => {
-    var dd = he(),
-        nv = (e, t, r, n, i) => {
+var md = g((cI, pd) => {
+    var hd = he(),
+        av = (e, t, r, n, i) => {
             typeof r == "string" && ((i = n), (n = r), (r = void 0));
             try {
-                return new dd(e instanceof dd ? e.version : e, r).inc(t, n, i).version;
+                return new hd(e instanceof hd ? e.version : e, r).inc(t, n, i).version;
             } catch {
                 return null;
             }
         };
-    hd.exports = nv;
+    pd.exports = av;
 });
-var wd = g((lI, gd) => {
-    var md = bt(),
-        iv = (e, t) => {
-            let r = md(e, null, !0),
-                n = md(t, null, !0),
+var Ed = g((fI, wd) => {
+    var gd = bt(),
+        lv = (e, t) => {
+            let r = gd(e, null, !0),
+                n = gd(t, null, !0),
                 i = r.compare(n);
             if (i === 0) return null;
             let o = i > 0,
@@ -7047,103 +7039,103 @@ var wd = g((lI, gd) => {
                 ? c + "patch"
                 : "prerelease";
         };
-    gd.exports = iv;
+    wd.exports = lv;
 });
-var yd = g((uI, Ed) => {
-    var ov = he(),
-        sv = (e, t) => new ov(e, t).major;
-    Ed.exports = sv;
-});
-var vd = g((cI, _d) => {
-    var av = he(),
-        lv = (e, t) => new av(e, t).minor;
-    _d.exports = lv;
-});
-var Ad = g((fI, Sd) => {
+var _d = g((dI, yd) => {
     var uv = he(),
-        cv = (e, t) => new uv(e, t).patch;
-    Sd.exports = cv;
+        cv = (e, t) => new uv(e, t).major;
+    yd.exports = cv;
 });
-var Td = g((dI, xd) => {
-    var fv = bt(),
-        dv = (e, t) => {
-            let r = fv(e, t);
+var Sd = g((hI, vd) => {
+    var fv = he(),
+        dv = (e, t) => new fv(e, t).minor;
+    vd.exports = dv;
+});
+var xd = g((pI, Ad) => {
+    var hv = he(),
+        pv = (e, t) => new hv(e, t).patch;
+    Ad.exports = pv;
+});
+var Cd = g((mI, Td) => {
+    var mv = bt(),
+        gv = (e, t) => {
+            let r = mv(e, t);
             return r && r.prerelease.length ? r.prerelease : null;
         };
-    xd.exports = dv;
+    Td.exports = gv;
 });
-var Pe = g((hI, bd) => {
-    var Cd = he(),
-        hv = (e, t, r) => new Cd(e, r).compare(new Cd(t, r));
-    bd.exports = hv;
+var Pe = g((gI, Od) => {
+    var bd = he(),
+        wv = (e, t, r) => new bd(e, r).compare(new bd(t, r));
+    Od.exports = wv;
 });
-var Id = g((pI, Od) => {
-    var pv = Pe(),
-        mv = (e, t, r) => pv(t, e, r);
-    Od.exports = mv;
+var Nd = g((wI, Id) => {
+    var Ev = Pe(),
+        yv = (e, t, r) => Ev(t, e, r);
+    Id.exports = yv;
 });
-var Rd = g((mI, Nd) => {
-    var gv = Pe(),
-        wv = (e, t) => gv(e, t, !0);
-    Nd.exports = wv;
+var Dd = g((EI, Rd) => {
+    var _v = Pe(),
+        vv = (e, t) => _v(e, t, !0);
+    Rd.exports = vv;
 });
-var ii = g((gI, Pd) => {
-    var Dd = he(),
-        Ev = (e, t, r) => {
-            let n = new Dd(e, r),
-                i = new Dd(t, r);
+var oi = g((yI, Fd) => {
+    var Pd = he(),
+        Sv = (e, t, r) => {
+            let n = new Pd(e, r),
+                i = new Pd(t, r);
             return n.compare(i) || n.compareBuild(i);
         };
-    Pd.exports = Ev;
+    Fd.exports = Sv;
 });
-var qd = g((wI, Fd) => {
-    var yv = ii(),
-        _v = (e, t) => e.sort((r, n) => yv(r, n, t));
-    Fd.exports = _v;
+var Ld = g((_I, qd) => {
+    var Av = oi(),
+        xv = (e, t) => e.sort((r, n) => Av(r, n, t));
+    qd.exports = xv;
 });
-var Ud = g((EI, Ld) => {
-    var vv = ii(),
-        Sv = (e, t) => e.sort((r, n) => vv(n, r, t));
-    Ld.exports = Sv;
+var $d = g((vI, Ud) => {
+    var Tv = oi(),
+        Cv = (e, t) => e.sort((r, n) => Tv(n, r, t));
+    Ud.exports = Cv;
 });
-var Xr = g((yI, $d) => {
-    var Av = Pe(),
-        xv = (e, t, r) => Av(e, t, r) > 0;
-    $d.exports = xv;
-});
-var oi = g((_I, kd) => {
-    var Tv = Pe(),
-        Cv = (e, t, r) => Tv(e, t, r) < 0;
-    kd.exports = Cv;
-});
-var hs = g((vI, Md) => {
+var Xr = g((SI, kd) => {
     var bv = Pe(),
-        Ov = (e, t, r) => bv(e, t, r) === 0;
-    Md.exports = Ov;
+        Ov = (e, t, r) => bv(e, t, r) > 0;
+    kd.exports = Ov;
 });
-var ps = g((SI, Bd) => {
+var si = g((AI, Md) => {
     var Iv = Pe(),
-        Nv = (e, t, r) => Iv(e, t, r) !== 0;
-    Bd.exports = Nv;
+        Nv = (e, t, r) => Iv(e, t, r) < 0;
+    Md.exports = Nv;
 });
-var si = g((AI, Hd) => {
+var hs = g((xI, Bd) => {
     var Rv = Pe(),
-        Dv = (e, t, r) => Rv(e, t, r) >= 0;
-    Hd.exports = Dv;
+        Dv = (e, t, r) => Rv(e, t, r) === 0;
+    Bd.exports = Dv;
 });
-var ai = g((xI, jd) => {
+var ps = g((TI, Hd) => {
     var Pv = Pe(),
-        Fv = (e, t, r) => Pv(e, t, r) <= 0;
-    jd.exports = Fv;
+        Fv = (e, t, r) => Pv(e, t, r) !== 0;
+    Hd.exports = Fv;
 });
-var ms = g((TI, Wd) => {
-    var qv = hs(),
-        Lv = ps(),
-        Uv = Xr(),
-        $v = si(),
-        kv = oi(),
-        Mv = ai(),
-        Bv = (e, t, r, n) => {
+var ai = g((CI, jd) => {
+    var qv = Pe(),
+        Lv = (e, t, r) => qv(e, t, r) >= 0;
+    jd.exports = Lv;
+});
+var li = g((bI, Wd) => {
+    var Uv = Pe(),
+        $v = (e, t, r) => Uv(e, t, r) <= 0;
+    Wd.exports = $v;
+});
+var ms = g((OI, Gd) => {
+    var kv = hs(),
+        Mv = ps(),
+        Bv = Xr(),
+        Hv = ai(),
+        jv = si(),
+        Wv = li(),
+        Gv = (e, t, r, n) => {
             switch (t) {
                 case "===":
                     return typeof e == "object" && (e = e.version), typeof r == "object" && (r = r.version), e === r;
@@ -7152,35 +7144,35 @@ var ms = g((TI, Wd) => {
                 case "":
                 case "=":
                 case "==":
-                    return qv(e, r, n);
-                case "!=":
-                    return Lv(e, r, n);
-                case ">":
-                    return Uv(e, r, n);
-                case ">=":
-                    return $v(e, r, n);
-                case "<":
                     return kv(e, r, n);
-                case "<=":
+                case "!=":
                     return Mv(e, r, n);
+                case ">":
+                    return Bv(e, r, n);
+                case ">=":
+                    return Hv(e, r, n);
+                case "<":
+                    return jv(e, r, n);
+                case "<=":
+                    return Wv(e, r, n);
                 default:
                     throw new TypeError(`Invalid operator: ${t}`);
             }
         };
-    Wd.exports = Bv;
+    Gd.exports = Gv;
 });
-var Vd = g((CI, Gd) => {
-    var Hv = he(),
-        jv = bt(),
-        { safeRe: li, t: ui } = nr(),
-        Wv = (e, t) => {
-            if (e instanceof Hv) return e;
+var Yd = g((II, Vd) => {
+    var Vv = he(),
+        Yv = bt(),
+        { safeRe: ui, t: ci } = nr(),
+        zv = (e, t) => {
+            if (e instanceof Vv) return e;
             if ((typeof e == "number" && (e = String(e)), typeof e != "string")) return null;
             t = t || {};
             let r = null;
-            if (!t.rtl) r = e.match(t.includePrerelease ? li[ui.COERCEFULL] : li[ui.COERCE]);
+            if (!t.rtl) r = e.match(t.includePrerelease ? ui[ci.COERCEFULL] : ui[ci.COERCE]);
             else {
-                let l = t.includePrerelease ? li[ui.COERCERTLFULL] : li[ui.COERCERTL],
+                let l = t.includePrerelease ? ui[ci.COERCERTLFULL] : ui[ci.COERCERTL],
                     h;
                 for (; (h = l.exec(e)) && (!r || r.index + r[0].length !== e.length); )
                     (!r || h.index + h[0].length !== r.index + r[0].length) && (r = h),
@@ -7193,11 +7185,11 @@ var Vd = g((CI, Gd) => {
                 o = r[4] || "0",
                 s = t.includePrerelease && r[5] ? `-${r[5]}` : "",
                 a = t.includePrerelease && r[6] ? `+${r[6]}` : "";
-            return jv(`${n}.${i}.${o}${s}${a}`, t);
+            return Yv(`${n}.${i}.${o}${s}${a}`, t);
         };
-    Gd.exports = Wv;
+    Vd.exports = zv;
 });
-var zd = g((bI, Yd) => {
+var Xd = g((NI, zd) => {
     var gs = class {
         constructor() {
             (this.max = 1e3), (this.map = new Map());
@@ -7220,20 +7212,20 @@ var zd = g((bI, Yd) => {
             return this;
         }
     };
-    Yd.exports = gs;
+    zd.exports = gs;
 });
-var Fe = g((OI, Qd) => {
-    var Gv = /\s+/g,
+var Fe = g((RI, Zd) => {
+    var Xv = /\s+/g,
         ws = class e {
             constructor(t, r) {
-                if (((r = Yv(r)), t instanceof e))
+                if (((r = Jv(r)), t instanceof e))
                     return t.loose === !!r.loose && t.includePrerelease === !!r.includePrerelease ? t : new e(t.raw, r);
                 if (t instanceof Es) return (this.raw = t.value), (this.set = [[t]]), (this.formatted = void 0), this;
                 if (
                     ((this.options = r),
                     (this.loose = !!r.loose),
                     (this.includePrerelease = !!r.includePrerelease),
-                    (this.raw = t.trim().replace(Gv, " ")),
+                    (this.raw = t.trim().replace(Xv, " ")),
                     (this.set = this.raw
                         .split("||")
                         .map(n => this.parseRange(n.trim()))
@@ -7243,10 +7235,10 @@ var Fe = g((OI, Qd) => {
                     throw new TypeError(`Invalid SemVer Range: ${this.raw}`);
                 if (this.set.length > 1) {
                     let n = this.set[0];
-                    if (((this.set = this.set.filter(i => !Kd(i[0]))), this.set.length === 0)) this.set = [n];
+                    if (((this.set = this.set.filter(i => !Jd(i[0]))), this.set.length === 0)) this.set = [n];
                     else if (this.set.length > 1) {
                         for (let i of this.set)
-                            if (i.length === 1 && eS(i[0])) {
+                            if (i.length === 1 && iS(i[0])) {
                                 this.set = [i];
                                 break;
                             }
@@ -7273,94 +7265,94 @@ var Fe = g((OI, Qd) => {
                 return this.range;
             }
             parseRange(t) {
-                let n = ((this.options.includePrerelease && Qv) | (this.options.loose && Zv)) + ":" + t,
-                    i = Xd.get(n);
+                let n = ((this.options.includePrerelease && rS) | (this.options.loose && nS)) + ":" + t,
+                    i = Kd.get(n);
                 if (i) return i;
                 let o = this.options.loose,
-                    s = o ? Oe[_e.HYPHENRANGELOOSE] : Oe[_e.HYPHENRANGE];
-                (t = t.replace(s, cS(this.options.includePrerelease))),
+                    s = o ? Ne[_e.HYPHENRANGELOOSE] : Ne[_e.HYPHENRANGE];
+                (t = t.replace(s, pS(this.options.includePrerelease))),
                     Y("hyphen replace", t),
-                    (t = t.replace(Oe[_e.COMPARATORTRIM], Xv)),
+                    (t = t.replace(Ne[_e.COMPARATORTRIM], Zv)),
                     Y("comparator trim", t),
-                    (t = t.replace(Oe[_e.TILDETRIM], Kv)),
+                    (t = t.replace(Ne[_e.TILDETRIM], eS)),
                     Y("tilde trim", t),
-                    (t = t.replace(Oe[_e.CARETTRIM], Jv)),
+                    (t = t.replace(Ne[_e.CARETTRIM], tS)),
                     Y("caret trim", t);
                 let a = t
                     .split(" ")
-                    .map(d => tS(d, this.options))
+                    .map(f => oS(f, this.options))
                     .join(" ")
                     .split(/\s+/)
-                    .map(d => uS(d, this.options));
-                o && (a = a.filter(d => (Y("loose invalid filter", d, this.options), !!d.match(Oe[_e.COMPARATORLOOSE])))),
+                    .map(f => hS(f, this.options));
+                o && (a = a.filter(f => (Y("loose invalid filter", f, this.options), !!f.match(Ne[_e.COMPARATORLOOSE])))),
                     Y("range list", a);
                 let l = new Map(),
-                    h = a.map(d => new Es(d, this.options));
-                for (let d of h) {
-                    if (Kd(d)) return [d];
-                    l.set(d.value, d);
+                    h = a.map(f => new Es(f, this.options));
+                for (let f of h) {
+                    if (Jd(f)) return [f];
+                    l.set(f.value, f);
                 }
                 l.size > 1 && l.has("") && l.delete("");
                 let c = [...l.values()];
-                return Xd.set(n, c), c;
+                return Kd.set(n, c), c;
             }
             intersects(t, r) {
                 if (!(t instanceof e)) throw new TypeError("a Range is required");
                 return this.set.some(
-                    n => Jd(n, r) && t.set.some(i => Jd(i, r) && n.every(o => i.every(s => o.intersects(s, r))))
+                    n => Qd(n, r) && t.set.some(i => Qd(i, r) && n.every(o => i.every(s => o.intersects(s, r))))
                 );
             }
             test(t) {
                 if (!t) return !1;
                 if (typeof t == "string")
                     try {
-                        t = new zv(t, this.options);
+                        t = new Qv(t, this.options);
                     } catch {
                         return !1;
                     }
-                for (let r = 0; r < this.set.length; r++) if (fS(this.set[r], t, this.options)) return !0;
+                for (let r = 0; r < this.set.length; r++) if (mS(this.set[r], t, this.options)) return !0;
                 return !1;
             }
         };
-    Qd.exports = ws;
-    var Vv = zd(),
-        Xd = new Vv(),
-        Yv = ti(),
+    Zd.exports = ws;
+    var Kv = Xd(),
+        Kd = new Kv(),
+        Jv = ri(),
         Es = Kr(),
         Y = zr(),
-        zv = he(),
-        { safeRe: Oe, t: _e, comparatorTrimReplace: Xv, tildeTrimReplace: Kv, caretTrimReplace: Jv } = nr(),
-        { FLAG_INCLUDE_PRERELEASE: Qv, FLAG_LOOSE: Zv } = Yr(),
-        Kd = e => e.value === "<0.0.0-0",
-        eS = e => e.value === "",
-        Jd = (e, t) => {
+        Qv = he(),
+        { safeRe: Ne, t: _e, comparatorTrimReplace: Zv, tildeTrimReplace: eS, caretTrimReplace: tS } = nr(),
+        { FLAG_INCLUDE_PRERELEASE: rS, FLAG_LOOSE: nS } = Yr(),
+        Jd = e => e.value === "<0.0.0-0",
+        iS = e => e.value === "",
+        Qd = (e, t) => {
             let r = !0,
                 n = e.slice(),
                 i = n.pop();
             for (; r && n.length; ) (r = n.every(o => i.intersects(o, t))), (i = n.pop());
             return r;
         },
-        tS = (e, t) => (
+        oS = (e, t) => (
             Y("comp", e, t),
-            (e = iS(e, t)),
-            Y("caret", e),
-            (e = rS(e, t)),
-            Y("tildes", e),
-            (e = sS(e, t)),
-            Y("xrange", e),
             (e = lS(e, t)),
+            Y("caret", e),
+            (e = sS(e, t)),
+            Y("tildes", e),
+            (e = cS(e, t)),
+            Y("xrange", e),
+            (e = dS(e, t)),
             Y("stars", e),
             e
         ),
         ve = e => !e || e.toLowerCase() === "x" || e === "*",
-        rS = (e, t) =>
+        sS = (e, t) =>
             e
                 .trim()
                 .split(/\s+/)
-                .map(r => nS(r, t))
+                .map(r => aS(r, t))
                 .join(" "),
-        nS = (e, t) => {
-            let r = t.loose ? Oe[_e.TILDELOOSE] : Oe[_e.TILDE];
+        aS = (e, t) => {
+            let r = t.loose ? Ne[_e.TILDELOOSE] : Ne[_e.TILDE];
             return e.replace(r, (n, i, o, s, a) => {
                 Y("tilde", e, n, i, o, s, a);
                 let l;
@@ -7379,15 +7371,15 @@ var Fe = g((OI, Qd) => {
                 );
             });
         },
-        iS = (e, t) =>
+        lS = (e, t) =>
             e
                 .trim()
                 .split(/\s+/)
-                .map(r => oS(r, t))
+                .map(r => uS(r, t))
                 .join(" "),
-        oS = (e, t) => {
+        uS = (e, t) => {
             Y("caret", e, t);
-            let r = t.loose ? Oe[_e.CARETLOOSE] : Oe[_e.CARET],
+            let r = t.loose ? Ne[_e.CARETLOOSE] : Ne[_e.CARET],
                 n = t.includePrerelease ? "-0" : "";
             return e.replace(r, (i, o, s, a, l) => {
                 Y("caret", e, i, o, s, a, l);
@@ -7419,22 +7411,22 @@ var Fe = g((OI, Qd) => {
                 );
             });
         },
-        sS = (e, t) => (
+        cS = (e, t) => (
             Y("replaceXRanges", e, t),
             e
                 .split(/\s+/)
-                .map(r => aS(r, t))
+                .map(r => fS(r, t))
                 .join(" ")
         ),
-        aS = (e, t) => {
+        fS = (e, t) => {
             e = e.trim();
-            let r = t.loose ? Oe[_e.XRANGELOOSE] : Oe[_e.XRANGE];
+            let r = t.loose ? Ne[_e.XRANGELOOSE] : Ne[_e.XRANGE];
             return e.replace(r, (n, i, o, s, a, l) => {
                 Y("xRange", e, n, i, o, s, a, l);
                 let h = ve(o),
                     c = h || ve(s),
-                    d = c || ve(a),
-                    m = d;
+                    f = c || ve(a),
+                    m = f;
                 return (
                     i === "=" && m && (i = ""),
                     (l = t.includePrerelease ? "-0" : ""),
@@ -7452,15 +7444,15 @@ var Fe = g((OI, Qd) => {
                           (n = `${i + o}.${s}.${a}${l}`))
                         : c
                         ? (n = `>=${o}.0.0${l} <${+o + 1}.0.0-0`)
-                        : d && (n = `>=${o}.${s}.0${l} <${o}.${+s + 1}.0-0`),
+                        : f && (n = `>=${o}.${s}.0${l} <${o}.${+s + 1}.0-0`),
                     Y("xRange return", n),
                     n
                 );
             });
         },
-        lS = (e, t) => (Y("replaceStars", e, t), e.trim().replace(Oe[_e.STAR], "")),
-        uS = (e, t) => (Y("replaceGTE0", e, t), e.trim().replace(Oe[t.includePrerelease ? _e.GTE0PRE : _e.GTE0], "")),
-        cS = e => (t, r, n, i, o, s, a, l, h, c, d, m) => (
+        dS = (e, t) => (Y("replaceStars", e, t), e.trim().replace(Ne[_e.STAR], "")),
+        hS = (e, t) => (Y("replaceGTE0", e, t), e.trim().replace(Ne[t.includePrerelease ? _e.GTE0PRE : _e.GTE0], "")),
+        pS = e => (t, r, n, i, o, s, a, l, h, c, f, m) => (
             ve(n)
                 ? (r = "")
                 : ve(i)
@@ -7474,16 +7466,16 @@ var Fe = g((OI, Qd) => {
                 ? (l = "")
                 : ve(c)
                 ? (l = `<${+h + 1}.0.0-0`)
-                : ve(d)
+                : ve(f)
                 ? (l = `<${h}.${+c + 1}.0-0`)
                 : m
-                ? (l = `<=${h}.${c}.${d}-${m}`)
+                ? (l = `<=${h}.${c}.${f}-${m}`)
                 : e
-                ? (l = `<${h}.${c}.${+d + 1}-0`)
+                ? (l = `<${h}.${c}.${+f + 1}-0`)
                 : (l = `<=${l}`),
             `${r} ${l}`.trim()
         ),
-        fS = (e, t, r) => {
+        mS = (e, t, r) => {
             for (let n = 0; n < e.length; n++) if (!e[n].test(t)) return !1;
             if (t.prerelease.length && !r.includePrerelease) {
                 for (let n = 0; n < e.length; n++)
@@ -7496,14 +7488,14 @@ var Fe = g((OI, Qd) => {
             return !0;
         };
 });
-var Kr = g((II, ih) => {
+var Kr = g((DI, oh) => {
     var Jr = Symbol("SemVer ANY"),
         vs = class e {
             static get ANY() {
                 return Jr;
             }
             constructor(t, r) {
-                if (((r = Zd(r)), t instanceof e)) {
+                if (((r = eh(r)), t instanceof e)) {
                     if (t.loose === !!r.loose) return t;
                     t = t.value;
                 }
@@ -7516,12 +7508,12 @@ var Kr = g((II, ih) => {
                     _s("comp", this);
             }
             parse(t) {
-                let r = this.options.loose ? eh[th.COMPARATORLOOSE] : eh[th.COMPARATOR],
+                let r = this.options.loose ? th[rh.COMPARATORLOOSE] : th[rh.COMPARATOR],
                     n = t.match(r);
                 if (!n) throw new TypeError(`Invalid comparator: ${t}`);
                 (this.operator = n[1] !== void 0 ? n[1] : ""),
                     this.operator === "=" && (this.operator = ""),
-                    n[2] ? (this.semver = new rh(n[2], this.options.loose)) : (this.semver = Jr);
+                    n[2] ? (this.semver = new nh(n[2], this.options.loose)) : (this.semver = Jr);
             }
             toString() {
                 return this.value;
@@ -7530,7 +7522,7 @@ var Kr = g((II, ih) => {
                 if ((_s("Comparator.test", t, this.options.loose), this.semver === Jr || t === Jr)) return !0;
                 if (typeof t == "string")
                     try {
-                        t = new rh(t, this.options);
+                        t = new nh(t, this.options);
                     } catch {
                         return !1;
                     }
@@ -7541,12 +7533,12 @@ var Kr = g((II, ih) => {
                 return this.operator === ""
                     ? this.value === ""
                         ? !0
-                        : new nh(t.value, r).test(this.value)
+                        : new ih(t.value, r).test(this.value)
                     : t.operator === ""
                     ? t.value === ""
                         ? !0
-                        : new nh(this.value, r).test(t.semver)
-                    : ((r = Zd(r)),
+                        : new ih(this.value, r).test(t.semver)
+                    : ((r = eh(r)),
                       (r.includePrerelease && (this.value === "<0.0.0-0" || t.value === "<0.0.0-0")) ||
                       (!r.includePrerelease && (this.value.startsWith("<0.0.0") || t.value.startsWith("<0.0.0")))
                           ? !1
@@ -7563,86 +7555,86 @@ var Kr = g((II, ih) => {
                             ));
             }
         };
-    ih.exports = vs;
-    var Zd = ti(),
-        { safeRe: eh, t: th } = nr(),
+    oh.exports = vs;
+    var eh = ri(),
+        { safeRe: th, t: rh } = nr(),
         ys = ms(),
         _s = zr(),
-        rh = he(),
-        nh = Fe();
+        nh = he(),
+        ih = Fe();
 });
-var Qr = g((NI, oh) => {
-    var dS = Fe(),
-        hS = (e, t, r) => {
+var Qr = g((PI, sh) => {
+    var gS = Fe(),
+        wS = (e, t, r) => {
             try {
-                t = new dS(t, r);
+                t = new gS(t, r);
             } catch {
                 return !1;
             }
             return t.test(e);
         };
-    oh.exports = hS;
+    sh.exports = wS;
 });
-var ah = g((RI, sh) => {
-    var pS = Fe(),
-        mS = (e, t) =>
-            new pS(e, t).set.map(r =>
+var lh = g((FI, ah) => {
+    var ES = Fe(),
+        yS = (e, t) =>
+            new ES(e, t).set.map(r =>
                 r
                     .map(n => n.value)
                     .join(" ")
                     .trim()
                     .split(" ")
             );
-    sh.exports = mS;
+    ah.exports = yS;
 });
-var uh = g((DI, lh) => {
-    var gS = he(),
-        wS = Fe(),
-        ES = (e, t, r) => {
+var ch = g((qI, uh) => {
+    var _S = he(),
+        vS = Fe(),
+        SS = (e, t, r) => {
             let n = null,
                 i = null,
                 o = null;
             try {
-                o = new wS(t, r);
+                o = new vS(t, r);
             } catch {
                 return null;
             }
             return (
                 e.forEach(s => {
-                    o.test(s) && (!n || i.compare(s) === -1) && ((n = s), (i = new gS(n, r)));
+                    o.test(s) && (!n || i.compare(s) === -1) && ((n = s), (i = new _S(n, r)));
                 }),
                 n
             );
         };
-    lh.exports = ES;
+    uh.exports = SS;
 });
-var fh = g((PI, ch) => {
-    var yS = he(),
-        _S = Fe(),
-        vS = (e, t, r) => {
+var dh = g((LI, fh) => {
+    var AS = he(),
+        xS = Fe(),
+        TS = (e, t, r) => {
             let n = null,
                 i = null,
                 o = null;
             try {
-                o = new _S(t, r);
+                o = new xS(t, r);
             } catch {
                 return null;
             }
             return (
                 e.forEach(s => {
-                    o.test(s) && (!n || i.compare(s) === 1) && ((n = s), (i = new yS(n, r)));
+                    o.test(s) && (!n || i.compare(s) === 1) && ((n = s), (i = new AS(n, r)));
                 }),
                 n
             );
         };
-    ch.exports = vS;
+    fh.exports = TS;
 });
-var ph = g((FI, hh) => {
+var mh = g((UI, ph) => {
     var Ss = he(),
-        SS = Fe(),
-        dh = Xr(),
-        AS = (e, t) => {
-            e = new SS(e, t);
+        CS = Fe(),
+        hh = Xr(),
+        bS = (e, t) => {
+            e = new CS(e, t);
             let r = new Ss("0.0.0");
             if (e.test(r) || ((r = new Ss("0.0.0-0")), e.test(r))) return r;
             r = null;
@@ -7656,7 +7648,7 @@ var ph = g((FI, hh) => {
                             a.prerelease.length === 0 ? a.patch++ : a.prerelease.push(0), (a.raw = a.format());
                         case "":
                         case ">=":
-                            (!o || dh(a, o)) && (o = a);
+                            (!o || hh(a, o)) && (o = a);
                             break;
                         case "<":
                         case "<=":
@@ -7665,147 +7657,147 @@ var ph = g((FI, hh) => {
                             throw new Error(`Unexpected operation: ${s.operator}`);
                     }
                 }),
-                    o && (!r || dh(r, o)) && (r = o);
+                    o && (!r || hh(r, o)) && (r = o);
             }
             return r && e.test(r) ? r : null;
         };
-    hh.exports = AS;
+    ph.exports = bS;
 });
-var gh = g((qI, mh) => {
-    var xS = Fe(),
-        TS = (e, t) => {
+var wh = g(($I, gh) => {
+    var OS = Fe(),
+        IS = (e, t) => {
             try {
-                return new xS(e, t).range || "*";
+                return new OS(e, t).range || "*";
             } catch {
                 return null;
             }
         };
-    mh.exports = TS;
+    gh.exports = IS;
 });
-var ci = g((LI, _h) => {
-    var CS = he(),
-        yh = Kr(),
-        { ANY: bS } = yh,
-        OS = Fe(),
-        IS = Qr(),
-        wh = Xr(),
-        Eh = oi(),
-        NS = ai(),
-        RS = si(),
-        DS = (e, t, r, n) => {
-            (e = new CS(e, n)), (t = new OS(t, n));
+var fi = g((kI, vh) => {
+    var NS = he(),
+        _h = Kr(),
+        { ANY: RS } = _h,
+        DS = Fe(),
+        PS = Qr(),
+        Eh = Xr(),
+        yh = si(),
+        FS = li(),
+        qS = ai(),
+        LS = (e, t, r, n) => {
+            (e = new NS(e, n)), (t = new DS(t, n));
             let i, o, s, a, l;
             switch (r) {
                 case ">":
-                    (i = wh), (o = NS), (s = Eh), (a = ">"), (l = ">=");
+                    (i = Eh), (o = FS), (s = yh), (a = ">"), (l = ">=");
                     break;
                 case "<":
-                    (i = Eh), (o = RS), (s = wh), (a = "<"), (l = "<=");
+                    (i = yh), (o = qS), (s = Eh), (a = "<"), (l = "<=");
                     break;
                 default:
                     throw new TypeError('Must provide a hilo val of "<" or ">"');
             }
-            if (IS(e, t, n)) return !1;
+            if (PS(e, t, n)) return !1;
             for (let h = 0; h < t.set.length; ++h) {
                 let c = t.set[h],
-                    d = null,
+                    f = null,
                     m = null;
                 if (
                     (c.forEach(p => {
-                        p.semver === bS && (p = new yh(">=0.0.0")),
-                            (d = d || p),
+                        p.semver === RS && (p = new _h(">=0.0.0")),
+                            (f = f || p),
                             (m = m || p),
-                            i(p.semver, d.semver, n) ? (d = p) : s(p.semver, m.semver, n) && (m = p);
+                            i(p.semver, f.semver, n) ? (f = p) : s(p.semver, m.semver, n) && (m = p);
                     }),
-                    d.operator === a || d.operator === l || ((!m.operator || m.operator === a) && o(e, m.semver)))
+                    f.operator === a || f.operator === l || ((!m.operator || m.operator === a) && o(e, m.semver)))
                 )
                     return !1;
                 if (m.operator === l && s(e, m.semver)) return !1;
             }
             return !0;
         };
-    _h.exports = DS;
+    vh.exports = LS;
 });
-var Sh = g((UI, vh) => {
-    var PS = ci(),
-        FS = (e, t, r) => PS(e, t, ">", r);
-    vh.exports = FS;
+var Ah = g((MI, Sh) => {
+    var US = fi(),
+        $S = (e, t, r) => US(e, t, ">", r);
+    Sh.exports = $S;
 });
-var xh = g(($I, Ah) => {
-    var qS = ci(),
-        LS = (e, t, r) => qS(e, t, "<", r);
-    Ah.exports = LS;
+var Th = g((BI, xh) => {
+    var kS = fi(),
+        MS = (e, t, r) => kS(e, t, "<", r);
+    xh.exports = MS;
 });
-var bh = g((kI, Ch) => {
-    var Th = Fe(),
-        US = (e, t, r) => ((e = new Th(e, r)), (t = new Th(t, r)), e.intersects(t, r));
-    Ch.exports = US;
+var Oh = g((HI, bh) => {
+    var Ch = Fe(),
+        BS = (e, t, r) => ((e = new Ch(e, r)), (t = new Ch(t, r)), e.intersects(t, r));
+    bh.exports = BS;
 });
-var Ih = g((MI, Oh) => {
-    var $S = Qr(),
-        kS = Pe();
-    Oh.exports = (e, t, r) => {
+var Nh = g((jI, Ih) => {
+    var HS = Qr(),
+        jS = Pe();
+    Ih.exports = (e, t, r) => {
         let n = [],
             i = null,
             o = null,
-            s = e.sort((c, d) => kS(c, d, r));
-        for (let c of s) $S(c, t, r) ? ((o = c), i || (i = c)) : (o && n.push([i, o]), (o = null), (i = null));
+            s = e.sort((c, f) => jS(c, f, r));
+        for (let c of s) HS(c, t, r) ? ((o = c), i || (i = c)) : (o && n.push([i, o]), (o = null), (i = null));
         i && n.push([i, null]);
         let a = [];
-        for (let [c, d] of n)
-            c === d
+        for (let [c, f] of n)
+            c === f
                 ? a.push(c)
-                : !d && c === s[0]
+                : !f && c === s[0]
                 ? a.push("*")
-                : d
+                : f
                 ? c === s[0]
-                    ? a.push(`<=${d}`)
-                    : a.push(`${c} - ${d}`)
+                    ? a.push(`<=${f}`)
+                    : a.push(`${c} - ${f}`)
                 : a.push(`>=${c}`);
         let l = a.join(" || "),
             h = typeof t.raw == "string" ? t.raw : String(t);
         return l.length < h.length ? l : t;
     };
 });
-var qh = g((BI, Fh) => {
-    var Nh = Fe(),
+var Lh = g((WI, qh) => {
+    var Rh = Fe(),
         xs = Kr(),
         { ANY: As } = xs,
         Zr = Qr(),
         Ts = Pe(),
-        MS = (e, t, r = {}) => {
+        WS = (e, t, r = {}) => {
             if (e === t) return !0;
-            (e = new Nh(e, r)), (t = new Nh(t, r));
+            (e = new Rh(e, r)), (t = new Rh(t, r));
             let n = !1;
             e: for (let i of e.set) {
                 for (let o of t.set) {
-                    let s = HS(i, o, r);
+                    let s = VS(i, o, r);
                     if (((n = n || s !== null), s)) continue e;
                 }
                 if (n) return !1;
             }
             return !0;
         },
-        BS = [new xs(">=0.0.0-0")],
-        Rh = [new xs(">=0.0.0")],
-        HS = (e, t, r) => {
+        GS = [new xs(">=0.0.0-0")],
+        Dh = [new xs(">=0.0.0")],
+        VS = (e, t, r) => {
             if (e === t) return !0;
             if (e.length === 1 && e[0].semver === As) {
                 if (t.length === 1 && t[0].semver === As) return !0;
-                r.includePrerelease ? (e = BS) : (e = Rh);
+                r.includePrerelease ? (e = GS) : (e = Dh);
             }
             if (t.length === 1 && t[0].semver === As) {
                 if (r.includePrerelease) return !0;
-                t = Rh;
+                t = Dh;
             }
             let n = new Set(),
                 i,
                 o;
             for (let p of e)
                 p.operator === ">" || p.operator === ">="
-                    ? (i = Dh(i, p, r))
+                    ? (i = Ph(i, p, r))
                     : p.operator === "<" || p.operator === "<="
-                    ? (o = Ph(o, p, r))
+                    ? (o = Fh(o, p, r))
                     : n.add(p.semver);
             if (n.size > 1) return null;
             let s;
@@ -7822,9 +7814,9 @@ var qh = g((BI, Fh) => {
                 l,
                 h,
                 c,
-                d = o && !r.includePrerelease && o.semver.prerelease.length ? o.semver : !1,
+                f = o && !r.includePrerelease && o.semver.prerelease.length ? o.semver : !1,
                 m = i && !r.includePrerelease && i.semver.prerelease.length ? i.semver : !1;
-            d && d.prerelease.length === 1 && o.operator === "<" && d.prerelease[0] === 0 && (d = !1);
+            f && f.prerelease.length === 1 && o.operator === "<" && f.prerelease[0] === 0 && (f = !1);
             for (let p of t) {
                 if (
                     ((c = c || p.operator === ">" || p.operator === ">="),
@@ -7841,216 +7833,216 @@ var qh = g((BI, Fh) => {
                             (m = !1),
                         p.operator === ">" || p.operator === ">=")
                     ) {
-                        if (((a = Dh(i, p, r)), a === p && a !== i)) return !1;
+                        if (((a = Ph(i, p, r)), a === p && a !== i)) return !1;
                     } else if (i.operator === ">=" && !Zr(i.semver, String(p), r)) return !1;
                 }
                 if (o) {
                     if (
-                        (d &&
+                        (f &&
                             p.semver.prerelease &&
                             p.semver.prerelease.length &&
-                            p.semver.major === d.major &&
-                            p.semver.minor === d.minor &&
-                            p.semver.patch === d.patch &&
-                            (d = !1),
+                            p.semver.major === f.major &&
+                            p.semver.minor === f.minor &&
+                            p.semver.patch === f.patch &&
+                            (f = !1),
                         p.operator === "<" || p.operator === "<=")
                     ) {
-                        if (((l = Ph(o, p, r)), l === p && l !== o)) return !1;
+                        if (((l = Fh(o, p, r)), l === p && l !== o)) return !1;
                     } else if (o.operator === "<=" && !Zr(o.semver, String(p), r)) return !1;
                 }
                 if (!p.operator && (o || i) && s !== 0) return !1;
             }
-            return !((i && h && !o && s !== 0) || (o && c && !i && s !== 0) || m || d);
-        },
-        Dh = (e, t, r) => {
-            if (!e) return t;
-            let n = Ts(e.semver, t.semver, r);
-            return n > 0 ? e : n < 0 || (t.operator === ">" && e.operator === ">=") ? t : e;
+            return !((i && h && !o && s !== 0) || (o && c && !i && s !== 0) || m || f);
         },
         Ph = (e, t, r) => {
             if (!e) return t;
             let n = Ts(e.semver, t.semver, r);
+            return n > 0 ? e : n < 0 || (t.operator === ">" && e.operator === ">=") ? t : e;
+        },
+        Fh = (e, t, r) => {
+            if (!e) return t;
+            let n = Ts(e.semver, t.semver, r);
             return n < 0 ? e : n > 0 || (t.operator === "<" && e.operator === "<=") ? t : e;
         };
-    Fh.exports = MS;
+    qh.exports = WS;
 });
-var bs = g((HI, $h) => {
+var bs = g((GI, kh) => {
     var Cs = nr(),
-        Lh = Yr(),
-        jS = he(),
-        Uh = fs(),
-        WS = bt(),
-        GS = ud(),
-        VS = fd(),
-        YS = pd(),
-        zS = wd(),
-        XS = yd(),
-        KS = vd(),
-        JS = Ad(),
-        QS = Td(),
-        ZS = Pe(),
-        eA = Id(),
-        tA = Rd(),
-        rA = ii(),
-        nA = qd(),
-        iA = Ud(),
-        oA = Xr(),
+        Uh = Yr(),
+        YS = he(),
+        $h = fs(),
+        zS = bt(),
+        XS = cd(),
+        KS = dd(),
+        JS = md(),
+        QS = Ed(),
+        ZS = _d(),
+        eA = Sd(),
+        tA = xd(),
+        rA = Cd(),
+        nA = Pe(),
+        iA = Nd(),
+        oA = Dd(),
         sA = oi(),
-        aA = hs(),
-        lA = ps(),
-        uA = si(),
-        cA = ai(),
-        fA = ms(),
-        dA = Vd(),
-        hA = Kr(),
-        pA = Fe(),
-        mA = Qr(),
-        gA = ah(),
-        wA = uh(),
-        EA = fh(),
-        yA = ph(),
-        _A = gh(),
-        vA = ci(),
-        SA = Sh(),
-        AA = xh(),
-        xA = bh(),
-        TA = Ih(),
-        CA = qh();
-    $h.exports = {
-        parse: WS,
-        valid: GS,
-        clean: VS,
-        inc: YS,
-        diff: zS,
-        major: XS,
-        minor: KS,
-        patch: JS,
-        prerelease: QS,
-        compare: ZS,
-        rcompare: eA,
-        compareLoose: tA,
-        compareBuild: rA,
-        sort: nA,
-        rsort: iA,
-        gt: oA,
-        lt: sA,
-        eq: aA,
-        neq: lA,
-        gte: uA,
-        lte: cA,
-        cmp: fA,
-        coerce: dA,
-        Comparator: hA,
-        Range: pA,
-        satisfies: mA,
-        toComparators: gA,
-        maxSatisfying: wA,
-        minSatisfying: EA,
-        minVersion: yA,
-        validRange: _A,
-        outside: vA,
-        gtr: SA,
-        ltr: AA,
-        intersects: xA,
-        simplifyRange: TA,
-        subset: CA,
-        SemVer: jS,
+        aA = Ld(),
+        lA = $d(),
+        uA = Xr(),
+        cA = si(),
+        fA = hs(),
+        dA = ps(),
+        hA = ai(),
+        pA = li(),
+        mA = ms(),
+        gA = Yd(),
+        wA = Kr(),
+        EA = Fe(),
+        yA = Qr(),
+        _A = lh(),
+        vA = ch(),
+        SA = dh(),
+        AA = mh(),
+        xA = wh(),
+        TA = fi(),
+        CA = Ah(),
+        bA = Th(),
+        OA = Oh(),
+        IA = Nh(),
+        NA = Lh();
+    kh.exports = {
+        parse: zS,
+        valid: XS,
+        clean: KS,
+        inc: JS,
+        diff: QS,
+        major: ZS,
+        minor: eA,
+        patch: tA,
+        prerelease: rA,
+        compare: nA,
+        rcompare: iA,
+        compareLoose: oA,
+        compareBuild: sA,
+        sort: aA,
+        rsort: lA,
+        gt: uA,
+        lt: cA,
+        eq: fA,
+        neq: dA,
+        gte: hA,
+        lte: pA,
+        cmp: mA,
+        coerce: gA,
+        Comparator: wA,
+        Range: EA,
+        satisfies: yA,
+        toComparators: _A,
+        maxSatisfying: vA,
+        minSatisfying: SA,
+        minVersion: AA,
+        validRange: xA,
+        outside: TA,
+        gtr: CA,
+        ltr: bA,
+        intersects: OA,
+        simplifyRange: IA,
+        subset: NA,
+        SemVer: YS,
         re: Cs.re,
         src: Cs.src,
         tokens: Cs.t,
-        SEMVER_SPEC_VERSION: Lh.SEMVER_SPEC_VERSION,
-        RELEASE_TYPES: Lh.RELEASE_TYPES,
-        compareIdentifiers: Uh.compareIdentifiers,
-        rcompareIdentifiers: Uh.rcompareIdentifiers
+        SEMVER_SPEC_VERSION: Uh.SEMVER_SPEC_VERSION,
+        RELEASE_TYPES: Uh.RELEASE_TYPES,
+        compareIdentifiers: $h.compareIdentifiers,
+        rcompareIdentifiers: $h.rcompareIdentifiers
     };
 });
-var yp = g((en, sr) => {
-    var bA = 200,
+var _p = g((en, sr) => {
+    var RA = 200,
         $s = "__lodash_hash_undefined__",
-        Ei = 1,
-        Kh = 2,
-        Jh = 9007199254740991,
-        fi = "[object Arguments]",
+        yi = 1,
+        Jh = 2,
+        Qh = 9007199254740991,
+        di = "[object Arguments]",
         Rs = "[object Array]",
-        OA = "[object AsyncFunction]",
-        Qh = "[object Boolean]",
-        Zh = "[object Date]",
-        ep = "[object Error]",
-        tp = "[object Function]",
-        IA = "[object GeneratorFunction]",
-        di = "[object Map]",
-        rp = "[object Number]",
-        NA = "[object Null]",
+        DA = "[object AsyncFunction]",
+        Zh = "[object Boolean]",
+        ep = "[object Date]",
+        tp = "[object Error]",
+        rp = "[object Function]",
+        PA = "[object GeneratorFunction]",
+        hi = "[object Map]",
+        np = "[object Number]",
+        FA = "[object Null]",
         or = "[object Object]",
-        kh = "[object Promise]",
-        RA = "[object Proxy]",
-        np = "[object RegExp]",
-        hi = "[object Set]",
-        ip = "[object String]",
-        DA = "[object Symbol]",
-        PA = "[object Undefined]",
+        Mh = "[object Promise]",
+        qA = "[object Proxy]",
+        ip = "[object RegExp]",
+        pi = "[object Set]",
+        op = "[object String]",
+        LA = "[object Symbol]",
+        UA = "[object Undefined]",
         Ds = "[object WeakMap]",
-        op = "[object ArrayBuffer]",
-        pi = "[object DataView]",
-        FA = "[object Float32Array]",
-        qA = "[object Float64Array]",
-        LA = "[object Int8Array]",
-        UA = "[object Int16Array]",
-        $A = "[object Int32Array]",
-        kA = "[object Uint8Array]",
-        MA = "[object Uint8ClampedArray]",
-        BA = "[object Uint16Array]",
-        HA = "[object Uint32Array]",
-        jA = /[\\^$.*+?()[\]{}|]/g,
-        WA = /^\[object .+?Constructor\]$/,
-        GA = /^(?:0|[1-9]\d*)$/,
+        sp = "[object ArrayBuffer]",
+        mi = "[object DataView]",
+        $A = "[object Float32Array]",
+        kA = "[object Float64Array]",
+        MA = "[object Int8Array]",
+        BA = "[object Int16Array]",
+        HA = "[object Int32Array]",
+        jA = "[object Uint8Array]",
+        WA = "[object Uint8ClampedArray]",
+        GA = "[object Uint16Array]",
+        VA = "[object Uint32Array]",
+        YA = /[\\^$.*+?()[\]{}|]/g,
+        zA = /^\[object .+?Constructor\]$/,
+        XA = /^(?:0|[1-9]\d*)$/,
         z = {};
-    z[FA] = z[qA] = z[LA] = z[UA] = z[$A] = z[kA] = z[MA] = z[BA] = z[HA] = !0;
-    z[fi] = z[Rs] = z[op] = z[Qh] = z[pi] = z[Zh] = z[ep] = z[tp] = z[di] = z[rp] = z[or] = z[np] = z[hi] = z[ip] = z[Ds] = !1;
-    var sp = typeof global == "object" && global && global.Object === Object && global,
-        VA = typeof self == "object" && self && self.Object === Object && self,
-        Xe = sp || VA || Function("return this")(),
-        ap = typeof en == "object" && en && !en.nodeType && en,
-        Mh = ap && typeof sr == "object" && sr && !sr.nodeType && sr,
-        lp = Mh && Mh.exports === ap,
-        Os = lp && sp.process,
-        Bh = (function () {
+    z[$A] = z[kA] = z[MA] = z[BA] = z[HA] = z[jA] = z[WA] = z[GA] = z[VA] = !0;
+    z[di] = z[Rs] = z[sp] = z[Zh] = z[mi] = z[ep] = z[tp] = z[rp] = z[hi] = z[np] = z[or] = z[ip] = z[pi] = z[op] = z[Ds] = !1;
+    var ap = typeof global == "object" && global && global.Object === Object && global,
+        KA = typeof self == "object" && self && self.Object === Object && self,
+        Xe = ap || KA || Function("return this")(),
+        lp = typeof en == "object" && en && !en.nodeType && en,
+        Bh = lp && typeof sr == "object" && sr && !sr.nodeType && sr,
+        up = Bh && Bh.exports === lp,
+        Os = up && ap.process,
+        Hh = (function () {
             try {
                 return Os && Os.binding && Os.binding("util");
             } catch {}
         })(),
-        Hh = Bh && Bh.isTypedArray;
-    function YA(e, t) {
+        jh = Hh && Hh.isTypedArray;
+    function JA(e, t) {
         for (var r = -1, n = e == null ? 0 : e.length, i = 0, o = []; ++r < n; ) {
             var s = e[r];
             t(s, r, e) && (o[i++] = s);
         }
         return o;
     }
-    function zA(e, t) {
+    function QA(e, t) {
         for (var r = -1, n = t.length, i = e.length; ++r < n; ) e[i + r] = t[r];
         return e;
     }
-    function XA(e, t) {
+    function ZA(e, t) {
         for (var r = -1, n = e == null ? 0 : e.length; ++r < n; ) if (t(e[r], r, e)) return !0;
         return !1;
     }
-    function KA(e, t) {
+    function ex(e, t) {
         for (var r = -1, n = Array(e); ++r < e; ) n[r] = t(r);
         return n;
     }
-    function JA(e) {
+    function tx(e) {
         return function (t) {
             return e(t);
         };
     }
-    function QA(e, t) {
+    function rx(e, t) {
         return e.has(t);
     }
-    function ZA(e, t) {
+    function nx(e, t) {
         return e?.[t];
     }
-    function ex(e) {
+    function ix(e) {
         var t = -1,
             r = Array(e.size);
         return (
@@ -8060,12 +8052,12 @@ var yp = g((en, sr) => {
             r
         );
     }
-    function tx(e, t) {
+    function ox(e, t) {
         return function (r) {
             return e(t(r));
         };
     }
-    function rx(e) {
+    function sx(e) {
         var t = -1,
             r = Array(e.size);
         return (
@@ -8075,47 +8067,47 @@ var yp = g((en, sr) => {
             r
         );
     }
-    var nx = Array.prototype,
-        ix = Function.prototype,
-        yi = Object.prototype,
+    var ax = Array.prototype,
+        lx = Function.prototype,
+        _i = Object.prototype,
         Is = Xe["__core-js_shared__"],
-        up = ix.toString,
-        Be = yi.hasOwnProperty,
-        jh = (function () {
+        cp = lx.toString,
+        Be = _i.hasOwnProperty,
+        Wh = (function () {
             var e = /[^.]+$/.exec((Is && Is.keys && Is.keys.IE_PROTO) || "");
             return e ? "Symbol(src)_1." + e : "";
         })(),
-        cp = yi.toString,
-        ox = RegExp(
+        fp = _i.toString,
+        ux = RegExp(
             "^" +
-                up
+                cp
                     .call(Be)
-                    .replace(jA, "\\$&")
+                    .replace(YA, "\\$&")
                     .replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, "$1.*?") +
                 "$"
         ),
-        Wh = lp ? Xe.Buffer : void 0,
-        mi = Xe.Symbol,
-        Gh = Xe.Uint8Array,
-        fp = yi.propertyIsEnumerable,
-        sx = nx.splice,
-        Ot = mi ? mi.toStringTag : void 0,
-        Vh = Object.getOwnPropertySymbols,
-        ax = Wh ? Wh.isBuffer : void 0,
-        lx = tx(Object.keys, Object),
+        Gh = up ? Xe.Buffer : void 0,
+        gi = Xe.Symbol,
+        Vh = Xe.Uint8Array,
+        dp = _i.propertyIsEnumerable,
+        cx = ax.splice,
+        Ot = gi ? gi.toStringTag : void 0,
+        Yh = Object.getOwnPropertySymbols,
+        fx = Gh ? Gh.isBuffer : void 0,
+        dx = ox(Object.keys, Object),
         Ps = ar(Xe, "DataView"),
         tn = ar(Xe, "Map"),
         Fs = ar(Xe, "Promise"),
         qs = ar(Xe, "Set"),
         Ls = ar(Xe, "WeakMap"),
         rn = ar(Object, "create"),
-        ux = Rt(Ps),
-        cx = Rt(tn),
-        fx = Rt(Fs),
-        dx = Rt(qs),
-        hx = Rt(Ls),
-        Yh = mi ? mi.prototype : void 0,
-        Ns = Yh ? Yh.valueOf : void 0;
+        hx = Rt(Ps),
+        px = Rt(tn),
+        mx = Rt(Fs),
+        gx = Rt(qs),
+        wx = Rt(Ls),
+        zh = gi ? gi.prototype : void 0,
+        Ns = zh ? zh.valueOf : void 0;
     function It(e) {
         var t = -1,
             r = e == null ? 0 : e.length;
@@ -8124,14 +8116,14 @@ var yp = g((en, sr) => {
             this.set(n[0], n[1]);
         }
     }
-    function px() {
+    function Ex() {
         (this.__data__ = rn ? rn(null) : {}), (this.size = 0);
     }
-    function mx(e) {
+    function yx(e) {
         var t = this.has(e) && delete this.__data__[e];
         return (this.size -= t ? 1 : 0), t;
     }
-    function gx(e) {
+    function _x(e) {
         var t = this.__data__;
         if (rn) {
             var r = t[e];
@@ -8139,19 +8131,19 @@ var yp = g((en, sr) => {
         }
         return Be.call(t, e) ? t[e] : void 0;
     }
-    function wx(e) {
+    function vx(e) {
         var t = this.__data__;
         return rn ? t[e] !== void 0 : Be.call(t, e);
     }
-    function Ex(e, t) {
+    function Sx(e, t) {
         var r = this.__data__;
         return (this.size += this.has(e) ? 0 : 1), (r[e] = rn && t === void 0 ? $s : t), this;
     }
-    It.prototype.clear = px;
-    It.prototype.delete = mx;
-    It.prototype.get = gx;
-    It.prototype.has = wx;
-    It.prototype.set = Ex;
+    It.prototype.clear = Ex;
+    It.prototype.delete = yx;
+    It.prototype.get = _x;
+    It.prototype.has = vx;
+    It.prototype.set = Sx;
     function Ke(e) {
         var t = -1,
             r = e == null ? 0 : e.length;
@@ -8160,34 +8152,34 @@ var yp = g((en, sr) => {
             this.set(n[0], n[1]);
         }
     }
-    function yx() {
+    function Ax() {
         (this.__data__ = []), (this.size = 0);
     }
-    function _x(e) {
+    function xx(e) {
         var t = this.__data__,
-            r = _i(t, e);
+            r = vi(t, e);
         if (r < 0) return !1;
         var n = t.length - 1;
-        return r == n ? t.pop() : sx.call(t, r, 1), --this.size, !0;
+        return r == n ? t.pop() : cx.call(t, r, 1), --this.size, !0;
     }
-    function vx(e) {
+    function Tx(e) {
         var t = this.__data__,
-            r = _i(t, e);
+            r = vi(t, e);
         return r < 0 ? void 0 : t[r][1];
     }
-    function Sx(e) {
-        return _i(this.__data__, e) > -1;
+    function Cx(e) {
+        return vi(this.__data__, e) > -1;
     }
-    function Ax(e, t) {
+    function bx(e, t) {
         var r = this.__data__,
-            n = _i(r, e);
+            n = vi(r, e);
         return n < 0 ? (++this.size, r.push([e, t])) : (r[n][1] = t), this;
     }
-    Ke.prototype.clear = yx;
-    Ke.prototype.delete = _x;
-    Ke.prototype.get = vx;
-    Ke.prototype.has = Sx;
-    Ke.prototype.set = Ax;
+    Ke.prototype.clear = Ax;
+    Ke.prototype.delete = xx;
+    Ke.prototype.get = Tx;
+    Ke.prototype.has = Cx;
+    Ke.prototype.set = bx;
     function Nt(e) {
         var t = -1,
             r = e == null ? 0 : e.length;
@@ -8196,81 +8188,81 @@ var yp = g((en, sr) => {
             this.set(n[0], n[1]);
         }
     }
-    function xx() {
+    function Ox() {
         (this.size = 0), (this.__data__ = { hash: new It(), map: new (tn || Ke)(), string: new It() });
     }
-    function Tx(e) {
-        var t = vi(this, e).delete(e);
+    function Ix(e) {
+        var t = Si(this, e).delete(e);
         return (this.size -= t ? 1 : 0), t;
     }
-    function Cx(e) {
-        return vi(this, e).get(e);
+    function Nx(e) {
+        return Si(this, e).get(e);
     }
-    function bx(e) {
-        return vi(this, e).has(e);
+    function Rx(e) {
+        return Si(this, e).has(e);
     }
-    function Ox(e, t) {
-        var r = vi(this, e),
+    function Dx(e, t) {
+        var r = Si(this, e),
             n = r.size;
         return r.set(e, t), (this.size += r.size == n ? 0 : 1), this;
     }
-    Nt.prototype.clear = xx;
-    Nt.prototype.delete = Tx;
-    Nt.prototype.get = Cx;
-    Nt.prototype.has = bx;
-    Nt.prototype.set = Ox;
-    function gi(e) {
+    Nt.prototype.clear = Ox;
+    Nt.prototype.delete = Ix;
+    Nt.prototype.get = Nx;
+    Nt.prototype.has = Rx;
+    Nt.prototype.set = Dx;
+    function wi(e) {
         var t = -1,
             r = e == null ? 0 : e.length;
         for (this.__data__ = new Nt(); ++t < r; ) this.add(e[t]);
     }
-    function Ix(e) {
-        return this.__data__.set(e, $s), this;
-    }
-    function Nx(e) {
-        return this.__data__.has(e);
-    }
-    gi.prototype.add = gi.prototype.push = Ix;
-    gi.prototype.has = Nx;
-    function lt(e) {
-        var t = (this.__data__ = new Ke(e));
-        this.size = t.size;
-    }
-    function Rx() {
-        (this.__data__ = new Ke()), (this.size = 0);
-    }
-    function Dx(e) {
-        var t = this.__data__,
-            r = t.delete(e);
-        return (this.size = t.size), r;
-    }
     function Px(e) {
-        return this.__data__.get(e);
+        return this.__data__.set(e, $s), this;
     }
     function Fx(e) {
         return this.__data__.has(e);
     }
-    function qx(e, t) {
+    wi.prototype.add = wi.prototype.push = Px;
+    wi.prototype.has = Fx;
+    function lt(e) {
+        var t = (this.__data__ = new Ke(e));
+        this.size = t.size;
+    }
+    function qx() {
+        (this.__data__ = new Ke()), (this.size = 0);
+    }
+    function Lx(e) {
+        var t = this.__data__,
+            r = t.delete(e);
+        return (this.size = t.size), r;
+    }
+    function Ux(e) {
+        return this.__data__.get(e);
+    }
+    function $x(e) {
+        return this.__data__.has(e);
+    }
+    function kx(e, t) {
         var r = this.__data__;
         if (r instanceof Ke) {
             var n = r.__data__;
-            if (!tn || n.length < bA - 1) return n.push([e, t]), (this.size = ++r.size), this;
+            if (!tn || n.length < RA - 1) return n.push([e, t]), (this.size = ++r.size), this;
             r = this.__data__ = new Nt(n);
         }
         return r.set(e, t), (this.size = r.size), this;
     }
-    lt.prototype.clear = Rx;
-    lt.prototype.delete = Dx;
-    lt.prototype.get = Px;
-    lt.prototype.has = Fx;
-    lt.prototype.set = qx;
-    function Lx(e, t) {
-        var r = wi(e),
-            n = !r && Jx(e),
+    lt.prototype.clear = qx;
+    lt.prototype.delete = Lx;
+    lt.prototype.get = Ux;
+    lt.prototype.has = $x;
+    lt.prototype.set = kx;
+    function Mx(e, t) {
+        var r = Ei(e),
+            n = !r && tT(e),
             i = !r && !n && Us(e),
-            o = !r && !n && !i && Ep(e),
+            o = !r && !n && !i && yp(e),
             s = r || n || i || o,
-            a = s ? KA(e.length, String) : [],
+            a = s ? ex(e.length, String) : [],
             l = a.length;
         for (var h in e)
             (t || Be.call(e, h)) &&
@@ -8279,150 +8271,150 @@ var yp = g((en, sr) => {
                     (h == "length" ||
                         (i && (h == "offset" || h == "parent")) ||
                         (o && (h == "buffer" || h == "byteLength" || h == "byteOffset")) ||
-                        Vx(h, l))
+                        Kx(h, l))
                 ) &&
                 a.push(h);
         return a;
     }
-    function _i(e, t) {
-        for (var r = e.length; r--; ) if (pp(e[r][0], t)) return r;
+    function vi(e, t) {
+        for (var r = e.length; r--; ) if (mp(e[r][0], t)) return r;
         return -1;
     }
-    function Ux(e, t, r) {
+    function Bx(e, t, r) {
         var n = t(e);
-        return wi(e) ? n : zA(n, r(e));
+        return Ei(e) ? n : QA(n, r(e));
     }
     function on(e) {
-        return e == null ? (e === void 0 ? PA : NA) : Ot && Ot in Object(e) ? Wx(e) : Kx(e);
+        return e == null ? (e === void 0 ? UA : FA) : Ot && Ot in Object(e) ? zx(e) : eT(e);
     }
-    function zh(e) {
-        return nn(e) && on(e) == fi;
+    function Xh(e) {
+        return nn(e) && on(e) == di;
     }
-    function dp(e, t, r, n, i) {
-        return e === t ? !0 : e == null || t == null || (!nn(e) && !nn(t)) ? e !== e && t !== t : $x(e, t, r, n, dp, i);
+    function hp(e, t, r, n, i) {
+        return e === t ? !0 : e == null || t == null || (!nn(e) && !nn(t)) ? e !== e && t !== t : Hx(e, t, r, n, hp, i);
     }
-    function $x(e, t, r, n, i, o) {
-        var s = wi(e),
-            a = wi(t),
+    function Hx(e, t, r, n, i, o) {
+        var s = Ei(e),
+            a = Ei(t),
             l = s ? Rs : at(e),
             h = a ? Rs : at(t);
-        (l = l == fi ? or : l), (h = h == fi ? or : h);
+        (l = l == di ? or : l), (h = h == di ? or : h);
         var c = l == or,
-            d = h == or,
+            f = h == or,
             m = l == h;
         if (m && Us(e)) {
             if (!Us(t)) return !1;
             (s = !0), (c = !1);
         }
-        if (m && !c) return o || (o = new lt()), s || Ep(e) ? hp(e, t, r, n, i, o) : Hx(e, t, l, r, n, i, o);
-        if (!(r & Ei)) {
+        if (m && !c) return o || (o = new lt()), s || yp(e) ? pp(e, t, r, n, i, o) : Vx(e, t, l, r, n, i, o);
+        if (!(r & yi)) {
             var p = c && Be.call(e, "__wrapped__"),
-                y = d && Be.call(t, "__wrapped__");
+                y = f && Be.call(t, "__wrapped__");
             if (p || y) {
                 var _ = p ? e.value() : e,
                     v = y ? t.value() : t;
                 return o || (o = new lt()), i(_, v, r, n, o);
             }
         }
-        return m ? (o || (o = new lt()), jx(e, t, r, n, i, o)) : !1;
+        return m ? (o || (o = new lt()), Yx(e, t, r, n, i, o)) : !1;
     }
-    function kx(e) {
-        if (!wp(e) || zx(e)) return !1;
-        var t = mp(e) ? ox : WA;
+    function jx(e) {
+        if (!Ep(e) || Qx(e)) return !1;
+        var t = gp(e) ? ux : zA;
         return t.test(Rt(e));
     }
-    function Mx(e) {
-        return nn(e) && gp(e.length) && !!z[on(e)];
+    function Wx(e) {
+        return nn(e) && wp(e.length) && !!z[on(e)];
     }
-    function Bx(e) {
-        if (!Xx(e)) return lx(e);
+    function Gx(e) {
+        if (!Zx(e)) return dx(e);
         var t = [];
         for (var r in Object(e)) Be.call(e, r) && r != "constructor" && t.push(r);
         return t;
     }
-    function hp(e, t, r, n, i, o) {
-        var s = r & Ei,
+    function pp(e, t, r, n, i, o) {
+        var s = r & yi,
             a = e.length,
             l = t.length;
         if (a != l && !(s && l > a)) return !1;
         var h = o.get(e);
         if (h && o.get(t)) return h == t;
         var c = -1,
-            d = !0,
-            m = r & Kh ? new gi() : void 0;
+            f = !0,
+            m = r & Jh ? new wi() : void 0;
         for (o.set(e, t), o.set(t, e); ++c < a; ) {
             var p = e[c],
                 y = t[c];
             if (n) var _ = s ? n(y, p, c, t, e, o) : n(p, y, c, e, t, o);
             if (_ !== void 0) {
                 if (_) continue;
-                d = !1;
+                f = !1;
                 break;
             }
             if (m) {
                 if (
-                    !XA(t, function (v, x) {
-                        if (!QA(m, x) && (p === v || i(p, v, r, n, o))) return m.push(x);
+                    !ZA(t, function (v, x) {
+                        if (!rx(m, x) && (p === v || i(p, v, r, n, o))) return m.push(x);
                     })
                 ) {
-                    d = !1;
+                    f = !1;
                     break;
                 }
             } else if (!(p === y || i(p, y, r, n, o))) {
-                d = !1;
+                f = !1;
                 break;
             }
         }
-        return o.delete(e), o.delete(t), d;
+        return o.delete(e), o.delete(t), f;
     }
-    function Hx(e, t, r, n, i, o, s) {
+    function Vx(e, t, r, n, i, o, s) {
         switch (r) {
-            case pi:
+            case mi:
                 if (e.byteLength != t.byteLength || e.byteOffset != t.byteOffset) return !1;
                 (e = e.buffer), (t = t.buffer);
-            case op:
-                return !(e.byteLength != t.byteLength || !o(new Gh(e), new Gh(t)));
-            case Qh:
+            case sp:
+                return !(e.byteLength != t.byteLength || !o(new Vh(e), new Vh(t)));
             case Zh:
-            case rp:
-                return pp(+e, +t);
             case ep:
-                return e.name == t.name && e.message == t.message;
             case np:
+                return mp(+e, +t);
+            case tp:
+                return e.name == t.name && e.message == t.message;
             case ip:
+            case op:
                 return e == t + "";
-            case di:
-                var a = ex;
             case hi:
-                var l = n & Ei;
-                if ((a || (a = rx), e.size != t.size && !l)) return !1;
+                var a = ix;
+            case pi:
+                var l = n & yi;
+                if ((a || (a = sx), e.size != t.size && !l)) return !1;
                 var h = s.get(e);
                 if (h) return h == t;
-                (n |= Kh), s.set(e, t);
-                var c = hp(a(e), a(t), n, i, o, s);
+                (n |= Jh), s.set(e, t);
+                var c = pp(a(e), a(t), n, i, o, s);
                 return s.delete(e), c;
-            case DA:
+            case LA:
                 if (Ns) return Ns.call(e) == Ns.call(t);
         }
         return !1;
     }
-    function jx(e, t, r, n, i, o) {
-        var s = r & Ei,
-            a = Xh(e),
+    function Yx(e, t, r, n, i, o) {
+        var s = r & yi,
+            a = Kh(e),
             l = a.length,
-            h = Xh(t),
+            h = Kh(t),
             c = h.length;
         if (l != c && !s) return !1;
-        for (var d = l; d--; ) {
-            var m = a[d];
+        for (var f = l; f--; ) {
+            var m = a[f];
             if (!(s ? m in t : Be.call(t, m))) return !1;
         }
         var p = o.get(e);
         if (p && o.get(t)) return p == t;
         var y = !0;
         o.set(e, t), o.set(t, e);
-        for (var _ = s; ++d < l; ) {
-            m = a[d];
+        for (var _ = s; ++f < l; ) {
+            m = a[f];
             var v = e[m],
                 x = t[m];
             if (n) var A = s ? n(x, v, m, t, e, o) : n(v, x, m, e, t, o);
@@ -8443,42 +8435,42 @@ var yp = g((en, sr) => {
         }
         return o.delete(e), o.delete(t), y;
     }
-    function Xh(e) {
-        return Ux(e, eT, Gx);
+    function Kh(e) {
+        return Bx(e, iT, Xx);
     }
-    function vi(e, t) {
+    function Si(e, t) {
         var r = e.__data__;
-        return Yx(t) ? r[typeof t == "string" ? "string" : "hash"] : r.map;
+        return Jx(t) ? r[typeof t == "string" ? "string" : "hash"] : r.map;
     }
     function ar(e, t) {
-        var r = ZA(e, t);
-        return kx(r) ? r : void 0;
+        var r = nx(e, t);
+        return jx(r) ? r : void 0;
     }
-    function Wx(e) {
+    function zx(e) {
         var t = Be.call(e, Ot),
             r = e[Ot];
         try {
             e[Ot] = void 0;
             var n = !0;
         } catch {}
-        var i = cp.call(e);
+        var i = fp.call(e);
         return n && (t ? (e[Ot] = r) : delete e[Ot]), i;
     }
-    var Gx = Vh
+    var Xx = Yh
             ? function (e) {
                   return e == null
                       ? []
                       : ((e = Object(e)),
-                        YA(Vh(e), function (t) {
-                            return fp.call(e, t);
+                        JA(Yh(e), function (t) {
+                            return dp.call(e, t);
                         }));
               }
-            : tT,
+            : oT,
         at = on;
-    ((Ps && at(new Ps(new ArrayBuffer(1))) != pi) ||
-        (tn && at(new tn()) != di) ||
-        (Fs && at(Fs.resolve()) != kh) ||
-        (qs && at(new qs()) != hi) ||
+    ((Ps && at(new Ps(new ArrayBuffer(1))) != mi) ||
+        (tn && at(new tn()) != hi) ||
+        (Fs && at(Fs.resolve()) != Mh) ||
+        (qs && at(new qs()) != pi) ||
         (Ls && at(new Ls()) != Ds)) &&
         (at = function (e) {
             var t = on(e),
@@ -8486,41 +8478,41 @@ var yp = g((en, sr) => {
                 n = r ? Rt(r) : "";
             if (n)
                 switch (n) {
-                    case ux:
-                        return pi;
-                    case cx:
-                        return di;
-                    case fx:
-                        return kh;
-                    case dx:
-                        return hi;
                     case hx:
+                        return mi;
+                    case px:
+                        return hi;
+                    case mx:
+                        return Mh;
+                    case gx:
+                        return pi;
+                    case wx:
                         return Ds;
                 }
             return t;
         });
-    function Vx(e, t) {
-        return (t = t ?? Jh), !!t && (typeof e == "number" || GA.test(e)) && e > -1 && e % 1 == 0 && e < t;
+    function Kx(e, t) {
+        return (t = t ?? Qh), !!t && (typeof e == "number" || XA.test(e)) && e > -1 && e % 1 == 0 && e < t;
     }
-    function Yx(e) {
+    function Jx(e) {
         var t = typeof e;
         return t == "string" || t == "number" || t == "symbol" || t == "boolean" ? e !== "__proto__" : e === null;
     }
-    function zx(e) {
-        return !!jh && jh in e;
+    function Qx(e) {
+        return !!Wh && Wh in e;
     }
-    function Xx(e) {
+    function Zx(e) {
         var t = e && e.constructor,
-            r = (typeof t == "function" && t.prototype) || yi;
+            r = (typeof t == "function" && t.prototype) || _i;
         return e === r;
     }
-    function Kx(e) {
-        return cp.call(e);
+    function eT(e) {
+        return fp.call(e);
     }
     function Rt(e) {
         if (e != null) {
             try {
-                return up.call(e);
+                return cp.call(e);
             } catch {}
             try {
                 return e + "";
@@ -8528,61 +8520,61 @@ var yp = g((en, sr) => {
         }
         return "";
     }
-    function pp(e, t) {
+    function mp(e, t) {
         return e === t || (e !== e && t !== t);
     }
-    var Jx = zh(
+    var tT = Xh(
             (function () {
                 return arguments;
             })()
         )
-            ? zh
+            ? Xh
             : function (e) {
-                  return nn(e) && Be.call(e, "callee") && !fp.call(e, "callee");
+                  return nn(e) && Be.call(e, "callee") && !dp.call(e, "callee");
               },
-        wi = Array.isArray;
-    function Qx(e) {
-        return e != null && gp(e.length) && !mp(e);
+        Ei = Array.isArray;
+    function rT(e) {
+        return e != null && wp(e.length) && !gp(e);
     }
-    var Us = ax || rT;
-    function Zx(e, t) {
-        return dp(e, t);
-    }
-    function mp(e) {
-        if (!wp(e)) return !1;
-        var t = on(e);
-        return t == tp || t == IA || t == OA || t == RA;
+    var Us = fx || sT;
+    function nT(e, t) {
+        return hp(e, t);
     }
     function gp(e) {
-        return typeof e == "number" && e > -1 && e % 1 == 0 && e <= Jh;
+        if (!Ep(e)) return !1;
+        var t = on(e);
+        return t == rp || t == PA || t == DA || t == qA;
     }
     function wp(e) {
+        return typeof e == "number" && e > -1 && e % 1 == 0 && e <= Qh;
+    }
+    function Ep(e) {
         var t = typeof e;
         return e != null && (t == "object" || t == "function");
     }
     function nn(e) {
         return e != null && typeof e == "object";
     }
-    var Ep = Hh ? JA(Hh) : Mx;
-    function eT(e) {
-        return Qx(e) ? Lx(e) : Bx(e);
+    var yp = jh ? tx(jh) : Wx;
+    function iT(e) {
+        return rT(e) ? Mx(e) : Gx(e);
     }
-    function tT() {
+    function oT() {
         return [];
     }
-    function rT() {
+    function sT() {
         return !1;
     }
-    sr.exports = Zx;
+    sr.exports = nT;
 });
-var vp = g(an => {
+var Sp = g(an => {
     "use strict";
     Object.defineProperty(an, "__esModule", { value: !0 });
     an.DownloadedUpdateHelper = void 0;
-    an.createTempUpdateFile = sT;
-    var nT = require("crypto"),
-        iT = require("fs"),
-        _p = yp(),
+    an.createTempUpdateFile = cT;
+    var aT = require("crypto"),
+        lT = require("fs"),
+        vp = _p(),
         Dt = Ve(),
         sn = require("path"),
         ks = class {
@@ -8608,7 +8600,7 @@ var vp = g(an => {
             }
             async validateDownloadedPath(t, r, n, i) {
                 if (this.versionInfo != null && this.file === t && this.fileInfo != null)
-                    return _p(this.versionInfo, r) && _p(this.fileInfo.info, n.info) && (await (0, Dt.pathExists)(t)) ? t : null;
+                    return vp(this.versionInfo, r) && vp(this.fileInfo.info, n.info) && (await (0, Dt.pathExists)(t)) ? t : null;
                 let o = await this.getValidCachedUpdateFile(n, i);
                 return o === null ? null : (i.info(`Update has already been downloaded to ${t}).`), (this._file = o), o);
             }
@@ -8637,56 +8629,55 @@ var vp = g(an => {
                 } catch {}
             }
             async getValidCachedUpdateFile(t, r) {
-                var n;
-                let i = this.getUpdateInfoFile();
-                if (!(await (0, Dt.pathExists)(i))) return null;
-                let s;
+                let n = this.getUpdateInfoFile();
+                if (!(await (0, Dt.pathExists)(n))) return null;
+                let o;
                 try {
-                    s = await (0, Dt.readJson)(i);
-                } catch (c) {
-                    let d = "No cached update info available";
+                    o = await (0, Dt.readJson)(n);
+                } catch (h) {
+                    let c = "No cached update info available";
                     return (
-                        c.code !== "ENOENT" &&
-                            (await this.cleanCacheDirForPendingUpdate(), (d += ` (error on read: ${c.message})`)),
-                        r.info(d),
+                        h.code !== "ENOENT" &&
+                            (await this.cleanCacheDirForPendingUpdate(), (c += ` (error on read: ${h.message})`)),
+                        r.info(c),
                         null
                     );
                 }
-                if (!((n = s?.fileName !== null) !== null && n !== void 0 ? n : !1))
+                if (!(o?.fileName !== null))
                     return (
                         r.warn("Cached update info is corrupted: no fileName, directory for cached update will be cleaned"),
                         await this.cleanCacheDirForPendingUpdate(),
                         null
                     );
-                if (t.info.sha512 !== s.sha512)
+                if (t.info.sha512 !== o.sha512)
                     return (
                         r.info(
-                            `Cached update sha512 checksum doesn't match the latest available update. New update must be downloaded. Cached: ${s.sha512}, expected: ${t.info.sha512}. Directory for cached update will be cleaned`
+                            `Cached update sha512 checksum doesn't match the latest available update. New update must be downloaded. Cached: ${o.sha512}, expected: ${t.info.sha512}. Directory for cached update will be cleaned`
                         ),
                         await this.cleanCacheDirForPendingUpdate(),
                         null
                     );
-                let l = sn.join(this.cacheDirForPendingUpdate, s.fileName);
-                if (!(await (0, Dt.pathExists)(l))) return r.info("Cached update file doesn't exist"), null;
-                let h = await oT(l);
-                return t.info.sha512 !== h
+                let a = sn.join(this.cacheDirForPendingUpdate, o.fileName);
+                if (!(await (0, Dt.pathExists)(a))) return r.info("Cached update file doesn't exist"), null;
+                let l = await uT(a);
+                return t.info.sha512 !== l
                     ? (r.warn(
-                          `Sha512 checksum doesn't match the latest available update. New update must be downloaded. Cached: ${h}, expected: ${t.info.sha512}`
+                          `Sha512 checksum doesn't match the latest available update. New update must be downloaded. Cached: ${l}, expected: ${t.info.sha512}`
                       ),
                       await this.cleanCacheDirForPendingUpdate(),
                       null)
-                    : ((this._downloadedFileInfo = s), l);
+                    : ((this._downloadedFileInfo = o), a);
             }
             getUpdateInfoFile() {
                 return sn.join(this.cacheDirForPendingUpdate, "update-info.json");
             }
         };
     an.DownloadedUpdateHelper = ks;
-    function oT(e, t = "sha512", r = "base64", n) {
+    function uT(e, t = "sha512", r = "base64", n) {
         return new Promise((i, o) => {
-            let s = (0, nT.createHash)(t);
+            let s = (0, aT.createHash)(t);
             s.on("error", o).setEncoding(r),
-                (0, iT.createReadStream)(e, { ...n, highWaterMark: 1024 * 1024 })
+                (0, lT.createReadStream)(e, { ...n, highWaterMark: 1024 * 1024 })
                     .on("error", o)
                     .on("end", () => {
                         s.end(), i(s.read());
@@ -8694,7 +8685,7 @@ var vp = g(an => {
                     .pipe(s, { end: !1 });
         });
     }
-    async function sT(e, t, r) {
+    async function cT(e, t, r) {
         let n = 0,
             i = sn.join(t, e);
         for (let o = 0; o < 3; o++)
@@ -8707,14 +8698,14 @@ var vp = g(an => {
         return i;
     }
 });
-var Sp = g(Bs => {
+var Ap = g(Bs => {
     "use strict";
     Object.defineProperty(Bs, "__esModule", { value: !0 });
-    Bs.getAppCacheDir = lT;
+    Bs.getAppCacheDir = dT;
     var Ms = require("path"),
-        aT = require("os");
-    function lT() {
-        let e = (0, aT.homedir)(),
+        fT = require("os");
+    function dT() {
+        let e = (0, fT.homedir)(),
             t;
         return (
             process.platform === "win32"
@@ -8726,12 +8717,12 @@ var Sp = g(Bs => {
         );
     }
 });
-var xp = g(Si => {
+var Tp = g(Ai => {
     "use strict";
-    Object.defineProperty(Si, "__esModule", { value: !0 });
-    Si.ElectronAppAdapter = void 0;
-    var Ap = require("path"),
-        uT = Sp(),
+    Object.defineProperty(Ai, "__esModule", { value: !0 });
+    Ai.ElectronAppAdapter = void 0;
+    var xp = require("path"),
+        hT = Ap(),
         Hs = class {
             constructor(t = require("electron").app) {
                 this.app = t;
@@ -8750,14 +8741,14 @@ var xp = g(Si => {
             }
             get appUpdateConfigPath() {
                 return this.isPackaged
-                    ? Ap.join(process.resourcesPath, "app-update.yml")
-                    : Ap.join(this.app.getAppPath(), "dev-app-update.yml");
+                    ? xp.join(process.resourcesPath, "app-update.yml")
+                    : xp.join(this.app.getAppPath(), "dev-app-update.yml");
             }
             get userDataPath() {
                 return this.app.getPath("userData");
             }
             get baseCachePath() {
-                return (0, uT.getAppCacheDir)();
+                return (0, hT.getAppCacheDir)();
             }
             quit() {
                 this.app.quit();
@@ -8769,27 +8760,27 @@ var xp = g(Si => {
                 this.app.once("quit", (r, n) => t(n));
             }
         };
-    Si.ElectronAppAdapter = Hs;
+    Ai.ElectronAppAdapter = Hs;
 });
-var Cp = g(ut => {
+var bp = g(ut => {
     "use strict";
     Object.defineProperty(ut, "__esModule", { value: !0 });
     ut.ElectronHttpExecutor = ut.NET_SESSION_NAME = void 0;
-    ut.getNetSession = Tp;
-    var Ai = ie();
+    ut.getNetSession = Cp;
+    var xi = ie();
     ut.NET_SESSION_NAME = "electron-updater";
-    function Tp() {
+    function Cp() {
         return require("electron").session.fromPartition(ut.NET_SESSION_NAME, { cache: !1 });
     }
-    var js = class extends Ai.HttpExecutor {
+    var js = class extends xi.HttpExecutor {
         constructor(t) {
             super(), (this.proxyLoginCallback = t), (this.cachedSession = null);
         }
         async download(t, r, n) {
             return await n.cancellationToken.createPromise((i, o, s) => {
                 let a = { headers: n.headers || void 0, redirect: "manual" };
-                (0, Ai.configureRequestUrl)(t, a),
-                    (0, Ai.configureRequestOptions)(a),
+                (0, xi.configureRequestUrl)(t, a),
+                    (0, xi.configureRequestOptions)(a),
                     this.doDownload(
                         a,
                         {
@@ -8807,89 +8798,89 @@ var Cp = g(ut => {
         }
         createRequest(t, r) {
             t.headers && t.headers.Host && ((t.host = t.headers.Host), delete t.headers.Host),
-                this.cachedSession == null && (this.cachedSession = Tp());
+                this.cachedSession == null && (this.cachedSession = Cp());
             let n = require("electron").net.request({ ...t, session: this.cachedSession });
             return n.on("response", r), this.proxyLoginCallback != null && n.on("login", this.proxyLoginCallback), n;
         }
         addRedirectHandlers(t, r, n, i, o) {
             t.on("redirect", (s, a, l) => {
                 t.abort(),
-                    i > this.maxRedirects ? n(this.createMaxRedirectError()) : o(Ai.HttpExecutor.prepareRedirectUrlOptions(l, r));
+                    i > this.maxRedirects ? n(this.createMaxRedirectError()) : o(xi.HttpExecutor.prepareRedirectUrlOptions(l, r));
             });
         }
     };
     ut.ElectronHttpExecutor = js;
 });
-var Dp = g((YI, Rp) => {
-    var cT = 1 / 0,
-        fT = "[object Symbol]",
-        Np = /[\\^$.*+?()[\]{}|]/g,
-        dT = RegExp(Np.source),
-        hT = typeof global == "object" && global && global.Object === Object && global,
-        pT = typeof self == "object" && self && self.Object === Object && self,
-        mT = hT || pT || Function("return this")(),
-        gT = Object.prototype,
-        wT = gT.toString,
-        bp = mT.Symbol,
-        Op = bp ? bp.prototype : void 0,
-        Ip = Op ? Op.toString : void 0;
-    function ET(e) {
+var Pp = g((KI, Dp) => {
+    var pT = 1 / 0,
+        mT = "[object Symbol]",
+        Rp = /[\\^$.*+?()[\]{}|]/g,
+        gT = RegExp(Rp.source),
+        wT = typeof global == "object" && global && global.Object === Object && global,
+        ET = typeof self == "object" && self && self.Object === Object && self,
+        yT = wT || ET || Function("return this")(),
+        _T = Object.prototype,
+        vT = _T.toString,
+        Op = yT.Symbol,
+        Ip = Op ? Op.prototype : void 0,
+        Np = Ip ? Ip.toString : void 0;
+    function ST(e) {
         if (typeof e == "string") return e;
-        if (_T(e)) return Ip ? Ip.call(e) : "";
+        if (xT(e)) return Np ? Np.call(e) : "";
         var t = e + "";
-        return t == "0" && 1 / e == -cT ? "-0" : t;
+        return t == "0" && 1 / e == -pT ? "-0" : t;
     }
-    function yT(e) {
+    function AT(e) {
         return !!e && typeof e == "object";
     }
-    function _T(e) {
-        return typeof e == "symbol" || (yT(e) && wT.call(e) == fT);
+    function xT(e) {
+        return typeof e == "symbol" || (AT(e) && vT.call(e) == mT);
     }
-    function vT(e) {
-        return e == null ? "" : ET(e);
+    function TT(e) {
+        return e == null ? "" : ST(e);
     }
-    function ST(e) {
-        return (e = vT(e)), e && dT.test(e) ? e.replace(Np, "\\$&") : e;
+    function CT(e) {
+        return (e = TT(e)), e && gT.test(e) ? e.replace(Rp, "\\$&") : e;
     }
-    Rp.exports = ST;
+    Dp.exports = CT;
 });
 var ct = g(lr => {
     "use strict";
     Object.defineProperty(lr, "__esModule", { value: !0 });
-    lr.newBaseUrl = xT;
+    lr.newBaseUrl = OT;
     lr.newUrlFromBase = Ws;
-    lr.getChannelFilename = TT;
-    lr.blockmapFiles = CT;
-    var Pp = require("url"),
-        AT = Dp();
-    function xT(e) {
-        let t = new Pp.URL(e);
+    lr.getChannelFilename = IT;
+    lr.blockmapFiles = NT;
+    var Fp = require("url"),
+        bT = Pp();
+    function OT(e) {
+        let t = new Fp.URL(e);
         return t.pathname.endsWith("/") || (t.pathname += "/"), t;
     }
     function Ws(e, t, r = !1) {
-        let n = new Pp.URL(e, t),
+        let n = new Fp.URL(e, t),
             i = t.search;
         return i != null && i.length !== 0 ? (n.search = i) : r && (n.search = `noCache=${Date.now().toString(32)}`), n;
     }
-    function TT(e) {
+    function IT(e) {
         return `${e}.yml`;
     }
-    function CT(e, t, r) {
+    function NT(e, t, r) {
         let n = Ws(`${e.pathname}.blockmap`, e);
-        return [Ws(`${e.pathname.replace(new RegExp(AT(r), "g"), t)}.blockmap`, e), n];
+        return [Ws(`${e.pathname.replace(new RegExp(bT(r), "g"), t)}.blockmap`, e), n];
     }
 });
 var qe = g(dt => {
     "use strict";
     Object.defineProperty(dt, "__esModule", { value: !0 });
     dt.Provider = void 0;
-    dt.findFile = OT;
-    dt.parseUpdateInfo = IT;
-    dt.getFileList = qp;
-    dt.resolveFiles = NT;
+    dt.findFile = DT;
+    dt.parseUpdateInfo = PT;
+    dt.getFileList = Lp;
+    dt.resolveFiles = FT;
     var ft = ie(),
-        bT = Zn(),
-        Fp = ct(),
+        RT = ei(),
+        qp = ct(),
         Gs = class {
             constructor(t) {
                 (this.runtimeOptions = t), (this.requestHeaders = null), (this.executor = t.executor);
@@ -8930,12 +8921,12 @@ var qe = g(dt => {
             }
         };
     dt.Provider = Gs;
-    function OT(e, t, r) {
+    function DT(e, t, r) {
         if (e.length === 0) throw (0, ft.newError)("No files provided", "ERR_UPDATER_NO_FILES_PROVIDED");
         let n = e.find(i => i.url.pathname.toLowerCase().endsWith(`.${t}`));
         return n ?? (r == null ? e[0] : e.find(i => !r.some(o => i.url.pathname.toLowerCase().endsWith(`.${o}`))));
     }
-    function IT(e, t, r) {
+    function PT(e, t, r) {
         if (e == null)
             throw (0, ft.newError)(
                 `Cannot parse update info from ${t} in the latest release artifacts (${r}): rawData: null`,
@@ -8943,7 +8934,7 @@ var qe = g(dt => {
             );
         let n;
         try {
-            n = (0, bT.load)(e);
+            n = (0, RT.load)(e);
         } catch (i) {
             throw (0, ft.newError)(
                 `Cannot parse update info from ${t} in the latest release artifacts (${r}): ${
@@ -8954,31 +8945,31 @@ var qe = g(dt => {
         }
         return n;
     }
-    function qp(e) {
+    function Lp(e) {
         let t = e.files;
         if (t != null && t.length > 0) return t;
         if (e.path != null) return [{ url: e.path, sha2: e.sha2, sha512: e.sha512 }];
         throw (0, ft.newError)(`No files provided: ${(0, ft.safeStringifyJson)(e)}`, "ERR_UPDATER_NO_FILES_PROVIDED");
     }
-    function NT(e, t, r = n => n) {
-        let i = qp(e).map(a => {
+    function FT(e, t, r = n => n) {
+        let i = Lp(e).map(a => {
                 if (a.sha2 == null && a.sha512 == null)
                     throw (0, ft.newError)(
                         `Update info doesn't contain nor sha256 neither sha512 checksum: ${(0, ft.safeStringifyJson)(a)}`,
                         "ERR_UPDATER_NO_CHECKSUM"
                     );
-                return { url: (0, Fp.newUrlFromBase)(r(a.url), t), info: a };
+                return { url: (0, qp.newUrlFromBase)(r(a.url), t), info: a };
             }),
             o = e.packages,
             s = o == null ? null : o[process.arch] || o.ia32;
-        return s != null && (i[0].packageInfo = { ...s, path: (0, Fp.newUrlFromBase)(r(s.path), t).href }), i;
+        return s != null && (i[0].packageInfo = { ...s, path: (0, qp.newUrlFromBase)(r(s.path), t).href }), i;
     }
 });
-var Xs = g(xi => {
+var Xs = g(Ti => {
     "use strict";
-    Object.defineProperty(xi, "__esModule", { value: !0 });
-    xi.GenericProvider = void 0;
-    var Lp = ie(),
+    Object.defineProperty(Ti, "__esModule", { value: !0 });
+    Ti.GenericProvider = void 0;
+    var Up = ie(),
         Vs = ct(),
         Ys = qe(),
         zs = class extends Ys.Provider {
@@ -8999,8 +8990,8 @@ var Xs = g(xi => {
                     try {
                         return (0, Ys.parseUpdateInfo)(await this.httpRequest(r), t, r);
                     } catch (i) {
-                        if (i instanceof Lp.HttpError && i.statusCode === 404)
-                            throw (0, Lp.newError)(
+                        if (i instanceof Up.HttpError && i.statusCode === 404)
+                            throw (0, Up.newError)(
                                 `Cannot find channel "${t}" update info: ${i.stack || i.message}`,
                                 "ERR_UPDATER_CHANNEL_FILE_NOT_FOUND"
                             );
@@ -9021,13 +9012,13 @@ var Xs = g(xi => {
                 return (0, Ys.resolveFiles)(t, this.baseUrl);
             }
         };
-    xi.GenericProvider = zs;
+    Ti.GenericProvider = zs;
 });
-var $p = g(Ti => {
+var kp = g(Ci => {
     "use strict";
-    Object.defineProperty(Ti, "__esModule", { value: !0 });
-    Ti.BitbucketProvider = void 0;
-    var Up = ie(),
+    Object.defineProperty(Ci, "__esModule", { value: !0 });
+    Ci.BitbucketProvider = void 0;
+    var $p = ie(),
         Ks = ct(),
         Js = qe(),
         Qs = class extends Js.Provider {
@@ -9040,14 +9031,14 @@ var $p = g(Ti => {
                 return this.updater.channel || this.configuration.channel || "latest";
             }
             async getLatestVersion() {
-                let t = new Up.CancellationToken(),
+                let t = new $p.CancellationToken(),
                     r = (0, Ks.getChannelFilename)(this.getCustomChannelName(this.channel)),
                     n = (0, Ks.newUrlFromBase)(r, this.baseUrl, this.updater.isAddNoCacheQuery);
                 try {
                     let i = await this.httpRequest(n, void 0, t);
                     return (0, Js.parseUpdateInfo)(i, r, n);
                 } catch (i) {
-                    throw (0, Up.newError)(
+                    throw (0, $p.newError)(
                         `Unable to find latest version on ${this.toString()}, please ensure release exists: ${
                             i.stack || i.message
                         }`,
@@ -9063,20 +9054,20 @@ var $p = g(Ti => {
                 return `Bitbucket (owner: ${t}, slug: ${r}, channel: ${this.channel})`;
             }
         };
-    Ti.BitbucketProvider = Qs;
+    Ci.BitbucketProvider = Qs;
 });
 var ra = g(Pt => {
     "use strict";
     Object.defineProperty(Pt, "__esModule", { value: !0 });
     Pt.GitHubProvider = Pt.BaseGitHubProvider = void 0;
-    Pt.computeReleaseNotes = Mp;
+    Pt.computeReleaseNotes = Bp;
     var Je = ie(),
         ur = bs(),
-        RT = require("url"),
+        qT = require("url"),
         cr = ct(),
         ea = qe(),
         Zs = /\/tag\/([^/]+)$/,
-        Ci = class extends ea.Provider {
+        bi = class extends ea.Provider {
             constructor(t, r, n) {
                 super({ ...n, isUseMultipleRangeRequest: !1 }),
                     (this.options = t),
@@ -9089,8 +9080,8 @@ var ra = g(Pt => {
                 return r && !["github.com", "api.github.com"].includes(r) ? `/api/v3${t}` : t;
             }
         };
-    Pt.BaseGitHubProvider = Ci;
-    var ta = class extends Ci {
+    Pt.BaseGitHubProvider = bi;
+    var ta = class extends bi {
         constructor(t, r, n) {
             super(t, "github.com", n), (this.options = t), (this.updater = r);
         }
@@ -9150,7 +9141,7 @@ ${a}`,
                 );
             }
             if (c == null) throw (0, Je.newError)("No published versions on GitHub", "ERR_UPDATER_NO_PUBLISHED_VERSIONS");
-            let d,
+            let f,
                 m = "",
                 p = "",
                 y = async v => {
@@ -9174,15 +9165,15 @@ ${a}`,
                     !((i = ur.prerelease(c)) === null || i === void 0) &&
                     i[0] &&
                     (v = this.getCustomChannelName(String((o = ur.prerelease(c)) === null || o === void 0 ? void 0 : o[0]))),
-                    (d = await y(v));
+                    (f = await y(v));
             } catch (v) {
-                if (this.updater.allowPrerelease) d = await y(this.getDefaultChannelName());
+                if (this.updater.allowPrerelease) f = await y(this.getDefaultChannelName());
                 else throw v;
             }
-            let _ = (0, ea.parseUpdateInfo)(d, m, p);
+            let _ = (0, ea.parseUpdateInfo)(f, m, p);
             return (
                 _.releaseName == null && (_.releaseName = h.elementValueOrEmpty("title")),
-                _.releaseNotes == null && (_.releaseNotes = Mp(this.updater.currentVersion, this.updater.fullChangelog, l, h)),
+                _.releaseNotes == null && (_.releaseNotes = Bp(this.updater.currentVersion, this.updater.fullChangelog, l, h)),
                 { tag: c, ..._ }
             );
         }
@@ -9191,7 +9182,7 @@ ${a}`,
                 n =
                     r.host == null || r.host === "github.com"
                         ? (0, cr.newUrlFromBase)(`${this.basePath}/latest`, this.baseUrl)
-                        : new RT.URL(
+                        : new qT.URL(
                               `${this.computeGithubBasePath(`/repos/${r.owner}/${r.repo}/releases`)}/latest`,
                               this.baseApiUrl
                           );
@@ -9218,25 +9209,25 @@ ${a}`,
         }
     };
     Pt.GitHubProvider = ta;
-    function kp(e) {
+    function Mp(e) {
         let t = e.elementValueOrEmpty("content");
         return t === "No content." ? "" : t;
     }
-    function Mp(e, t, r, n) {
-        if (!t) return kp(n);
+    function Bp(e, t, r, n) {
+        if (!t) return Mp(n);
         let i = [];
         for (let o of r.getElements("entry")) {
             let s = /\/tag\/v?([^/]+)$/.exec(o.element("link").attribute("href"))[1];
-            ur.lt(e, s) && i.push({ version: s, note: kp(o) });
+            ur.lt(e, s) && i.push({ version: s, note: Mp(o) });
         }
         return i.sort((o, s) => ur.rcompare(o.version, s.version));
     }
 });
-var Hp = g(bi => {
+var jp = g(Oi => {
     "use strict";
-    Object.defineProperty(bi, "__esModule", { value: !0 });
-    bi.KeygenProvider = void 0;
-    var Bp = ie(),
+    Object.defineProperty(Oi, "__esModule", { value: !0 });
+    Oi.KeygenProvider = void 0;
+    var Hp = ie(),
         na = ct(),
         ia = qe(),
         oa = class extends ia.Provider {
@@ -9252,14 +9243,14 @@ var Hp = g(bi => {
                 return this.updater.channel || this.configuration.channel || "stable";
             }
             async getLatestVersion() {
-                let t = new Bp.CancellationToken(),
+                let t = new Hp.CancellationToken(),
                     r = (0, na.getChannelFilename)(this.getCustomChannelName(this.channel)),
                     n = (0, na.newUrlFromBase)(r, this.baseUrl, this.updater.isAddNoCacheQuery);
                 try {
                     let i = await this.httpRequest(n, { "Accept": "application/vnd.api+json", "Keygen-Version": "1.1" }, t);
                     return (0, ia.parseUpdateInfo)(i, r, n);
                 } catch (i) {
-                    throw (0, Bp.newError)(
+                    throw (0, Hp.newError)(
                         `Unable to find latest version on ${this.toString()}, please ensure release exists: ${
                             i.stack || i.message
                         }`,
@@ -9275,20 +9266,20 @@ var Hp = g(bi => {
                 return `Keygen (account: ${t}, product: ${r}, platform: ${n}, channel: ${this.channel})`;
             }
         };
-    bi.KeygenProvider = oa;
+    Oi.KeygenProvider = oa;
 });
-var Gp = g(Oi => {
+var Vp = g(Ii => {
     "use strict";
-    Object.defineProperty(Oi, "__esModule", { value: !0 });
-    Oi.PrivateGitHubProvider = void 0;
+    Object.defineProperty(Ii, "__esModule", { value: !0 });
+    Ii.PrivateGitHubProvider = void 0;
     var fr = ie(),
-        DT = Zn(),
-        PT = require("path"),
-        jp = require("url"),
-        Wp = ct(),
-        FT = ra(),
-        qT = qe(),
-        sa = class extends FT.BaseGitHubProvider {
+        LT = ei(),
+        UT = require("path"),
+        Wp = require("url"),
+        Gp = ct(),
+        $T = ra(),
+        kT = qe(),
+        sa = class extends $T.BaseGitHubProvider {
             constructor(t, r, n, i) {
                 super(t, "api.github.com", i), (this.updater = r), (this.token = n);
             }
@@ -9298,7 +9289,7 @@ var Gp = g(Oi => {
             }
             async getLatestVersion() {
                 let t = new fr.CancellationToken(),
-                    r = (0, Wp.getChannelFilename)(this.getDefaultChannelName()),
+                    r = (0, Gp.getChannelFilename)(this.getDefaultChannelName()),
                     n = await this.getLatestVersionInfo(t),
                     i = n.assets.find(a => a.name === r);
                 if (i == null)
@@ -9306,10 +9297,10 @@ var Gp = g(Oi => {
                         `Cannot find ${r} in the release ${n.html_url || n.name}`,
                         "ERR_UPDATER_CHANNEL_FILE_NOT_FOUND"
                     );
-                let o = new jp.URL(i.url),
+                let o = new Wp.URL(i.url),
                     s;
                 try {
-                    s = (0, DT.load)(await this.httpRequest(o, this.configureHeaders("application/octet-stream"), t));
+                    s = (0, LT.load)(await this.httpRequest(o, this.configureHeaders("application/octet-stream"), t));
                 } catch (a) {
                     throw a instanceof fr.HttpError && a.statusCode === 404
                         ? (0, fr.newError)(
@@ -9330,7 +9321,7 @@ var Gp = g(Oi => {
                 let r = this.updater.allowPrerelease,
                     n = this.basePath;
                 r || (n = `${n}/latest`);
-                let i = (0, Wp.newUrlFromBase)(n, this.baseUrl);
+                let i = (0, Gp.newUrlFromBase)(n, this.baseUrl);
                 try {
                     let o = JSON.parse(await this.httpRequest(i, this.configureHeaders("application/vnd.github.v3+json"), t));
                     return r ? o.find(s => s.prerelease) || o[0] : o;
@@ -9347,85 +9338,85 @@ var Gp = g(Oi => {
                 return this.computeGithubBasePath(`/repos/${this.options.owner}/${this.options.repo}/releases`);
             }
             resolveFiles(t) {
-                return (0, qT.getFileList)(t).map(r => {
-                    let n = PT.posix.basename(r.url).replace(/ /g, "-"),
+                return (0, kT.getFileList)(t).map(r => {
+                    let n = UT.posix.basename(r.url).replace(/ /g, "-"),
                         i = t.assets.find(o => o != null && o.name === n);
                     if (i == null)
                         throw (0, fr.newError)(
                             `Cannot find asset "${n}" in: ${JSON.stringify(t.assets, null, 2)}`,
                             "ERR_UPDATER_ASSET_NOT_FOUND"
                         );
-                    return { url: new jp.URL(i.url), info: r };
+                    return { url: new Wp.URL(i.url), info: r };
                 });
             }
         };
-    Oi.PrivateGitHubProvider = sa;
+    Ii.PrivateGitHubProvider = sa;
 });
-var zp = g(Ni => {
+var Xp = g(Ri => {
     "use strict";
-    Object.defineProperty(Ni, "__esModule", { value: !0 });
-    Ni.isUrlProbablySupportMultiRangeRequests = Yp;
-    Ni.createClient = MT;
-    var Ii = ie(),
-        LT = $p(),
-        Vp = Xs(),
-        UT = ra(),
-        $T = Hp(),
-        kT = Gp();
-    function Yp(e) {
+    Object.defineProperty(Ri, "__esModule", { value: !0 });
+    Ri.isUrlProbablySupportMultiRangeRequests = zp;
+    Ri.createClient = WT;
+    var Ni = ie(),
+        MT = kp(),
+        Yp = Xs(),
+        BT = ra(),
+        HT = jp(),
+        jT = Vp();
+    function zp(e) {
         return !e.includes("s3.amazonaws.com");
     }
-    function MT(e, t, r) {
+    function WT(e, t, r) {
         if (typeof e == "string")
-            throw (0, Ii.newError)("Please pass PublishConfiguration object", "ERR_UPDATER_INVALID_PROVIDER_CONFIGURATION");
+            throw (0, Ni.newError)("Please pass PublishConfiguration object", "ERR_UPDATER_INVALID_PROVIDER_CONFIGURATION");
         let n = e.provider;
         switch (n) {
             case "github": {
                 let i = e,
                     o = (i.private ? process.env.GH_TOKEN || process.env.GITHUB_TOKEN : null) || i.token;
-                return o == null ? new UT.GitHubProvider(i, t, r) : new kT.PrivateGitHubProvider(i, t, o, r);
+                return o == null ? new BT.GitHubProvider(i, t, r) : new jT.PrivateGitHubProvider(i, t, o, r);
             }
             case "bitbucket":
-                return new LT.BitbucketProvider(e, t, r);
+                return new MT.BitbucketProvider(e, t, r);
             case "keygen":
-                return new $T.KeygenProvider(e, t, r);
+                return new HT.KeygenProvider(e, t, r);
             case "s3":
             case "spaces":
-                return new Vp.GenericProvider(
-                    { provider: "generic", url: (0, Ii.getS3LikeProviderBaseUrl)(e), channel: e.channel || null },
+                return new Yp.GenericProvider(
+                    { provider: "generic", url: (0, Ni.getS3LikeProviderBaseUrl)(e), channel: e.channel || null },
                     t,
                     { ...r, isUseMultipleRangeRequest: !1 }
                 );
             case "generic": {
                 let i = e;
-                return new Vp.GenericProvider(i, t, {
+                return new Yp.GenericProvider(i, t, {
                     ...r,
-                    isUseMultipleRangeRequest: i.useMultipleRangeRequest !== !1 && Yp(i.url)
+                    isUseMultipleRangeRequest: i.useMultipleRangeRequest !== !1 && zp(i.url)
                 });
             }
             case "custom": {
                 let i = e,
                     o = i.updateProvider;
-                if (!o) throw (0, Ii.newError)("Custom provider not specified", "ERR_UPDATER_INVALID_PROVIDER_CONFIGURATION");
+                if (!o) throw (0, Ni.newError)("Custom provider not specified", "ERR_UPDATER_INVALID_PROVIDER_CONFIGURATION");
                 return new o(i, t, r);
             }
             default:
-                throw (0, Ii.newError)(`Unsupported provider: ${n}`, "ERR_UPDATER_UNSUPPORTED_PROVIDER");
+                throw (0, Ni.newError)(`Unsupported provider: ${n}`, "ERR_UPDATER_UNSUPPORTED_PROVIDER");
         }
     }
 });
-var Ri = g(ln => {
+var Di = g(ln => {
     "use strict";
     Object.defineProperty(ln, "__esModule", { value: !0 });
     ln.OperationKind = void 0;
-    ln.computeOperations = BT;
+    ln.computeOperations = GT;
     var Ft;
     (function (e) {
         (e[(e.COPY = 0)] = "COPY"), (e[(e.DOWNLOAD = 1)] = "DOWNLOAD");
     })(Ft || (ln.OperationKind = Ft = {}));
-    function BT(e, t, r) {
-        let n = Kp(e.files),
-            i = Kp(t.files),
+    function GT(e, t, r) {
+        let n = Jp(e.files),
+            i = Jp(t.files),
             o = null,
             s = t.files[0],
             a = [],
@@ -9433,8 +9424,8 @@ var Ri = g(ln => {
             h = n.get(l);
         if (h == null) throw new Error(`no file ${l} in old blockmap`);
         let c = i.get(l),
-            d = 0,
-            { checksumToOffset: m, checksumToOldSize: p } = jT(n.get(l), h.offset, r),
+            f = 0,
+            { checksumToOffset: m, checksumToOldSize: p } = YT(n.get(l), h.offset, r),
             y = s.offset;
         for (let _ = 0; _ < c.checksums.length; y += c.sizes[_], _++) {
             let v = c.sizes[_],
@@ -9444,19 +9435,19 @@ var Ri = g(ln => {
                 p.get(x) !== v &&
                 (r.warn(`Checksum ("${x}") matches, but size differs (old: ${p.get(x)}, new: ${v})`), (A = void 0)),
                 A === void 0
-                    ? (d++,
+                    ? (f++,
                       o != null && o.kind === Ft.DOWNLOAD && o.end === y
                           ? (o.end += v)
-                          : ((o = { kind: Ft.DOWNLOAD, start: y, end: y + v }), Xp(o, a, x, _)))
+                          : ((o = { kind: Ft.DOWNLOAD, start: y, end: y + v }), Kp(o, a, x, _)))
                     : o != null && o.kind === Ft.COPY && o.end === A
                     ? (o.end += v)
-                    : ((o = { kind: Ft.COPY, start: A, end: A + v }), Xp(o, a, x, _));
+                    : ((o = { kind: Ft.COPY, start: A, end: A + v }), Kp(o, a, x, _));
         }
-        return d > 0 && r.info(`File${s.name === "file" ? "" : " " + s.name} has ${d} changed blocks`), a;
+        return f > 0 && r.info(`File${s.name === "file" ? "" : " " + s.name} has ${f} changed blocks`), a;
     }
-    var HT = process.env.DIFFERENTIAL_DOWNLOAD_PLAN_BUILDER_VALIDATE_RANGES === "true";
-    function Xp(e, t, r, n) {
-        if (HT && t.length !== 0) {
+    var VT = process.env.DIFFERENTIAL_DOWNLOAD_PLAN_BUILDER_VALIDATE_RANGES === "true";
+    function Kp(e, t, r, n) {
+        if (VT && t.length !== 0) {
             let i = t[t.length - 1];
             if (i.kind === e.kind && e.start < i.end && e.start > i.start) {
                 let o = [i.start, i.end, e.start, e.end].reduce((s, a) => (s < a ? s : a));
@@ -9469,7 +9460,7 @@ rel: ${i.start - o} until ${i.end - o} and ${e.start - o} until ${e.end - o}`);
         }
         t.push(e);
     }
-    function jT(e, t, r) {
+    function YT(e, t, r) {
         let n = new Map(),
             i = new Map(),
             o = t;
@@ -9488,7 +9479,7 @@ rel: ${i.start - o} until ${i.end - o} and ${e.start - o} until ${e.end - o}`);
         }
         return { checksumToOffset: n, checksumToOldSize: i };
     }
-    function Kp(e) {
+    function Jp(e) {
         let t = new Map();
         for (let r of e) t.set(r.name, r);
         return t;
@@ -9498,23 +9489,23 @@ var la = g(un => {
     "use strict";
     Object.defineProperty(un, "__esModule", { value: !0 });
     un.DataSplitter = void 0;
-    un.copyData = Qp;
-    var Di = ie(),
-        WT = require("fs"),
-        GT = require("stream"),
-        VT = Ri(),
-        Jp = Buffer.from(`\r
+    un.copyData = Zp;
+    var Pi = ie(),
+        zT = require("fs"),
+        XT = require("stream"),
+        KT = Di(),
+        Qp = Buffer.from(`\r
 \r
 `),
         ht;
     (function (e) {
         (e[(e.INIT = 0)] = "INIT"), (e[(e.HEADER = 1)] = "HEADER"), (e[(e.BODY = 2)] = "BODY");
     })(ht || (ht = {}));
-    function Qp(e, t, r, n, i) {
-        let o = (0, WT.createReadStream)("", { fd: r, autoClose: !1, start: e.start, end: e.end - 1 });
+    function Zp(e, t, r, n, i) {
+        let o = (0, zT.createReadStream)("", { fd: r, autoClose: !1, start: e.start, end: e.end - 1 });
         o.on("error", n), o.once("end", i), o.pipe(t, { end: !1 });
     }
-    var aa = class extends GT.Writable {
+    var aa = class extends XT.Writable {
         constructor(t, r, n, i, o, s) {
             super(),
                 (this.out = t),
@@ -9544,7 +9535,7 @@ var la = g(un => {
         async handleData(t) {
             let r = 0;
             if (this.ignoreByteCount !== 0 && this.remainingPartDataCount !== 0)
-                throw (0, Di.newError)("Internal error", "ERR_DATA_SPLITTER_BYTE_COUNT_MISMATCH");
+                throw (0, Pi.newError)("Internal error", "ERR_DATA_SPLITTER_BYTE_COUNT_MISMATCH");
             if (this.ignoreByteCount > 0) {
                 let n = Math.min(this.ignoreByteCount, t.length);
                 (this.ignoreByteCount -= n), (r = n);
@@ -9565,11 +9556,11 @@ var la = g(un => {
                         let s = this.partIndexToTaskIndex.get(this.partIndex);
                         if (s == null)
                             if (this.isFinished) s = this.options.end;
-                            else throw (0, Di.newError)("taskIndex is null", "ERR_DATA_SPLITTER_TASK_INDEX_IS_NULL");
+                            else throw (0, Pi.newError)("taskIndex is null", "ERR_DATA_SPLITTER_TASK_INDEX_IS_NULL");
                         let a = this.partIndex === 0 ? this.options.start : this.partIndexToTaskIndex.get(this.partIndex - 1) + 1;
                         if (a < s) await this.copyExistingData(a, s);
                         else if (a > s)
-                            throw (0, Di.newError)(
+                            throw (0, Pi.newError)(
                                 "prevTaskIndex must be < taskIndex",
                                 "ERR_DATA_SPLITTER_TASK_INDEX_ASSERT_FAILED"
                             );
@@ -9606,11 +9597,11 @@ var la = g(un => {
                         return;
                     }
                     let s = this.options.tasks[t];
-                    if (s.kind !== VT.OperationKind.COPY) {
+                    if (s.kind !== KT.OperationKind.COPY) {
                         i(new Error("Task kind must be COPY"));
                         return;
                     }
-                    Qp(s, this.out, this.options.oldFileFd, i, () => {
+                    Zp(s, this.out, this.options.oldFileFd, i, () => {
                         t++, o();
                     });
                 };
@@ -9618,8 +9609,8 @@ var la = g(un => {
             });
         }
         searchHeaderListEnd(t, r) {
-            let n = t.indexOf(Jp, r);
-            if (n !== -1) return n + Jp.length;
+            let n = t.indexOf(Qp, r);
+            if (n !== -1) return n + Qp.length;
             let i = r === 0 ? t : t.slice(r);
             return (
                 this.headerListBuffer == null
@@ -9631,7 +9622,7 @@ var la = g(un => {
         onPartEnd() {
             let t = this.partIndexToLength[this.partIndex - 1];
             if (this.actualPartLength !== t)
-                throw (0, Di.newError)(
+                throw (0, Pi.newError)(
                     `Expected length: ${t} differs from actual: ${this.actualPartLength}`,
                     "ERR_DATA_SPLITTER_LENGTH_MISMATCH"
                 );
@@ -9655,69 +9646,69 @@ var la = g(un => {
     };
     un.DataSplitter = aa;
 });
-var tm = g(Pi => {
+var rm = g(Fi => {
     "use strict";
-    Object.defineProperty(Pi, "__esModule", { value: !0 });
-    Pi.executeTasksUsingMultipleRangeRequests = YT;
-    Pi.checkIsRangesSupported = ca;
+    Object.defineProperty(Fi, "__esModule", { value: !0 });
+    Fi.executeTasksUsingMultipleRangeRequests = JT;
+    Fi.checkIsRangesSupported = ca;
     var ua = ie(),
-        Zp = la(),
-        em = Ri();
-    function YT(e, t, r, n, i) {
+        em = la(),
+        tm = Di();
+    function JT(e, t, r, n, i) {
         let o = s => {
             if (s >= t.length) {
                 e.fileMetadataBuffer != null && r.write(e.fileMetadataBuffer), r.end();
                 return;
             }
             let a = s + 1e3;
-            zT(e, { tasks: t, start: s, end: Math.min(t.length, a), oldFileFd: n }, r, () => o(a), i);
+            QT(e, { tasks: t, start: s, end: Math.min(t.length, a), oldFileFd: n }, r, () => o(a), i);
         };
         return o;
     }
-    function zT(e, t, r, n, i) {
+    function QT(e, t, r, n, i) {
         let o = "bytes=",
             s = 0,
             a = new Map(),
             l = [];
-        for (let d = t.start; d < t.end; d++) {
-            let m = t.tasks[d];
-            m.kind === em.OperationKind.DOWNLOAD &&
-                ((o += `${m.start}-${m.end - 1}, `), a.set(s, d), s++, l.push(m.end - m.start));
+        for (let f = t.start; f < t.end; f++) {
+            let m = t.tasks[f];
+            m.kind === tm.OperationKind.DOWNLOAD &&
+                ((o += `${m.start}-${m.end - 1}, `), a.set(s, f), s++, l.push(m.end - m.start));
         }
         if (s <= 1) {
-            let d = m => {
+            let f = m => {
                 if (m >= t.end) {
                     n();
                     return;
                 }
                 let p = t.tasks[m++];
-                if (p.kind === em.OperationKind.COPY) (0, Zp.copyData)(p, r, t.oldFileFd, i, () => d(m));
+                if (p.kind === tm.OperationKind.COPY) (0, em.copyData)(p, r, t.oldFileFd, i, () => f(m));
                 else {
                     let y = e.createRequestOptions();
                     y.headers.Range = `bytes=${p.start}-${p.end - 1}`;
                     let _ = e.httpExecutor.createRequest(y, v => {
-                        ca(v, i) && (v.pipe(r, { end: !1 }), v.once("end", () => d(m)));
+                        ca(v, i) && (v.pipe(r, { end: !1 }), v.once("end", () => f(m)));
                     });
                     e.httpExecutor.addErrorAndTimeoutHandlers(_, i), _.end();
                 }
             };
-            d(t.start);
+            f(t.start);
             return;
         }
         let h = e.createRequestOptions();
         h.headers.Range = o.substring(0, o.length - 2);
-        let c = e.httpExecutor.createRequest(h, d => {
-            if (!ca(d, i)) return;
-            let m = (0, ua.safeGetHeader)(d, "content-type"),
+        let c = e.httpExecutor.createRequest(h, f => {
+            if (!ca(f, i)) return;
+            let m = (0, ua.safeGetHeader)(f, "content-type"),
                 p = /^multipart\/.+?(?:; boundary=(?:(?:"(.+)")|(?:([^\s]+))))$/i.exec(m);
             if (p == null) {
                 i(new Error(`Content-Type "multipart/byteranges" is expected, but got "${m}"`));
                 return;
             }
-            let y = new Zp.DataSplitter(r, t, a, p[1] || p[2], l, n);
+            let y = new em.DataSplitter(r, t, a, p[1] || p[2], l, n);
             y.on("error", i),
-                d.pipe(y),
-                d.on("end", () => {
+                f.pipe(y),
+                f.on("end", () => {
                     setTimeout(() => {
                         c.abort(), i(new Error("Response ends without calling any handlers"));
                     }, 1e4);
@@ -9735,16 +9726,16 @@ var tm = g(Pi => {
         return !0;
     }
 });
-var rm = g(Fi => {
+var nm = g(qi => {
     "use strict";
-    Object.defineProperty(Fi, "__esModule", { value: !0 });
-    Fi.ProgressDifferentialDownloadCallbackTransform = void 0;
-    var XT = require("stream"),
+    Object.defineProperty(qi, "__esModule", { value: !0 });
+    qi.ProgressDifferentialDownloadCallbackTransform = void 0;
+    var ZT = require("stream"),
         dr;
     (function (e) {
         (e[(e.COPY = 0)] = "COPY"), (e[(e.DOWNLOAD = 1)] = "DOWNLOAD");
     })(dr || (dr = {}));
-    var fa = class extends XT.Transform {
+    var fa = class extends ZT.Transform {
         constructor(t, r, n) {
             super(),
                 (this.progressDifferentialDownloadInfo = t),
@@ -9817,20 +9808,20 @@ var rm = g(Fi => {
                 t(null);
         }
     };
-    Fi.ProgressDifferentialDownloadCallbackTransform = fa;
+    qi.ProgressDifferentialDownloadCallbackTransform = fa;
 });
-var pa = g(Li => {
+var pa = g(Ui => {
     "use strict";
-    Object.defineProperty(Li, "__esModule", { value: !0 });
-    Li.DifferentialDownloader = void 0;
+    Object.defineProperty(Ui, "__esModule", { value: !0 });
+    Ui.DifferentialDownloader = void 0;
     var cn = ie(),
         da = Ve(),
-        KT = require("fs"),
-        JT = la(),
-        QT = require("url"),
-        qi = Ri(),
-        nm = tm(),
-        ZT = rm(),
+        eC = require("fs"),
+        tC = la(),
+        rC = require("url"),
+        Li = Di(),
+        im = rm(),
+        nC = nm(),
         ha = class {
             constructor(t, r, n) {
                 (this.blockAwareFileInfo = t),
@@ -9847,18 +9838,18 @@ var pa = g(Li => {
                 if (t.version !== r.version)
                     throw new Error(`version is different (${t.version} - ${r.version}), full download is required`);
                 let n = this.logger,
-                    i = (0, qi.computeOperations)(t, r, n);
+                    i = (0, Li.computeOperations)(t, r, n);
                 n.debug != null && n.debug(JSON.stringify(i, null, 2));
                 let o = 0,
                     s = 0;
                 for (let l of i) {
                     let h = l.end - l.start;
-                    l.kind === qi.OperationKind.DOWNLOAD ? (o += h) : (s += h);
+                    l.kind === Li.OperationKind.DOWNLOAD ? (o += h) : (s += h);
                 }
                 let a = this.blockAwareFileInfo.size;
                 if (o + s + (this.fileMetadataBuffer == null ? 0 : this.fileMetadataBuffer.length) !== a)
                     throw new Error(`Internal error, size mismatch: downloadSize: ${o}, copySize: ${s}, newSize: ${a}`);
-                return n.info(`Full: ${im(a)}, To download: ${im(o)} (${Math.round(o / (a / 100))}%)`), this.downloadFile(i);
+                return n.info(`Full: ${om(a)}, To download: ${om(o)} (${Math.round(o / (a / 100))}%)`), this.downloadFile(i);
             }
             downloadFile(t) {
                 let r = [],
@@ -9894,7 +9885,7 @@ var pa = g(Li => {
                 r.push({ descriptor: n, path: this.options.oldFile });
                 let i = await (0, da.open)(this.options.newFile, "w");
                 r.push({ descriptor: i, path: this.options.newFile });
-                let o = (0, KT.createWriteStream)(this.options.newFile, { fd: i });
+                let o = (0, eC.createWriteStream)(this.options.newFile, { fd: i });
                 await new Promise((s, a) => {
                     let l = [],
                         h;
@@ -9902,9 +9893,9 @@ var pa = g(Li => {
                         let x = [],
                             A = 0;
                         for (let L of t)
-                            L.kind === qi.OperationKind.DOWNLOAD && (x.push(L.end - L.start), (A += L.end - L.start));
+                            L.kind === Li.OperationKind.DOWNLOAD && (x.push(L.end - L.start), (A += L.end - L.start));
                         let N = { expectedByteCounts: x, grandTotal: A };
-                        (h = new ZT.ProgressDifferentialDownloadCallbackTransform(
+                        (h = new nC.ProgressDifferentialDownloadCallbackTransform(
                             N,
                             this.options.cancellationToken,
                             this.options.onProgress
@@ -9927,12 +9918,12 @@ var pa = g(Li => {
                             });
                         }),
                         l.push(o);
-                    let d = null;
-                    for (let x of l) x.on("error", a), d == null ? (d = x) : (d = d.pipe(x));
+                    let f = null;
+                    for (let x of l) x.on("error", a), f == null ? (f = x) : (f = f.pipe(x));
                     let m = l[0],
                         p;
                     if (this.options.isUseMultipleRangeRequest) {
-                        (p = (0, nm.executeTasksUsingMultipleRangeRequests)(this, t, m, n, a)), p(0);
+                        (p = (0, im.executeTasksUsingMultipleRangeRequests)(this, t, m, n, a)), p(0);
                         return;
                     }
                     let y = 0,
@@ -9947,8 +9938,8 @@ var pa = g(Li => {
                                 return;
                             }
                             let L = t[x++];
-                            if (L.kind === qi.OperationKind.COPY) {
-                                h && h.beginFileCopy(), (0, JT.copyData)(L, m, n, a, () => p(x));
+                            if (L.kind === Li.OperationKind.COPY) {
+                                h && h.beginFileCopy(), (0, tC.copyData)(L, m, n, a, () => p(x));
                                 return;
                             }
                             let De = `bytes=${L.start}-${L.end - 1}`;
@@ -9969,9 +9960,9 @@ var pa = g(Li => {
                                     });
                             });
                             V.on("redirect", (se, E, D) => {
-                                this.logger.info(`Redirect to ${eC(D)}`),
+                                this.logger.info(`Redirect to ${iC(D)}`),
                                     (_ = D),
-                                    (0, cn.configureRequestUrl)(new QT.URL(_), v),
+                                    (0, cn.configureRequestUrl)(new rC.URL(_), v),
                                     V.followRedirect();
                             }),
                                 this.httpExecutor.addErrorAndTimeoutHandlers(V, a),
@@ -9997,7 +9988,7 @@ var pa = g(Li => {
             request(t, r) {
                 return new Promise((n, i) => {
                     let o = this.httpExecutor.createRequest(t, s => {
-                        (0, nm.checkIsRangesSupported)(s, i) &&
+                        (0, im.checkIsRangesSupported)(s, i) &&
                             (s.on("error", i),
                             s.on("aborted", () => {
                                 i(new Error("response has been aborted by the server"));
@@ -10009,59 +10000,59 @@ var pa = g(Li => {
                 });
             }
         };
-    Li.DifferentialDownloader = ha;
-    function im(e, t = " KB") {
+    Ui.DifferentialDownloader = ha;
+    function om(e, t = " KB") {
         return new Intl.NumberFormat("en").format((e / 1024).toFixed(2)) + t;
     }
-    function eC(e) {
+    function iC(e) {
         let t = e.indexOf("?");
         return t < 0 ? e : e.substring(0, t);
     }
 });
-var om = g(Ui => {
+var sm = g($i => {
     "use strict";
-    Object.defineProperty(Ui, "__esModule", { value: !0 });
-    Ui.GenericDifferentialDownloader = void 0;
-    var tC = pa(),
-        ma = class extends tC.DifferentialDownloader {
+    Object.defineProperty($i, "__esModule", { value: !0 });
+    $i.GenericDifferentialDownloader = void 0;
+    var oC = pa(),
+        ma = class extends oC.DifferentialDownloader {
             download(t, r) {
                 return this.doDownload(t, r);
             }
         };
-    Ui.GenericDifferentialDownloader = ma;
+    $i.GenericDifferentialDownloader = ma;
 });
-var ki = g(mr => {
+var Mi = g(mr => {
     "use strict";
     Object.defineProperty(mr, "__esModule", { value: !0 });
     mr.NoOpLogger = mr.AppUpdater = void 0;
-    var Ie = ie(),
-        rC = require("crypto"),
-        nC = require("os"),
-        iC = require("events"),
+    var Se = ie(),
+        sC = require("crypto"),
+        aC = require("os"),
+        lC = require("events"),
         hr = Ve(),
-        oC = Zn(),
-        ga = zf(),
+        uC = ei(),
+        ga = Xf(),
         qt = require("path"),
         Lt = bs(),
-        sm = vp(),
-        sC = xp(),
-        am = Cp(),
-        aC = Xs(),
+        am = Sp(),
+        cC = Tp(),
+        lm = bp(),
+        fC = Xs(),
         pr = Ut(),
-        wa = zp(),
-        lC = require("zlib"),
-        uC = ct(),
-        cC = om(),
-        Ea = class e extends iC.EventEmitter {
+        wa = Xp(),
+        dC = require("zlib"),
+        hC = ct(),
+        pC = sm(),
+        Ea = class e extends lC.EventEmitter {
             get channel() {
                 return this._channel;
             }
             set channel(t) {
                 if (this._channel != null) {
                     if (typeof t != "string")
-                        throw (0, Ie.newError)(`Channel must be a string, but got: ${t}`, "ERR_UPDATER_INVALID_CHANNEL");
+                        throw (0, Se.newError)(`Channel must be a string, but got: ${t}`, "ERR_UPDATER_INVALID_CHANNEL");
                     if (t.length === 0)
-                        throw (0, Ie.newError)("Channel must be not an empty string", "ERR_UPDATER_INVALID_CHANNEL");
+                        throw (0, Se.newError)("Channel must be not an empty string", "ERR_UPDATER_INVALID_CHANNEL");
                 }
                 (this._channel = t), (this.allowDowngrade = !0);
             }
@@ -10069,13 +10060,13 @@ var ki = g(mr => {
                 this.requestHeaders = Object.assign({}, this.requestHeaders, { authorization: t });
             }
             get netSession() {
-                return (0, am.getNetSession)();
+                return (0, lm.getNetSession)();
             }
             get logger() {
                 return this._logger;
             }
             set logger(t) {
-                this._logger = t ?? new $i();
+                this._logger = t ?? new ki();
             }
             set updateConfigPath(t) {
                 (this.clientPromise = null),
@@ -10110,15 +10101,15 @@ var ki = g(mr => {
                         this._logger.error(`Error: ${o.stack || o.message}`);
                     }),
                     r == null
-                        ? ((this.app = new sC.ElectronAppAdapter()),
-                          (this.httpExecutor = new am.ElectronHttpExecutor((o, s) => this.emit("login", o, s))))
+                        ? ((this.app = new cC.ElectronAppAdapter()),
+                          (this.httpExecutor = new lm.ElectronHttpExecutor((o, s) => this.emit("login", o, s))))
                         : ((this.app = r), (this.httpExecutor = null));
                 let n = this.app.version,
                     i = (0, Lt.parse)(n);
                 if (i == null)
-                    throw (0, Ie.newError)(`App version is not a valid semver version: "${n}"`, "ERR_UPDATER_INVALID_VERSION");
+                    throw (0, Se.newError)(`App version is not a valid semver version: "${n}"`, "ERR_UPDATER_INVALID_VERSION");
                 (this.currentVersion = i),
-                    (this.allowPrerelease = fC(i)),
+                    (this.allowPrerelease = mC(i)),
                     t != null &&
                         (this.setFeedURL(t),
                         typeof t != "string" && t.requestHeaders && (this.requestHeaders = t.requestHeaders));
@@ -10130,7 +10121,7 @@ var ki = g(mr => {
                 let r = this.createProviderRuntimeOptions(),
                     n;
                 typeof t == "string"
-                    ? (n = new aC.GenericProvider({ provider: "generic", url: t }, this, {
+                    ? (n = new fC.GenericProvider({ provider: "generic", url: t }, this, {
                           ...r,
                           isUseMultipleRangeRequest: (0, wa.isUrlProbablySupportMultiRangeRequests)(t)
                       }))
@@ -10195,7 +10186,7 @@ var ki = g(mr => {
                 if (((n = parseInt(n, 10)), isNaN(n))) return this._logger.warn(`Staging percentage is NaN: ${r}`), !0;
                 n = n / 100;
                 let i = await this.stagingUserIdPromise.value,
-                    s = Ie.UUID.parse(i).readUInt32BE(12) / 4294967295;
+                    s = Se.UUID.parse(i).readUInt32BE(12) / 4294967295;
                 return this._logger.info(`Staging percentage: ${n}, percentage: ${s}, user id: ${i}`), s < n;
             }
             computeFinalHeaders(t) {
@@ -10204,14 +10195,14 @@ var ki = g(mr => {
             async isUpdateAvailable(t) {
                 let r = (0, Lt.parse)(t.version);
                 if (r == null)
-                    throw (0, Ie.newError)(
+                    throw (0, Se.newError)(
                         `This file could not be downloaded, or the latest version (from update server) does not have a valid semver version: "${t.version}"`,
                         "ERR_UPDATER_INVALID_VERSION"
                     );
                 let n = this.currentVersion;
                 if ((0, Lt.eq)(r, n)) return !1;
                 let i = t?.minimumSystemVersion,
-                    o = (0, nC.release)();
+                    o = (0, aC.release)();
                 if (i)
                     try {
                         if ((0, Lt.lt)(o, i))
@@ -10268,7 +10259,7 @@ var ki = g(mr => {
                         { versionInfo: r, updateInfo: r }
                     );
                 (this.updateInfoAndProvider = t), this.onUpdateAvailable(r);
-                let n = new Ie.CancellationToken();
+                let n = new Se.CancellationToken();
                 return {
                     versionInfo: r,
                     updateInfo: r,
@@ -10278,13 +10269,13 @@ var ki = g(mr => {
             }
             onUpdateAvailable(t) {
                 this._logger.info(
-                    `Found version ${t.version} (url: ${(0, Ie.asArray)(t.files)
+                    `Found version ${t.version} (url: ${(0, Se.asArray)(t.files)
                         .map(r => r.url)
                         .join(", ")})`
                 ),
                     this.emit("update-available", t);
             }
-            downloadUpdate(t = new Ie.CancellationToken()) {
+            downloadUpdate(t = new Se.CancellationToken()) {
                 let r = this.updateInfoAndProvider;
                 if (r == null) {
                     let i = new Error("Please check update first");
@@ -10293,12 +10284,12 @@ var ki = g(mr => {
                 if (this.downloadPromise != null)
                     return this._logger.info("Downloading update (already in progress)"), this.downloadPromise;
                 this._logger.info(
-                    `Downloading update from ${(0, Ie.asArray)(r.info.files)
+                    `Downloading update from ${(0, Se.asArray)(r.info.files)
                         .map(i => i.url)
                         .join(", ")}`
                 );
                 let n = i => {
-                    if (!(i instanceof Ie.CancellationError))
+                    if (!(i instanceof Se.CancellationError))
                         try {
                             this.dispatchError(i);
                         } catch (o) {
@@ -10332,7 +10323,7 @@ var ki = g(mr => {
             async loadUpdateConfig() {
                 return (
                     this._appUpdateConfigPath == null && (this._appUpdateConfigPath = this.app.appUpdateConfigPath),
-                    (0, oC.load)(await (0, hr.readFile)(this._appUpdateConfigPath, "utf-8"))
+                    (0, uC.load)(await (0, hr.readFile)(this._appUpdateConfigPath, "utf-8"))
                 );
             }
             computeRequestHeaders(t) {
@@ -10347,12 +10338,12 @@ var ki = g(mr => {
                 let t = qt.join(this.app.userDataPath, ".updaterId");
                 try {
                     let n = await (0, hr.readFile)(t, "utf-8");
-                    if (Ie.UUID.check(n)) return n;
+                    if (Se.UUID.check(n)) return n;
                     this._logger.warn(`Staging user id file exists, but content was invalid: ${n}`);
                 } catch (n) {
                     n.code !== "ENOENT" && this._logger.warn(`Couldn't read staging user ID, creating a blank one: ${n}`);
                 }
-                let r = Ie.UUID.v5((0, rC.randomBytes)(4096), Ie.UUID.OID);
+                let r = Se.UUID.v5((0, sC.randomBytes)(4096), Se.UUID.OID);
                 this._logger.info(`Generated new staging user ID: ${r}`);
                 try {
                     await (0, hr.outputFile)(t, r);
@@ -10381,7 +10372,7 @@ var ki = g(mr => {
                         );
                     let i = qt.join(this.app.baseCachePath, r || this.app.name);
                     n.debug != null && n.debug(`updater cache dir: ${i}`),
-                        (t = new sm.DownloadedUpdateHelper(i)),
+                        (t = new am.DownloadedUpdateHelper(i)),
                         (this.downloadedUpdateHelper = t);
                 }
                 return t;
@@ -10406,42 +10397,50 @@ var ki = g(mr => {
                     h = l.cacheDirForPendingUpdate;
                 await (0, hr.mkdir)(h, { recursive: !0 });
                 let c = a(),
-                    d = qt.join(h, c),
+                    f = qt.join(h, c),
                     m = s == null ? null : qt.join(h, `package-${o}${qt.extname(s.path) || ".7z"}`),
                     p = async A => (
-                        await l.setDownloadedFile(d, m, i, r, c, A),
-                        await t.done({ ...i, downloadedFile: d }),
-                        m == null ? [d] : [d, m]
+                        await l.setDownloadedFile(f, m, i, r, c, A),
+                        await t.done({ ...i, downloadedFile: f }),
+                        m == null ? [f] : [f, m]
                     ),
                     y = this._logger,
-                    _ = await l.validateDownloadedPath(d, i, r, y);
-                if (_ != null) return (d = _), await p(!1);
-                let v = async () => (await l.clear().catch(() => {}), await (0, hr.unlink)(d).catch(() => {})),
-                    x = await (0, sm.createTempUpdateFile)(`temp-${c}`, h, y);
+                    _ = await l.validateDownloadedPath(f, i, r, y);
+                if (_ != null) return (f = _), await p(!1);
+                let v = async () => (await l.clear().catch(() => {}), await (0, hr.unlink)(f).catch(() => {})),
+                    x = await (0, am.createTempUpdateFile)(`temp-${c}`, h, y);
                 try {
-                    await t.task(x, n, m, v), await (0, hr.rename)(x, d);
+                    await t.task(x, n, m, v),
+                        await (0, Se.retry)(
+                            () => (0, hr.rename)(x, f),
+                            60,
+                            500,
+                            0,
+                            0,
+                            A => A instanceof Error && /^EBUSY:/.test(A.message)
+                        );
                 } catch (A) {
                     throw (
                         (await v(),
-                        A instanceof Ie.CancellationError && (y.info("cancelled"), this.emit("update-cancelled", i)),
+                        A instanceof Se.CancellationError && (y.info("cancelled"), this.emit("update-cancelled", i)),
                         A)
                     );
                 }
-                return y.info(`New version ${o} has been downloaded to ${d}`), await p(!0);
+                return y.info(`New version ${o} has been downloaded to ${f}`), await p(!0);
             }
             async differentialDownloadInstaller(t, r, n, i, o) {
                 try {
                     if (this._testOnlyOptions != null && !this._testOnlyOptions.isUseDifferentialDownload) return !0;
-                    let s = (0, uC.blockmapFiles)(t.url, this.app.version, r.updateInfoAndProvider.info.version);
+                    let s = (0, hC.blockmapFiles)(t.url, this.app.version, r.updateInfoAndProvider.info.version);
                     this._logger.info(`Download block maps (old: "${s[0]}", new: ${s[1]})`);
                     let a = async c => {
-                            let d = await this.httpExecutor.downloadToBuffer(c, {
+                            let f = await this.httpExecutor.downloadToBuffer(c, {
                                 headers: r.requestHeaders,
                                 cancellationToken: r.cancellationToken
                             });
-                            if (d == null || d.length === 0) throw new Error(`Blockmap "${c.href}" is empty`);
+                            if (f == null || f.length === 0) throw new Error(`Blockmap "${c.href}" is empty`);
                             try {
-                                return JSON.parse((0, lC.gunzipSync)(d).toString());
+                                return JSON.parse((0, dC.gunzipSync)(f).toString());
                             } catch (m) {
                                 throw new Error(`Cannot parse blockmap "${c.href}", error: ${m}`);
                             }
@@ -10457,7 +10456,7 @@ var ki = g(mr => {
                         };
                     this.listenerCount(pr.DOWNLOAD_PROGRESS) > 0 && (l.onProgress = c => this.emit(pr.DOWNLOAD_PROGRESS, c));
                     let h = await Promise.all(s.map(c => a(c)));
-                    return await new cC.GenericDifferentialDownloader(t.info, this.httpExecutor, l).download(h[0], h[1]), !1;
+                    return await new pC.GenericDifferentialDownloader(t.info, this.httpExecutor, l).download(h[0], h[1]), !1;
                 } catch (s) {
                     if (
                         (this._logger.error(`Cannot download differentially, fallback to full download: ${s.stack || s}`),
@@ -10469,24 +10468,24 @@ var ki = g(mr => {
             }
         };
     mr.AppUpdater = Ea;
-    function fC(e) {
+    function mC(e) {
         let t = (0, Lt.prerelease)(e);
         return t != null && t.length > 0;
     }
-    var $i = class {
+    var ki = class {
         info(t) {}
         warn(t) {}
         error(t) {}
     };
-    mr.NoOpLogger = $i;
+    mr.NoOpLogger = ki;
 });
-var gr = g(Mi => {
+var gr = g(Bi => {
     "use strict";
-    Object.defineProperty(Mi, "__esModule", { value: !0 });
-    Mi.BaseUpdater = void 0;
-    var lm = require("child_process"),
-        dC = ki(),
-        ya = class extends dC.AppUpdater {
+    Object.defineProperty(Bi, "__esModule", { value: !0 });
+    Bi.BaseUpdater = void 0;
+    var um = require("child_process"),
+        gC = Mi(),
+        ya = class extends gC.AppUpdater {
             constructor(t, r) {
                 super(t, r), (this.quitAndInstallCalled = !1), (this.quitHandlerAdded = !1);
             }
@@ -10568,7 +10567,7 @@ var gr = g(Mi => {
             spawnSyncLog(t, r = [], n = {}) {
                 return (
                     this._logger.info(`Executing: ${t} with args: ${r}`),
-                    (0, lm.spawnSync)(t, r, { env: { ...process.env, ...n }, encoding: "utf-8", shell: !0 }).stdout.trim()
+                    (0, um.spawnSync)(t, r, { env: { ...process.env, ...n }, encoding: "utf-8", shell: !0 }).stdout.trim()
                 );
             }
             async spawnLog(t, r = [], n = void 0, i = "ignore") {
@@ -10577,7 +10576,7 @@ var gr = g(Mi => {
                     new Promise((o, s) => {
                         try {
                             let a = { stdio: i, env: n, detached: !0 },
-                                l = (0, lm.spawn)(t, r, a);
+                                l = (0, um.spawn)(t, r, a);
                             l.on("error", h => {
                                 s(h);
                             }),
@@ -10590,56 +10589,56 @@ var gr = g(Mi => {
                 );
             }
         };
-    Mi.BaseUpdater = ya;
+    Bi.BaseUpdater = ya;
 });
-var va = g(Bi => {
+var va = g(Hi => {
     "use strict";
-    Object.defineProperty(Bi, "__esModule", { value: !0 });
-    Bi.FileWithEmbeddedBlockMapDifferentialDownloader = void 0;
+    Object.defineProperty(Hi, "__esModule", { value: !0 });
+    Hi.FileWithEmbeddedBlockMapDifferentialDownloader = void 0;
     var wr = Ve(),
-        hC = pa(),
-        pC = require("zlib"),
-        _a = class extends hC.DifferentialDownloader {
+        wC = pa(),
+        EC = require("zlib"),
+        _a = class extends wC.DifferentialDownloader {
             async download() {
                 let t = this.blockAwareFileInfo,
                     r = t.size,
                     n = r - (t.blockMapSize + 4);
                 this.fileMetadataBuffer = await this.readRemoteBytes(n, r - 1);
-                let i = um(this.fileMetadataBuffer.slice(0, this.fileMetadataBuffer.length - 4));
-                await this.doDownload(await mC(this.options.oldFile), i);
+                let i = cm(this.fileMetadataBuffer.slice(0, this.fileMetadataBuffer.length - 4));
+                await this.doDownload(await yC(this.options.oldFile), i);
             }
         };
-    Bi.FileWithEmbeddedBlockMapDifferentialDownloader = _a;
-    function um(e) {
-        return JSON.parse((0, pC.inflateRawSync)(e).toString());
+    Hi.FileWithEmbeddedBlockMapDifferentialDownloader = _a;
+    function cm(e) {
+        return JSON.parse((0, EC.inflateRawSync)(e).toString());
     }
-    async function mC(e) {
+    async function yC(e) {
         let t = await (0, wr.open)(e, "r");
         try {
             let r = (await (0, wr.fstat)(t)).size,
                 n = Buffer.allocUnsafe(4);
             await (0, wr.read)(t, n, 0, n.length, r - n.length);
             let i = Buffer.allocUnsafe(n.readUInt32BE(0));
-            return await (0, wr.read)(t, i, 0, i.length, r - n.length - i.length), await (0, wr.close)(t), um(i);
+            return await (0, wr.read)(t, i, 0, i.length, r - n.length - i.length), await (0, wr.close)(t), cm(i);
         } catch (r) {
             throw (await (0, wr.close)(t), r);
         }
     }
 });
-var Aa = g(Hi => {
+var Aa = g(ji => {
     "use strict";
-    Object.defineProperty(Hi, "__esModule", { value: !0 });
-    Hi.AppImageUpdater = void 0;
-    var cm = ie(),
-        fm = require("child_process"),
-        gC = Ve(),
-        wC = require("fs"),
+    Object.defineProperty(ji, "__esModule", { value: !0 });
+    ji.AppImageUpdater = void 0;
+    var fm = ie(),
+        dm = require("child_process"),
+        _C = Ve(),
+        vC = require("fs"),
         fn = require("path"),
-        EC = gr(),
-        yC = va(),
-        dm = Ut(),
-        _C = qe(),
-        Sa = class extends EC.BaseUpdater {
+        SC = gr(),
+        AC = va(),
+        hm = Ut(),
+        xC = qe(),
+        Sa = class extends SC.BaseUpdater {
             constructor(t, r) {
                 super(t, r);
             }
@@ -10653,14 +10652,14 @@ var Aa = g(Hi => {
             }
             doDownloadUpdate(t) {
                 let r = t.updateInfoAndProvider.provider,
-                    n = (0, _C.findFile)(r.resolveFiles(t.updateInfoAndProvider.info), "AppImage", ["rpm", "deb"]);
+                    n = (0, xC.findFile)(r.resolveFiles(t.updateInfoAndProvider.info), "AppImage", ["rpm", "deb"]);
                 return this.executeDownload({
                     fileExtension: "AppImage",
                     fileInfo: n,
                     downloadUpdateOptions: t,
                     task: async (i, o) => {
                         let s = process.env.APPIMAGE;
-                        if (s == null) throw (0, cm.newError)("APPIMAGE env is not defined", "ERR_UPDATER_OLD_FILE_NOT_FOUND");
+                        if (s == null) throw (0, fm.newError)("APPIMAGE env is not defined", "ERR_UPDATER_OLD_FILE_NOT_FOUND");
                         let a = !1;
                         try {
                             let l = {
@@ -10672,9 +10671,9 @@ var Aa = g(Hi => {
                                 requestHeaders: t.requestHeaders,
                                 cancellationToken: t.cancellationToken
                             };
-                            this.listenerCount(dm.DOWNLOAD_PROGRESS) > 0 &&
-                                (l.onProgress = h => this.emit(dm.DOWNLOAD_PROGRESS, h)),
-                                await new yC.FileWithEmbeddedBlockMapDifferentialDownloader(
+                            this.listenerCount(hm.DOWNLOAD_PROGRESS) > 0 &&
+                                (l.onProgress = h => this.emit(hm.DOWNLOAD_PROGRESS, h)),
+                                await new AC.FileWithEmbeddedBlockMapDifferentialDownloader(
                                     n.info,
                                     this.httpExecutor,
                                     l
@@ -10683,52 +10682,52 @@ var Aa = g(Hi => {
                             this._logger.error(`Cannot download differentially, fallback to full download: ${l.stack || l}`),
                                 (a = process.platform === "linux");
                         }
-                        a && (await this.httpExecutor.download(n.url, i, o)), await (0, gC.chmod)(i, 493);
+                        a && (await this.httpExecutor.download(n.url, i, o)), await (0, _C.chmod)(i, 493);
                     }
                 });
             }
             doInstall(t) {
                 let r = process.env.APPIMAGE;
-                if (r == null) throw (0, cm.newError)("APPIMAGE env is not defined", "ERR_UPDATER_OLD_FILE_NOT_FOUND");
-                (0, wC.unlinkSync)(r);
+                if (r == null) throw (0, fm.newError)("APPIMAGE env is not defined", "ERR_UPDATER_OLD_FILE_NOT_FOUND");
+                (0, vC.unlinkSync)(r);
                 let n,
                     i = fn.basename(r);
                 fn.basename(t.installerPath) === i || !/\d+\.\d+\.\d+/.test(i)
                     ? (n = r)
                     : (n = fn.join(fn.dirname(r), fn.basename(t.installerPath))),
-                    (0, fm.execFileSync)("mv", ["-f", t.installerPath, n]),
+                    (0, dm.execFileSync)("mv", ["-f", t.installerPath, n]),
                     n !== r && this.emit("appimage-filename-updated", n);
                 let o = { ...process.env, APPIMAGE_SILENT_INSTALL: "true" };
                 return (
                     t.isForceRunAfter
                         ? this.spawnLog(n, [], o)
-                        : ((o.APPIMAGE_EXIT_AFTER_INSTALL = "true"), (0, fm.execFileSync)(n, [], { env: o })),
+                        : ((o.APPIMAGE_EXIT_AFTER_INSTALL = "true"), (0, dm.execFileSync)(n, [], { env: o })),
                     !0
                 );
             }
         };
-    Hi.AppImageUpdater = Sa;
+    ji.AppImageUpdater = Sa;
 });
-var Ta = g(ji => {
+var Ta = g(Wi => {
     "use strict";
-    Object.defineProperty(ji, "__esModule", { value: !0 });
-    ji.DebUpdater = void 0;
-    var vC = gr(),
-        hm = Ut(),
-        SC = qe(),
-        xa = class extends vC.BaseUpdater {
+    Object.defineProperty(Wi, "__esModule", { value: !0 });
+    Wi.DebUpdater = void 0;
+    var TC = gr(),
+        pm = Ut(),
+        CC = qe(),
+        xa = class extends TC.BaseUpdater {
             constructor(t, r) {
                 super(t, r);
             }
             doDownloadUpdate(t) {
                 let r = t.updateInfoAndProvider.provider,
-                    n = (0, SC.findFile)(r.resolveFiles(t.updateInfoAndProvider.info), "deb", ["AppImage", "rpm"]);
+                    n = (0, CC.findFile)(r.resolveFiles(t.updateInfoAndProvider.info), "deb", ["AppImage", "rpm"]);
                 return this.executeDownload({
                     fileExtension: "deb",
                     fileInfo: n,
                     downloadUpdateOptions: t,
                     task: async (i, o) => {
-                        this.listenerCount(hm.DOWNLOAD_PROGRESS) > 0 && (o.onProgress = s => this.emit(hm.DOWNLOAD_PROGRESS, s)),
+                        this.listenerCount(pm.DOWNLOAD_PROGRESS) > 0 && (o.onProgress = s => this.emit(pm.DOWNLOAD_PROGRESS, s)),
                             await this.httpExecutor.download(n.url, i, o);
                     }
                 });
@@ -10744,28 +10743,28 @@ var Ta = g(ji => {
                 );
             }
         };
-    ji.DebUpdater = xa;
+    Wi.DebUpdater = xa;
 });
-var ba = g(Wi => {
+var ba = g(Gi => {
     "use strict";
-    Object.defineProperty(Wi, "__esModule", { value: !0 });
-    Wi.RpmUpdater = void 0;
-    var AC = gr(),
-        pm = Ut(),
-        xC = qe(),
-        Ca = class extends AC.BaseUpdater {
+    Object.defineProperty(Gi, "__esModule", { value: !0 });
+    Gi.RpmUpdater = void 0;
+    var bC = gr(),
+        mm = Ut(),
+        OC = qe(),
+        Ca = class extends bC.BaseUpdater {
             constructor(t, r) {
                 super(t, r);
             }
             doDownloadUpdate(t) {
                 let r = t.updateInfoAndProvider.provider,
-                    n = (0, xC.findFile)(r.resolveFiles(t.updateInfoAndProvider.info), "rpm", ["AppImage", "deb"]);
+                    n = (0, OC.findFile)(r.resolveFiles(t.updateInfoAndProvider.info), "rpm", ["AppImage", "deb"]);
                 return this.executeDownload({
                     fileExtension: "rpm",
                     fileInfo: n,
                     downloadUpdateOptions: t,
                     task: async (i, o) => {
-                        this.listenerCount(pm.DOWNLOAD_PROGRESS) > 0 && (o.onProgress = s => this.emit(pm.DOWNLOAD_PROGRESS, s)),
+                        this.listenerCount(mm.DOWNLOAD_PROGRESS) > 0 && (o.onProgress = s => this.emit(mm.DOWNLOAD_PROGRESS, s)),
                             await this.httpExecutor.download(n.url, i, o);
                     }
                 });
@@ -10786,22 +10785,22 @@ var ba = g(Wi => {
                 );
             }
         };
-    Wi.RpmUpdater = Ca;
+    Gi.RpmUpdater = Ca;
 });
-var Ia = g(Gi => {
+var Ia = g(Vi => {
     "use strict";
-    Object.defineProperty(Gi, "__esModule", { value: !0 });
-    Gi.MacUpdater = void 0;
-    var mm = ie(),
-        gm = Ve(),
-        wm = require("fs"),
-        TC = require("path"),
-        CC = require("http"),
-        bC = ki(),
-        OC = qe(),
-        Em = require("child_process"),
-        ym = require("crypto"),
-        Oa = class extends bC.AppUpdater {
+    Object.defineProperty(Vi, "__esModule", { value: !0 });
+    Vi.MacUpdater = void 0;
+    var gm = ie(),
+        wm = Ve(),
+        Em = require("fs"),
+        ym = require("path"),
+        IC = require("http"),
+        NC = Mi(),
+        RC = qe(),
+        _m = require("child_process"),
+        vm = require("crypto"),
+        Oa = class extends NC.AppUpdater {
             constructor(t, r) {
                 super(t, r),
                     (this.nativeUpdater = require("electron").autoUpdater),
@@ -10833,73 +10832,76 @@ var Ia = g(Gi => {
                     o = !1;
                 try {
                     this.debug("Checking for macOS Rosetta environment"),
-                        (o = (0, Em.execFileSync)("sysctl", [i], { encoding: "utf8" }).includes(`${i}: 1`)),
+                        (o = (0, _m.execFileSync)("sysctl", [i], { encoding: "utf8" }).includes(`${i}: 1`)),
                         n.info(`Checked for macOS Rosetta environment (isRosetta=${o})`);
-                } catch (m) {
-                    n.warn(`sysctl shell command to check for macOS Rosetta environment failed: ${m}`);
+                } catch (f) {
+                    n.warn(`sysctl shell command to check for macOS Rosetta environment failed: ${f}`);
                 }
                 let s = !1;
                 try {
                     this.debug("Checking for arm64 in uname");
-                    let p = (0, Em.execFileSync)("uname", ["-a"], { encoding: "utf8" }).includes("ARM");
-                    n.info(`Checked 'uname -a': arm64=${p}`), (s = s || p);
-                } catch (m) {
-                    n.warn(`uname shell command to check for arm64 failed: ${m}`);
+                    let m = (0, _m.execFileSync)("uname", ["-a"], { encoding: "utf8" }).includes("ARM");
+                    n.info(`Checked 'uname -a': arm64=${m}`), (s = s || m);
+                } catch (f) {
+                    n.warn(`uname shell command to check for arm64 failed: ${f}`);
                 }
                 s = s || process.arch === "arm64" || o;
-                let a = m => {
-                    var p;
+                let a = f => {
+                    var m;
                     return (
-                        m.url.pathname.includes("arm64") ||
-                        ((p = m.info.url) === null || p === void 0 ? void 0 : p.includes("arm64"))
+                        f.url.pathname.includes("arm64") ||
+                        ((m = f.info.url) === null || m === void 0 ? void 0 : m.includes("arm64"))
                     );
                 };
-                s && r.some(a) ? (r = r.filter(m => s === a(m))) : (r = r.filter(m => !a(m)));
-                let l = (0, OC.findFile)(r, "zip", ["pkg", "dmg"]);
+                s && r.some(a) ? (r = r.filter(f => s === a(f))) : (r = r.filter(f => !a(f)));
+                let l = (0, RC.findFile)(r, "zip", ["pkg", "dmg"]);
                 if (l == null)
-                    throw (0, mm.newError)(
-                        `ZIP file not provided: ${(0, mm.safeStringifyJson)(r)}`,
+                    throw (0, gm.newError)(
+                        `ZIP file not provided: ${(0, gm.safeStringifyJson)(r)}`,
                         "ERR_UPDATER_ZIP_FILE_NOT_FOUND"
                     );
                 let h = t.updateInfoAndProvider.provider,
-                    c = "update.zip",
-                    d = "";
+                    c = "update.zip";
                 return this.executeDownload({
                     fileExtension: "zip",
                     fileInfo: l,
                     downloadUpdateOptions: t,
-                    task: async (m, p) => {
-                        d = TC.join(this.downloadedUpdateHelper.cacheDir, c);
-                        let y = () =>
-                                (0, gm.pathExistsSync)(d)
+                    task: async (f, m) => {
+                        let p = ym.join(this.downloadedUpdateHelper.cacheDir, c),
+                            y = () =>
+                                (0, wm.pathExistsSync)(p)
                                     ? !t.disableDifferentialDownload
                                     : (n.info(
                                           "Unable to locate previous update.zip for differential download (is this first install?), falling back to full download"
                                       ),
                                       !1),
                             _ = !0;
-                        y() && (_ = await this.differentialDownloadInstaller(l, t, m, h, c)),
-                            _ && (await this.httpExecutor.download(l.url, m, p));
+                        y() && (_ = await this.differentialDownloadInstaller(l, t, f, h, c)),
+                            _ && (await this.httpExecutor.download(l.url, f, m));
                     },
-                    done: m => {
-                        try {
-                            (0, wm.copyFileSync)(m.downloadedFile, d);
-                        } catch (p) {
-                            this._logger.error(`Unable to copy file for caching: ${p.message}`);
-                        }
-                        return this.updateDownloaded(l, m);
+                    done: f => {
+                        if (!t.disableDifferentialDownload)
+                            try {
+                                let m = ym.join(this.downloadedUpdateHelper.cacheDir, c);
+                                (0, Em.copyFileSync)(f.downloadedFile, m);
+                            } catch (m) {
+                                this._logger.warn(
+                                    `Unable to copy file for caching for future differential downloads: ${m.message}`
+                                );
+                            }
+                        return this.updateDownloaded(l, f);
                     }
                 });
             }
             async updateDownloaded(t, r) {
                 var n;
                 let i = r.downloadedFile,
-                    o = (n = t.info.size) !== null && n !== void 0 ? n : (await (0, gm.stat)(i)).size,
+                    o = (n = t.info.size) !== null && n !== void 0 ? n : (await (0, wm.stat)(i)).size,
                     s = this._logger,
                     a = `fileToProxy=${t.url.href}`;
                 this.closeServerIfExists(),
                     this.debug(`Creating proxy server for native Squirrel.Mac (${a})`),
-                    (this.server = (0, CC.createServer)()),
+                    (this.server = (0, IC.createServer)()),
                     this.debug(`Proxy server for native Squirrel.Mac is created (${a})`),
                     this.server.on("close", () => {
                         s.info(`Proxy server for native Squirrel.Mac is closed (${a})`);
@@ -10909,9 +10911,9 @@ var Ia = g(Gi => {
                     return typeof c == "string" ? c : `http://127.0.0.1:${c?.port}`;
                 };
                 return await new Promise((h, c) => {
-                    let d = (0, ym.randomBytes)(64).toString("base64").replace(/\//g, "_").replace(/\+/g, "-"),
-                        m = Buffer.from(`autoupdater:${d}`, "ascii"),
-                        p = `/${(0, ym.randomBytes)(64).toString("hex")}.zip`;
+                    let f = (0, vm.randomBytes)(64).toString("base64").replace(/\//g, "_").replace(/\+/g, "-"),
+                        m = Buffer.from(`autoupdater:${f}`, "ascii"),
+                        p = `/${(0, vm.randomBytes)(64).toString("hex")}.zip`;
                     this.server.on("request", (y, _) => {
                         let v = y.url;
                         if ((s.info(`${v} requested`), v === "/")) {
@@ -10925,7 +10927,7 @@ var Ia = g(Gi => {
                             let N = y.headers.authorization.split(" ")[1],
                                 L = Buffer.from(N, "base64").toString("ascii"),
                                 [De, V] = L.split(":");
-                            if (De !== "autoupdater" || V !== d) {
+                            if (De !== "autoupdater" || V !== f) {
                                 (_.statusCode = 401),
                                     (_.statusMessage = "Invalid Authentication Credentials"),
                                     _.end(),
@@ -10945,7 +10947,7 @@ var Ia = g(Gi => {
                         _.on("finish", () => {
                             x || (this.nativeUpdater.removeListener("error", c), h([]));
                         });
-                        let A = (0, wm.createReadStream)(i);
+                        let A = (0, Em.createReadStream)(i);
                         A.on("error", N => {
                             try {
                                 _.end();
@@ -10980,21 +10982,21 @@ var Ia = g(Gi => {
                       this.autoInstallOnAppQuit || this.nativeUpdater.checkForUpdates());
             }
         };
-    Gi.MacUpdater = Oa;
+    Vi.MacUpdater = Oa;
 });
-var Am = g(Ra => {
+var Tm = g(Ra => {
     "use strict";
     Object.defineProperty(Ra, "__esModule", { value: !0 });
-    Ra.verifySignature = NC;
-    var _m = ie(),
-        Sm = require("child_process"),
-        IC = require("os"),
-        vm = require("path");
-    function NC(e, t, r) {
+    Ra.verifySignature = PC;
+    var Sm = ie(),
+        xm = require("child_process"),
+        DC = require("os"),
+        Am = require("path");
+    function PC(e, t, r) {
         return new Promise((n, i) => {
             let o = t.replace(/'/g, "''");
             r.info(`Verifying signature ${o}`),
-                (0, Sm.execFile)(
+                (0, xm.execFile)(
                     'set "PSModulePath=" & chcp 65001 >NUL & powershell.exe',
                     [
                         "-NoProfile",
@@ -11012,11 +11014,11 @@ var Am = g(Ra => {
                                 Na(r, s, l, i), n(null);
                                 return;
                             }
-                            let c = RC(a);
+                            let c = FC(a);
                             if (c.Status === 0) {
                                 try {
-                                    let y = vm.normalize(c.Path),
-                                        _ = vm.normalize(t);
+                                    let y = Am.normalize(c.Path),
+                                        _ = Am.normalize(t);
                                     if ((r.info(`LiteralPath: ${y}. Update Path: ${_}`), y !== _)) {
                                         Na(r, new Error(`LiteralPath of ${y} is different than ${_}`), l, i), n(null);
                                         return;
@@ -11028,10 +11030,10 @@ var Am = g(Ra => {
                                         }`
                                     );
                                 }
-                                let m = (0, _m.parseDn)(c.SignerCertificate.Subject),
+                                let m = (0, Sm.parseDn)(c.SignerCertificate.Subject),
                                     p = !1;
                                 for (let y of e) {
-                                    let _ = (0, _m.parseDn)(y);
+                                    let _ = (0, Sm.parseDn)(y);
                                     if (
                                         (_.size
                                             ? (p = Array.from(_.keys()).every(x => _.get(x) === m.get(x)))
@@ -11047,10 +11049,10 @@ var Am = g(Ra => {
                                     }
                                 }
                             }
-                            let d =
+                            let f =
                                 `publisherNames: ${e.join(" | ")}, raw info: ` +
                                 JSON.stringify(c, (m, p) => (m === "RawData" ? void 0 : p), 2);
-                            r.warn(`Sign verification failed, installer signed with incorrect certificate: ${d}`), n(d);
+                            r.warn(`Sign verification failed, installer signed with incorrect certificate: ${f}`), n(f);
                         } catch (c) {
                             Na(r, c, null, i), n(null);
                             return;
@@ -11059,7 +11061,7 @@ var Am = g(Ra => {
                 );
         });
     }
-    function RC(e) {
+    function FC(e) {
         let t = JSON.parse(e);
         delete t.PrivateKey, delete t.IsOSBinary, delete t.SignatureType;
         let r = t.SignerCertificate;
@@ -11069,7 +11071,7 @@ var Am = g(Ra => {
         );
     }
     function Na(e, t, r, n) {
-        if (DC()) {
+        if (qC()) {
             e.warn(
                 `Cannot execute Get-AuthenticodeSignature: ${
                     t || r
@@ -11078,7 +11080,7 @@ var Am = g(Ra => {
             return;
         }
         try {
-            (0, Sm.execFileSync)("powershell.exe", ["-NoProfile", "-NonInteractive", "-Command", "ConvertTo-Json test"], {
+            (0, xm.execFileSync)("powershell.exe", ["-NoProfile", "-NonInteractive", "-Command", "ConvertTo-Json test"], {
                 timeout: 10 * 1e3
             });
         } catch (i) {
@@ -11095,27 +11097,27 @@ var Am = g(Ra => {
                     )
                 );
     }
-    function DC() {
-        let e = IC.release();
+    function qC() {
+        let e = DC.release();
         return e.startsWith("6.") && !e.startsWith("6.3");
     }
 });
-var Pa = g(Yi => {
+var Pa = g(zi => {
     "use strict";
-    Object.defineProperty(Yi, "__esModule", { value: !0 });
-    Yi.NsisUpdater = void 0;
-    var Vi = ie(),
-        xm = require("path"),
-        PC = gr(),
-        FC = va(),
-        Tm = Ut(),
-        qC = qe(),
-        LC = Ve(),
-        UC = Am(),
-        Cm = require("url"),
-        Da = class extends PC.BaseUpdater {
+    Object.defineProperty(zi, "__esModule", { value: !0 });
+    zi.NsisUpdater = void 0;
+    var Yi = ie(),
+        Cm = require("path"),
+        LC = gr(),
+        UC = va(),
+        bm = Ut(),
+        $C = qe(),
+        kC = Ve(),
+        MC = Tm(),
+        Om = require("url"),
+        Da = class extends LC.BaseUpdater {
             constructor(t, r) {
-                super(t, r), (this._verifyUpdateCodeSignature = (n, i) => (0, UC.verifySignature)(n, i, this._logger));
+                super(t, r), (this._verifyUpdateCodeSignature = (n, i) => (0, MC.verifySignature)(n, i, this._logger));
             }
             get verifyUpdateCodeSignature() {
                 return this._verifyUpdateCodeSignature;
@@ -11125,7 +11127,7 @@ var Pa = g(Yi => {
             }
             doDownloadUpdate(t) {
                 let r = t.updateInfoAndProvider.provider,
-                    n = (0, qC.findFile)(r.resolveFiles(t.updateInfoAndProvider.info), "exe");
+                    n = (0, $C.findFile)(r.resolveFiles(t.updateInfoAndProvider.info), "exe");
                 return this.executeDownload({
                     fileExtension: "exe",
                     downloadUpdateOptions: t,
@@ -11134,7 +11136,7 @@ var Pa = g(Yi => {
                         let l = n.packageInfo,
                             h = l != null && s != null;
                         if (h && t.disableWebInstaller)
-                            throw (0, Vi.newError)(
+                            throw (0, Yi.newError)(
                                 `Unable to download new version ${t.updateInfoAndProvider.info.version}. Web Installers are disabled`,
                                 "ERR_UPDATER_WEB_INSTALLER_DISABLED"
                             );
@@ -11145,29 +11147,29 @@ var Pa = g(Yi => {
                             ),
                             (h ||
                                 t.disableDifferentialDownload ||
-                                (await this.differentialDownloadInstaller(n, t, i, r, Vi.CURRENT_APP_INSTALLER_FILE_NAME))) &&
+                                (await this.differentialDownloadInstaller(n, t, i, r, Yi.CURRENT_APP_INSTALLER_FILE_NAME))) &&
                                 (await this.httpExecutor.download(n.url, i, o));
                         let c = await this.verifySignature(i);
                         if (c != null)
                             throw (
                                 (await a(),
-                                (0, Vi.newError)(
+                                (0, Yi.newError)(
                                     `New version ${t.updateInfoAndProvider.info.version} is not signed by the application owner: ${c}`,
                                     "ERR_UPDATER_INVALID_SIGNATURE"
                                 ))
                             );
                         if (h && (await this.differentialDownloadWebPackage(t, l, s, r)))
                             try {
-                                await this.httpExecutor.download(new Cm.URL(l.path), s, {
+                                await this.httpExecutor.download(new Om.URL(l.path), s, {
                                     headers: t.requestHeaders,
                                     cancellationToken: t.cancellationToken,
                                     sha512: l.sha512
                                 });
-                            } catch (d) {
+                            } catch (f) {
                                 try {
-                                    await (0, LC.unlink)(s);
+                                    await (0, kC.unlink)(s);
                                 } catch {}
-                                throw d;
+                                throw f;
                             }
                     }
                 });
@@ -11190,7 +11192,7 @@ var Pa = g(Yi => {
                 let n = this.downloadedUpdateHelper == null ? null : this.downloadedUpdateHelper.packageFile;
                 n != null && r.push(`--package-file=${n}`);
                 let i = () => {
-                    this.spawnLog(xm.join(process.resourcesPath, "elevate.exe"), [t.installerPath].concat(r)).catch(o =>
+                    this.spawnLog(Cm.join(process.resourcesPath, "elevate.exe"), [t.installerPath].concat(r)).catch(o =>
                         this.dispatchError(o)
                     );
                 };
@@ -11215,16 +11217,16 @@ var Pa = g(Yi => {
                 if (r.blockMapSize == null) return !0;
                 try {
                     let o = {
-                        newUrl: new Cm.URL(r.path),
-                        oldFile: xm.join(this.downloadedUpdateHelper.cacheDir, Vi.CURRENT_APP_PACKAGE_FILE_NAME),
+                        newUrl: new Om.URL(r.path),
+                        oldFile: Cm.join(this.downloadedUpdateHelper.cacheDir, Yi.CURRENT_APP_PACKAGE_FILE_NAME),
                         logger: this._logger,
                         newFile: n,
                         requestHeaders: this.requestHeaders,
                         isUseMultipleRangeRequest: i.isUseMultipleRangeRequest,
                         cancellationToken: t.cancellationToken
                     };
-                    this.listenerCount(Tm.DOWNLOAD_PROGRESS) > 0 && (o.onProgress = s => this.emit(Tm.DOWNLOAD_PROGRESS, s)),
-                        await new FC.FileWithEmbeddedBlockMapDifferentialDownloader(r, this.httpExecutor, o).download();
+                    this.listenerCount(bm.DOWNLOAD_PROGRESS) > 0 && (o.onProgress = s => this.emit(bm.DOWNLOAD_PROGRESS, s)),
+                        await new UC.FileWithEmbeddedBlockMapDifferentialDownloader(r, this.httpExecutor, o).download();
                 } catch (o) {
                     return (
                         this._logger.error(`Cannot download differentially, fallback to full download: ${o.stack || o}`),
@@ -11234,7 +11236,7 @@ var Pa = g(Yi => {
                 return !1;
             }
         };
-    Yi.NsisUpdater = Da;
+    zi.NsisUpdater = Da;
 });
 var Ut = g(M => {
     "use strict";
@@ -11253,88 +11255,88 @@ var Ut = g(M => {
         M.AppUpdater =
         M.BaseUpdater =
             void 0;
-    var $C = ie();
+    var BC = ie();
     Object.defineProperty(M, "CancellationToken", {
         enumerable: !0,
         get: function () {
-            return $C.CancellationToken;
+            return BC.CancellationToken;
         }
     });
-    var bm = Ve(),
-        kC = require("path"),
-        MC = gr();
+    var Im = Ve(),
+        HC = require("path"),
+        jC = gr();
     Object.defineProperty(M, "BaseUpdater", {
         enumerable: !0,
         get: function () {
-            return MC.BaseUpdater;
+            return jC.BaseUpdater;
         }
     });
-    var Om = ki();
+    var Nm = Mi();
     Object.defineProperty(M, "AppUpdater", {
         enumerable: !0,
         get: function () {
-            return Om.AppUpdater;
+            return Nm.AppUpdater;
         }
     });
     Object.defineProperty(M, "NoOpLogger", {
         enumerable: !0,
         get: function () {
-            return Om.NoOpLogger;
+            return Nm.NoOpLogger;
         }
     });
-    var BC = qe();
+    var WC = qe();
     Object.defineProperty(M, "Provider", {
         enumerable: !0,
         get: function () {
-            return BC.Provider;
+            return WC.Provider;
         }
     });
-    var HC = Aa();
+    var GC = Aa();
     Object.defineProperty(M, "AppImageUpdater", {
         enumerable: !0,
         get: function () {
-            return HC.AppImageUpdater;
+            return GC.AppImageUpdater;
         }
     });
-    var jC = Ta();
+    var VC = Ta();
     Object.defineProperty(M, "DebUpdater", {
         enumerable: !0,
         get: function () {
-            return jC.DebUpdater;
+            return VC.DebUpdater;
         }
     });
-    var WC = ba();
+    var YC = ba();
     Object.defineProperty(M, "RpmUpdater", {
         enumerable: !0,
         get: function () {
-            return WC.RpmUpdater;
+            return YC.RpmUpdater;
         }
     });
-    var GC = Ia();
+    var zC = Ia();
     Object.defineProperty(M, "MacUpdater", {
         enumerable: !0,
         get: function () {
-            return GC.MacUpdater;
+            return zC.MacUpdater;
         }
     });
-    var VC = Pa();
+    var XC = Pa();
     Object.defineProperty(M, "NsisUpdater", {
         enumerable: !0,
         get: function () {
-            return VC.NsisUpdater;
+            return XC.NsisUpdater;
         }
     });
     var pt;
-    function YC() {
+    function KC() {
         if (process.platform === "win32") pt = new (Pa().NsisUpdater)();
         else if (process.platform === "darwin") pt = new (Ia().MacUpdater)();
         else {
             pt = new (Aa().AppImageUpdater)();
             try {
-                let e = kC.join(process.resourcesPath, "package-type");
-                if (!(0, bm.existsSync)(e)) return pt;
+                let e = HC.join(process.resourcesPath, "package-type");
+                if (!(0, Im.existsSync)(e)) return pt;
                 console.info("Checking for beta autoupdate feature for deb/rpm distributions");
-                let t = (0, bm.readFileSync)(e).toString().trim();
+                let t = (0, Im.readFileSync)(e).toString().trim();
                 switch ((console.info("Found package-type:", t), t)) {
                     case "deb":
                         pt = new (Ta().DebUpdater)();
@@ -11354,7 +11356,7 @@ var Ut = g(M => {
         }
         return pt;
     }
-    Object.defineProperty(M, "autoUpdater", { enumerable: !0, get: () => pt || YC() });
+    Object.defineProperty(M, "autoUpdater", { enumerable: !0, get: () => pt || KC() });
     M.DOWNLOAD_PROGRESS = "download-progress";
     M.UPDATE_DOWNLOADED = "update-downloaded";
     var Fa = class {
@@ -11362,51 +11364,51 @@ var Ut = g(M => {
             this.emitter = t;
         }
         login(t) {
-            zi(this.emitter, "login", t);
+            Xi(this.emitter, "login", t);
         }
         progress(t) {
-            zi(this.emitter, M.DOWNLOAD_PROGRESS, t);
+            Xi(this.emitter, M.DOWNLOAD_PROGRESS, t);
         }
         updateDownloaded(t) {
-            zi(this.emitter, M.UPDATE_DOWNLOADED, t);
+            Xi(this.emitter, M.UPDATE_DOWNLOADED, t);
         }
         updateCancelled(t) {
-            zi(this.emitter, "update-cancelled", t);
+            Xi(this.emitter, "update-cancelled", t);
         }
     };
     M.UpdaterSignal = Fa;
-    var zC = !1;
-    function zi(e, t, r) {
-        zC
+    var JC = !1;
+    function Xi(e, t, r) {
+        JC
             ? e.on(t, (...n) => {
                   console.log("%s %s", t, n), r(...n);
               })
             : e.on(t, r);
     }
 });
-var mt = g((yN, Im) => {
-    Im.exports = class {
+var mt = g((SN, Rm) => {
+    Rm.exports = class {
         constructor(t) {
             I(this, "_socialdetox");
             this._socialdetox = t;
         }
     };
 });
-var Rm = g((SN, Nm) => {
-    var XC = require("path"),
-        KC = mt();
-    Nm.exports = class extends KC {
+var Pm = g((TN, Dm) => {
+    var QC = require("path"),
+        ZC = mt();
+    Dm.exports = class extends ZC {
         main() {
             this._socialdetox
                 .window()
-                .loadFile(XC.join(this._socialdetox.rootPath, "res", "index.html"), { extraHeaders: "pragma: no-cache" }),
+                .loadFile(QC.join(this._socialdetox.rootPath, "res", "index.html"), { extraHeaders: "pragma: no-cache" }),
                 this._socialdetox.window().focus();
         }
     };
 });
-var Pm = g((xN, Dm) => {
-    var JC = mt();
-    Dm.exports = class extends JC {
+var qm = g((bN, Fm) => {
+    var eb = mt();
+    Fm.exports = class extends eb {
         getWindowWidth() {
             return 1200;
         }
@@ -11418,14 +11420,14 @@ var Pm = g((xN, Dm) => {
         }
     };
 });
-var Lm = g((CN, qm) => {
-    var QC = mt(),
-        Fm = require("fs");
-    qm.exports = class extends QC {
+var $m = g((IN, Um) => {
+    var tb = mt(),
+        Lm = require("fs");
+    Um.exports = class extends tb {
         isFile(t) {
             let r = !1;
             try {
-                r = Fm.statSync(t).isFile();
+                r = Lm.statSync(t).isFile();
             } catch {}
             return r;
         }
@@ -11437,7 +11439,7 @@ var Lm = g((CN, qm) => {
         readFile(t) {
             let r = null;
             try {
-                let n = Fm.readFileSync(t);
+                let n = Lm.readFileSync(t);
                 r = Buffer.isBuffer(n) ? n.toString() : n;
             } catch (n) {
                 this._socialdetox.log.error("file:readFile", t, n);
@@ -11446,9 +11448,9 @@ var Lm = g((CN, qm) => {
         }
     };
 });
-var $m = g((ON, Um) => {
-    var ZC = mt();
-    Um.exports = class extends ZC {
+var Mm = g((RN, km) => {
+    var rb = mt();
+    km.exports = class extends rb {
         error() {
             console.error("%csocialdetox-error", "color:red", ...arguments);
         }
@@ -11457,10 +11459,10 @@ var $m = g((ON, Um) => {
         }
     };
 });
-var Mm = g((NN, km) => {
-    var eb = mt(),
-        tb = require("querystring");
-    km.exports = class extends eb {
+var Hm = g((PN, Bm) => {
+    var nb = mt(),
+        ib = require("querystring");
+    Bm.exports = class extends nb {
         isJSON(t) {
             return typeof t == "string" && (t.charAt(0) == "{" || t.charAt(0) == "[");
         }
@@ -11528,20 +11530,20 @@ var Mm = g((NN, km) => {
                     let i = t.pathname.replace(/^\/+/, "");
                     n += "/" + i;
                 }
-                r = t.query ? n + "?" + tb.stringify(t.query) : n;
+                r = t.query ? n + "?" + ib.stringify(t.query) : n;
             } while (!1);
             return r;
         }
     };
 });
-var Hm = g((DN, Bm) => {
-    var rb = mt(),
+var Wm = g((qN, jm) => {
+    var ob = mt(),
         qa = require("fs"),
         La = require("path"),
-        nb = require("http"),
+        sb = require("http"),
         Ua;
-    Bm.exports =
-        ((Ua = class extends rb {
+    jm.exports =
+        ((Ua = class extends ob {
             start() {
                 if (this.constructor._instance === null) {
                     let t = this._socialdetox.devMode,
@@ -11553,13 +11555,13 @@ var Hm = g((DN, Bm) => {
                             return;
                         }
                         try {
-                            let s = nb.createServer((a, l) => {
+                            let s = sb.createServer((a, l) => {
                                 let h = La.join(r, a.url === "/" ? "/index.html" : a.url);
                                 qa.access(h, qa.constants.F_OK, c => {
                                     c
                                         ? (l.writeHead(404, { "Content-Type": "text/plain" }), l.end("404 Not Found"))
-                                        : qa.readFile(h, (d, m) => {
-                                              if (d)
+                                        : qa.readFile(h, (f, m) => {
+                                              if (f)
                                                   l.writeHead(500, { "Content-Type": "text/plain" }),
                                                       l.end("500 Internal Server Error");
                                               else {
@@ -11593,10 +11595,10 @@ var Hm = g((DN, Bm) => {
         I(Ua, "_instance", null),
         Ua);
 });
-var Xi = g((qN, jm) => {
-    var ib = mt(),
-        { ipcMain: ob } = require("electron");
-    jm.exports = class extends ib {
+var Ki = g(($N, Gm) => {
+    var ab = mt(),
+        { ipcMain: lb } = require("electron");
+    Gm.exports = class extends ab {
         constructor(t) {
             super(t);
         }
@@ -11605,7 +11607,7 @@ var Xi = g((qN, jm) => {
                 for (let r of Object.getOwnPropertyNames(this)) {
                     if (["_", "#"].includes(r[0] || typeof this[r] != "function")) continue;
                     let n = this[r];
-                    ob.handle(`main:${t}:${r}`, async (i, ...o) => {
+                    lb.handle(`main:${t}:${r}`, async (i, ...o) => {
                         let s = null;
                         try {
                             s = typeof n == "function" ? await n(...o) : null;
@@ -11618,21 +11620,21 @@ var Xi = g((qN, jm) => {
         }
     };
 });
-var Gm = g((UN, Wm) => {
+var Ym = g((MN, Vm) => {
     var dn;
-    Wm.exports = ((dn = class {}), I(dn, "WINDOWS", "win32"), I(dn, "MAC", "darwin"), I(dn, "LINUX", "linux"), dn);
+    Vm.exports = ((dn = class {}), I(dn, "WINDOWS", "win32"), I(dn, "MAC", "darwin"), I(dn, "LINUX", "linux"), dn);
 });
-var zm = g((MN, Ym) => {
+var Km = g((jN, Xm) => {
     var { execSync: $a } = require("child_process"),
-        sb = Xi(),
-        pe = Gm(),
+        ub = Ki(),
+        pe = Ym(),
         Er,
         yr,
         _r,
         gt,
-        Vm;
-    Ym.exports =
-        ((Vm = class extends sb {
+        zm;
+    Xm.exports =
+        ((zm = class extends ub {
             constructor(r) {
                 super(r);
                 me(this, Er);
@@ -11643,13 +11645,13 @@ var zm = g((MN, Ym) => {
                     if (typeof b(this, gt) > "u")
                         switch (process.platform) {
                             case pe.MAC:
-                                xe(this, gt, "macos");
+                                Te(this, gt, "macos");
                                 break;
                             case pe.WINDOWS:
-                                xe(this, gt, "win");
+                                Te(this, gt, "win");
                                 break;
                             case pe.LINUX:
-                                xe(this, gt, "linux");
+                                Te(this, gt, "linux");
                                 break;
                         }
                     return b(this, gt);
@@ -11669,7 +11671,7 @@ var zm = g((MN, Ym) => {
                         if (r !== null)
                             try {
                                 let n = $a(r).toString();
-                                xe(this, yr, n.replace(/[\r\n\s]+/g, "").toLowerCase());
+                                Te(this, yr, n.replace(/[\r\n\s]+/g, "").toLowerCase());
                             } catch (n) {
                                 this._socialdetox.devMode && console.warn("Device Name", `${n}`);
                             }
@@ -11705,7 +11707,7 @@ var zm = g((MN, Ym) => {
                                         i = i.split("REG_SZ")[1];
                                         break;
                                 }
-                                xe(this, Er, i.replace(/[\r\n\s]+/g, "").toLowerCase());
+                                Te(this, Er, i.replace(/[\r\n\s]+/g, "").toLowerCase());
                             } catch (i) {
                                 this._socialdetox.devMode && console.warn("Device UUID", `${i}`);
                             }
@@ -11737,7 +11739,7 @@ var zm = g((MN, Ym) => {
                                         n = n.split("SerialNumber")[1];
                                         break;
                                 }
-                                xe(this, _r, n.replace(/[\r\n\s]+/g, "").toLowerCase());
+                                Te(this, _r, n.replace(/[\r\n\s]+/g, "").toLowerCase());
                             } catch (n) {
                                 this._socialdetox.devMode && console.warn("Device Serial Number", `${n}`);
                             }
@@ -11751,11 +11753,11 @@ var zm = g((MN, Ym) => {
         (yr = new WeakMap()),
         (_r = new WeakMap()),
         (gt = new WeakMap()),
-        Vm);
+        zm);
 });
-var ka = g((HN, Xm) => {
+var ka = g((GN, Jm) => {
     var wt;
-    Xm.exports =
+    Jm.exports =
         ((wt = class {
             static getTargetChannelName(t) {
                 return `${wt.WINDOW_TARGET}/${t}`;
@@ -11765,11 +11767,11 @@ var ka = g((HN, Xm) => {
         I(wt, "WINDOW_TARGET", "@target"),
         wt);
 });
-var Zm = g((GN, Qm) => {
-    var { ipcMain: Km, BrowserView: vr } = require("electron"),
-        Jm = require("path"),
-        ab = Xi(),
-        lb = ka(),
+var tg = g((zN, eg) => {
+    var { ipcMain: Qm, BrowserView: vr } = require("electron"),
+        Zm = require("path"),
+        cb = Ki(),
+        fb = ka(),
         hn,
         pn,
         mn,
@@ -11778,8 +11780,8 @@ var Zm = g((GN, Qm) => {
         He,
         je,
         $t;
-    Qm.exports =
-        ((hn = class extends ab {
+    eg.exports =
+        ((hn = class extends cb {
             constructor(r) {
                 super(r);
                 me(this, pn);
@@ -11789,7 +11791,7 @@ var Zm = g((GN, Qm) => {
                 me(this, He, {});
                 me(this, je, "");
                 I(this, "setWindowSize", (r, n) => {
-                    xe(this, pn, r), xe(this, mn, n), b(this, $t).call(this);
+                    Te(this, pn, r), Te(this, mn, n), b(this, $t).call(this);
                 });
                 I(this, "list", () => Object.keys(b(this, k)));
                 I(this, "removeAll", () => {
@@ -11813,7 +11815,7 @@ var Zm = g((GN, Qm) => {
                             backgroundThrottling: !1,
                             imageAnimationPolicy: "noAnimation",
                             spellcheck: !1,
-                            preload: Jm.join(this._socialdetox.rootPath, "lib/preloader/entry/target.js"),
+                            preload: Zm.join(this._socialdetox.rootPath, "lib/preloader/entry/target.js"),
                             nodeIntegration: !0,
                             devTools: !0,
                             partition: `persist:target-${r}`,
@@ -11827,7 +11829,7 @@ var Zm = g((GN, Qm) => {
                         o.webContents.setUserAgent(b(this, gn)),
                         o.webContents.setZoomLevel(0),
                         o.webContents.setAudioMuted(!0),
-                        o.webContents.loadFile(Jm.join(this._socialdetox.rootPath, "res", "index.html"), {
+                        o.webContents.loadFile(Zm.join(this._socialdetox.rootPath, "res", "index.html"), {
                             extraHeaders: "pragma: no-cache"
                         }),
                         o.webContents.on("context-menu", (a, l) => {
@@ -11838,7 +11840,7 @@ var Zm = g((GN, Qm) => {
                             (this._socialdetox.mainWindow.removeBrowserView(this._socialdetox.main.view),
                             this._socialdetox.mainWindow.addBrowserView(this._socialdetox.main.view)),
                         (b(this, k)[r] = o);
-                    let s = lb.getTargetChannelName(r);
+                    let s = fb.getTargetChannelName(r);
                     return (
                         (b(this, He)[r] = {
                             channel: s,
@@ -11847,7 +11849,7 @@ var Zm = g((GN, Qm) => {
                                     l.length >= 3 && o.webContents.send(s, l);
                             }
                         }),
-                        Km.on(b(this, He)[r].channel, b(this, He)[r].listener),
+                        Qm.on(b(this, He)[r].channel, b(this, He)[r].listener),
                         i ? this.select(r) : b(this, $t).call(this),
                         !0
                     );
@@ -11855,19 +11857,19 @@ var Zm = g((GN, Qm) => {
                 I(this, "remove", r => {
                     if (typeof r != "string" || !r.length) throw new Error("Invalid target ID");
                     if (!(b(this, k)[r] instanceof vr) || typeof b(this, He)[r] > "u") return !1;
-                    Km.off(b(this, He)[r].channel, b(this, He)[r].listener), delete b(this, He)[r];
+                    Qm.off(b(this, He)[r].channel, b(this, He)[r].listener), delete b(this, He)[r];
                     try {
                         this._socialdetox.mainWindow.removeBrowserView(b(this, k)[r]);
                     } catch {}
                     try {
                         b(this, k)[r].webContents.destroy();
                     } catch {}
-                    return delete b(this, k)[r], r === b(this, je) && xe(this, je, ""), b(this, $t).call(this), !0;
+                    return delete b(this, k)[r], r === b(this, je) && Te(this, je, ""), b(this, $t).call(this), !0;
                 });
                 I(this, "select", r => {
                     if (typeof r != "string" || !r.length) throw new Error("Invalid target ID");
                     if (b(this, k)[r] instanceof vr && b(this, je) !== r) {
-                        xe(this, je, r),
+                        Te(this, je, r),
                             b(this, k)[r].metadata.loaded ||
                                 ((b(this, k)[r].metadata.loaded = !0),
                                 b(this, k)[r].webContents.loadURL(b(this, k)[r].metadata.targetUrl));
@@ -11875,7 +11877,7 @@ var Zm = g((GN, Qm) => {
                         for (let i of Object.keys(b(this, k)).filter(o => o !== r)) n[i] = b(this, k)[i];
                         return (
                             (n[r] = b(this, k)[r]),
-                            xe(this, k, n),
+                            Te(this, k, n),
                             this._socialdetox.mainWindow.removeBrowserView(b(this, k)[r]),
                             this._socialdetox.mainWindow.removeBrowserView(this._socialdetox.main.view),
                             this._socialdetox.main.onTop
@@ -11931,7 +11933,7 @@ var Zm = g((GN, Qm) => {
                         n = "(X11; Linux x86_64)";
                         break;
                 }
-                xe(this, gn, `Mozilla/5.0 ${n} AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36`),
+                Te(this, gn, `Mozilla/5.0 ${n} AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36`),
                     this._register("target");
             }
         }),
@@ -11947,15 +11949,15 @@ var Zm = g((GN, Qm) => {
         I(hn, "MARGIN_BOTTOM", 50),
         hn);
 });
-var rg = g((zN, tg) => {
-    var { session: ub, ipcMain: cb, BrowserView: Ki } = require("electron"),
-        fb = require("path"),
-        db = Xi(),
+var ig = g((JN, ng) => {
+    var { session: db, ipcMain: hb, BrowserView: Ji } = require("electron"),
+        pb = require("path"),
+        mb = Ki(),
         Ma = ka(),
         Sr,
-        eg;
-    tg.exports =
-        ((eg = class extends db {
+        rg;
+    ng.exports =
+        ((rg = class extends mb {
             constructor(r) {
                 super(r);
                 I(this, "windowWidth");
@@ -11964,15 +11966,15 @@ var rg = g((zN, tg) => {
                 I(this, "onTop", !1);
                 I(this, "darkMode", !0);
                 me(this, Sr, () =>
-                    this.view instanceof Ki
+                    this.view instanceof Ji
                         ? (this.view.setBounds({ x: 0, y: 0, width: this.windowWidth, height: this.windowHeight }), !0)
                         : !1
                 );
                 I(this, "init", () => {
-                    if (this.view instanceof Ki) return !1;
+                    if (this.view instanceof Ji) return !1;
                     (this.windowWidth = this._socialdetox.config.getWindowWidth()),
                         (this.windowHeight = this._socialdetox.config.getWindowHeight());
-                    let r = new Ki({
+                    let r = new Ji({
                         width: this.windowWidth,
                         height: this.windowHeight,
                         resizable: !1,
@@ -11982,10 +11984,10 @@ var rg = g((zN, tg) => {
                             backgroundThrottling: !1,
                             imageAnimationPolicy: "noAnimation",
                             spellcheck: !1,
-                            preload: fb.join(this._socialdetox.rootPath, "lib/preloader/entry/main.js"),
+                            preload: pb.join(this._socialdetox.rootPath, "lib/preloader/entry/main.js"),
                             nodeIntegration: !0,
                             devTools: !0,
-                            session: ub.defaultSession,
+                            session: db.defaultSession,
                             cache: !1,
                             webSecurity: !1,
                             allowRunningInsecureContent: !0
@@ -12001,7 +12003,7 @@ var rg = g((zN, tg) => {
                             n.preventDefault(), r.webContents.openDevTools({ mode: "detach" });
                         }),
                         (this.view = r),
-                        cb.on(Ma.WINDOW_MAIN, (n, ...i) => {
+                        hb.on(Ma.WINDOW_MAIN, (n, ...i) => {
                             this._socialdetox.devMode && console.log(`\u{1F3E0} ${Ma.WINDOW_MAIN}`, JSON.stringify(i)),
                                 i.length >= 3 && r.webContents.send(Ma.WINDOW_MAIN, i);
                         }),
@@ -12024,7 +12026,7 @@ var rg = g((zN, tg) => {
                             let i = this._socialdetox.target.getSelected();
                             if (typeof i == "string" && i.length) {
                                 let o = this._socialdetox.target.getTargets()[i];
-                                o instanceof Ki &&
+                                o instanceof Ji &&
                                     (this._socialdetox.mainWindow.removeBrowserView(o),
                                     this._socialdetox.mainWindow.removeBrowserView(this.view),
                                     this._socialdetox.mainWindow.addBrowserView(this.view),
@@ -12051,51 +12053,51 @@ var rg = g((zN, tg) => {
             }
         }),
         (Sr = new WeakMap()),
-        eg);
+        rg);
 });
-var ig = g((JN, ng) => {
-    var { app: hb, session: pb, BrowserWindow: mb } = require("electron"),
-        gb = require("path"),
-        wb = Rm(),
-        Eb = Pm(),
-        yb = Lm(),
-        _b = $m(),
-        vb = Mm(),
-        Sb = Hm(),
-        Ab = zm(),
-        xb = Zm(),
-        Tb = rg();
-    ng.exports = class {
+var sg = g((eR, og) => {
+    var { app: gb, session: wb, BrowserWindow: Eb } = require("electron"),
+        yb = require("path"),
+        _b = Pm(),
+        vb = qm(),
+        Sb = $m(),
+        Ab = Mm(),
+        xb = Hm(),
+        Tb = Wm(),
+        Cb = Km(),
+        bb = tg(),
+        Ob = ig();
+    og.exports = class {
         constructor() {
             I(this, "mainWindow", null);
-            I(this, "rootPath", hb.getAppPath());
+            I(this, "rootPath", gb.getAppPath());
             I(this, "devMode", process.env.NODE_ENV === "development");
-            I(this, "log", new _b(this));
-            I(this, "webserver", new Sb(this));
-            I(this, "activity", new wb(this));
-            I(this, "device", new Ab(this));
-            I(this, "target", new xb(this));
-            I(this, "main", new Tb(this));
-            I(this, "config", new Eb(this));
-            I(this, "file", new yb(this));
-            I(this, "utils", new vb(this));
+            I(this, "log", new Ab(this));
+            I(this, "webserver", new Tb(this));
+            I(this, "activity", new _b(this));
+            I(this, "device", new Cb(this));
+            I(this, "target", new bb(this));
+            I(this, "main", new Ob(this));
+            I(this, "config", new vb(this));
+            I(this, "file", new Sb(this));
+            I(this, "utils", new xb(this));
         }
         window() {
             let t = this;
             if (t.mainWindow === null) {
-                (t.mainWindow = new mb({
+                (t.mainWindow = new Eb({
                     minWidth: t.config.getWindowWidth(),
                     minHeight: t.config.getWindowHeight(),
                     width: t.config.getWindowWidth(),
                     height: t.config.getWindowHeight(),
-                    icon: gb.join(t.rootPath, "res/icons/icon.png"),
+                    icon: yb.join(t.rootPath, "res/icons/icon.png"),
                     resizable: !0,
                     titleBarStyle: "default",
                     title: "SocialDetox",
                     useContentSize: !0,
                     show: !1,
                     backgroundColor: "#000",
-                    webPreferences: { spellcheck: !1, nodeIntegration: !0, session: pb.defaultSession }
+                    webPreferences: { spellcheck: !1, nodeIntegration: !0, session: wb.defaultSession }
                 })),
                     t.mainWindow.setMaxListeners(0),
                     t.mainWindow.once("closed", () => (t.mainWindow = null));
@@ -12117,9 +12119,9 @@ var ig = g((JN, ng) => {
         }
     };
 });
-var { app: We, BrowserWindow: Cb } = require("electron"),
+var { app: We, BrowserWindow: Ib } = require("electron"),
     { autoUpdater: Ba } = Ut(),
-    bb = ig();
+    Nb = sg();
 We.disableHardwareAcceleration();
 We.commandLine.appendSwitch("disable-gpu");
 We.commandLine.appendSwitch("allow-insecure-localhost");
@@ -12137,12 +12139,12 @@ do {
         e !== null && (e.isMinimized() && e.restore(), e.focus());
     }),
         We.on("ready", async () => {
-            let t = new bb();
+            let t = new Nb();
             await t.webserver.start(),
                 (e = t.window()),
                 t.activity.main(),
                 We.on("activate", () => {
-                    Cb.getAllWindows().length === 0 && t.activity.main();
+                    Ib.getAllWindows().length === 0 && t.activity.main();
                 }),
                 Ba.checkForUpdatesAndNotify();
         }),

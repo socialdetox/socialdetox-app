@@ -1,4 +1,4 @@
-/**
+/*!
  * @architect Mark Jivko <mark@socialdetox.ai>
  * @copyright © 2024 SocialDetox.ai https://socialdetox.ai
  * 
