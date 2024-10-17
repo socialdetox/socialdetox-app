@@ -110,7 +110,7 @@ var wn = g(Mt => {
     };
     Mt.CancellationError = Ar;
 });
-var Xa = g((Pb, za) => {
+var Xa = g((Fb, za) => {
     var Bt = 1e3,
         Ht = Bt * 60,
         jt = Ht * 60,
@@ -207,7 +207,7 @@ var Xa = g((Pb, za) => {
         return Math.round(e / r) + " " + n + (i ? "s" : "");
     }
 });
-var to = g((Fb, Ka) => {
+var to = g((qb, Ka) => {
     function Eg(e) {
         (r.debug = r),
             (r.default = r),
@@ -484,7 +484,7 @@ var Ja = g((Re, yn) => {
         }
     };
 });
-var Za = g((qb, Qa) => {
+var Za = g((Lb, Qa) => {
     "use strict";
     Qa.exports = (e, t) => {
         t = t || process.argv;
@@ -494,7 +494,7 @@ var Za = g((qb, Qa) => {
         return n !== -1 && (i === -1 ? !0 : n < i);
     };
 });
-var tl = g((Lb, el) => {
+var tl = g((Ub, el) => {
     "use strict";
     var Tg = require("os"),
         Le = Za(),
@@ -652,7 +652,7 @@ var nl = g((ne, vn) => {
         return (this.inspectOpts.colors = this.useColors), _n.inspect(e, this.inspectOpts);
     };
 });
-var il = g((Ub, no) => {
+var il = g(($b, no) => {
     typeof process > "u" || process.type === "renderer" || process.browser === !0 || process.__nwjs
         ? (no.exports = Ja())
         : (no.exports = nl());
@@ -2749,7 +2749,7 @@ var Ce = g(po => {
         );
     };
 });
-var Ol = g((Kb, bl) => {
+var Ol = g((Jb, bl) => {
     var Ze = require("constants"),
         p0 = process.cwd,
         Rn = null,
@@ -3001,7 +3001,7 @@ var Ol = g((Kb, bl) => {
         }
     }
 });
-var Rl = g((Jb, Nl) => {
+var Rl = g((Qb, Nl) => {
     var Il = require("stream").Stream;
     Nl.exports = w0;
     function w0(e) {
@@ -3072,7 +3072,7 @@ var Rl = g((Jb, Nl) => {
         }
     }
 });
-var Pl = g((Qb, Dl) => {
+var Pl = g((Zb, Dl) => {
     "use strict";
     Dl.exports = y0;
     var E0 =
@@ -3092,7 +3092,7 @@ var Pl = g((Qb, Dl) => {
         );
     }
 });
-var we = g((Zb, Eo) => {
+var we = g((eO, Eo) => {
     var J = require("fs"),
         _0 = Ol(),
         v0 = Rl(),
@@ -3424,7 +3424,7 @@ var vt = g(et => {
               "fs-extra-WARN0003"
           );
 });
-var kl = g((tO, $l) => {
+var kl = g((rO, $l) => {
     "use strict";
     var T0 = require("path");
     $l.exports.checkPath = function (t) {
@@ -3434,7 +3434,7 @@ var kl = g((tO, $l) => {
         }
     };
 });
-var jl = g((rO, yo) => {
+var jl = g((nO, yo) => {
     "use strict";
     var Ml = vt(),
         { checkPath: Bl } = kl(),
@@ -3445,14 +3445,14 @@ var jl = g((rO, yo) => {
     yo.exports.makeDir = async (e, t) => (Bl(e), Ml.mkdir(e, { mode: Hl(t), recursive: !0 }));
     yo.exports.makeDirSync = (e, t) => (Bl(e), Ml.mkdirSync(e, { mode: Hl(t), recursive: !0 }));
 });
-var Ue = g((nO, Wl) => {
+var Ue = g((iO, Wl) => {
     "use strict";
     var C0 = Ce().fromPromise,
         { makeDir: b0, makeDirSync: _o } = jl(),
         vo = C0(b0);
     Wl.exports = { mkdirs: vo, mkdirsSync: _o, mkdirp: vo, mkdirpSync: _o, ensureDir: vo, ensureDirSync: _o };
 });
-var tt = g((iO, Vl) => {
+var tt = g((oO, Vl) => {
     "use strict";
     var O0 = Ce().fromPromise,
         Gl = vt();
@@ -3463,7 +3463,7 @@ var tt = g((iO, Vl) => {
     }
     Vl.exports = { pathExists: O0(I0), pathExistsSync: Gl.existsSync };
 });
-var So = g((oO, Yl) => {
+var So = g((sO, Yl) => {
     "use strict";
     var zt = we();
     function N0(e, t, r, n) {
@@ -3482,7 +3482,7 @@ var So = g((oO, Yl) => {
     }
     Yl.exports = { utimesMillis: N0, utimesMillisSync: R0 };
 });
-var St = g((sO, Kl) => {
+var St = g((aO, Kl) => {
     "use strict";
     var Xt = vt(),
         oe = require("path"),
@@ -3595,7 +3595,7 @@ var St = g((sO, Kl) => {
         areIdentical: Nr
     };
 });
-var iu = g((aO, nu) => {
+var iu = g((lO, nu) => {
     "use strict";
     var Oe = we(),
         Rr = require("path"),
@@ -3735,7 +3735,7 @@ var iu = g((aO, nu) => {
     }
     nu.exports = M0;
 });
-var uu = g((lO, lu) => {
+var uu = g((uO, lu) => {
     "use strict";
     var ce = we(),
         Pr = require("path"),
@@ -3840,12 +3840,12 @@ var uu = g((lO, lu) => {
     }
     lu.exports = tw;
 });
-var $n = g((uO, cu) => {
+var $n = g((cO, cu) => {
     "use strict";
     var mw = Ce().fromCallback;
     cu.exports = { copy: mw(iu()), copySync: uu() };
 });
-var yu = g((cO, Eu) => {
+var yu = g((fO, Eu) => {
     "use strict";
     var fu = we(),
         mu = require("path"),
@@ -4002,7 +4002,7 @@ var yu = g((cO, Eu) => {
     Eu.exports = To;
     To.sync = wu;
 });
-var Lr = g((fO, vu) => {
+var Lr = g((dO, vu) => {
     "use strict";
     var Bn = we(),
         Ew = Ce().fromCallback,
@@ -4017,7 +4017,7 @@ var Lr = g((fO, vu) => {
     }
     vu.exports = { remove: Ew(yw), removeSync: _w };
 });
-var Iu = g((dO, Ou) => {
+var Iu = g((hO, Ou) => {
     "use strict";
     var vw = Ce().fromPromise,
         xu = vt(),
@@ -4046,7 +4046,7 @@ var Iu = g((dO, Ou) => {
     }
     Ou.exports = { emptyDirSync: Au, emptydirSync: Au, emptyDir: Su, emptydir: Su };
 });
-var Pu = g((hO, Du) => {
+var Pu = g((pO, Du) => {
     "use strict";
     var Sw = Ce().fromCallback,
         Nu = require("path"),
@@ -4095,7 +4095,7 @@ var Pu = g((hO, Du) => {
     }
     Du.exports = { createFile: Sw(Aw), createFileSync: xw };
 });
-var $u = g((pO, Uu) => {
+var $u = g((mO, Uu) => {
     "use strict";
     var Tw = Ce().fromCallback,
         Fu = require("path"),
@@ -4142,7 +4142,7 @@ var $u = g((pO, Uu) => {
     }
     Uu.exports = { createLink: Tw(bw), createLinkSync: Ow };
 });
-var Mu = g((mO, ku) => {
+var Mu = g((gO, ku) => {
     "use strict";
     var it = require("path"),
         Ur = we(),
@@ -4183,7 +4183,7 @@ var Mu = g((mO, ku) => {
     }
     ku.exports = { symlinkPaths: Nw, symlinkPathsSync: Rw };
 });
-var ju = g((gO, Hu) => {
+var ju = g((wO, Hu) => {
     "use strict";
     var Bu = we();
     function Dw(e, t, r) {
@@ -4205,7 +4205,7 @@ var ju = g((gO, Hu) => {
     }
     Hu.exports = { symlinkType: Dw, symlinkTypeSync: Pw };
 });
-var Ju = g((wO, Ku) => {
+var Ju = g((EO, Ku) => {
     "use strict";
     var Fw = Ce().fromCallback,
         Gu = require("path"),
@@ -4268,7 +4268,7 @@ var Ju = g((wO, Ku) => {
     }
     Ku.exports = { createSymlink: Fw(Hw), createSymlinkSync: jw };
 });
-var oc = g((EO, ic) => {
+var oc = g((yO, ic) => {
     "use strict";
     var { createFile: Qu, createFileSync: Zu } = Pu(),
         { createLink: ec, createLinkSync: tc } = $u(),
@@ -4288,7 +4288,7 @@ var oc = g((EO, ic) => {
         ensureSymlinkSync: nc
     };
 });
-var Hn = g((yO, sc) => {
+var Hn = g((_O, sc) => {
     function Ww(
         e,
         {
@@ -4307,7 +4307,7 @@ var Hn = g((yO, sc) => {
     }
     sc.exports = { stringify: Ww, stripBom: Gw };
 });
-var cc = g((_O, uc) => {
+var cc = g((vO, uc) => {
     var Kt;
     try {
         Kt = we();
@@ -4358,7 +4358,7 @@ var cc = g((_O, uc) => {
     var Qw = { readFile: Yw, readFileSync: zw, writeFile: Kw, writeFileSync: Jw };
     uc.exports = Qw;
 });
-var dc = g((vO, fc) => {
+var dc = g((SO, fc) => {
     "use strict";
     var Wn = cc();
     fc.exports = {
@@ -4368,7 +4368,7 @@ var dc = g((vO, fc) => {
         writeJsonSync: Wn.writeFileSync
     };
 });
-var Gn = g((SO, mc) => {
+var Gn = g((AO, mc) => {
     "use strict";
     var Zw = Ce().fromCallback,
         $r = we(),
@@ -4394,7 +4394,7 @@ var Gn = g((SO, mc) => {
     }
     mc.exports = { outputFile: Zw(tE), outputFileSync: rE };
 });
-var wc = g((AO, gc) => {
+var wc = g((xO, gc) => {
     "use strict";
     var { stringify: nE } = Hn(),
         { outputFile: iE } = Gn();
@@ -4404,7 +4404,7 @@ var wc = g((AO, gc) => {
     }
     gc.exports = oE;
 });
-var yc = g((xO, Ec) => {
+var yc = g((TO, Ec) => {
     "use strict";
     var { stringify: sE } = Hn(),
         { outputFileSync: aE } = Gn();
@@ -4414,7 +4414,7 @@ var yc = g((xO, Ec) => {
     }
     Ec.exports = lE;
 });
-var vc = g((TO, _c) => {
+var vc = g((CO, _c) => {
     "use strict";
     var uE = Ce().fromPromise,
         Ee = dc();
@@ -4428,7 +4428,7 @@ var vc = g((TO, _c) => {
     Ee.readJSONSync = Ee.readJsonSync;
     _c.exports = Ee;
 });
-var Cc = g((CO, Tc) => {
+var Cc = g((bO, Tc) => {
     "use strict";
     var cE = we(),
         bo = require("path"),
@@ -4467,7 +4467,7 @@ var Cc = g((CO, Tc) => {
     }
     Tc.exports = pE;
 });
-var Rc = g((bO, Nc) => {
+var Rc = g((OO, Nc) => {
     "use strict";
     var Oc = we(),
         Io = require("path"),
@@ -4504,16 +4504,16 @@ var Rc = g((bO, Nc) => {
     }
     Nc.exports = yE;
 });
-var Pc = g((OO, Dc) => {
+var Pc = g((IO, Dc) => {
     "use strict";
     var AE = Ce().fromCallback;
     Dc.exports = { move: AE(Cc()), moveSync: Rc() };
 });
-var Ve = g((IO, Fc) => {
+var Ve = g((NO, Fc) => {
     "use strict";
     Fc.exports = { ...vt(), ...$n(), ...Iu(), ...oc(), ...vc(), ...Ue(), ...Pc(), ...Gn(), ...tt(), ...Lr() };
 });
-var Jt = g((NO, At) => {
+var Jt = g((RO, At) => {
     "use strict";
     function qc(e) {
         return typeof e > "u" || e === null;
@@ -4545,7 +4545,7 @@ var Jt = g((NO, At) => {
     At.exports.isNegativeZero = OE;
     At.exports.extend = CE;
 });
-var Qt = g((RO, Uc) => {
+var Qt = g((DO, Uc) => {
     "use strict";
     function Lc(e, t) {
         var r = "",
@@ -4577,7 +4577,7 @@ var Qt = g((RO, Uc) => {
     };
     Uc.exports = kr;
 });
-var kc = g((DO, $c) => {
+var kc = g((PO, $c) => {
     "use strict";
     var Mr = Jt();
     function No(e, t, r, n, i) {
@@ -4646,7 +4646,7 @@ var kc = g((DO, $c) => {
     }
     $c.exports = IE;
 });
-var fe = g((PO, Bc) => {
+var fe = g((FO, Bc) => {
     "use strict";
     var Mc = Qt(),
         NE = [
@@ -4707,7 +4707,7 @@ var fe = g((PO, Bc) => {
     }
     Bc.exports = PE;
 });
-var Fo = g((FO, jc) => {
+var Fo = g((qO, jc) => {
     "use strict";
     var Br = Qt(),
         Do = fe();
@@ -4782,7 +4782,7 @@ var Fo = g((FO, jc) => {
     };
     jc.exports = Po;
 });
-var qo = g((qO, Wc) => {
+var qo = g((LO, Wc) => {
     "use strict";
     var qE = fe();
     Wc.exports = new qE("tag:yaml.org,2002:str", {
@@ -4792,7 +4792,7 @@ var qo = g((qO, Wc) => {
         }
     });
 });
-var Lo = g((LO, Gc) => {
+var Lo = g((UO, Gc) => {
     "use strict";
     var LE = fe();
     Gc.exports = new LE("tag:yaml.org,2002:seq", {
@@ -4802,7 +4802,7 @@ var Lo = g((LO, Gc) => {
         }
     });
 });
-var Uo = g((UO, Vc) => {
+var Uo = g(($O, Vc) => {
     "use strict";
     var UE = fe();
     Vc.exports = new UE("tag:yaml.org,2002:map", {
@@ -4812,12 +4812,12 @@ var Uo = g((UO, Vc) => {
         }
     });
 });
-var $o = g(($O, Yc) => {
+var $o = g((kO, Yc) => {
     "use strict";
     var $E = Fo();
     Yc.exports = new $E({ explicit: [qo(), Lo(), Uo()] });
 });
-var ko = g((kO, zc) => {
+var ko = g((MO, zc) => {
     "use strict";
     var kE = fe();
     function ME(e) {
@@ -4856,7 +4856,7 @@ var ko = g((kO, zc) => {
         defaultStyle: "lowercase"
     });
 });
-var Mo = g((MO, Xc) => {
+var Mo = g((BO, Xc) => {
     "use strict";
     var jE = fe();
     function WE(e) {
@@ -4892,7 +4892,7 @@ var Mo = g((MO, Xc) => {
         defaultStyle: "lowercase"
     });
 });
-var Bo = g((BO, Kc) => {
+var Bo = g((HO, Kc) => {
     "use strict";
     var YE = Jt(),
         zE = fe();
@@ -4991,7 +4991,7 @@ var Bo = g((BO, Kc) => {
         styleAliases: { binary: [2, "bin"], octal: [8, "oct"], decimal: [10, "dec"], hexadecimal: [16, "hex"] }
     });
 });
-var Ho = g((HO, Qc) => {
+var Ho = g((jO, Qc) => {
     "use strict";
     var Jc = Jt(),
         ty = fe(),
@@ -5061,15 +5061,15 @@ var Ho = g((HO, Qc) => {
         defaultStyle: "lowercase"
     });
 });
-var jo = g((jO, Zc) => {
+var jo = g((WO, Zc) => {
     "use strict";
     Zc.exports = $o().extend({ implicit: [ko(), Mo(), Bo(), Ho()] });
 });
-var Wo = g((WO, ef) => {
+var Wo = g((GO, ef) => {
     "use strict";
     ef.exports = jo();
 });
-var Go = g((GO, nf) => {
+var Go = g((VO, nf) => {
     "use strict";
     var ly = fe(),
         tf = new RegExp("^([0-9][0-9][0-9][0-9])-([0-9][0-9])-([0-9][0-9])$"),
@@ -5116,7 +5116,7 @@ var Go = g((GO, nf) => {
         represent: fy
     });
 });
-var Vo = g((VO, of) => {
+var Vo = g((YO, of) => {
     "use strict";
     var dy = fe();
     function hy(e) {
@@ -5124,7 +5124,7 @@ var Vo = g((VO, of) => {
     }
     of.exports = new dy("tag:yaml.org,2002:merge", { kind: "scalar", resolve: hy });
 });
-var zo = g((YO, sf) => {
+var zo = g((zO, sf) => {
     "use strict";
     var py = fe(),
         Yo = `ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=
@@ -5189,7 +5189,7 @@ var zo = g((YO, sf) => {
     }
     sf.exports = new py("tag:yaml.org,2002:binary", { kind: "scalar", resolve: my, construct: gy, predicate: Ey, represent: wy });
 });
-var Xo = g((zO, af) => {
+var Xo = g((XO, af) => {
     "use strict";
     var yy = fe(),
         _y = Object.prototype.hasOwnProperty,
@@ -5220,7 +5220,7 @@ var Xo = g((zO, af) => {
     }
     af.exports = new yy("tag:yaml.org,2002:omap", { kind: "sequence", resolve: Sy, construct: Ay });
 });
-var Ko = g((XO, lf) => {
+var Ko = g((KO, lf) => {
     "use strict";
     var xy = fe(),
         Ty = Object.prototype.toString;
@@ -5252,7 +5252,7 @@ var Ko = g((XO, lf) => {
     }
     lf.exports = new xy("tag:yaml.org,2002:pairs", { kind: "sequence", resolve: Cy, construct: by });
 });
-var Jo = g((KO, uf) => {
+var Jo = g((JO, uf) => {
     "use strict";
     var Oy = fe(),
         Iy = Object.prototype.hasOwnProperty;
@@ -5268,11 +5268,11 @@ var Jo = g((KO, uf) => {
     }
     uf.exports = new Oy("tag:yaml.org,2002:set", { kind: "mapping", resolve: Ny, construct: Ry });
 });
-var Vn = g((JO, cf) => {
+var Vn = g((QO, cf) => {
     "use strict";
     cf.exports = Wo().extend({ implicit: [Go(), Vo()], explicit: [zo(), Xo(), Ko(), Jo()] });
 });
-var Cf = g((QO, ts) => {
+var Cf = g((ZO, ts) => {
     "use strict";
     var Tt = Jt(),
         wf = Qt(),
@@ -6116,7 +6116,7 @@ var Cf = g((QO, ts) => {
     ts.exports.loadAll = Zy;
     ts.exports.load = e_;
 });
-var Yf = g((ZO, Vf) => {
+var Yf = g((eI, Vf) => {
     "use strict";
     var Zn = Jt(),
         Vr = Qt(),
@@ -6635,7 +6635,7 @@ var Yf = g((ZO, Vf) => {
     }
     Vf.exports.dump = q_;
 });
-var ei = g((eI, ye) => {
+var ei = g((tI, ye) => {
     "use strict";
     var zf = Cf(),
         L_ = Yf();
@@ -6697,7 +6697,7 @@ var Xf = g(ti => {
     };
     ti.Lazy = ls;
 });
-var Yr = g((rI, Kf) => {
+var Yr = g((nI, Kf) => {
     var U_ = "2.0.0",
         $_ = Number.MAX_SAFE_INTEGER || 9007199254740991,
         k_ = 16,
@@ -6714,7 +6714,7 @@ var Yr = g((rI, Kf) => {
         FLAG_LOOSE: 2
     };
 });
-var zr = g((nI, Jf) => {
+var zr = g((iI, Jf) => {
     var H_ =
         typeof process == "object" && process.env && process.env.NODE_DEBUG && /\bsemver\b/i.test(process.env.NODE_DEBUG)
             ? (...e) => console.error("SEMVER", ...e)
@@ -6809,13 +6809,13 @@ var nr = g((ze, Qf) => {
     q("GTE0", "^\\s*>=\\s*0\\.0\\.0\\s*$");
     q("GTE0PRE", "^\\s*>=\\s*0\\.0\\.0-0\\s*$");
 });
-var ri = g((iI, Zf) => {
+var ri = g((oI, Zf) => {
     var J_ = Object.freeze({ loose: !0 }),
         Q_ = Object.freeze({}),
         Z_ = e => (e ? (typeof e != "object" ? J_ : e) : Q_);
     Zf.exports = Z_;
 });
-var fs = g((oI, rd) => {
+var fs = g((sI, rd) => {
     var ed = /^[0-9]+$/,
         td = (e, t) => {
             let r = ed.test(e),
@@ -6825,7 +6825,7 @@ var fs = g((oI, rd) => {
         ev = (e, t) => td(t, e);
     rd.exports = { compareIdentifiers: td, rcompareIdentifiers: ev };
 });
-var he = g((sI, sd) => {
+var he = g((aI, sd) => {
     var ni = zr(),
         { MAX_LENGTH: nd, MAX_SAFE_INTEGER: ii } = Yr(),
         { safeRe: id, t: od } = nr(),
@@ -6976,7 +6976,7 @@ var he = g((sI, sd) => {
         };
     sd.exports = ds;
 });
-var bt = g((aI, ld) => {
+var bt = g((lI, ld) => {
     var ad = he(),
         rv = (e, t, r = !1) => {
             if (e instanceof ad) return e;
@@ -6989,7 +6989,7 @@ var bt = g((aI, ld) => {
         };
     ld.exports = rv;
 });
-var cd = g((lI, ud) => {
+var cd = g((uI, ud) => {
     var nv = bt(),
         iv = (e, t) => {
             let r = nv(e, t);
@@ -6997,7 +6997,7 @@ var cd = g((lI, ud) => {
         };
     ud.exports = iv;
 });
-var dd = g((uI, fd) => {
+var dd = g((cI, fd) => {
     var ov = bt(),
         sv = (e, t) => {
             let r = ov(e.trim().replace(/^[=v]+/, ""), t);
@@ -7005,7 +7005,7 @@ var dd = g((uI, fd) => {
         };
     fd.exports = sv;
 });
-var md = g((cI, pd) => {
+var md = g((fI, pd) => {
     var hd = he(),
         av = (e, t, r, n, i) => {
             typeof r == "string" && ((i = n), (n = r), (r = void 0));
@@ -7017,7 +7017,7 @@ var md = g((cI, pd) => {
         };
     pd.exports = av;
 });
-var Ed = g((fI, wd) => {
+var Ed = g((dI, wd) => {
     var gd = bt(),
         lv = (e, t) => {
             let r = gd(e, null, !0),
@@ -7041,22 +7041,22 @@ var Ed = g((fI, wd) => {
         };
     wd.exports = lv;
 });
-var _d = g((dI, yd) => {
+var _d = g((hI, yd) => {
     var uv = he(),
         cv = (e, t) => new uv(e, t).major;
     yd.exports = cv;
 });
-var Sd = g((hI, vd) => {
+var Sd = g((pI, vd) => {
     var fv = he(),
         dv = (e, t) => new fv(e, t).minor;
     vd.exports = dv;
 });
-var xd = g((pI, Ad) => {
+var xd = g((mI, Ad) => {
     var hv = he(),
         pv = (e, t) => new hv(e, t).patch;
     Ad.exports = pv;
 });
-var Cd = g((mI, Td) => {
+var Cd = g((gI, Td) => {
     var mv = bt(),
         gv = (e, t) => {
             let r = mv(e, t);
@@ -7064,22 +7064,22 @@ var Cd = g((mI, Td) => {
         };
     Td.exports = gv;
 });
-var Pe = g((gI, Od) => {
+var Pe = g((wI, Od) => {
     var bd = he(),
         wv = (e, t, r) => new bd(e, r).compare(new bd(t, r));
     Od.exports = wv;
 });
-var Nd = g((wI, Id) => {
+var Nd = g((EI, Id) => {
     var Ev = Pe(),
         yv = (e, t, r) => Ev(t, e, r);
     Id.exports = yv;
 });
-var Dd = g((EI, Rd) => {
+var Dd = g((yI, Rd) => {
     var _v = Pe(),
         vv = (e, t) => _v(e, t, !0);
     Rd.exports = vv;
 });
-var oi = g((yI, Fd) => {
+var oi = g((_I, Fd) => {
     var Pd = he(),
         Sv = (e, t, r) => {
             let n = new Pd(e, r),
@@ -7088,47 +7088,47 @@ var oi = g((yI, Fd) => {
         };
     Fd.exports = Sv;
 });
-var Ld = g((_I, qd) => {
+var Ld = g((vI, qd) => {
     var Av = oi(),
         xv = (e, t) => e.sort((r, n) => Av(r, n, t));
     qd.exports = xv;
 });
-var $d = g((vI, Ud) => {
+var $d = g((SI, Ud) => {
     var Tv = oi(),
         Cv = (e, t) => e.sort((r, n) => Tv(n, r, t));
     Ud.exports = Cv;
 });
-var Xr = g((SI, kd) => {
+var Xr = g((AI, kd) => {
     var bv = Pe(),
         Ov = (e, t, r) => bv(e, t, r) > 0;
     kd.exports = Ov;
 });
-var si = g((AI, Md) => {
+var si = g((xI, Md) => {
     var Iv = Pe(),
         Nv = (e, t, r) => Iv(e, t, r) < 0;
     Md.exports = Nv;
 });
-var hs = g((xI, Bd) => {
+var hs = g((TI, Bd) => {
     var Rv = Pe(),
         Dv = (e, t, r) => Rv(e, t, r) === 0;
     Bd.exports = Dv;
 });
-var ps = g((TI, Hd) => {
+var ps = g((CI, Hd) => {
     var Pv = Pe(),
         Fv = (e, t, r) => Pv(e, t, r) !== 0;
     Hd.exports = Fv;
 });
-var ai = g((CI, jd) => {
+var ai = g((bI, jd) => {
     var qv = Pe(),
         Lv = (e, t, r) => qv(e, t, r) >= 0;
     jd.exports = Lv;
 });
-var li = g((bI, Wd) => {
+var li = g((OI, Wd) => {
     var Uv = Pe(),
         $v = (e, t, r) => Uv(e, t, r) <= 0;
     Wd.exports = $v;
 });
-var ms = g((OI, Gd) => {
+var ms = g((II, Gd) => {
     var kv = hs(),
         Mv = ps(),
         Bv = Xr(),
@@ -7161,7 +7161,7 @@ var ms = g((OI, Gd) => {
         };
     Gd.exports = Gv;
 });
-var Yd = g((II, Vd) => {
+var Yd = g((NI, Vd) => {
     var Vv = he(),
         Yv = bt(),
         { safeRe: ui, t: ci } = nr(),
@@ -7189,7 +7189,7 @@ var Yd = g((II, Vd) => {
         };
     Vd.exports = zv;
 });
-var Xd = g((NI, zd) => {
+var Xd = g((RI, zd) => {
     var gs = class {
         constructor() {
             (this.max = 1e3), (this.map = new Map());
@@ -7214,7 +7214,7 @@ var Xd = g((NI, zd) => {
     };
     zd.exports = gs;
 });
-var Fe = g((RI, Zd) => {
+var Fe = g((DI, Zd) => {
     var Xv = /\s+/g,
         ws = class e {
             constructor(t, r) {
@@ -7488,7 +7488,7 @@ var Fe = g((RI, Zd) => {
             return !0;
         };
 });
-var Kr = g((DI, oh) => {
+var Kr = g((PI, oh) => {
     var Jr = Symbol("SemVer ANY"),
         vs = class e {
             static get ANY() {
@@ -7563,7 +7563,7 @@ var Kr = g((DI, oh) => {
         nh = he(),
         ih = Fe();
 });
-var Qr = g((PI, sh) => {
+var Qr = g((FI, sh) => {
     var gS = Fe(),
         wS = (e, t, r) => {
             try {
@@ -7575,7 +7575,7 @@ var Qr = g((PI, sh) => {
         };
     sh.exports = wS;
 });
-var lh = g((FI, ah) => {
+var lh = g((qI, ah) => {
     var ES = Fe(),
         yS = (e, t) =>
             new ES(e, t).set.map(r =>
@@ -7587,7 +7587,7 @@ var lh = g((FI, ah) => {
             );
     ah.exports = yS;
 });
-var ch = g((qI, uh) => {
+var ch = g((LI, uh) => {
     var _S = he(),
         vS = Fe(),
         SS = (e, t, r) => {
@@ -7608,7 +7608,7 @@ var ch = g((qI, uh) => {
         };
     uh.exports = SS;
 });
-var dh = g((LI, fh) => {
+var dh = g((UI, fh) => {
     var AS = he(),
         xS = Fe(),
         TS = (e, t, r) => {
@@ -7629,7 +7629,7 @@ var dh = g((LI, fh) => {
         };
     fh.exports = TS;
 });
-var mh = g((UI, ph) => {
+var mh = g(($I, ph) => {
     var Ss = he(),
         CS = Fe(),
         hh = Xr(),
@@ -7663,7 +7663,7 @@ var mh = g((UI, ph) => {
         };
     ph.exports = bS;
 });
-var wh = g(($I, gh) => {
+var wh = g((kI, gh) => {
     var OS = Fe(),
         IS = (e, t) => {
             try {
@@ -7674,7 +7674,7 @@ var wh = g(($I, gh) => {
         };
     gh.exports = IS;
 });
-var fi = g((kI, vh) => {
+var fi = g((MI, vh) => {
     var NS = he(),
         _h = Kr(),
         { ANY: RS } = _h,
@@ -7718,22 +7718,22 @@ var fi = g((kI, vh) => {
         };
     vh.exports = LS;
 });
-var Ah = g((MI, Sh) => {
+var Ah = g((BI, Sh) => {
     var US = fi(),
         $S = (e, t, r) => US(e, t, ">", r);
     Sh.exports = $S;
 });
-var Th = g((BI, xh) => {
+var Th = g((HI, xh) => {
     var kS = fi(),
         MS = (e, t, r) => kS(e, t, "<", r);
     xh.exports = MS;
 });
-var Oh = g((HI, bh) => {
+var Oh = g((jI, bh) => {
     var Ch = Fe(),
         BS = (e, t, r) => ((e = new Ch(e, r)), (t = new Ch(t, r)), e.intersects(t, r));
     bh.exports = BS;
 });
-var Nh = g((jI, Ih) => {
+var Nh = g((WI, Ih) => {
     var HS = Qr(),
         jS = Pe();
     Ih.exports = (e, t, r) => {
@@ -7759,7 +7759,7 @@ var Nh = g((jI, Ih) => {
         return l.length < h.length ? l : t;
     };
 });
-var Lh = g((WI, qh) => {
+var Lh = g((GI, qh) => {
     var Rh = Fe(),
         xs = Kr(),
         { ANY: As } = xs,
@@ -7866,7 +7866,7 @@ var Lh = g((WI, qh) => {
         };
     qh.exports = WS;
 });
-var bs = g((GI, kh) => {
+var bs = g((VI, kh) => {
     var Cs = nr(),
         Uh = Yr(),
         YS = he(),
@@ -8811,7 +8811,7 @@ var bp = g(ut => {
     };
     ut.ElectronHttpExecutor = js;
 });
-var Pp = g((KI, Dp) => {
+var Pp = g((JI, Dp) => {
     var pT = 1 / 0,
         mT = "[object Symbol]",
         Rp = /[\\^$.*+?()[\]{}|]/g,
@@ -11386,7 +11386,7 @@ var Ut = g(M => {
             : e.on(t, r);
     }
 });
-var mt = g((SN, Rm) => {
+var mt = g((AN, Rm) => {
     Rm.exports = class {
         constructor(t) {
             I(this, "_socialdetox");
@@ -11394,7 +11394,7 @@ var mt = g((SN, Rm) => {
         }
     };
 });
-var Pm = g((TN, Dm) => {
+var Pm = g((CN, Dm) => {
     var QC = require("path"),
         ZC = mt();
     Dm.exports = class extends ZC {
@@ -11406,7 +11406,7 @@ var Pm = g((TN, Dm) => {
         }
     };
 });
-var qm = g((bN, Fm) => {
+var qm = g((ON, Fm) => {
     var eb = mt();
     Fm.exports = class extends eb {
         getWindowWidth() {
@@ -11416,11 +11416,11 @@ var qm = g((bN, Fm) => {
             return 800;
         }
         getPort() {
-            return this._socialdetox.devMode ? 3030 : 7199;
+            return 7199;
         }
     };
 });
-var $m = g((IN, Um) => {
+var $m = g((NN, Um) => {
     var tb = mt(),
         Lm = require("fs");
     Um.exports = class extends tb {
@@ -11448,7 +11448,7 @@ var $m = g((IN, Um) => {
         }
     };
 });
-var Mm = g((RN, km) => {
+var Mm = g((DN, km) => {
     var rb = mt();
     km.exports = class extends rb {
         error() {
@@ -11459,7 +11459,7 @@ var Mm = g((RN, km) => {
         }
     };
 });
-var Hm = g((PN, Bm) => {
+var Hm = g((FN, Bm) => {
     var nb = mt(),
         ib = require("querystring");
     Bm.exports = class extends nb {
@@ -11536,7 +11536,7 @@ var Hm = g((PN, Bm) => {
         }
     };
 });
-var Wm = g((qN, jm) => {
+var Wm = g((LN, jm) => {
     var ob = mt(),
         qa = require("fs"),
         La = require("path"),
@@ -11595,7 +11595,7 @@ var Wm = g((qN, jm) => {
         I(Ua, "_instance", null),
         Ua);
 });
-var Ki = g(($N, Gm) => {
+var Ki = g((kN, Gm) => {
     var ab = mt(),
         { ipcMain: lb } = require("electron");
     Gm.exports = class extends ab {
@@ -11620,11 +11620,11 @@ var Ki = g(($N, Gm) => {
         }
     };
 });
-var Ym = g((MN, Vm) => {
+var Ym = g((BN, Vm) => {
     var dn;
     Vm.exports = ((dn = class {}), I(dn, "WINDOWS", "win32"), I(dn, "MAC", "darwin"), I(dn, "LINUX", "linux"), dn);
 });
-var Km = g((jN, Xm) => {
+var Km = g((WN, Xm) => {
     var { execSync: $a } = require("child_process"),
         ub = Ki(),
         pe = Ym(),
@@ -11755,7 +11755,7 @@ var Km = g((jN, Xm) => {
         (gt = new WeakMap()),
         zm);
 });
-var ka = g((GN, Jm) => {
+var ka = g((VN, Jm) => {
     var wt;
     Jm.exports =
         ((wt = class {
@@ -11767,7 +11767,7 @@ var ka = g((GN, Jm) => {
         I(wt, "WINDOW_TARGET", "@target"),
         wt);
 });
-var tg = g((zN, eg) => {
+var tg = g((XN, eg) => {
     var { ipcMain: Qm, BrowserView: vr } = require("electron"),
         Zm = require("path"),
         cb = Ki(),
@@ -11949,15 +11949,15 @@ var tg = g((zN, eg) => {
         I(hn, "MARGIN_BOTTOM", 50),
         hn);
 });
-var ig = g((JN, ng) => {
-    var { session: db, ipcMain: hb, BrowserView: Ji } = require("electron"),
-        pb = require("path"),
-        mb = Ki(),
+var ig = g((QN, ng) => {
+    var { session: db, shell: hb, ipcMain: pb, BrowserView: Ji } = require("electron"),
+        mb = require("path"),
+        gb = Ki(),
         Ma = ka(),
         Sr,
         rg;
     ng.exports =
-        ((rg = class extends mb {
+        ((rg = class extends gb {
             constructor(r) {
                 super(r);
                 I(this, "windowWidth");
@@ -11984,9 +11984,9 @@ var ig = g((JN, ng) => {
                             backgroundThrottling: !1,
                             imageAnimationPolicy: "noAnimation",
                             spellcheck: !1,
-                            preload: pb.join(this._socialdetox.rootPath, "lib/preloader/entry/main.js"),
+                            preload: mb.join(this._socialdetox.rootPath, "lib/preloader/entry/main.js"),
                             nodeIntegration: !0,
-                            devTools: !0,
+                            devTools: this._socialdetox.devMode,
                             session: db.defaultSession,
                             cache: !1,
                             webSecurity: !1,
@@ -11999,11 +11999,12 @@ var ig = g((JN, ng) => {
                         r.webContents.setAudioMuted(!1),
                         r.webContents.loadURL(`http://localhost:${this._socialdetox.config.getPort()}`),
                         r.webContents.on("dom-ready", () => r.webContents.focus()),
-                        r.webContents.on("context-menu", (n, i) => {
-                            n.preventDefault(), r.webContents.openDevTools({ mode: "detach" });
-                        }),
+                        this._socialdetox.devMode &&
+                            r.webContents.on("context-menu", (n, i) => {
+                                n.preventDefault(), r.webContents.openDevTools({ mode: "detach" });
+                            }),
                         (this.view = r),
-                        hb.on(Ma.WINDOW_MAIN, (n, ...i) => {
+                        pb.on(Ma.WINDOW_MAIN, (n, ...i) => {
                             this._socialdetox.devMode && console.log(`\u{1F3E0} ${Ma.WINDOW_MAIN}`, JSON.stringify(i)),
                                 i.length >= 3 && r.webContents.send(Ma.WINDOW_MAIN, i);
                         }),
@@ -12049,55 +12050,58 @@ var ig = g((JN, ng) => {
                     );
                 });
                 I(this, "getDarkMode", () => this.darkMode);
+                I(this, "openExternal", r => {
+                    typeof r == "string" && hb.openExternal(r);
+                });
                 this._register("main");
             }
         }),
         (Sr = new WeakMap()),
         rg);
 });
-var sg = g((eR, og) => {
-    var { app: gb, session: wb, BrowserWindow: Eb } = require("electron"),
-        yb = require("path"),
-        _b = Pm(),
-        vb = qm(),
-        Sb = $m(),
-        Ab = Mm(),
-        xb = Hm(),
-        Tb = Wm(),
-        Cb = Km(),
-        bb = tg(),
-        Ob = ig();
+var sg = g((tR, og) => {
+    var { app: wb, session: Eb, BrowserWindow: yb } = require("electron"),
+        _b = require("path"),
+        vb = Pm(),
+        Sb = qm(),
+        Ab = $m(),
+        xb = Mm(),
+        Tb = Hm(),
+        Cb = Wm(),
+        bb = Km(),
+        Ob = tg(),
+        Ib = ig();
     og.exports = class {
         constructor() {
             I(this, "mainWindow", null);
-            I(this, "rootPath", gb.getAppPath());
+            I(this, "rootPath", wb.getAppPath());
             I(this, "devMode", process.env.NODE_ENV === "development");
-            I(this, "log", new Ab(this));
-            I(this, "webserver", new Tb(this));
-            I(this, "activity", new _b(this));
-            I(this, "device", new Cb(this));
-            I(this, "target", new bb(this));
-            I(this, "main", new Ob(this));
-            I(this, "config", new vb(this));
-            I(this, "file", new Sb(this));
-            I(this, "utils", new xb(this));
+            I(this, "log", new xb(this));
+            I(this, "webserver", new Cb(this));
+            I(this, "activity", new vb(this));
+            I(this, "device", new bb(this));
+            I(this, "target", new Ob(this));
+            I(this, "main", new Ib(this));
+            I(this, "config", new Sb(this));
+            I(this, "file", new Ab(this));
+            I(this, "utils", new Tb(this));
         }
         window() {
             let t = this;
             if (t.mainWindow === null) {
-                (t.mainWindow = new Eb({
+                (t.mainWindow = new yb({
                     minWidth: t.config.getWindowWidth(),
                     minHeight: t.config.getWindowHeight(),
                     width: t.config.getWindowWidth(),
                     height: t.config.getWindowHeight(),
-                    icon: yb.join(t.rootPath, "res/icons/icon.png"),
+                    icon: _b.join(t.rootPath, "res/icons/icon.png"),
                     resizable: !0,
                     titleBarStyle: "default",
                     title: "SocialDetox",
                     useContentSize: !0,
                     show: !1,
                     backgroundColor: "#000",
-                    webPreferences: { spellcheck: !1, nodeIntegration: !0, session: wb.defaultSession }
+                    webPreferences: { spellcheck: !1, nodeIntegration: !0, session: Eb.defaultSession }
                 })),
                     t.mainWindow.setMaxListeners(0),
                     t.mainWindow.once("closed", () => (t.mainWindow = null));
@@ -12119,9 +12123,9 @@ var sg = g((eR, og) => {
         }
     };
 });
-var { app: We, BrowserWindow: Ib } = require("electron"),
+var { app: We, BrowserWindow: Nb } = require("electron"),
     { autoUpdater: Ba } = Ut(),
-    Nb = sg();
+    Rb = sg();
 We.disableHardwareAcceleration();
 We.commandLine.appendSwitch("disable-gpu");
 We.commandLine.appendSwitch("allow-insecure-localhost");
@@ -12139,12 +12143,12 @@ do {
         e !== null && (e.isMinimized() && e.restore(), e.focus());
     }),
         We.on("ready", async () => {
-            let t = new Nb();
+            let t = new Rb();
             await t.webserver.start(),
                 (e = t.window()),
                 t.activity.main(),
                 We.on("activate", () => {
-                    Ib.getAllWindows().length === 0 && t.activity.main();
+                    Nb.getAllWindows().length === 0 && t.activity.main();
                 }),
                 Ba.checkForUpdatesAndNotify();
         }),
