@@ -1,0 +1,10 @@
+{
+    "name": "socialdetox.ai",
+    "version": "0.0.14",
+    "description": "AI agents for social media detox",
+    "homepage": "https://socialdetox.ai",
+    "author": "SocialDetox.ai",
+    "main": "run.js",
+    "res": true,
+    "license": "Apache-2.0"
+}

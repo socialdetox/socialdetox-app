@@ -1,0 +1,212 @@
+/*!
+ * @architect Mark Jivko <mark@socialdetox.ai>
+ * @copyright © 2024 SocialDetox.ai https://socialdetox.ai
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+*,
+::after,
+::before {
+    box-sizing: border-box;
+}
+* {
+    margin: 0;
+}
+body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+canvas,
+img,
+picture,
+svg,
+video {
+    display: block;
+    max-width: 100%;
+}
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    overflow-wrap: break-word;
+}
+#__next,
+#root {
+    isolation: isolate;
+}
+body,
+html {
+    font-family: Arial, sans-serif;
+}
+a {
+    text-decoration: none;
+}
+footer,
+header,
+section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 0;
+}
+header {
+    min-height: 3rem;
+}
+header h1 {
+    font-weight: 400;
+}
+header h1 a {
+    color: inherit;
+    position: relative;
+    vertical-align: middle;
+    font-size: 1.25rem;
+}
+header h1 a:before {
+    content: "";
+    display: inline-block;
+    position: relative;
+    background: url("/img/logo/96.png") no-repeat 0 0 transparent;
+    background-size: cover;
+    width: 3.5rem;
+    height: 3.5rem;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+}
+section {
+    background: #efefef;
+    box-shadow: 0 2px 0 0 #dedede inset, 0 -2px 0 0 #dedede inset;
+}
+footer {
+    text-align: center;
+    color: #666 !important;
+}
+.container {
+    padding: 1rem 2rem;
+    width: 100%;
+    max-width: 1200px;
+}
+[data-page="listing"] ul {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+[data-page="listing"] li {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    text-overflow: ellipsis;
+}
+[data-page="listing"] a.parent,
+[data-page="listing"] li a {
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    min-height: 2rem;
+    margin: 0.5rem 0;
+    transition: transform 50ms linear;
+    transform-origin: 1rem 50%;
+}
+[data-page="listing"] a.parent:hover,
+[data-page="listing"] li a:hover {
+    transform: scale(1.05);
+}
+[data-page="listing"] a.parent {
+    margin-bottom: 2rem;
+}
+[data-page="listing"] a.parent:before,
+[data-page="listing"] li a:before {
+    content: "📄";
+    display: block;
+    line-height: 2rem;
+    font-size: 1.6rem;
+    width: 2rem;
+    height: 2rem;
+    margin-right: 1rem;
+    text-align: center;
+}
+[data-page="listing"] li a.dir:before {
+    content: "📁";
+}
+[data-page="listing"] a.parent:before {
+    content: "▲";
+}
+[data-page="interstitial"] {
+    user-select: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+[data-page="interstitial"] > span {
+    font-size: 8rem;
+}
+[data-page="interstitial"] > b {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: #666;
+    font-weight: 200;
+    font-variant: small-caps;
+}
+[data-page="interstitial"] input {
+    border: 1px solid #4a93f1;
+    background: #fff;
+    padding: 0.75rem 1rem;
+    border-radius: 0.25rem;
+}
+[data-page="interstitial"] [type="submit"],
+[data-page="interstitial"] > a {
+    font-size: 1.25rem;
+    display: block;
+    color: #fff;
+    text-transform: capitalize;
+    font-variant: small-caps;
+    margin-top: 2rem;
+    padding: 0.5rem 1.5rem;
+    background: #4a93f1;
+    border-radius: 0.25rem;
+    box-shadow: 0 3px 0 0 #397bd1;
+    transition: transform 50ms linear;
+    cursor: pointer;
+}
+[data-page="interstitial"] [type="submit"] {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+[data-page="interstitial"] [type="submit"]:hover,
+[data-page="interstitial"] > a:hover {
+    background: #559af5;
+}
+[data-page="interstitial"] [type="submit"]:focus,
+[data-page="interstitial"] > a:focus {
+    transform: translateY(3px);
+    box-shadow: 0 -3px 0 0 #397bd1;
+}
+[data-page="interstitial"] form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 20rem;
+}
