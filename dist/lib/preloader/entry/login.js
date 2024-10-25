@@ -26,11 +26,11 @@ var i = (s, e, t) => (D(s, e, "read from private field"), t ? t.call(s) : e.get(
     h = (s, e, t) =>
         e.has(s) ? b("Cannot add the same private member more than once") : e instanceof WeakSet ? e.add(s) : e.set(s, t),
     v = (s, e, t, n) => (D(s, e, "write to private field"), n ? n.call(s, t) : e.set(s, t), t);
-var O = m((ge, M) => {
+var O = m((ge, N) => {
     var { ipcRenderer: Y } = require("electron"),
         y,
         E;
-    M.exports =
+    N.exports =
         ((E = class {
             constructor() {
                 h(this, y, {});
@@ -60,10 +60,10 @@ var O = m((ge, M) => {
         (y = new WeakMap()),
         E);
 });
-var S = m((ye, N) => {
+var M = m((ye, S) => {
     var Z = O(),
         { ipcRenderer: ee } = require("electron");
-    N.exports = class extends Z {
+    S.exports = class extends Z {
         constructor() {
             super();
             r(this, "getOS", () => this._promise("getOS"));
@@ -107,9 +107,9 @@ var R = m((Oe, A) => {
         }
     };
 });
-var F = m((qe, j) => {
+var j = m((qe, L) => {
     var se = O();
-    j.exports = class extends se {
+    L.exports = class extends se {
         constructor() {
             super();
             r(this, "setOnTop", t => this._promise("setOnTop", !!t));
@@ -121,9 +121,9 @@ var F = m((qe, j) => {
         }
     };
 });
-var x = m((be, U) => {
+var x = m((be, F) => {
     var u;
-    U.exports =
+    F.exports =
         ((u = class {
             static getTargetChannelName(e) {
                 return "".concat(u.WINDOW_TARGET, "/").concat(e);
@@ -134,21 +134,21 @@ var x = m((be, U) => {
         r(u, "WINDOW_TARGET", "@target"),
         u);
 });
-var H = m((Me, B) => {
+var H = m((Ne, B) => {
     var { ipcRenderer: k, contextBridge: ie } = require("electron"),
         ne = require("crypto"),
-        oe = S(),
+        oe = M(),
         ae = C(),
         ce = R(),
-        le = F(),
+        le = j(),
         G = x(),
         p,
         $,
         _,
         w,
-        L;
+        U;
     B.exports =
-        ((L = class {
+        ((U = class {
             constructor(e, t = !0) {
                 h(this, p, "");
                 h(this, $, {});
@@ -254,7 +254,7 @@ var H = m((Me, B) => {
         ($ = new WeakMap()),
         (_ = new WeakMap()),
         (w = new WeakMap()),
-        L);
+        U);
 });
 var K = m((We, J) => {
     var pe = H(),
@@ -265,9 +265,9 @@ var K = m((We, J) => {
         ((z = class {
             constructor() {
                 h(this, I);
-                r(this, "getOnTop", async () => await i(this, I).ipc.main.getOnTop());
-                r(this, "setOnTop", async e => await i(this, I).ipc.main.setOnTop(e));
-                v(this, I, new pe(de.WINDOW_MAIN).getSdk());
+                r(this, "getOnTop", async () => await i(this, I).ipc.login.getOnTop());
+                r(this, "setOnTop", async e => await i(this, I).ipc.login.setOnTop(e));
+                v(this, I, new pe(de.WINDOW_LOGIN).getSdk());
                 for (let e of Object.getOwnPropertyNames(this)) typeof this[e] == "function" && i(this, I).ibc.handle(e, this[e]);
             }
         }),
