@@ -12272,7 +12272,6 @@ var bg = g((TD, Tg) => {
                             t,
                             Be,
                             new Sg({
-                                show: !1,
                                 width: t.config.getLoginWidth(),
                                 height: t.config.getLoginHeight(),
                                 icon: xg.join(t.rootPath, "res/icons/icon.png"),
