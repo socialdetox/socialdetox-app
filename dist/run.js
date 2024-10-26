@@ -12214,6 +12214,7 @@ var bg = g((TD, Tg) => {
                         t,
                         Z,
                         new Sg({
+                            show: !1,
                             minWidth: t.config.getMainMinWidth(),
                             minHeight: t.config.getMainMinHeight(),
                             width: t.config.getMainMinWidth(),
