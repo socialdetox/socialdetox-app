@@ -40,7 +40,7 @@ var x = w((ye, M) => {
                     for (let t of Object.getOwnPropertyNames(this))
                         ["_", "#"].includes(t[0]) ||
                             typeof this[t] != "function" ||
-                            (r(this, I)[t] = "main:".concat(e, ":").concat(t));
+                            (r(this, I)[t] = "ipc:".concat(e, ":").concat(t));
             }
             _runner(e, ...t) {
                 let s = function (o, c, a) {

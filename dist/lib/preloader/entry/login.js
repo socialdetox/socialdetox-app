@@ -40,7 +40,7 @@ var O = m((ge, N) => {
                     for (let t of Object.getOwnPropertyNames(this))
                         ["_", "#"].includes(t[0]) ||
                             typeof this[t] != "function" ||
-                            (i(this, y)[t] = "main:".concat(e, ":").concat(t));
+                            (i(this, y)[t] = "ipc:".concat(e, ":").concat(t));
             }
             _runner(e, ...t) {
                 let n = function (o, l, c) {

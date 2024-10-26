@@ -26,7 +26,7 @@ var i = (s, e, t) => (D(s, e, "read from private field"), t ? t.call(s) : e.get(
     h = (s, e, t) =>
         e.has(s) ? b("Cannot add the same private member more than once") : e instanceof WeakSet ? e.add(s) : e.set(s, t),
     v = (s, e, t, n) => (D(s, e, "write to private field"), n ? n.call(s, t) : e.set(s, t), t);
-var O = f((me, M) => {
+var O = f((ge, M) => {
     var { ipcRenderer: Y } = require("electron"),
         y,
         E;
@@ -40,7 +40,7 @@ var O = f((me, M) => {
                     for (let t of Object.getOwnPropertyNames(this))
                         ["_", "#"].includes(t[0]) ||
                             typeof this[t] != "function" ||
-                            (i(this, y)[t] = "main:".concat(e, ":").concat(t));
+                            (i(this, y)[t] = "ipc:".concat(e, ":").concat(t));
             }
             _runner(e, ...t) {
                 let n = function (o, l, c) {
@@ -179,26 +179,26 @@ var H = f((Me, B) => {
                     k.on(i(this, p), (o, l) => {
                         if (l.length < 3) return;
                         let [c, a, q] = l,
-                            { type: d, fromWin: m, promiseId: T } = q ?? {};
+                            { type: d, fromWin: g, promiseId: T } = q ?? {};
                         if (d === "req")
                             (async () => {
-                                let g = null;
+                                let m = null;
                                 try {
                                     if (typeof c != "string" || typeof i(n, P)[c] != "function")
                                         throw new Error("Method not found");
-                                    Array.isArray(a) || (a = []), (g = await i(n, P)[c](...a));
+                                    Array.isArray(a) || (a = []), (m = await i(n, P)[c](...a));
                                 } catch ($) {
-                                    let Q = "".concat(m, " >> ").concat(i(n, p), "/").concat(c, "()");
-                                    (g = new Error("".concat(Q, " ").concat($))),
-                                        i(this, w).devMode && console.warn("".concat(g));
+                                    let Q = "".concat(g, " >> ").concat(i(n, p), "/").concat(c, "()");
+                                    (m = new Error("".concat(Q, " ").concat($))),
+                                        i(this, w).devMode && console.warn("".concat(m));
                                 }
-                                typeof m == "string" && typeof T == "string" && k.send(m, c, g, { type: "res", promiseId: T });
+                                typeof g == "string" && typeof T == "string" && k.send(g, c, m, { type: "res", promiseId: T });
                             })();
                         else {
-                            let g = typeof T == "string" ? "".concat(c, ":").concat(T) : null;
-                            if (g !== null) {
-                                let $ = i(n, _)[g] ?? null;
-                                $ !== null && (a instanceof Error ? $.reject(a) : $.resolve(a), delete i(n, _)[g]);
+                            let m = typeof T == "string" ? "".concat(c, ":").concat(T) : null;
+                            if (m !== null) {
+                                let $ = i(n, _)[m] ?? null;
+                                $ !== null && (a instanceof Error ? $.reject(a) : $.resolve(a), delete i(n, _)[m]);
                             }
                         }
                     }),
@@ -224,11 +224,11 @@ var H = f((Me, B) => {
                 (isNaN(c) || c < 0) && (c = 0);
                 let a = (() => {
                         let d = Date.now().toString(36),
-                            m = ne.randomBytes(4).toString("hex");
-                        return "".concat(d).concat(m);
+                            g = ne.randomBytes(4).toString("hex");
+                        return "".concat(d).concat(g);
                     })(),
-                    q = new Promise((d, m) => {
-                        i(this, _)["".concat(t, ":").concat(a)] = { resolve: d, reject: m };
+                    q = new Promise((d, g) => {
+                        i(this, _)["".concat(t, ":").concat(a)] = { resolve: d, reject: g };
                     });
                 return (
                     c > 0 &&
