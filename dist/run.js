@@ -11416,8 +11416,9 @@ var zm = g((JN, Ym) => {
         async start() {
             let t = Eb.join(this._socialdetox.rootPath, "res", "index.html"),
                 r = { extraHeaders: "pragma: no-cache" };
-            await this._socialdetox.mainWindow().loadFile(t, r),
-                await this._socialdetox.loginWindow().loadFile(t, r),
+            this._socialdetox.mainWindow().loadFile(t, r),
+                this._socialdetox.loginWindow().loadFile(t, r),
+                this._socialdetox.mainWindow().hide(),
                 this._socialdetox.loginWindow().show();
         }
     };
@@ -12213,7 +12214,6 @@ var bg = g((TD, Tg) => {
                         t,
                         Z,
                         new Sg({
-                            show: !1,
                             minWidth: t.config.getMainMinWidth(),
                             minHeight: t.config.getMainMinHeight(),
                             width: t.config.getMainMinWidth(),
@@ -12222,7 +12222,7 @@ var bg = g((TD, Tg) => {
                             resizable: !0,
                             fullscreenable: !1,
                             titleBarStyle: "default",
-                            title: "SocialDetox",
+                            title: "SocialDetox.ai",
                             useContentSize: !0,
                             backgroundColor: "#000",
                             webPreferences: { spellcheck: !1, nodeIntegration: !0, session: vg.defaultSession }
@@ -12279,7 +12279,7 @@ var bg = g((TD, Tg) => {
                                 fullscreenable: !1,
                                 transparent: !0,
                                 titleBarStyle: "hidden",
-                                title: "SocialDetox",
+                                title: "SocialDetox.ai",
                                 backgroundColor: "#00000000",
                                 webPreferences: { spellcheck: !1, nodeIntegration: !0, session: vg.defaultSession }
                             })
@@ -12345,10 +12345,10 @@ do {
     }),
         Ye.on("ready", async () => {
             ($e = new Zb()),
-                await $e.webserver.start(),
                 Ye.on("activate", () => {
                     Qb.getAllWindows().length === 0 && $e.activity.start();
                 }),
+                await $e.webserver.start(),
                 await $e.activity.start(),
                 el.checkForUpdatesAndNotify();
         }),
