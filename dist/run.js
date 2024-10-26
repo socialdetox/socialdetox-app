@@ -11581,21 +11581,26 @@ var sg = g((aD, og) => {
                         }
                         try {
                             let o = Tb.createServer((s, a) => {
-                                let l = oo.join(t, "".concat(decodeURIComponent(s.url)).replace(/^\/+|\/+$/g, ""));
-                                io.statSync(l, { throwIfNoEntry: !1 })?.isDirectory() && (l = oo.join(l, "index.html")),
-                                    io.access(l, io.constants.F_OK, h => {
-                                        if (h) {
-                                            a.writeHead(404, { "Content-Type": "text/plain" }), a.end("Not Found: ".concat(h));
+                                let l = ".empty";
+                                try {
+                                    let c = new URL(s.url, "http://0.0.0.0");
+                                    l = decodeURIComponent(c.pathname).replace(/^\/+|\/+$/g, "");
+                                } catch {}
+                                let h = oo.join(t, l);
+                                io.statSync(h, { throwIfNoEntry: !1 })?.isDirectory() && (h = oo.join(h, "index.html")),
+                                    io.access(h, io.constants.F_OK, c => {
+                                        if (c) {
+                                            a.writeHead(404, { "Content-Type": "text/plain" }), a.end("Not Found: ".concat(c));
                                             return;
                                         }
-                                        io.readFile(l, (c, f) => {
-                                            if (c) {
+                                        io.readFile(h, (f, m) => {
+                                            if (f) {
                                                 a.writeHead(500, { "Content-Type": "text/plain" }),
-                                                    a.end("Internal Server Error: ".concat(c));
+                                                    a.end("Internal Server Error: ".concat(f));
                                                 return;
                                             }
-                                            let m = oo.extname(l),
-                                                p =
+                                            let p = oo.extname(h),
+                                                y =
                                                     {
                                                         ".json": "application/json",
                                                         ".woff2": "font/woff2",
@@ -11608,8 +11613,8 @@ var sg = g((aD, og) => {
                                                         ".png": "image/png",
                                                         ".gif": "image/gif",
                                                         ".svg": "image/svg+xml"
-                                                    }[m] || "application/octet-stream";
-                                            a.writeHead(200, { "Content-Type": p }), a.end(f);
+                                                    }[p] || "application/octet-stream";
+                                            a.writeHead(200, { "Content-Type": y }), a.end(m);
                                         });
                                     });
                             });
