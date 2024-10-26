@@ -19,14 +19,14 @@ var b = s => {
     throw TypeError(s);
 };
 var X = (s, e, t) => (e in s ? V(s, e, { enumerable: !0, configurable: !0, writable: !0, value: t }) : (s[e] = t));
-var m = (s, e) => () => (e || s((e = { exports: {} }).exports, e), e.exports);
+var f = (s, e) => () => (e || s((e = { exports: {} }).exports, e), e.exports);
 var r = (s, e, t) => X(s, typeof e != "symbol" ? e + "" : e, t),
     D = (s, e, t) => e.has(s) || b("Cannot " + t);
 var i = (s, e, t) => (D(s, e, "read from private field"), t ? t.call(s) : e.get(s)),
     h = (s, e, t) =>
         e.has(s) ? b("Cannot add the same private member more than once") : e instanceof WeakSet ? e.add(s) : e.set(s, t),
     v = (s, e, t, n) => (D(s, e, "write to private field"), n ? n.call(s, t) : e.set(s, t), t);
-var O = m((ge, M) => {
+var O = f((me, M) => {
     var { ipcRenderer: Y } = require("electron"),
         y,
         E;
@@ -60,7 +60,7 @@ var O = m((ge, M) => {
         (y = new WeakMap()),
         E);
 });
-var S = m((ye, N) => {
+var W = f((ye, N) => {
     var Z = O(),
         { ipcRenderer: ee } = require("electron");
     N.exports = class extends Z {
@@ -81,9 +81,9 @@ var S = m((ye, N) => {
         }
     };
 });
-var C = m(($e, W) => {
+var C = f((Pe, S) => {
     var te = O();
-    W.exports = class extends te {
+    S.exports = class extends te {
         constructor() {
             super();
             r(this, "list", () => this._promise("list"));
@@ -97,7 +97,7 @@ var C = m(($e, W) => {
         }
     };
 });
-var R = m((Oe, A) => {
+var R = f((Oe, A) => {
     var re = O();
     A.exports = class extends re {
         constructor() {
@@ -107,7 +107,7 @@ var R = m((Oe, A) => {
         }
     };
 });
-var F = m((qe, j) => {
+var F = f((qe, j) => {
     var se = O();
     j.exports = class extends se {
         constructor() {
@@ -121,7 +121,7 @@ var F = m((qe, j) => {
         }
     };
 });
-var x = m((be, U) => {
+var x = f((be, U) => {
     var u;
     U.exports =
         ((u = class {
@@ -134,16 +134,16 @@ var x = m((be, U) => {
         r(u, "WINDOW_TARGET", "@target"),
         u);
 });
-var H = m((Me, B) => {
+var H = f((Me, B) => {
     var { ipcRenderer: k, contextBridge: ie } = require("electron"),
         ne = require("crypto"),
-        oe = S(),
+        oe = W(),
         ae = C(),
         ce = R(),
         le = F(),
         G = x(),
         p,
-        $,
+        P,
         _,
         w,
         L;
@@ -151,7 +151,7 @@ var H = m((Me, B) => {
         ((L = class {
             constructor(e, t = !0) {
                 h(this, p, "");
-                h(this, $, {});
+                h(this, P, {});
                 h(this, _, {});
                 h(this, w, {});
                 r(this, "target", {
@@ -179,26 +179,26 @@ var H = m((Me, B) => {
                     k.on(i(this, p), (o, l) => {
                         if (l.length < 3) return;
                         let [c, a, q] = l,
-                            { type: d, fromWin: g, promiseId: T } = q ?? {};
+                            { type: d, fromWin: m, promiseId: T } = q ?? {};
                         if (d === "req")
                             (async () => {
-                                let f = null;
+                                let g = null;
                                 try {
-                                    if (typeof c != "string" || typeof i(n, $)[c] != "function")
+                                    if (typeof c != "string" || typeof i(n, P)[c] != "function")
                                         throw new Error("Method not found");
-                                    Array.isArray(a) || (a = []), (f = await i(n, $)[c](...a));
-                                } catch (P) {
-                                    let Q = "".concat(g, " >> ").concat(i(n, p), "/").concat(c, "()");
-                                    (f = new Error("".concat(Q, " ").concat(P))),
-                                        i(this, w).devMode && console.warn("".concat(f));
+                                    Array.isArray(a) || (a = []), (g = await i(n, P)[c](...a));
+                                } catch ($) {
+                                    let Q = "".concat(m, " >> ").concat(i(n, p), "/").concat(c, "()");
+                                    (g = new Error("".concat(Q, " ").concat($))),
+                                        i(this, w).devMode && console.warn("".concat(g));
                                 }
-                                typeof g == "string" && typeof T == "string" && k.send(g, c, f, { type: "res", promiseId: T });
+                                typeof m == "string" && typeof T == "string" && k.send(m, c, g, { type: "res", promiseId: T });
                             })();
                         else {
-                            let f = typeof T == "string" ? "".concat(c, ":").concat(T) : null;
-                            if (f !== null) {
-                                let P = i(n, _)[f] ?? null;
-                                P !== null && (a instanceof Error ? P.reject(a) : P.resolve(a), delete i(n, _)[f]);
+                            let g = typeof T == "string" ? "".concat(c, ":").concat(T) : null;
+                            if (g !== null) {
+                                let $ = i(n, _)[g] ?? null;
+                                $ !== null && (a instanceof Error ? $.reject(a) : $.resolve(a), delete i(n, _)[g]);
                             }
                         }
                     }),
@@ -208,14 +208,12 @@ var H = m((Me, B) => {
                 return i(this, w);
             }
             handle(e, t) {
-                typeof e == "string" && typeof t == "function" && (i(this, $)[e] = t);
+                typeof e == "string" && typeof t == "function" && (i(this, P)[e] = t);
             }
             send(e, t, n) {
                 do {
                     if (typeof e != "string" || typeof t != "string") break;
-                    Array.isArray(n) || (n = []),
-                        console.log("Sending to ".concat(e, ":").concat(t, "()")),
-                        k.send(e, t, n, { type: "req", fromWin: i(this, p) });
+                    Array.isArray(n) || (n = []), k.send(e, t, n, { type: "req", fromWin: i(this, p) });
                 } while (!1);
             }
             async invoke(e, t, n, o = 0) {
@@ -226,11 +224,11 @@ var H = m((Me, B) => {
                 (isNaN(c) || c < 0) && (c = 0);
                 let a = (() => {
                         let d = Date.now().toString(36),
-                            g = ne.randomBytes(4).toString("hex");
-                        return "".concat(d).concat(g);
+                            m = ne.randomBytes(4).toString("hex");
+                        return "".concat(d).concat(m);
                     })(),
-                    q = new Promise((d, g) => {
-                        i(this, _)["".concat(t, ":").concat(a)] = { resolve: d, reject: g };
+                    q = new Promise((d, m) => {
+                        i(this, _)["".concat(t, ":").concat(a)] = { resolve: d, reject: m };
                     });
                 return (
                     c > 0 &&
@@ -251,12 +249,12 @@ var H = m((Me, B) => {
             }
         }),
         (p = new WeakMap()),
-        ($ = new WeakMap()),
+        (P = new WeakMap()),
         (_ = new WeakMap()),
         (w = new WeakMap()),
         L);
 });
-var K = m((We, J) => {
+var K = f((Se, J) => {
     var pe = H(),
         de = x(),
         I,

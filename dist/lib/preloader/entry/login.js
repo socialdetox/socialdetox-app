@@ -60,10 +60,10 @@ var O = m((ge, N) => {
         (y = new WeakMap()),
         E);
 });
-var M = m((ye, S) => {
+var M = m((ye, W) => {
     var Z = O(),
         { ipcRenderer: ee } = require("electron");
-    S.exports = class extends Z {
+    W.exports = class extends Z {
         constructor() {
             super();
             r(this, "getOS", () => this._promise("getOS"));
@@ -81,9 +81,9 @@ var M = m((ye, S) => {
         }
     };
 });
-var C = m(($e, W) => {
+var C = m((Pe, S) => {
     var te = O();
-    W.exports = class extends te {
+    S.exports = class extends te {
         constructor() {
             super();
             r(this, "list", () => this._promise("list"));
@@ -143,7 +143,7 @@ var H = m((Ne, B) => {
         le = j(),
         G = x(),
         p,
-        $,
+        P,
         _,
         w,
         U;
@@ -151,7 +151,7 @@ var H = m((Ne, B) => {
         ((U = class {
             constructor(e, t = !0) {
                 h(this, p, "");
-                h(this, $, {});
+                h(this, P, {});
                 h(this, _, {});
                 h(this, w, {});
                 r(this, "target", {
@@ -184,12 +184,12 @@ var H = m((Ne, B) => {
                             (async () => {
                                 let f = null;
                                 try {
-                                    if (typeof c != "string" || typeof i(n, $)[c] != "function")
+                                    if (typeof c != "string" || typeof i(n, P)[c] != "function")
                                         throw new Error("Method not found");
-                                    Array.isArray(a) || (a = []), (f = await i(n, $)[c](...a));
-                                } catch (P) {
+                                    Array.isArray(a) || (a = []), (f = await i(n, P)[c](...a));
+                                } catch ($) {
                                     let Q = "".concat(g, " >> ").concat(i(n, p), "/").concat(c, "()");
-                                    (f = new Error("".concat(Q, " ").concat(P))),
+                                    (f = new Error("".concat(Q, " ").concat($))),
                                         i(this, w).devMode && console.warn("".concat(f));
                                 }
                                 typeof g == "string" && typeof T == "string" && k.send(g, c, f, { type: "res", promiseId: T });
@@ -197,8 +197,8 @@ var H = m((Ne, B) => {
                         else {
                             let f = typeof T == "string" ? "".concat(c, ":").concat(T) : null;
                             if (f !== null) {
-                                let P = i(n, _)[f] ?? null;
-                                P !== null && (a instanceof Error ? P.reject(a) : P.resolve(a), delete i(n, _)[f]);
+                                let $ = i(n, _)[f] ?? null;
+                                $ !== null && (a instanceof Error ? $.reject(a) : $.resolve(a), delete i(n, _)[f]);
                             }
                         }
                     }),
@@ -208,14 +208,12 @@ var H = m((Ne, B) => {
                 return i(this, w);
             }
             handle(e, t) {
-                typeof e == "string" && typeof t == "function" && (i(this, $)[e] = t);
+                typeof e == "string" && typeof t == "function" && (i(this, P)[e] = t);
             }
             send(e, t, n) {
                 do {
                     if (typeof e != "string" || typeof t != "string") break;
-                    Array.isArray(n) || (n = []),
-                        console.log("Sending to ".concat(e, ":").concat(t, "()")),
-                        k.send(e, t, n, { type: "req", fromWin: i(this, p) });
+                    Array.isArray(n) || (n = []), k.send(e, t, n, { type: "req", fromWin: i(this, p) });
                 } while (!1);
             }
             async invoke(e, t, n, o = 0) {
@@ -251,12 +249,12 @@ var H = m((Ne, B) => {
             }
         }),
         (p = new WeakMap()),
-        ($ = new WeakMap()),
+        (P = new WeakMap()),
         (_ = new WeakMap()),
         (w = new WeakMap()),
         U);
 });
-var K = m((We, J) => {
+var K = m((Se, J) => {
     var pe = H(),
         de = x(),
         I,

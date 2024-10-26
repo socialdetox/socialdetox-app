@@ -21,17 +21,17 @@ var C = i => {
 var ee = (i, e, t) => (e in i ? Z(i, e, { enumerable: !0, configurable: !0, writable: !0, value: t }) : (i[e] = t));
 var w = (i, e) => () => (e || i((e = { exports: {} }).exports, e), e.exports);
 var n = (i, e, t) => ee(i, typeof e != "symbol" ? e + "" : e, t),
-    O = (i, e, t) => e.has(i) || C("Cannot " + t);
-var r = (i, e, t) => (O(i, e, "read from private field"), t ? t.call(i) : e.get(i)),
+    N = (i, e, t) => e.has(i) || C("Cannot " + t);
+var r = (i, e, t) => (N(i, e, "read from private field"), t ? t.call(i) : e.get(i)),
     u = (i, e, t) =>
         e.has(i) ? C("Cannot add the same private member more than once") : e instanceof WeakSet ? e.add(i) : e.set(i, t),
-    P = (i, e, t, s) => (O(i, e, "write to private field"), s ? s.call(i, t) : e.set(i, t), t);
+    P = (i, e, t, s) => (N(i, e, "write to private field"), s ? s.call(i, t) : e.set(i, t), t);
 var x = w((ye, M) => {
     var { ipcRenderer: te } = require("electron"),
         I,
-        N;
+        O;
     M.exports =
-        ((N = class {
+        ((O = class {
             constructor() {
                 u(this, I, {});
             }
@@ -58,9 +58,9 @@ var x = w((ye, M) => {
             }
         }),
         (I = new WeakMap()),
-        N);
+        O);
 });
-var W = w(($e, D) => {
+var W = w((ve, D) => {
     var re = x(),
         { ipcRenderer: se } = require("electron");
     D.exports = class extends re {
@@ -107,7 +107,7 @@ var L = w((Te, j) => {
         }
     };
 });
-var B = w((ke, U) => {
+var B = w((Se, U) => {
     var oe = x();
     U.exports = class extends oe {
         constructor() {
@@ -121,7 +121,7 @@ var B = w((ke, U) => {
         }
     };
 });
-var k = w((Oe, F) => {
+var S = w((Ne, F) => {
     var f;
     F.exports =
         ((f = class {
@@ -141,11 +141,11 @@ var Q = w((De, X) => {
         pe = R(),
         de = L(),
         he = B(),
-        G = k(),
+        G = S(),
         g,
         b,
         _,
-        $,
+        v,
         H;
     X.exports =
         ((H = class {
@@ -153,7 +153,7 @@ var Q = w((De, X) => {
                 u(this, g, "");
                 u(this, b, {});
                 u(this, _, {});
-                u(this, $, {});
+                u(this, v, {});
                 n(this, "target", {
                     send: (e, t, s) => {
                         this.send(G.getTargetChannelName(e), t, s);
@@ -162,7 +162,7 @@ var Q = w((De, X) => {
                 });
                 let s = this;
                 P(this, g, e),
-                    P(this, $, {
+                    P(this, v, {
                         ibc: {
                             handle: (...o) => this.handle.call(this, ...o),
                             send: (...o) => this.send.call(this, ...o),
@@ -190,7 +190,7 @@ var Q = w((De, X) => {
                                 } catch (q) {
                                     let K = "".concat(h, " >> ").concat(r(s, g), "/").concat(a, "()");
                                     (y = new Error("".concat(K, " ").concat(q))),
-                                        r(this, $).devMode && console.warn("".concat(y));
+                                        r(this, v).devMode && console.warn("".concat(y));
                                 }
                                 typeof h == "string" && typeof T == "string" && E.send(h, a, y, { type: "res", promiseId: T });
                             })();
@@ -202,10 +202,10 @@ var Q = w((De, X) => {
                             }
                         }
                     }),
-                    t && ae.exposeInMainWorld("sdk", r(this, $));
+                    t && ae.exposeInMainWorld("sdk", r(this, v));
             }
             getSdk() {
-                return r(this, $);
+                return r(this, v);
             }
             handle(e, t) {
                 typeof e == "string" && typeof t == "function" && (r(this, b)[e] = t);
@@ -213,9 +213,7 @@ var Q = w((De, X) => {
             send(e, t, s) {
                 do {
                     if (typeof e != "string" || typeof t != "string") break;
-                    Array.isArray(s) || (s = []),
-                        console.log("Sending to ".concat(e, ":").concat(t, "()")),
-                        E.send(e, t, s, { type: "req", fromWin: r(this, g) });
+                    Array.isArray(s) || (s = []), E.send(e, t, s, { type: "req", fromWin: r(this, g) });
                 } while (!1);
             }
             async invoke(e, t, s, o = 0) {
@@ -253,22 +251,22 @@ var Q = w((De, X) => {
         (g = new WeakMap()),
         (b = new WeakMap()),
         (_ = new WeakMap()),
-        ($ = new WeakMap()),
+        (v = new WeakMap()),
         H);
 });
 var z = w((Re, Y) => {
     var ue = Q(),
-        ge = k(),
-        v,
+        ge = S(),
+        $,
         d,
-        S,
+        k,
         V;
     Y.exports =
         ((V = class {
             constructor(e) {
-                u(this, v);
+                u(this, $);
                 u(this, d);
-                u(this, S, (e, t = 0, s = []) => {
+                u(this, k, (e, t = 0, s = []) => {
                     if (!(e instanceof Element)) return null;
                     if (e.id) return "#".concat(e.id);
                     let o = [];
@@ -290,7 +288,7 @@ var z = w((Re, Y) => {
                     return o.join(" > ");
                 });
                 n(this, "navigate", e => {
-                    r(this, d).ipc.target.webContents(r(this, v), "loadURL", [e]);
+                    r(this, d).ipc.target.webContents(r(this, $), "loadURL", [e]);
                 });
                 n(this, "query", async (e, t = 0, s = [], o = !1) => {
                     r(this, d).devMode &&
@@ -305,7 +303,7 @@ var z = w((Re, Y) => {
                         .map(a => {
                             let { top: l, left: m, width: p, height: h } = a.getBoundingClientRect();
                             return {
-                                selector: r(this, S).call(this, a, t, s),
+                                selector: r(this, k).call(this, a, t, s),
                                 top: l,
                                 left: m,
                                 width: p,
@@ -322,7 +320,7 @@ var z = w((Re, Y) => {
                     let s = document.querySelector(e);
                     if ((r(this, d).devMode && console.log(s), s)) {
                         let o = t - parseInt(s.getBoundingClientRect().top, 10);
-                        await r(this, d).ipc.target.webContents(r(this, v), "sendInputEvent", [
+                        await r(this, d).ipc.target.webContents(r(this, $), "sendInputEvent", [
                             { type: "mouseWheel", x: 10, y: 15, deltaX: 0, deltaY: o }
                         ]);
                     }
@@ -331,19 +329,19 @@ var z = w((Re, Y) => {
                     this,
                     "wheels",
                     async e => (
-                        await r(this, d).ipc.target.webContents(r(this, v), "sendInputEvent", [
+                        await r(this, d).ipc.target.webContents(r(this, $), "sendInputEvent", [
                             { type: "mouseWheel", x: 10, y: 15, deltaX: 0, deltaY: e }
                         ]),
                         "Wheels up!"
                     )
                 );
-                P(this, v, e), P(this, d, new ue(ge.getTargetChannelName(e), !1).getSdk());
+                P(this, $, e), P(this, d, new ue(ge.getTargetChannelName(e), !1).getSdk());
                 for (let t of Object.getOwnPropertyNames(this)) typeof this[t] == "function" && r(this, d).ibc.handle(t, this[t]);
             }
         }),
-        (v = new WeakMap()),
+        ($ = new WeakMap()),
         (d = new WeakMap()),
-        (S = new WeakMap()),
+        (k = new WeakMap()),
         V);
 });
 var fe = z(),
