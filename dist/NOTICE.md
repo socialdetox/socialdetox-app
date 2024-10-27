@@ -32,5 +32,6 @@ This product uses third party software in accordance with their respective licen
   * **[tiny-typed-emitter](https://npmjs.com/package/tiny-typed-emitter)** `v.2.1.0` ⚖️ license: [MIT](./licenses/tiny-typed-emitter.LICENSE.md) • author: Zurab Benashvili <zura.benashvili@gmail.com>
   * **[Font: Aladin](https://fonts.google.com/specimen/Aladin) `v.1` ⚖️ license: [OFL-1.1](./licenses/@font-aladin.LICENSE.md) • author: Angel Koziupa (sudtipos@sudtipos.com), Alejandro Paul (sudtipos@sudtipos.com)
   * **[Font: Inter](https://fonts.google.com/specimen/Inter) `v.4.1` ⚖️ license: [OFL-1.1](./licenses/@font-inter.LICENSE.md) • author: The Inter Project Authors (https://github.com/rsms/inter)
+  * **[Font: Yaldevi](https://fonts.google.com/specimen/Yaldevi) `v.1.100` ⚖️ license: [OFL-1.1](./licenses/@font-yaldevi.LICENSE.md) • author: mooniak Pvt. Ltd <hello@mooniak.com>, Sol Matas <sol@sonnenshine.com.ar>
 
 You will find copies of third party software Licenses in the [/licenses/](./licenses/) folder.
