@@ -24,6 +24,12 @@ const tasks = {
     build: ["Build & Publish app", "electron-builder"]
 };
 
+// Local run
+if ("string" !== typeof process.env.GH_TOKEN) {
+    delete tasks.tag;
+    tasks.build[0] = "Build";
+}
+
 // Append extra arguments to build
 const pubArgs = process.argv.slice(2);
 if (pubArgs.length) {
