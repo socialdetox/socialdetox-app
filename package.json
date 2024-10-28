@@ -14,8 +14,8 @@
     },
     "build": {
         "asar": true,
-        "appId": "socialdetox.ai",
-        "productName": "socialdetox.ai",
+        "appId": "SocialDetox.ai",
+        "productName": "SocialDetox.ai",
         "copyright": "Copyright © 2024 SocialDetox.ai",
         "directories": {
             "output": "out"
