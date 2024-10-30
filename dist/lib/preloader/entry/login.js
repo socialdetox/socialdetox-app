@@ -60,7 +60,7 @@ var O = m((ge, N) => {
         (y = new WeakMap()),
         E);
 });
-var M = m((ye, W) => {
+var A = m((ye, W) => {
     var Z = O(),
         { ipcRenderer: ee } = require("electron");
     W.exports = class extends Z {
@@ -70,8 +70,8 @@ var M = m((ye, W) => {
             r(this, "getName", () => this._promise("getName"));
             r(this, "getUUID", () => this._promise("getUUID"));
             r(this, "getSerialNumber", () => this._promise("getSerialNumber"));
-            r(this, "setFramed", t => this._promise("setFramed", !!t));
-            r(this, "getFramed", () => this._promise("getFramed"));
+            r(this, "setPostAuth", t => this._promise("setPostAuth", !!t));
+            r(this, "getPostAuth", () => this._promise("getPostAuth"));
             r(this, "testing", () => {
                 window.setInterval(() => {
                     ee.send("win:main", "testing", [new Date().getTime()], { type: "req", fromWin: "" });
@@ -81,9 +81,9 @@ var M = m((ye, W) => {
         }
     };
 });
-var C = m((Pe, S) => {
+var S = m((Pe, M) => {
     var te = O();
-    S.exports = class extends te {
+    M.exports = class extends te {
         constructor() {
             super();
             r(this, "list", () => this._promise("list"));
@@ -97,9 +97,9 @@ var C = m((Pe, S) => {
         }
     };
 });
-var R = m((Oe, A) => {
+var R = m((Oe, C) => {
     var re = O();
-    A.exports = class extends re {
+    C.exports = class extends re {
         constructor() {
             super();
             r(this, "openExternal", t => this._promise("openExternal", "".concat(t)));
@@ -121,9 +121,9 @@ var j = m((qe, L) => {
         }
     };
 });
-var x = m((be, F) => {
+var x = m((be, G) => {
     var u;
-    F.exports =
+    G.exports =
         ((u = class {
             static getTargetChannelName(e) {
                 return "".concat(u.WINDOW_TARGET, "/").concat(e);
@@ -134,21 +134,21 @@ var x = m((be, F) => {
         r(u, "WINDOW_TARGET", "@target"),
         u);
 });
-var H = m((Ne, B) => {
+var z = m((Ne, H) => {
     var { ipcRenderer: k, contextBridge: ie } = require("electron"),
         ne = require("crypto"),
-        oe = M(),
-        ae = C(),
+        oe = A(),
+        ae = S(),
         ce = R(),
         le = j(),
-        G = x(),
+        U = x(),
         p,
         P,
         _,
         w,
-        U;
-    B.exports =
-        ((U = class {
+        B;
+    H.exports =
+        ((B = class {
             constructor(e, t = !0) {
                 h(this, p, "");
                 h(this, P, {});
@@ -156,9 +156,9 @@ var H = m((Ne, B) => {
                 h(this, w, {});
                 r(this, "target", {
                     send: (e, t, n) => {
-                        this.send(G.getTargetChannelName(e), t, n);
+                        this.send(U.getTargetChannelName(e), t, n);
                     },
-                    invoke: async (e, t, n, o = 0) => await this.invoke(G.getTargetChannelName(e), t, n, o)
+                    invoke: async (e, t, n, o = 0) => await this.invoke(U.getTargetChannelName(e), t, n, o)
                 });
                 let n = this;
                 v(this, p, e),
@@ -252,15 +252,15 @@ var H = m((Ne, B) => {
         (P = new WeakMap()),
         (_ = new WeakMap()),
         (w = new WeakMap()),
-        U);
+        B);
 });
-var K = m((Se, J) => {
-    var pe = H(),
+var K = m((Me, J) => {
+    var pe = z(),
         de = x(),
         I,
-        z;
+        F;
     J.exports =
-        ((z = class {
+        ((F = class {
             constructor() {
                 h(this, I);
                 r(this, "getOnTop", async () => await i(this, I).ipc.login.getOnTop());
@@ -270,7 +270,7 @@ var K = m((Se, J) => {
             }
         }),
         (I = new WeakMap()),
-        z);
+        F);
 });
 var he = K();
 new he();

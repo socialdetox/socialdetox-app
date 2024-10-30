@@ -11778,8 +11778,8 @@ var ug = g((dD, lg) => {
                     }
                     return A(this, xr);
                 });
-                O(this, "setFramed", r => this._socialdetox.setFramed(!!r));
-                O(this, "getFramed", () => this._socialdetox.getFramed());
+                O(this, "setPostAuth", r => this._socialdetox.setPostAuth(!!r));
+                O(this, "getPostAuth", () => this._socialdetox.getPostAuth());
                 this._register("device");
             }
         }),
@@ -11980,7 +11980,7 @@ var pg = g((wD, hg) => {
         (Ge = new WeakMap()),
         (Ve = new WeakMap()),
         (Ht = new WeakMap()),
-        O(En, "MARGIN_LEFT", 300),
+        O(En, "MARGIN_LEFT", 250),
         O(En, "MARGIN_TOP", 50),
         O(En, "MARGIN_BOTTOM", 50),
         En);
@@ -12247,7 +12247,7 @@ var bg = g((TD, Tg) => {
                         A(t, Z).once("ready-to-show", () => r()),
                         t.main.init(),
                         t.main.view.webContents.on("did-finish-load", () => {
-                            t.getFramed() && A(t, Z).show(), r();
+                            t.getPostAuth() && A(t, Z).show(), r();
                         }),
                         A(t, Z).setMenu(null),
                         te(
@@ -12291,23 +12291,23 @@ var bg = g((TD, Tg) => {
                         }),
                         t.login.init(),
                         t.login.view.webContents.on("did-finish-load", () => {
-                            t.getFramed() || A(t, Be).show();
+                            t.getPostAuth() || A(t, Be).show();
                         }),
                         A(t, Be).setMenu(null)),
                     A(t, Be)
                 );
             }
-            getFramed() {
+            getPostAuth() {
                 return A(this, xn);
             }
-            setFramed(t) {
+            setPostAuth(t) {
                 let r = !1;
                 return (
                     (t = !!t),
-                    t !== this.getFramed() &&
+                    t !== this.getPostAuth() &&
                         (te(this, xn, t),
-                        this.login?.view.webContents.send(Ag.WINDOW_LOGIN, ["frameChanged", [t], { type: "req" }]),
-                        this.main?.view.webContents.send(Ag.WINDOW_MAIN, ["frameChanged", [t], { type: "req" }]),
+                        this.login?.view.webContents.send(Ag.WINDOW_LOGIN, ["onPostAuth", [t], { type: "req" }]),
+                        this.main?.view.webContents.send(Ag.WINDOW_MAIN, ["onPostAuth", [t], { type: "req" }]),
                         t
                             ? (this.mainWindow().show(), this.loginWindow().hide())
                             : (this.mainWindow().hide(), this.loginWindow().show()),
@@ -12340,7 +12340,7 @@ do {
     }
     Ye.on("second-instance", () => {
         $e !== null &&
-            ($e.getFramed()
+            ($e.getPostAuth()
                 ? ($e.mainWindow().isMinimized() && $e.mainWindow().restore(), $e.mainWindow().show())
                 : ($e.loginWindow().isMinimized() && $e.loginWindow().restore(), $e.loginWindow().show()));
     }),

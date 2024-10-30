@@ -26,11 +26,11 @@ var r = (i, e, t) => (N(i, e, "read from private field"), t ? t.call(i) : e.get(
     u = (i, e, t) =>
         e.has(i) ? C("Cannot add the same private member more than once") : e instanceof WeakSet ? e.add(i) : e.set(i, t),
     P = (i, e, t, s) => (N(i, e, "write to private field"), s ? s.call(i, t) : e.set(i, t), t);
-var x = w((ye, M) => {
+var x = w((me, A) => {
     var { ipcRenderer: te } = require("electron"),
         I,
         O;
-    M.exports =
+    A.exports =
         ((O = class {
             constructor() {
                 u(this, I, {});
@@ -60,18 +60,18 @@ var x = w((ye, M) => {
         (I = new WeakMap()),
         O);
 });
-var W = w((ve, D) => {
+var D = w((ve, M) => {
     var re = x(),
         { ipcRenderer: se } = require("electron");
-    D.exports = class extends re {
+    M.exports = class extends re {
         constructor() {
             super();
             n(this, "getOS", () => this._promise("getOS"));
             n(this, "getName", () => this._promise("getName"));
             n(this, "getUUID", () => this._promise("getUUID"));
             n(this, "getSerialNumber", () => this._promise("getSerialNumber"));
-            n(this, "setFramed", t => this._promise("setFramed", !!t));
-            n(this, "getFramed", () => this._promise("getFramed"));
+            n(this, "setPostAuth", t => this._promise("setPostAuth", !!t));
+            n(this, "getPostAuth", () => this._promise("getPostAuth"));
             n(this, "testing", () => {
                 window.setInterval(() => {
                     se.send("win:main", "testing", [new Date().getTime()], { type: "req", fromWin: "" });
@@ -81,9 +81,9 @@ var W = w((ve, D) => {
         }
     };
 });
-var R = w((be, A) => {
+var R = w((be, W) => {
     var ie = x();
-    A.exports = class extends ie {
+    W.exports = class extends ie {
         constructor() {
             super();
             n(this, "list", () => this._promise("list"));
@@ -121,9 +121,9 @@ var B = w((Se, U) => {
         }
     };
 });
-var S = w((Ne, F) => {
+var S = w((Ne, G) => {
     var f;
-    F.exports =
+    G.exports =
         ((f = class {
             static getTargetChannelName(e) {
                 return "".concat(f.WINDOW_TARGET, "/").concat(e);
@@ -134,21 +134,21 @@ var S = w((Ne, F) => {
         n(f, "WINDOW_TARGET", "@target"),
         f);
 });
-var Q = w((De, X) => {
+var V = w((Me, Q) => {
     var { ipcRenderer: E, contextBridge: ae } = require("electron"),
         le = require("crypto"),
-        ce = W(),
+        ce = D(),
         pe = R(),
-        de = L(),
-        he = B(),
-        G = S(),
+        he = L(),
+        de = B(),
+        H = S(),
         g,
         b,
         _,
         v,
-        H;
-    X.exports =
-        ((H = class {
+        X;
+    Q.exports =
+        ((X = class {
             constructor(e, t = !0) {
                 u(this, g, "");
                 u(this, b, {});
@@ -156,9 +156,9 @@ var Q = w((De, X) => {
                 u(this, v, {});
                 n(this, "target", {
                     send: (e, t, s) => {
-                        this.send(G.getTargetChannelName(e), t, s);
+                        this.send(H.getTargetChannelName(e), t, s);
                     },
-                    invoke: async (e, t, s, o = 0) => await this.invoke(G.getTargetChannelName(e), t, s, o)
+                    invoke: async (e, t, s, o = 0) => await this.invoke(H.getTargetChannelName(e), t, s, o)
                 });
                 let s = this;
                 P(this, g, e),
@@ -173,32 +173,32 @@ var Q = w((De, X) => {
                             },
                             winName: r(this, g)
                         },
-                        ipc: { device: new ce(), target: new pe(), login: new de(), main: new he() },
+                        ipc: { device: new ce(), target: new pe(), login: new he(), main: new de() },
                         devMode: !1
                     }),
                     E.on(r(this, g), (o, c) => {
                         if (c.length < 3) return;
-                        let [a, l, m] = c,
-                            { type: p, fromWin: h, promiseId: T } = m ?? {};
+                        let [a, l, y] = c,
+                            { type: p, fromWin: d, promiseId: T } = y ?? {};
                         if (p === "req")
                             (async () => {
-                                let y = null;
+                                let m = null;
                                 try {
                                     if (typeof a != "string" || typeof r(s, b)[a] != "function")
                                         throw new Error("Method not found");
-                                    Array.isArray(l) || (l = []), (y = await r(s, b)[a](...l));
+                                    Array.isArray(l) || (l = []), (m = await r(s, b)[a](...l));
                                 } catch (q) {
-                                    let K = "".concat(h, " >> ").concat(r(s, g), "/").concat(a, "()");
-                                    (y = new Error("".concat(K, " ").concat(q))),
-                                        r(this, v).devMode && console.warn("".concat(y));
+                                    let K = "".concat(d, " >> ").concat(r(s, g), "/").concat(a, "()");
+                                    (m = new Error("".concat(K, " ").concat(q))),
+                                        r(this, v).devMode && console.warn("".concat(m));
                                 }
-                                typeof h == "string" && typeof T == "string" && E.send(h, a, y, { type: "res", promiseId: T });
+                                typeof d == "string" && typeof T == "string" && E.send(d, a, m, { type: "res", promiseId: T });
                             })();
                         else {
-                            let y = typeof T == "string" ? "".concat(a, ":").concat(T) : null;
-                            if (y !== null) {
-                                let q = r(s, _)[y] ?? null;
-                                q !== null && (l instanceof Error ? q.reject(l) : q.resolve(l), delete r(s, _)[y]);
+                            let m = typeof T == "string" ? "".concat(a, ":").concat(T) : null;
+                            if (m !== null) {
+                                let q = r(s, _)[m] ?? null;
+                                q !== null && (l instanceof Error ? q.reject(l) : q.resolve(l), delete r(s, _)[m]);
                             }
                         }
                     }),
@@ -224,11 +224,11 @@ var Q = w((De, X) => {
                 (isNaN(a) || a < 0) && (a = 0);
                 let l = (() => {
                         let p = Date.now().toString(36),
-                            h = le.randomBytes(4).toString("hex");
-                        return "".concat(p).concat(h);
+                            d = le.randomBytes(4).toString("hex");
+                        return "".concat(p).concat(d);
                     })(),
-                    m = new Promise((p, h) => {
-                        r(this, _)["".concat(t, ":").concat(l)] = { resolve: p, reject: h };
+                    y = new Promise((p, d) => {
+                        r(this, _)["".concat(t, ":").concat(l)] = { resolve: p, reject: d };
                     });
                 return (
                     a > 0 &&
@@ -244,7 +244,7 @@ var Q = w((De, X) => {
                             }
                         }, a),
                     E.send(e, t, s, { type: "req", fromWin: r(this, g), promiseId: l }),
-                    m
+                    y
                 );
             }
         }),
@@ -252,20 +252,20 @@ var Q = w((De, X) => {
         (b = new WeakMap()),
         (_ = new WeakMap()),
         (v = new WeakMap()),
-        H);
+        X);
 });
-var z = w((Re, Y) => {
-    var ue = Q(),
+var F = w((Re, z) => {
+    var ue = V(),
         ge = S(),
         $,
-        d,
+        h,
         k,
-        V;
-    Y.exports =
-        ((V = class {
+        Y;
+    z.exports =
+        ((Y = class {
             constructor(e) {
                 u(this, $);
-                u(this, d);
+                u(this, h);
                 u(this, k, (e, t = 0, s = []) => {
                     if (!(e instanceof Element)) return null;
                     if (e.id) return "#".concat(e.id);
@@ -273,9 +273,9 @@ var z = w((Re, Y) => {
                     for (; e; ) {
                         let c = e.nodeName.toLowerCase();
                         if (o.length === 0 && Array.isArray(s) && s.length)
-                            for (let m of s) {
-                                let p = e.getAttribute(m);
-                                p && (c += "[".concat(m, '="').concat(p, '"]'));
+                            for (let y of s) {
+                                let p = e.getAttribute(y);
+                                p && (c += "[".concat(y, '="').concat(p, '"]'));
                             }
                         e.className && (c += "." + e.className.trim().split(/\s+/).join("."));
                         let a = e,
@@ -288,10 +288,10 @@ var z = w((Re, Y) => {
                     return o.join(" > ");
                 });
                 n(this, "navigate", e => {
-                    r(this, d).ipc.target.webContents(r(this, $), "loadURL", [e]);
+                    r(this, h).ipc.target.webContents(r(this, $), "loadURL", [e]);
                 });
                 n(this, "query", async (e, t = 0, s = [], o = !1) => {
-                    r(this, d).devMode &&
+                    r(this, h).devMode &&
                         console.log(
                             "%c \u{1F50D} Query Selector (classDepth: "
                                 .concat(t, ", fromScreenView: ")
@@ -301,26 +301,26 @@ var z = w((Re, Y) => {
                         );
                     let c = [...document.querySelectorAll(e)]
                         .map(a => {
-                            let { top: l, left: m, width: p, height: h } = a.getBoundingClientRect();
+                            let { top: l, left: y, width: p, height: d } = a.getBoundingClientRect();
                             return {
                                 selector: r(this, k).call(this, a, t, s),
                                 top: l,
-                                left: m,
+                                left: y,
                                 width: p,
-                                height: h,
-                                visible: l < 0 ? l + h > 0 : l < window.innerHeight
+                                height: d,
+                                visible: l < 0 ? l + d > 0 : l < window.innerHeight
                             };
                         })
                         .filter(a => (o ? a.top + a.height >= 0 : !0));
-                    return r(this, d).devMode && console.log(c), c;
+                    return r(this, h).devMode && console.log(c), c;
                 });
                 n(this, "scrollTo", async (e, t = 0) => {
-                    r(this, d).devMode &&
+                    r(this, h).devMode &&
                         console.log("%c \u{1F5B1}\uFE0F Scrolling to +".concat(t, "px of css=").concat(e), "color:lightblue");
                     let s = document.querySelector(e);
-                    if ((r(this, d).devMode && console.log(s), s)) {
+                    if ((r(this, h).devMode && console.log(s), s)) {
                         let o = t - parseInt(s.getBoundingClientRect().top, 10);
-                        await r(this, d).ipc.target.webContents(r(this, $), "sendInputEvent", [
+                        await r(this, h).ipc.target.webContents(r(this, $), "sendInputEvent", [
                             { type: "mouseWheel", x: 10, y: 15, deltaX: 0, deltaY: o }
                         ]);
                     }
@@ -329,22 +329,22 @@ var z = w((Re, Y) => {
                     this,
                     "wheels",
                     async e => (
-                        await r(this, d).ipc.target.webContents(r(this, $), "sendInputEvent", [
+                        await r(this, h).ipc.target.webContents(r(this, $), "sendInputEvent", [
                             { type: "mouseWheel", x: 10, y: 15, deltaX: 0, deltaY: e }
                         ]),
                         "Wheels up!"
                     )
                 );
-                P(this, $, e), P(this, d, new ue(ge.getTargetChannelName(e), !1).getSdk());
-                for (let t of Object.getOwnPropertyNames(this)) typeof this[t] == "function" && r(this, d).ibc.handle(t, this[t]);
+                P(this, $, e), P(this, h, new ue(ge.getTargetChannelName(e), !1).getSdk());
+                for (let t of Object.getOwnPropertyNames(this)) typeof this[t] == "function" && r(this, h).ibc.handle(t, this[t]);
             }
         }),
         ($ = new WeakMap()),
-        (d = new WeakMap()),
+        (h = new WeakMap()),
         (k = new WeakMap()),
-        V);
+        Y);
 });
-var fe = z(),
+var fe = F(),
     J = process.argv.filter(i => i.indexOf("--target-id=") >= 0).shift();
 if (typeof J == "string") {
     let i = J.split("=")[1];
