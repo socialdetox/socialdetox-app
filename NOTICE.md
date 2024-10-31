@@ -30,7 +30,6 @@ This product uses third party software in accordance with their respective licen
   * **[ms](https://npmjs.com/package/ms)** `v.2.1.3` ⚖️ license: [MIT](./dist/licenses/ms.LICENSE.md)
   * **[sax](https://npmjs.com/package/sax)** `v.1.4.1` ⚖️ license: [ISC](./dist/licenses/sax.LICENSE.md) • author: Isaac Z. Schlueter <i@izs.me> (http://blog.izs.me/)
   * **[tiny-typed-emitter](https://npmjs.com/package/tiny-typed-emitter)** `v.2.1.0` ⚖️ license: [MIT](./dist/licenses/tiny-typed-emitter.LICENSE.md) • author: Zurab Benashvili <zura.benashvili@gmail.com>
-  * **[Font: Aladin](https://fonts.google.com/specimen/Aladin) `v.1` ⚖️ license: [OFL-1.1](./dist/licenses/@font-aladin.LICENSE.md) • author: Angel Koziupa (sudtipos@sudtipos.com), Alejandro Paul (sudtipos@sudtipos.com)
   * **[Font: Inter](https://fonts.google.com/specimen/Inter) `v.4.1` ⚖️ license: [OFL-1.1](./dist/licenses/@font-inter.LICENSE.md) • author: The Inter Project Authors (https://github.com/rsms/inter)
   * **[Font: Yaldevi](https://fonts.google.com/specimen/Yaldevi) `v.1.100` ⚖️ license: [OFL-1.1](./dist/licenses/@font-yaldevi.LICENSE.md) • author: mooniak Pvt. Ltd <hello@mooniak.com>, Sol Matas <sol@sonnenshine.com.ar>
 
