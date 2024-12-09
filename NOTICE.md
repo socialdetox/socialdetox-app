@@ -1,7 +1,7 @@
 # NOTICE
 
-This product includes software developed by SocialDetox.ai.
-Copyright © 2024, [SocialDetox.ai](https://socialdetox.ai).
+This product includes software developed by Oglama.
+Copyright © 2024, [Oglama](https://oglama.com).
 
 Licensed under the Apache License, Version 2.0 (the "License").
 You may obtain a copy of the License at:
@@ -20,7 +20,7 @@ This product uses third party software in accordance with their respective licen
 
   * **[argparse](https://npmjs.com/package/argparse)** `v.2.0.1` ⚖️ license: [Python-2.0](./dist/licenses/argparse.LICENSE.md)
   * **[builder-util-runtime](https://npmjs.com/package/builder-util-runtime)** `v.9.2.10` ⚖️ license: [MIT](./dist/licenses/builder-util-runtime.LICENSE.md) • author: Vladimir Krivosheev
-  * **[debug](https://npmjs.com/package/debug)** `v.4.3.7` ⚖️ license: [MIT](./dist/licenses/debug.LICENSE.md) • author: Josh Junon (https://github.com/qix-)
+  * **[debug](https://npmjs.com/package/debug)** `v.4.4.0` ⚖️ license: [MIT](./dist/licenses/debug.LICENSE.md) • author: Josh Junon (https://github.com/qix-)
   * **[electron-updater](https://npmjs.com/package/electron-updater)** `v.6.3.9` ⚖️ license: [MIT](./dist/licenses/electron-updater.LICENSE.md) • author: Vladimir Krivosheev
   * **[graceful-fs](https://npmjs.com/package/graceful-fs)** `v.4.2.11` ⚖️ license: [ISC](./dist/licenses/graceful-fs.LICENSE.md)
   * **[js-yaml](https://npmjs.com/package/js-yaml)** `v.4.1.0` ⚖️ license: [MIT](./dist/licenses/js-yaml.LICENSE.md) • author: Vladimir Zapparov <dervus.grim@gmail.com>

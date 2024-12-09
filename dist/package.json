@@ -1,9 +1,9 @@
 {
-    "name": "socialdetox.ai",
-    "version": "0.0.28",
-    "description": "AI agents for social media detox",
-    "homepage": "https://socialdetox.ai",
-    "author": "SocialDetox.ai",
+    "name": "oglama",
+    "version": "0.0.29",
+    "description": "Private, community-driven web automation",
+    "homepage": "https://oglama",
+    "author": "Oglama",
     "main": "run.js",
     "res": true,
     "license": "Apache-2.0"

@@ -1,6 +1,6 @@
 /*!
- * @architect Mark Jivko <mark@socialdetox.ai>
- * @copyright © 2024 SocialDetox.ai https://socialdetox.ai
+ * @architect Mark Jivko <mark@oglama.com>
+ * @copyright © 2024 Oglama https://oglama.com
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,18 +19,18 @@ var b = s => {
     throw TypeError(s);
 };
 var X = (s, e, t) => (e in s ? V(s, e, { enumerable: !0, configurable: !0, writable: !0, value: t }) : (s[e] = t));
-var m = (s, e) => () => (e || s((e = { exports: {} }).exports, e), e.exports);
+var f = (s, e) => () => (e || s((e = { exports: {} }).exports, e), e.exports);
 var r = (s, e, t) => X(s, typeof e != "symbol" ? e + "" : e, t),
     D = (s, e, t) => e.has(s) || b("Cannot " + t);
 var i = (s, e, t) => (D(s, e, "read from private field"), t ? t.call(s) : e.get(s)),
     h = (s, e, t) =>
         e.has(s) ? b("Cannot add the same private member more than once") : e instanceof WeakSet ? e.add(s) : e.set(s, t),
     v = (s, e, t, n) => (D(s, e, "write to private field"), n ? n.call(s, t) : e.set(s, t), t);
-var O = m((ge, M) => {
+var q = f((ge, N) => {
     var { ipcRenderer: Y } = require("electron"),
         y,
         E;
-    M.exports =
+    N.exports =
         ((E = class {
             constructor() {
                 h(this, y, {});
@@ -60,10 +60,10 @@ var O = m((ge, M) => {
         (y = new WeakMap()),
         E);
 });
-var A = m((ye, N) => {
-    var Z = O(),
+var A = f((ye, M) => {
+    var Z = q(),
         { ipcRenderer: ee } = require("electron");
-    N.exports = class extends Z {
+    M.exports = class extends Z {
         constructor() {
             super();
             r(this, "getOS", () => this._promise("getOS"));
@@ -81,8 +81,8 @@ var A = m((ye, N) => {
         }
     };
 });
-var S = m((Pe, W) => {
-    var te = O();
+var S = f((Pe, W) => {
+    var te = q();
     W.exports = class extends te {
         constructor() {
             super();
@@ -97,8 +97,8 @@ var S = m((Pe, W) => {
         }
     };
 });
-var R = m((Oe, C) => {
-    var re = O();
+var R = f((qe, C) => {
+    var re = q();
     C.exports = class extends re {
         constructor() {
             super();
@@ -107,8 +107,8 @@ var R = m((Oe, C) => {
         }
     };
 });
-var U = m((qe, j) => {
-    var se = O();
+var U = f((ke, j) => {
+    var se = q();
     j.exports = class extends se {
         constructor() {
             super();
@@ -116,12 +116,13 @@ var U = m((qe, j) => {
             r(this, "getOnTop", () => this._promise("getOnTop"));
             r(this, "setDarkMode", t => this._promise("setDarkMode", !!t));
             r(this, "getDarkMode", () => this._promise("getDarkMode"));
+            r(this, "quit", () => this._promise("quit"));
             r(this, "openExternal", t => this._promise("openExternal", "".concat(t)));
             this._register("main");
         }
     };
 });
-var x = m((be, G) => {
+var x = f((be, G) => {
     var u;
     G.exports =
         ((u = class {
@@ -134,8 +135,8 @@ var x = m((be, G) => {
         r(u, "WINDOW_TARGET", "@target"),
         u);
 });
-var z = m((Me, H) => {
-    var { ipcRenderer: k, contextBridge: ie } = require("electron"),
+var z = f((Ne, H) => {
+    var { ipcRenderer: T, contextBridge: ie } = require("electron"),
         ne = require("crypto"),
         oe = A(),
         ae = S(),
@@ -176,29 +177,29 @@ var z = m((Me, H) => {
                         ipc: { device: new oe(), target: new ae(), login: new ce(), main: new le() },
                         devMode: !1
                     }),
-                    k.on(i(this, p), (o, l) => {
+                    T.on(i(this, p), (o, l) => {
                         if (l.length < 3) return;
-                        let [c, a, q] = l,
-                            { type: d, fromWin: g, promiseId: T } = q ?? {};
+                        let [c, a, k] = l,
+                            { type: d, fromWin: g, promiseId: O } = k ?? {};
                         if (d === "req")
                             (async () => {
-                                let f = null;
+                                let m = null;
                                 try {
                                     if (typeof c != "string" || typeof i(n, P)[c] != "function")
-                                        throw new Error("Method not found");
-                                    Array.isArray(a) || (a = []), (f = await i(n, P)[c](...a));
+                                        throw new Error("Inter-browser communication handle not declared");
+                                    Array.isArray(a) || (a = []), (m = await i(n, P)[c](...a));
                                 } catch ($) {
                                     let Q = "".concat(g, " >> ").concat(i(n, p), "/").concat(c, "()");
-                                    (f = new Error("".concat(Q, " ").concat($))),
-                                        i(this, w).devMode && console.warn("".concat(f));
+                                    (m = new Error("".concat(Q, " ").concat($))),
+                                        i(this, w).devMode && console.warn("".concat(m));
                                 }
-                                typeof g == "string" && typeof T == "string" && k.send(g, c, f, { type: "res", promiseId: T });
+                                typeof g == "string" && typeof O == "string" && T.send(g, c, m, { type: "res", promiseId: O });
                             })();
                         else {
-                            let f = typeof T == "string" ? "".concat(c, ":").concat(T) : null;
-                            if (f !== null) {
-                                let $ = i(n, _)[f] ?? null;
-                                $ !== null && (a instanceof Error ? $.reject(a) : $.resolve(a), delete i(n, _)[f]);
+                            let m = typeof O == "string" ? "".concat(c, ":").concat(O) : null;
+                            if (m !== null) {
+                                let $ = i(n, _)[m] ?? null;
+                                $ !== null && (a instanceof Error ? $.reject(a) : $.resolve(a), delete i(n, _)[m]);
                             }
                         }
                     }),
@@ -213,7 +214,7 @@ var z = m((Me, H) => {
             send(e, t, n) {
                 do {
                     if (typeof e != "string" || typeof t != "string") break;
-                    Array.isArray(n) || (n = []), k.send(e, t, n, { type: "req", fromWin: i(this, p) });
+                    Array.isArray(n) || (n = []), T.send(e, t, n, { type: "req", fromWin: i(this, p) });
                 } while (!1);
             }
             async invoke(e, t, n, o = 0) {
@@ -227,7 +228,7 @@ var z = m((Me, H) => {
                             g = ne.randomBytes(4).toString("hex");
                         return "".concat(d).concat(g);
                     })(),
-                    q = new Promise((d, g) => {
+                    k = new Promise((d, g) => {
                         i(this, _)["".concat(t, ":").concat(a)] = { resolve: d, reject: g };
                     });
                 return (
@@ -243,8 +244,8 @@ var z = m((Me, H) => {
                                 delete i(l, _)[d];
                             }
                         }, c),
-                    k.send(e, t, n, { type: "req", fromWin: i(this, p), promiseId: a }),
-                    q
+                    T.send(e, t, n, { type: "req", fromWin: i(this, p), promiseId: a }),
+                    k
                 );
             }
         }),
@@ -254,7 +255,7 @@ var z = m((Me, H) => {
         (w = new WeakMap()),
         B);
 });
-var K = m((We, J) => {
+var K = f((We, J) => {
     var pe = z(),
         de = x(),
         I,

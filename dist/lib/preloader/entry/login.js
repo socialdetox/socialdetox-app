@@ -1,6 +1,6 @@
 /*!
- * @architect Mark Jivko <mark@socialdetox.ai>
- * @copyright © 2024 SocialDetox.ai https://socialdetox.ai
+ * @architect Mark Jivko <mark@oglama.com>
+ * @copyright © 2024 Oglama https://oglama.com
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ var i = (s, e, t) => (D(s, e, "read from private field"), t ? t.call(s) : e.get(
     h = (s, e, t) =>
         e.has(s) ? b("Cannot add the same private member more than once") : e instanceof WeakSet ? e.add(s) : e.set(s, t),
     v = (s, e, t, n) => (D(s, e, "write to private field"), n ? n.call(s, t) : e.set(s, t), t);
-var O = m((ge, N) => {
+var q = m((ge, N) => {
     var { ipcRenderer: Y } = require("electron"),
         y,
         E;
@@ -61,7 +61,7 @@ var O = m((ge, N) => {
         E);
 });
 var A = m((ye, W) => {
-    var Z = O(),
+    var Z = q(),
         { ipcRenderer: ee } = require("electron");
     W.exports = class extends Z {
         constructor() {
@@ -81,9 +81,9 @@ var A = m((ye, W) => {
         }
     };
 });
-var S = m((Pe, M) => {
-    var te = O();
-    M.exports = class extends te {
+var C = m((Pe, S) => {
+    var te = q();
+    S.exports = class extends te {
         constructor() {
             super();
             r(this, "list", () => this._promise("list"));
@@ -97,9 +97,9 @@ var S = m((Pe, M) => {
         }
     };
 });
-var R = m((Oe, C) => {
-    var re = O();
-    C.exports = class extends re {
+var R = m((qe, M) => {
+    var re = q();
+    M.exports = class extends re {
         constructor() {
             super();
             r(this, "openExternal", t => this._promise("openExternal", "".concat(t)));
@@ -107,8 +107,8 @@ var R = m((Oe, C) => {
         }
     };
 });
-var j = m((qe, L) => {
-    var se = O();
+var j = m((ke, L) => {
+    var se = q();
     L.exports = class extends se {
         constructor() {
             super();
@@ -116,6 +116,7 @@ var j = m((qe, L) => {
             r(this, "getOnTop", () => this._promise("getOnTop"));
             r(this, "setDarkMode", t => this._promise("setDarkMode", !!t));
             r(this, "getDarkMode", () => this._promise("getDarkMode"));
+            r(this, "quit", () => this._promise("quit"));
             r(this, "openExternal", t => this._promise("openExternal", "".concat(t)));
             this._register("main");
         }
@@ -135,10 +136,10 @@ var x = m((be, G) => {
         u);
 });
 var z = m((Ne, H) => {
-    var { ipcRenderer: k, contextBridge: ie } = require("electron"),
+    var { ipcRenderer: T, contextBridge: ie } = require("electron"),
         ne = require("crypto"),
         oe = A(),
-        ae = S(),
+        ae = C(),
         ce = R(),
         le = j(),
         U = x(),
@@ -176,26 +177,26 @@ var z = m((Ne, H) => {
                         ipc: { device: new oe(), target: new ae(), login: new ce(), main: new le() },
                         devMode: !1
                     }),
-                    k.on(i(this, p), (o, l) => {
+                    T.on(i(this, p), (o, l) => {
                         if (l.length < 3) return;
-                        let [c, a, q] = l,
-                            { type: d, fromWin: g, promiseId: T } = q ?? {};
+                        let [c, a, k] = l,
+                            { type: d, fromWin: g, promiseId: O } = k ?? {};
                         if (d === "req")
                             (async () => {
                                 let f = null;
                                 try {
                                     if (typeof c != "string" || typeof i(n, P)[c] != "function")
-                                        throw new Error("Method not found");
+                                        throw new Error("Inter-browser communication handle not declared");
                                     Array.isArray(a) || (a = []), (f = await i(n, P)[c](...a));
                                 } catch ($) {
                                     let Q = "".concat(g, " >> ").concat(i(n, p), "/").concat(c, "()");
                                     (f = new Error("".concat(Q, " ").concat($))),
                                         i(this, w).devMode && console.warn("".concat(f));
                                 }
-                                typeof g == "string" && typeof T == "string" && k.send(g, c, f, { type: "res", promiseId: T });
+                                typeof g == "string" && typeof O == "string" && T.send(g, c, f, { type: "res", promiseId: O });
                             })();
                         else {
-                            let f = typeof T == "string" ? "".concat(c, ":").concat(T) : null;
+                            let f = typeof O == "string" ? "".concat(c, ":").concat(O) : null;
                             if (f !== null) {
                                 let $ = i(n, _)[f] ?? null;
                                 $ !== null && (a instanceof Error ? $.reject(a) : $.resolve(a), delete i(n, _)[f]);
@@ -213,7 +214,7 @@ var z = m((Ne, H) => {
             send(e, t, n) {
                 do {
                     if (typeof e != "string" || typeof t != "string") break;
-                    Array.isArray(n) || (n = []), k.send(e, t, n, { type: "req", fromWin: i(this, p) });
+                    Array.isArray(n) || (n = []), T.send(e, t, n, { type: "req", fromWin: i(this, p) });
                 } while (!1);
             }
             async invoke(e, t, n, o = 0) {
@@ -227,7 +228,7 @@ var z = m((Ne, H) => {
                             g = ne.randomBytes(4).toString("hex");
                         return "".concat(d).concat(g);
                     })(),
-                    q = new Promise((d, g) => {
+                    k = new Promise((d, g) => {
                         i(this, _)["".concat(t, ":").concat(a)] = { resolve: d, reject: g };
                     });
                 return (
@@ -243,8 +244,8 @@ var z = m((Ne, H) => {
                                 delete i(l, _)[d];
                             }
                         }, c),
-                    k.send(e, t, n, { type: "req", fromWin: i(this, p), promiseId: a }),
-                    q
+                    T.send(e, t, n, { type: "req", fromWin: i(this, p), promiseId: a }),
+                    k
                 );
             }
         }),
@@ -254,7 +255,7 @@ var z = m((Ne, H) => {
         (w = new WeakMap()),
         B);
 });
-var K = m((Me, J) => {
+var K = m((Se, J) => {
     var pe = z(),
         de = x(),
         I,
