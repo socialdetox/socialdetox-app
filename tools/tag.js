@@ -1,8 +1,8 @@
 /**
  * Make sure the Git tag corresponding to the current app version exists
  *
- * @architect Mark Jivko <mark@socialdetox.ai>
- * @copyright © 2024 SocialDetox.ai https://socialdetox.ai
+ * @architect Mark Jivko <mark@oglama.com>
+ * @copyright © 2024 Oglama https://oglama.com
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.

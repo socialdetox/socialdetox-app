@@ -1,8 +1,8 @@
 {
-    "name": "socialdetox.ai",
+    "name": "oglama.com",
     "version": "0.0.29",
-    "description": "AI agents for social media detox",
-    "author": "SocialDetox.ai",
+    "description": "Private, community-driven web automation",
+    "author": "Oglama",
     "license": "Apache-2.0",
     "private": true,
     "main": "run.js",
@@ -14,9 +14,9 @@
     },
     "build": {
         "asar": true,
-        "appId": "SocialDetox.ai",
-        "productName": "SocialDetox.ai",
-        "copyright": "Copyright © 2024 SocialDetox.ai",
+        "appId": "Oglama",
+        "productName": "Oglama",
+        "copyright": "Copyright © 2024 Oglama",
         "directories": {
             "output": "out"
         },
@@ -51,8 +51,8 @@
             "artifactName": "${productName}-${version}.${ext}",
             "target": "deb",
             "category": "Utility",
-            "maintainer": "SocialDetox.ai <hello@socialdetox.ai>",
-            "description": "AI agents for social media detox"
+            "maintainer": "Oglama <hello@oglama.com>",
+            "description": "Private, community-driven web automation"
         },
         "nsis": {
             "oneClick": false,
@@ -66,8 +66,8 @@
         "publish": [
             {
                 "provider": "github",
-                "owner": "socialdetox",
-                "repo": "socialdetox-app",
+                "owner": "oglama",
+                "repo": "oglama-app",
                 "releaseType": "release"
             }
         ]

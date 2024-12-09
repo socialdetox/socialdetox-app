@@ -2,7 +2,7 @@
 
 ## Our Pledge
 
-We, as members of the internal development team for SocialDetox.ai, are committed to maintaining a respectful and inclusive environment for all collaborators.
+We, as members of the internal development team for Oglama, are committed to maintaining a respectful and inclusive environment for all collaborators.
 
 While external contributions are currently not permitted, we expect all interactions — whether within the team or from the public (e.g., bug reports, feature requests) — to be professional and respectful.
 
@@ -21,8 +21,8 @@ This Code of Conduct applies within all project spaces, including but not limite
 
 ## Reporting Issues
 
-If you witness or experience behavior that does not meet our standards, please report it to <hello@socialdetox.ai> so we can address the situation appropriately.
+If you witness or experience behavior that does not meet our standards, please report it to <hello@oglama.com> so we can address the situation appropriately.
 
 Thank you for your understanding.
 
-> **Mark Jivko** (<mark@socialdetox.ai>) | CPTO
+> **Mark Jivko** (<mark@oglama.com>) | CPTO
